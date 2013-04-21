@@ -1,0 +1,8 @@
+auto: true
+markdown: rdiscount
+pygments: true
+
+paginate: 1
+
+title: Leeyee's Blog
+url: http://leeyee.github.com
