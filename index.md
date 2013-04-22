@@ -1,6 +1,5 @@
 ---
-layout: page
-title: [Leeyee's Blog]
+layout: index
 ---
 {% for post in site.posts %}
 <div>

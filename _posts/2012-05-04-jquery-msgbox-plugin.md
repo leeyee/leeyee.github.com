@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: [hello world]
+title: [jQuery MsgBox Plugin]
 category: blog
 tag: 遮罩层
 description: 关于几个主要宗教的一些基本概念整理，了解一下，可以更有文化一点。

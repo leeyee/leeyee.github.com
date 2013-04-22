@@ -1,13 +1,40 @@
 ---
 layout: default
 ---
-<div class="span9 well" style="min-height: 400px">
-	{% for post in site.posts %}
-	<div class="row-fluid">
-		<h2>
-			<a href="{{ post.url }}">{{ post.title }}</a>
-		</h2>
+<div class="well well-small" style="min-height: 400px">
+
+	<!-- <div class="hero-unit" style="padding-top: 9px">
+	<h1 style="padding: 20px 20px">{{ site.posts[0].title }}</h1>
+	<p>
+		<a href="{{ site.posts[0].url }}">{{ site.posts[0].description }}</a>
+	</p>
+	<p>
+		<a href="{{ site.posts[0].url }}" class="btn btn-primary btn-large">Learn
+			more &raquo;</a>
+	</p>
+</div>
+
+<div class="row-fluid">
+	{% for post in site.posts limit:2 offset:1 %}
+	<div class="span4">
+		<h2>{{ post.title }}</h2>
 		<p>{{ post.description }}</p>
+		<p>
+			<a class="btn" href="{{ post.url }}">View details &raquo;</a>
+		</p>
 	</div>
 	{% endfor %}
+</div> -->
+
+
+
+	{% for post in site.posts %}
+
+	<h3>
+		<a href="{{ post.url }}">{{ post.title }}</a>
+	</h3>
+	<p>{{ post.description }}</p>
+
+	{% endfor %}
+
 </div>
