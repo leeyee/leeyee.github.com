@@ -2,7 +2,10 @@ auto: true
 markdown: rdiscount
 pygments: true
 
-paginate: 1
+permalink: /blog/:year/:month/:day/:title
+
+paginate: 10
 
 title: Leeyee's Blog
 url: http://leeyee.github.com
+author: leeyee
