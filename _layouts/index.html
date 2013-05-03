@@ -1,40 +1,56 @@
 ---
 layout: default
 ---
-<div class="well well-small" style="min-height: 400px">
-
-	<!-- <div class="hero-unit" style="padding-top: 9px">
-	<h1 style="padding: 20px 20px">{{ site.posts[0].title }}</h1>
-	<p>
-		<a href="{{ site.posts[0].url }}">{{ site.posts[0].description }}</a>
-	</p>
-	<p>
-		<a href="{{ site.posts[0].url }}" class="btn btn-primary btn-large">Learn
-			more &raquo;</a>
-	</p>
-</div>
-
-<div class="row-fluid">
-	{% for post in site.posts limit:2 offset:1 %}
-	<div class="span4">
-		<h2>{{ post.title }}</h2>
-		<p>{{ post.description }}</p>
-		<p>
-			<a class="btn" href="{{ post.url }}">View details &raquo;</a>
-		</p>
+	<article>
+		<div style="margin: 0px 160px">
+			{% for post in site.posts %}
+			<div class="container-fluid">
+				<div class="row myrow">
+					<div class="lead page-header" style="margin-bottom: 10px">
+						<a href="{{ post.url }}">{{ post.title }}</a> 
+						<small class="pull-right"> 
+							<em>{{ post.date | date:"%b %d, %Y" }}</em>
+						</small>
+					</div>
+					<div>
+						<small>{{ post.description }}</small>
+					</div>
+					<div class="pull-right">
+						<small><a href="{{ post.url }}">阅读全文</a></small>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</article>
+	<!-- Pagination links -->
+	<div class="pagination pagination-right" style="margin-right: 60px;">
+		<ul>
+			<li class="previous">
+			{% if paginator.previous_page %} 
+				{% if paginator.previous_page == 1 %} 
+				<a href="/">&larr; Older</a> 
+				{% else %} 
+				<a href="/page{{paginator.previous_page}}">&larr; Older</a> 
+				{% endif %} 
+				{% else %} 
+				<span>&larr; Older</span> 
+				{% endif %}
+			</li>
+			{% if paginator.page == 1 %}
+			<li><a href="/">1</a></li>
+			{% else %} 
+			<li><a href="/">1</a></li>
+			{% endif %}
+			 
+			{% for count in (2..paginator.total_pages) %}
+			{% if count == paginator.page %}
+			<li class="active"><a href="/page{{count}}">{{count}}</a></li>
+			{% else %}
+			<li><a href="/page{{count}}">{{count}}</a></li> {% endif %}
+			{% endfor %}
+			<li class="next">{% if paginator.next_page %} <a
+				href="/page{{paginator.next_page}}">Newer &rarr;</a> {% endif %}
+			</li>
+		</ul>
 	</div>
-	{% endfor %}
-</div> -->
-
-
-
-	{% for post in site.posts %}
-
-	<h3>
-		<a href="{{ post.url }}">{{ post.title }}</a>
-	</h3>
-	<p>{{ post.description }}</p>
-
-	{% endfor %}
-
-</div>
