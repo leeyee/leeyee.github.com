@@ -1,9 +1,9 @@
 ---
-layout: blog
-title: [jQuery MsgBox Plugin]
-category: blog
-tag: 遮罩层
-description: 关于几个主要宗教的一些基本概念整理，了解一下，可以更有文化一点。
+layout: post
+title: jQuery MsgBox Plugin
+category: jQuery
+tag: [javascript,MsgBox,消息提示框]
+description: 基于jQuery的消息提示框插件
 ---
 
 
@@ -99,6 +99,3 @@ description: 关于几个主要宗教的一些基本概念整理，了解一下�
         maskcolor : 'pink',
         maskopacity : 0.9
     });
-
-
-[返回顶部](#top)
