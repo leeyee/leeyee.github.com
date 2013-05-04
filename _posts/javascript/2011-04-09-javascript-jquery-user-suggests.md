@@ -3,7 +3,7 @@ layout: post
 title: 一些关于javascript、jQuery使用时的建议
 description: 这篇文章介绍一些关于javascript及jQuery代码开发过程中首选的最佳实践。
 category: javascript
-tag: [javascript,jQuery]
+tag: [javascript, jQuery]
 keywords: [一些关于javascript、jQuery使用时的建议]
 ---
 

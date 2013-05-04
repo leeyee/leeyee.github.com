@@ -2,7 +2,7 @@
 layout: post
 title: jQuery MsgBox Plugin
 category: jQuery
-tag: [javascript,jQuery]
+tag: [javascript, jQuery]
 description: 基于jQuery的消息提示框插件
 keywords: [基于jQuery的消息提示框插件,消息提示框]
 ---
