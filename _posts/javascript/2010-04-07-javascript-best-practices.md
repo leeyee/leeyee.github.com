@@ -3,7 +3,8 @@ layout: post
 title: javascript 最佳实践
 description: 这篇文章介绍一系列javascript代码开发的首选最佳实践，这些最佳实践是基于javascprit领域许多开发者的观点和经验。因此这只是一些建议而不是一个绝对规则，有经验的开发人员可能会对下面提到的最佳实践略有不同的看法。
 category: javascript
-tag: [javascript,最佳实践]
+tag: [javascript]
+keywords: [javascript最佳实践]
 ---
 
 原文地址：[http://www.javascripttoolbox.com/bestpractices/](http://www.javascripttoolbox.com/bestpractices/)
