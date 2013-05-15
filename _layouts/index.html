@@ -1,56 +1,90 @@
+--- 
+layout: default 
 ---
-layout: default
----
-	<article>
-		<div style="margin: 0px 160px">
-			{% for post in site.posts %}
-			<div class="container-fluid">
-				<div class="row myrow">
-					<div class="lead page-header" style="margin-bottom: 10px">
-						<a href="{{ post.url }}">{{ post.title }}</a> 
-						<small class="pull-right"> 
-							<em>{{ post.date | date:"%b %d, %Y" }}</em>
-						</small>
+	<div class="row">
+		<div class="span3">
+				<div class="row">
+					<div class="myrow">
+						<ul class="nav nav-list">
+							<li class="nav-header">文章分类</li>
+							{% for category in site.categories %}
+							<li>
+								<a href="/categorys.html#{{ category[0] }}">{{ category[0] }}<sup style="padding-left: 4px">{{ category[1].size }}</sup></a>
+							</li>
+							{% endfor %}
+						</ul>
 					</div>
-					<div>
-						<small>{{ post.description }}</small>
+				</div>
+				<div class="row">
+					<div class="myrow" style="margin-top: 20px;">
+						<ul class="nav nav-list">
+							<li class="nav-header">文章标签</li>
+							{% for tag in site.tags %}
+							<li>
+								<a href="/tags.html#{{ tag[0] }}">{{ tag[0] }}<sup style="padding-left: 4px">{{ tag[1].size }}</sup></a>
+							</li>
+							{% endfor %}
+						</ul>
 					</div>
-					<div class="pull-right">
-						<small><a href="{{ post.url }}">阅读全文</a></small>
+				</div>
+				<div class="row">
+					<div class="myrow" style="margin-top: 20px;">
+						<ul class="nav nav-list">
+							<li class="nav-header">文章存档</li>
+							{% for post in site.posts %}
+								{% capture  ym %}
+									{{ post.date | date:"%Y-%m" }} 
+						 		{% endcapture %}
+
+						 		{% if year_month != ym %}
+						 			{%	assign year_month = ym %}
+						 		<li><a href="">{{ ym }}
+						 			{%	assign count = 0 %}
+						 			{% for pt in site.posts %}
+						 				{% capture  cym %}{{ pt.date | date:"%Y-%m" }} {% endcapture %}
+						 				{% if year_month contains cym %}
+						 					{% capture  count %}{{ count | plus:1 }} {% endcapture %}
+						 				{% endif %}
+						 			{% endfor %}
+						 			({{ count }})</a>
+						 		</li>
+						 		{% endif %}
+							{% endfor %}
+						</ul>
 					</div>
 				</div>
 			</div>
-			{% endfor %}
+			<div class="span9 myrow">
+				<div style="padding: 0px 10px">
+					{% for post in site.posts %}
+					<div class="page-header lead" style="margin-bottom: 8px;">
+						<a href="{{ post.url }}/">{{ post.title }}</a>
+						<em class="pull-right">{{ post.date | date:"%b %d, %Y" }}</em>
+					</div>
+					<div style="margin-bottom: 30px;">
+						<small>{{ post.description }}</small>
+						<br/>
+						<small class="pull-right"><a
+							href="{{ post.url }}/">阅读全文</a></small>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="pagination pagination-right" style="margin:40px 10px auto;">
+					<ul>
+						<li class="previous">{% if paginator.previous_page %} 
+				{% if paginator.previous_page == 1 %} <a href="/">&larr; Older</a> 
+				{% else %} <a href="/page{{paginator.previous_page}}">&larr; Older</a>
+				{% endif %} {% else %} <span>&larr; Older</span> {% endif %}
+				</li> {% if paginator.page == 1 %}
+				<li><a href="/">1</a></li> {% else %}
+				<li><a href="/">1</a></li> {% endif %} 
+				{% for count in (2..paginator.total_pages) %} {% if count == paginator.page %}
+				<li class="active"><a href="/page{{count}}">{{count}}</a></li> {% else %}
+				<li><a href="/page{{count}}">{{count}}</a></li> {% endif %} {% endfor %}
+				<li class="next">{% if paginator.next_page %} <a
+					href="/page{{paginator.next_page}}">Newer &rarr;</a> {% endif %}
+				</li>
+					</ul>
+				</div>
+			</div>		
 		</div>
-	</article>
-	<!-- Pagination links -->
-	<div class="pagination pagination-right" style="margin-right: 60px;">
-		<ul>
-			<li class="previous">
-			{% if paginator.previous_page %} 
-				{% if paginator.previous_page == 1 %} 
-				<a href="/">&larr; Older</a> 
-				{% else %} 
-				<a href="/page{{paginator.previous_page}}">&larr; Older</a> 
-				{% endif %} 
-				{% else %} 
-				<span>&larr; Older</span> 
-				{% endif %}
-			</li>
-			{% if paginator.page == 1 %}
-			<li><a href="/">1</a></li>
-			{% else %} 
-			<li><a href="/">1</a></li>
-			{% endif %}
-			 
-			{% for count in (2..paginator.total_pages) %}
-			{% if count == paginator.page %}
-			<li class="active"><a href="/page{{count}}">{{count}}</a></li>
-			{% else %}
-			<li><a href="/page{{count}}">{{count}}</a></li> {% endif %}
-			{% endfor %}
-			<li class="next">{% if paginator.next_page %} <a
-				href="/page{{paginator.next_page}}">Newer &rarr;</a> {% endif %}
-			</li>
-		</ul>
-	</div>

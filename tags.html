@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+
+<div class="row myrow">
+	<div style="padding: 0px 10px">
+		<div class="lead">
+			<h2>文章标签</h2>
+		</div>
+		<div>
+			<ul class="nav nav-pills">
+				{% for tag in site.tags %}
+				<li><a href="#{{ tag | first }}"><span class="badge badge-info">{{ tag[0] }}</span><sup
+						style="padding-left: 4px">{{ tag | last | size  }}</sup></a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		
+		{% for tag in site.tags %}
+		<div style="margin: 20px 0px;" id="{{ tag[0] }}">
+			<ul class="nav nav-list">
+				<li class="nav-header">{{ tag[0] }}</li>
+				<li class="divider"></li>
+				<li>
+					<ul class="nav nav-list">
+						{% for post in site.posts %}
+							{% if post.tag contains tag[0] %}
+						<li><a href="{{ post.url }}/">{{ post.title }}</a></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</li>
+			</ul>
+		</div>
+		{% endfor %}
+	</div>
+</div>

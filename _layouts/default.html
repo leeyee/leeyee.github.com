@@ -8,35 +8,9 @@
 <meta name="description" content="{{ page.description }}" />
 <!-- <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>  -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="/js/prettify/prettify.css" rel="stylesheet">
-
-<script type="text/javascript">
-	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F58361582bf16c265b9a27cec274eb971' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
+{% include analytics %}
 <script type="text/javascript" src="/js/jquery-1.8.3.js"></script>
-<script type="text/javascript">
-	var _gaq = _gaq || [];
-	var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
-	_gaq.push([ '_require', 'inpage_linkid', pluginUrl ]);
-	_gaq.push([ '_setAccount', 'UA-40641589-1' ]);
-	_gaq.push([ '_trackPageview' ]);
-
-	(function() {
-		var ga = document.createElement('script');
-		ga.type = 'text/javascript';
-		ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-				: 'http://www')
-				+ '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(ga, s);
-	})();
-</script>
-
-
 <style type="text/css">
 body {
 	background-color: #f5f5f5;
@@ -44,7 +18,6 @@ body {
 
 .myrow {
 	background-color: #fff;
-	padding: 0px 20px;
 }
 </style>
 </head>
@@ -55,12 +28,14 @@ body {
 				<a class="brand">Leeyee's Blog</a>
 				<ul class="nav">
 					<li><a href="/">首页</a></li>
+					<li><a href="/categorys.html">分类</a>
+					<li><a href="/tags.html">标签</a>
 					<li><a href="/about.html">关于我</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div style="margin-top: 60px;">{{ content }}</div>
+	<div class="container" style="margin-top: 60px;">{{ content }}</div>
 	<hr />
 	<footer>
 		<p class="text-center">&copy;2013 by Leeyee, All Rights Reserved</p>

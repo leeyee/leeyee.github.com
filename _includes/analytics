@@ -1,0 +1,2 @@
+{% include analytics-providers/google %}
+{% include analytics-providers/baidu %}
