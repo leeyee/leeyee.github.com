@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+
+<div class="row myrow">
+	<div style="padding: 0px 10px">
+		<div class="lead">
+			<h2>归档</h2>
+		</div>
+		
+		{% for post in site.posts %}
+			{% capture  ym %}{{ post.date | date:"%Y-%m" }}{% endcapture %}
+			{% if year_month != ym %}
+				{%	assign year_month = ym %}
+		<div id="{{ ym | strip_html }}">
+			<ul class="nav nav-list">
+				<li class="nav-header"><h4>{{ ym }}</h4></li>
+				<li class="divider"></li>
+				<li>
+					<ul class="nav nav-list">
+						{% for pt in site.posts %}
+							{% capture  cym %}{{ pt.date | date:"%Y-%m" }}{% endcapture %}
+							{% if year_month == cym %}
+						<li><a href="{{ pt.url }}/">{{ pt.title }}</a></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</li>
+			</ul>
+		</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>

@@ -2,57 +2,10 @@
 layout: default 
 ---
 	<div class="row">
-		<div class="span3">
-				<div class="row">
-					<div class="myrow">
-						<ul class="nav nav-list">
-							<li class="nav-header">文章分类</li>
-							{% for category in site.categories %}
-							<li>
-								<a href="/categorys.html#{{ category[0] }}">{{ category[0] }}<sup style="padding-left: 4px">{{ category[1].size }}</sup></a>
-							</li>
-							{% endfor %}
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="myrow" style="margin-top: 20px;">
-						<ul class="nav nav-list">
-							<li class="nav-header">文章标签</li>
-							{% for tag in site.tags %}
-							<li>
-								<a href="/tags.html#{{ tag[0] }}">{{ tag[0] }}<sup style="padding-left: 4px">{{ tag[1].size }}</sup></a>
-							</li>
-							{% endfor %}
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="myrow" style="margin-top: 20px;">
-						<ul class="nav nav-list">
-							<li class="nav-header">文章存档</li>
-							{% for post in site.posts %}
-								{% capture  ym %}
-									{{ post.date | date:"%Y-%m" }} 
-						 		{% endcapture %}
-
-						 		{% if year_month != ym %}
-						 			{%	assign year_month = ym %}
-						 		<li><a href="">{{ ym }}
-						 			{%	assign count = 0 %}
-						 			{% for pt in site.posts %}
-						 				{% capture  cym %}{{ pt.date | date:"%Y-%m" }} {% endcapture %}
-						 				{% if year_month contains cym %}
-						 					{% capture  count %}{{ count | plus:1 }} {% endcapture %}
-						 				{% endif %}
-						 			{% endfor %}
-						 			({{ count }})</a>
-						 		</li>
-						 		{% endif %}
-							{% endfor %}
-						</ul>
-					</div>
-				</div>
+			<div class="span3">
+				{% include categories %}
+				{% include tags %}
+				{% include archives %}
 			</div>
 			<div class="span9 myrow">
 				<div style="padding: 0px 10px">
