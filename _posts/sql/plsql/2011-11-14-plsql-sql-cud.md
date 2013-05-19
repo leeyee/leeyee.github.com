@@ -3,7 +3,7 @@ layout: post
 title: SQL增删改语句要点
 description: 本文主要介绍一些SQL语法中有关对数据进行插入、更新及删除操作的要点
 category: pl/sql
-tag: [pl/sql,sql]
+tag: [pl/sql, sql]
 keywords: [SQL数据操纵,DML,insert first,truncate]
 ---
 
