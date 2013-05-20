@@ -1,9 +1,7 @@
 {% if site.comments.provider %}
-	
 	{% case site.comments.provider %}
 		{% when "disqus" %}
 			{% include comments-providers/disqus %}
 	{% endcase %}
-
 {% endif %}
 	

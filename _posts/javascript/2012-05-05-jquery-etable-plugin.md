@@ -5,6 +5,9 @@ category: jQuery
 tag: [javascript, jQuery]
 description: 基于jQuery的简单table元素操作插件
 keywords: [jQuery table]
+
+github: 'eTable'
+
 ---
 
 

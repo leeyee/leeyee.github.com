@@ -4,7 +4,7 @@
 			<li class="nav-header">文章分类</li>
 			{% for category in site.categories %}
 			<li>
-				<a href="/categorys.html#{{ category[0] }}">{{ category[0] }}<sup style="padding-left: 4px">{{ category[1].size }}</sup></a>
+				<a href="/categorys.html#{{category[0]}}">{{category[0]}}<sup style="padding-left: 4px">{{category[1].size}}</sup></a>
 			</li>
 			{% endfor %}
 		</ul>

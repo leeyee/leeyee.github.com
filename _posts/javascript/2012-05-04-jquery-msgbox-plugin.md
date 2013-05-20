@@ -5,8 +5,10 @@ category: jQuery
 tag: [javascript, jQuery]
 description: 基于jQuery的消息提示框插件
 keywords: [基于jQuery的消息提示框插件,消息提示框]
----
 
+github: 'MsgBox-jQuery-Plugin'
+
+---
 
 ##<div id='top'>jQuery MsgBox Plugin</div>
 

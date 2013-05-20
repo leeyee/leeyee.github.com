@@ -4,9 +4,9 @@
 			<li class="nav-header">文章标签</li>
 			{% for tag in site.tags %}
 			<li>
-				<a href="/tags.html#{{ tag[0] }}">{{ tag[0] }}<sup style="padding-left: 4px">{{ tag[1].size }}</sup></a>
+				<a href="/tags.html#{{tag[0]}}">{{tag[0]}}<sup style="padding-left: 4px">{{tag[1].size}}</sup></a>
 			</li>
-		{% endfor %}
+			{% endfor %}
 		</ul>
 	</div>
 </div>
