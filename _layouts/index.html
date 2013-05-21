@@ -12,7 +12,7 @@ layout: default
 					{% for post in paginator.posts %}
 					<div class="page-header lead" style="margin-bottom: 8px;">
 						{% if post.github %}
-							<img src="/img/Octocat.jpg" title="GitHub Project" alt="GitHub Project" width="40" height="40"/>
+							<img src="/img/Octocat.jpg" title="GitHub Project" alt="GitHub Project" style="width: 40px;height: 30px"/>
 						{% endif %}
 						<a href="{{post.url}}/" title="GitHub Project">{{post.title}}</a>
 						<em class="pull-right">{{post.date | date:"%b %d, %Y"}}</em>

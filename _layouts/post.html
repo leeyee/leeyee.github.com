@@ -24,7 +24,7 @@ layout: default
 		<div style="padding: 0px 10px">
 			<article id='j_article'>
 				<div class="page-header  text-center" style="margin-bottom: 10px">
-					<h1>{% if page.github %}<a href="{{site.github | append: page.github}}" target="_blank"><img src="/img/Octocat.jpg" title="View project on GitHub" alt="GitHub project" width="60" height="60"/></a>{% endif %}{{page.title}}</h1>
+					<h1>{% if page.github %}<a href="{{site.github | append: page.github}}" target="_blank"><img src="/img/Octocat.jpg" title="View project on GitHub" alt="GitHub project" style="width: 60px;height: 50px"/></a>{% endif %}{{page.title}}</h1>
 					<em>{{ page.date|date:"%b %d, %Y" }} by {% if page.author %}
 						{{ page.author }} {% elsif site.author %} {{ site.author }} {% endif %} </em>
 				</div>
