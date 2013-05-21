@@ -22,7 +22,7 @@ layout: default
 	</div>
 	<div class="span9 myrow">
 		<div style="padding: 0px 10px">
-			<article id='j_article'>
+			<div id='j_article'>
 				<div class="page-header  text-center" style="margin-bottom: 10px">
 					<h1>{% if page.github %}<a href="{{site.github | append: page.github}}" target="_blank"><img src="/img/Octocat.jpg" title="View project on GitHub" alt="GitHub project" style="width: 60px;height: 50px"/></a>{% endif %}{{page.title}}</h1>
 					<em>{{ page.date|date:"%b %d, %Y" }} by {% if page.author %}
@@ -37,9 +37,15 @@ layout: default
 							class="badge">{{ tag}}</span> {% endfor %}
 					</div>
 				</div>
+				<div class="autoTitle">
+					<div id="j_dir">
+						<span>目录<abbr title="文章标题结构" class="initialism">(?)</abbr></span>
+					</div>
+					<div id="j_dir_content"></div>
+				</div>
 				<div class="container-fulid" style="margin: 40px 0px 40px 0px">
-					{{ content }}</div>
-			</article>
+					{{content}}</div>
+			</div>
 			<div id="disqus_thread"></div>
 		</div>
 	</div>

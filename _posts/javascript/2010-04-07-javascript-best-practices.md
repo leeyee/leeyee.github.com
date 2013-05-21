@@ -9,23 +9,8 @@ keywords: [javascript最佳实践]
 
 原文地址：[http://www.javascripttoolbox.com/bestpractices/](http://www.javascripttoolbox.com/bestpractices/)
 
-### 目录
-1. [总是使用关键字`var`声明变量](#t1)
-2. [属性检测胜过浏览器检测](#t2)
-3. [使用方括号](#t3)
-4. [避免使用`eval`](#t4)
-5. [正确引用表单及表单中的元素](#t5)
-6. [避免使用`with`语句](#t6)
-7. [在锚上使用`onclick`事件替代 javascript 伪协议](#t7)
-8. [用一元`+`操作进行数字类型转换](#t8)
-9. [避免使用`document.all`](#t9)
-10. [不要在javascript代码块中使用`HTML`注解](#t10)
-11. [避免杂乱的全局命名空间](#t11)
-12. [避免使用同步`ajax`调用](#t12)
-13. [使用`json`](#t13)
-14. [正确使用`<script>`标签](#t14)
 
-###<div id="t1">1.总是使用关键字_var_声明变量</div>
+###1.总是使用关键字_var_声明变量
 
 javascript中的变量不是全局范围就是函数范围，使用关键字`var`声明变量是必不可少的。当声明一个变量时不管是全局变量还是函数级变量，都不应省略变量的前缀关键字`var`。下边的例子说明了如果不这样做可能存在的潜在问题。
 
@@ -51,7 +36,7 @@ javascript中的变量不是全局范围就是函数范围，使用关键字`var
         }
     }
     
-###<div id="t2">2.属性检测胜过浏览器检测</div>
+###2.属性检测胜过浏览器检测
 
 有些代码是被写来检测浏览器版本和检测基于用户使用代理的不同行为的。通常情况下这个是一个非常糟糕的编程实践。任何甚至是一些看起来像全局“导航”的对象都是令人怀疑的。
 最好的方式是使用属性检测。也就是说，当在一个老版本的浏览器上使用任何可能不被支持的高级属性时，应该先去检查下该函数或是方法是否被支持，然后再使用它。这样比起在使用函数或是方法时通过检测具体的浏览器版本和假设客户端支持该功能要好的多。关于这个话题更深层次的讨论可以参看[这里](http://www.jibbering.com/faq/faq_notes/not_browser_detect.html).
@@ -64,7 +49,7 @@ javascript中的变量不是全局范围就是函数范围，使用关键字`var
         alert('Your browser lacks the capabilities required to run this script!');
     }
     
-###<div id="t3">3.使用方括号</div>
+###3.使用方括号
 
 当访问的对象属性是动态生成的（在运行期间定义的）或是对象的属性无法使用点操作获取时，使用方括号。假如你不是一个有经验的javascript程序员，对于在所有地方均使用方括号获取对象属性的操作不算是一个糟糕的编程实践。
 javascript中主要有两种方式可以访问对象的属性：
@@ -102,13 +87,13 @@ javascript中主要有两种方式可以访问对象的属性：
     
 这里，`forms`属性是标准的文档属性，表单名`myformname`是被页面内容定义的。同样的`elements`属性和`value`属性均是被特别定义的，而`myinput`是在页面定义的。这样的语句非常清晰、易于理解，是一种推荐的约定方式，但不是一个严格的规则。
 
-###<div id="t4">4.避免使用eval</div>
+###4.避免使用eval
 
 javascript中的`eval()`函数是一种在运行时期运行任意代码的方式。几乎在所有的情况下，都应避免使用`eval()`函数。假如在你的代码中存在该函数的调用，那么一定要确保你使用了正确的方式去实现你想要做的事情。例如，`eval`经常会被一些不知道方括号使用规则的程序员调用。
 
 规则是：**“eval是邪恶的”**。不要使用它，除非你是一个经验丰富的开发人员，知道使用`eval`对你来说只是一个例外的情况。
  
-###<div id="t5">5.正确引用表单及表单中的元素</div>
+###5.正确引用表单及表单中的元素
 
 在html的表单元素中，所有的表单元素都有一个`name`属性。但对于xhtml文档，name属性不是必须的。取而代之的是对于表单标签应该有一个id属性并可以通过`document.getElementById`获取该表单对象。虽然可以通过索引获取表单，但几乎在所有的情况下使用`document.forms[0]`却是一个不好的实践方式。一些浏览器会把表单可见做为文档自有属性来访问表单的名称。这是不可靠并且不应该被使用的。
 
@@ -139,7 +124,7 @@ javascript中的`eval()`函数是一种在运行时期运行任意代码的方�
     }
 通过引用到一个表单对象并通过该引用表单对象访问其属性，你可以写一个不需要在页面上指定包含任何引用表单参数的函数。这种方式经常被作为一种避免多次引用表单对象的习惯性用法使用。
  
-###<div id="t6">6.避免使用*with*语句</div>
+###6.避免使用*with*语句
 
 javascript中`with`语句将在作用域链之前插入一个对象，因此任何对属性/变量的引用将会忽略对象本身的属性/变量而首先检测本地的属性/变量作用域。这种方法经常被看作是一种避免较长引用的捷径。
 
@@ -158,7 +143,7 @@ javascript中`with`语句将在作用域链之前插入一个对象，因此任�
     elements.input1.value = "junk";
     elements.input2.value = "junk";
     
-###<div id="t7">7.在锚上使用*onclick*事件替代javascript伪协议</div>
+###7.在锚上使用*onclick*事件替代javascript伪协议
 
 当你想通过`<a>`标签触发javascript代码时，使用`onclick`处理器优于使用javascript伪协议。通过`onclick`处理器运行的javascript代码必须返回true或false （或者返回的表达式等价于true或false）给调用该js代码的标签。假如返回true，那么`<a>`标签的HREF属性将被当作一般的超链接使用；假如返回false，那么HREF属性将被忽略。这就是为什么经常在`<a>`标签中使用`onclick`处理器调用js代码时会在代码最后出现"return false"的原因。
 
@@ -186,7 +171,7 @@ javascript中`with`语句将在作用域链之前插入一个对象，因此任�
     <a href="#" onClick="javascript:doSomething();">link</a>
     <a href="#" onClick="javascript:doSomething(); return false;">link</a>
     
-###<div id="t8">8.用一元+操作进行数字类型转换</div>
+###8.用一元+操作进行数字类型转换
 在javascript中，加号操作符被当作加法或是字符连接符来使用。比如，由于javascript是一种弱类型语言，当将表单域值加起来时这可能会导致一些问题。表单域值将被当作字符串对待，假如你用+将他们放在一起，javascript将视为连接它，而不是加法。
 
 有问题的例子
@@ -212,7 +197,7 @@ javascript中`with`语句将在作用域链之前插入一个对象，因此任�
         alert(total); // This will alert 3
     }
  
-###<div id="t9">9.避免使用*document.all*</div>
+###9.避免使用*document.all*
 `document.all`是微软在IE中介绍的，它不是一个标准的javascript DOM属性。虽然许多最新的浏览器通过支持它去兼容依赖于它的蹩脚脚本，但仍有许多浏览器不支持它。
 
 在javascript中除过将`document.all`作为另外一些方法不被支持时的备份及IE5.0以前的浏览器使用外，是没有任何理由使用`document.all`的。你不应该通过判断是否支持`doucment.all`来确定你的浏览器是否为IE，因为现在其他的浏览器也支持这个方法。
@@ -232,7 +217,7 @@ javascript中`with`语句将在作用域链之前插入一个对象，因此任�
 - 仅使用他在你需要支持IE5.0以前的版本中
 - 当你在使用`document.all`时，总是用`if(document.all)`来检查它是否被支持
 
-###<div id="t10">10.不要在javascript代码块中使用HTML注解</div>
+###10.不要在javascript代码块中使用HTML注解
 
 在早期的javascript中（1995），一些像Netscape1.0的浏览器是不支持`<script>`标签的。因此当javascript第一次被发布的时候，面临的问题是需要隐藏老版本浏览器对其不支持而把它们作为文本显示在页面上的问题。"hack"使用HTML的注释包裹script块来隐藏代码。
 在script中使用HTML注释是不好的
@@ -249,7 +234,7 @@ javascript中`with`语句将在作用域链之前插入一个对象，因此任�
 - 在HTML注释中`--`是不被解析的，因此这将会导致任何在脚本中的递减操作是无效的。
 
 
-###<div id="t11">11.避免杂乱的全局命名空间</div>
+###11.避免杂乱的全局命名空间
 
 全局变量和函数是很少用到的。使用全局变量可能会导致命名冲突（ Using globals may cause naming conflicts between javascript source files and cause code to break. ）出于这种结果，一个好的实践方式是通过单一全局命名空间将这些全局变量封装起来。
 
@@ -269,7 +254,7 @@ javascript中`with`语句将在作用域链之前插入一个对象，因此任�
 
 命名空间也可以通过[闭包]创建，并且在javascript中私有成员变量 也能被模拟。
  
-###<div id="t12">12.避免使用同步ajax调用</div>
+###12.避免使用同步ajax调用
 
 当使用Ajax请求时，你可以选择使用同步模式或者异步模式。异步模式在后台处理请求的同时其他浏览器的请求可以继续被处理，而同步模式将等待请求结果返回后才继续执行下一次请求。
 
@@ -277,11 +262,11 @@ javascript中`with`语句将在作用域链之前插入一个对象，因此任�
 
 假如你需要使用同步模式，那么你可能需要花大部分时间去重新考虑你的设计。实际需要同步模式的[Ajax]请求如果有也是很少的。
  
-###<div id="t13">13.使用json</div>
+###13.使用json
 
 当通过[Ajax]存储文本格式数据或发送/接收数据时，在能使用[JSON]的情况下尽量使用json替代xml。json是一个更紧凑更高效的数据格式并且是语言中性的。
  
-###<div id="t14">14.正确使用`<script>`标签</div>
+###14.正确使用`<script>`标签
 
 `<script>`标签是没有 LANGUAGE 属性的。正确的方式是创建如下的javascript代码块：
 
