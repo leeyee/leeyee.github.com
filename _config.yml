@@ -24,5 +24,7 @@ analytics:
 # 评论
 comments:
   provider: youyan
+  youyan:
+    UYUserId: 1785947
   disqus:
     short_name: oxcow
