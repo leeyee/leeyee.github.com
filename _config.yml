@@ -23,6 +23,6 @@ analytics:
 
 # 评论
 comments:
-  provider: disqus
+  provider: youyan
   disqus:
     short_name: oxcow
