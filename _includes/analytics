@@ -1,15 +1,8 @@
 {% if site.analytics.provider %}
-
 	{% if site.analytics.provider contains 'google' %}
-	
  		{% include analytics-providers/google %}
- 		
  	{% endif %}
- 	
  	{% if site.analytics.provider contains 'baidu' %}
-		
 		{% include analytics-providers/baidu %}
-	
 	{% endif %}
-
 {% endif %}

@@ -11,20 +11,27 @@ url: http://leeyee.github.com
 author: leeyee
 
        
-# GitHub项目地址
+#GitHub项目地址
 
 github: https://github.com/oxcow/
 
-# 分析
+#分析
 analytics:
   provider: google
   google: 
     tracking_id: 'UA-40641589-1'
 
-# 评论
+#评论
 comments:
-  provider: youyan
-  youyan:
-    UYUserId: 1785947
+  provider: uyan
+  uyan:
+    uid: 1785947
   disqus:
     short_name: oxcow
+
+#分享
+shares:
+  provider: jiathis
+  jiathis:
+    uid: 1354586152725188
+  
