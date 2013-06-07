@@ -4,7 +4,7 @@ title: mybatis分页的简单实现
 description: mybatis分页的简单实现
 category: mybatis
 tag: [mybatis]
-keywords: [mybatis分页, ibatis分页]
+keywords: [mybatis分页, ibatis分页,mybatis rowbounds分页]
 ---
 
 最近的项目中使用到了`mybatis`，发现`mybatis`不支持物理分页，只支持内存分页。因此为了解决这个问题，在网上搜索了一番，不过都比较繁琐。最后使用正则表达过滤查询语句的方式简单解决了该问题.
