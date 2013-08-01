@@ -5,11 +5,12 @@ description: 根据身份证号码的生成规则，对其使用javascript进行
 category: javascript
 tag: [javascript]
 keywords: [javascript身份证号码验证, 身份证号码验证, 身份证号码验证号码生成算法]
+github: 'id-number-validator'
 ---
 
 ##15位身份证号码编码规则
 
-	ddddddyymmddxxp
+    ddddddyymmddxxp
 
 1. dddddd: 地区码
 2. yymmdd: 出生年月日
@@ -18,7 +19,7 @@ keywords: [javascript身份证号码验证, 身份证号码验证, 身份证号�
 
 ##18位身份证号码编码规则
 
-	ddddddyyyymmddxxxy
+    ddddddyyyymmddxxxy
     
 1. dddddd: 地区码
 2. yyyymmdd: 出生年月日
@@ -48,7 +49,7 @@ keywords: [javascript身份证号码验证, 身份证号码验证, 身份证号�
     该公式表示将身份证的前17位与其对应的加权因子 **W<sub>i</sub>** 相乘并求和，再将得到的结果与 11 求模，所得的结果即为校验位值所在的位置。然后直接在校验位值 **Y** 中查找即可得到校验位值.
     
 
-比如我们有一为 _330304197002051590_ 的身份证号，那么最后一位校验位 **0** 的验证过程就如下：
+比如有一为 _330304197002051590_ 的身份证号，那么最后一位校验位 **0** 的验证过程如下：
 
 1. 加权求和
 
@@ -62,11 +63,24 @@ keywords: [javascript身份证号码验证, 身份证号码验证, 身份证号�
 
     Y[1] = 0
 
-## javascript的实现
+## javascript编码实现
 
-针对15身份证号的验证，只需要验证其出生日期是否正确即可。而对于18位身份证号的验证除了验证出生日还需要进行校验位的验证。因此基于上述规则进行javascript编码，
+针对上述身份证生成规则的描述，在验证时针对15位身份证号只需要判断其出生日期是否正确即可；而针对18位身份证号，除了验证出生日期外还需要对最后的校验位进行验证。
 
-	function getIdCardInfo(cardNo){
+因此我们命名一个名为`getIdCardInfo`的函数，接受身份证号作为参数进行验证。该函数返回身份证信息对象。该对象具有5个属性，分别为：
+
+> 1. isTrue : 身份证号是否有效。默认为 false
+> 2. year : 出生年。默认为null
+> 3. month : 出生月。默认为null
+> 4. day : 出生日。默认为null
+> 5. isMale : 是否为男性。默认false
+> 6. isFemale : 是否为女性。默认false
+
+###源代码
+
+您可进入[该项目的GitHub页](https://github.com/oxcow/id-number-validator)进行下载或贡献
+
+	function getIdCardInfo(cardNo) {
 		var info = {
 			isTrue : false,
 			year : null,
@@ -75,88 +89,199 @@ keywords: [javascript身份证号码验证, 身份证号码验证, 身份证号�
 			isMale : false,
 			isFemale : false
 		};
-		if(!cardNo && 15 != cardNo.length && 18 != cardNo.length){
+		if (!cardNo && 15 != cardNo.length && 18 != cardNo.length) {
 			info.isTrue = false;
 			return info;
 		}
-		
-		if(15 == cardNo.length){
-			var year =  cardNo.substring(6,8);  
-			var month = cardNo.substring(8,10);  
-			var day = cardNo.substring(10,12);
-			var p = cardNo.substring(14,15)
-			var temp_date = new Date(year,parseFloat(month)-1,parseFloat(day));  
+		if (15 == cardNo.length) {
+			var year = cardNo.substring(6, 8);
+			var month = cardNo.substring(8, 10);
+			var day = cardNo.substring(10, 12);
+			var p = cardNo.substring(14, 15); //性别位
+			var birthday = new Date(year, parseFloat(month) - 1,
+					parseFloat(day));
 			// 对于老身份证中的年龄则不需考虑千年虫问题而使用getYear()方法  
-			if(temp_date.getYear()!=parseFloat(year)  
-				||temp_date.getMonth()!=parseFloat(month)-1  
-				||temp_date.getDate()!=parseFloat(day)){  
-                info.isTrue = false;
-			}else{  
+			if (birthday.getYear() != parseFloat(year)
+					|| birthday.getMonth() != parseFloat(month) - 1
+					|| birthday.getDate() != parseFloat(day)) {
+				info.isTrue = false;
+			} else {
 				info.isTrue = true;
-				info.year = year;
-				info.month = month;
-				info.day = day;
-				if(p % 2 == 0){
-					info.isFemale = true; 
+				info.year = birthday.getFullYear();
+				info.month = birthday.getMonth() + 1;
+				info.day = birthday.getDate();
+				if (p % 2 == 0) {
+					info.isFemale = true;
 					info.isMale = false;
-				}else{
-					info.isFemale = false; 
+				} else {
+					info.isFemale = false;
 					info.isMale = true
 				}
 			}
 			return info;
 		}
-		
-		var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];// 加权因子  
-		var Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ];// 身份证验证位值.10代表X 
-
-		if(18 == cardNo.length){
-			var year =  cardNo.substring(6,10);  
-			var month = cardNo.substring(10,12);  
-			var day = cardNo.substring(12,14); 
-			var p = cardNo.substring(14,17)
-			var temp_date = new Date(year,parseFloat(month)-1,parseFloat(day)); 
+		if (18 == cardNo.length) {
+			var year = cardNo.substring(6, 10);
+			var month = cardNo.substring(10, 12);
+			var day = cardNo.substring(12, 14);
+			var p = cardNo.substring(14, 17)
+			var birthday = new Date(year, parseFloat(month) - 1,
+					parseFloat(day));
 			// 这里用getFullYear()获取年份，避免千年虫问题
-			if(temp_date.getFullYear()!=parseFloat(year)  
-				||temp_date.getMonth()!=parseFloat(month)-1  
-				||temp_date.getDate()!=parseFloat(day)){  
+			if (birthday.getFullYear() != parseFloat(year)
+					|| birthday.getMonth() != parseFloat(month) - 1
+					|| birthday.getDate() != parseFloat(day)) {
 				info.isTrue = false;
 				return info;
 			}
-			
+			var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];// 加权因子  
+			var Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ];// 身份证验证位值.10代表X 
 			// 验证校验位
 			var sum = 0; // 声明加权求和变量
 			var _cardNo = cardNo.split("");
-			
-			if (_cardNo[17].toLowerCase() == 'x') {  
+
+			if (_cardNo[17].toLowerCase() == 'x') {
 				_cardNo[17] = 10;// 将最后位为x的验证码替换为10方便后续操作  
-			}  
-			for ( var i = 0; i < 17; i++) {  
+			}
+			for ( var i = 0; i < 17; i++) {
 				sum += Wi[i] * _cardNo[i];// 加权求和  
-			}  
+			}
 			var i = sum % 11;// 得到验证码所位置
-			
-			if(_cardNo[17] != Y[i]){
+
+			if (_cardNo[17] != Y[i]) {
 				return info.isTrue = false;
 			}
-			
 			info.isTrue = true;
-			info.year = year;
-			info.month = month;
-			info.day = day;
-			if(p % 2 == 0){
-				info.isFemale = true; 
+			info.year = birthday.getFullYear();
+			info.month = birthday.getMonth() + 1;
+			info.day = birthday.getDate();
+			if (p % 2 == 0) {
+				info.isFemale = true;
 				info.isMale = false;
-			}else{
-				info.isFemale = false; 
+			} else {
+				info.isFemale = false;
 				info.isMale = true
 			}
 			return info;
 		}
 		return info;
 	}
-	window.onload = function(){
-		var info = getIdCardInfo('13073119830715576X');
-		console.log(info);
-		
+
+
+<script type='text/javascript'>
+    function getIdCardInfo(cardNo) {
+		var info = {
+			isTrue : false,
+			year : null,
+			month : null,
+			day : null,
+			isMale : false,
+			isFemale : false
+		};
+		if (!cardNo && 15 != cardNo.length && 18 != cardNo.length) {
+			info.isTrue = false;
+			return info;
+		}
+		if (15 == cardNo.length) {
+			var year = cardNo.substring(6, 8);
+			var month = cardNo.substring(8, 10);
+			var day = cardNo.substring(10, 12);
+			var p = cardNo.substring(14, 15); //性别位
+			var birthday = new Date(year, parseFloat(month) - 1,
+					parseFloat(day));
+			// 对于老身份证中的年龄则不需考虑千年虫问题而使用getYear()方法  
+			if (birthday.getYear() != parseFloat(year)
+					|| birthday.getMonth() != parseFloat(month) - 1
+					|| birthday.getDate() != parseFloat(day)) {
+				info.isTrue = false;
+			} else {
+				info.isTrue = true;
+				info.year = birthday.getFullYear();
+				info.month = birthday.getMonth() + 1;
+				info.day = birthday.getDate();
+				if (p % 2 == 0) {
+					info.isFemale = true;
+					info.isMale = false;
+				} else {
+					info.isFemale = false;
+					info.isMale = true
+				}
+			}
+			return info;
+		}
+		if (18 == cardNo.length) {
+			var year = cardNo.substring(6, 10);
+			var month = cardNo.substring(10, 12);
+			var day = cardNo.substring(12, 14);
+			var p = cardNo.substring(14, 17)
+			var birthday = new Date(year, parseFloat(month) - 1,
+					parseFloat(day));
+			// 这里用getFullYear()获取年份，避免千年虫问题
+			if (birthday.getFullYear() != parseFloat(year)
+					|| birthday.getMonth() != parseFloat(month) - 1
+					|| birthday.getDate() != parseFloat(day)) {
+				info.isTrue = false;
+				return info;
+			}
+			var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];// 加权因子  
+			var Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ];// 身份证验证位值.10代表X 
+			// 验证校验位
+			var sum = 0; // 声明加权求和变量
+			var _cardNo = cardNo.split("");
+
+			if (_cardNo[17].toLowerCase() == 'x') {
+				_cardNo[17] = 10;// 将最后位为x的验证码替换为10方便后续操作  
+			}
+			for ( var i = 0; i < 17; i++) {
+				sum += Wi[i] * _cardNo[i];// 加权求和  
+			}
+			var i = sum % 11;// 得到验证码所位置
+
+			if (_cardNo[17] != Y[i]) {
+				return info.isTrue = false;
+			}
+			info.isTrue = true;
+			info.year = birthday.getFullYear();
+			info.month = birthday.getMonth() + 1;
+			info.day = birthday.getDate();
+			if (p % 2 == 0) {
+				info.isFemale = true;
+				info.isMale = false;
+			} else {
+				info.isFemale = false;
+				info.isMale = true
+			}
+			return info;
+		}
+		return info;
 	}
+</script>
+<script type="text/javascript">
+    function validateNo(){
+        var cardNo = document.getElementById('cardNo').value;
+        var cardInfo = getIdCardInfo(cardNo);
+        var showInfo = '';
+        if(cardInfo.isTrue){
+             showInfo = '<span class="text-success">验证通过！</span>';
+             if(cardInfo.isMale){
+                showInfo += '<span class="text-info">男,生于	' + cardInfo.year + '.' + cardInfo.month + '.' + cardInfo.day + '</span>';
+             }
+             if(cardInfo.isFemale){
+                showInfo += '<span class="text-info">女,生于	' + cardInfo.year + '.' + cardInfo.month + '.' + cardInfo.day + '</span>';
+             }
+        }else{
+            showInfo = '<span class="text-error">号码无效！</span>';
+        }
+        document.getElementById('cardInfo').innerHTML = showInfo;
+    }
+</script>
+
+###验证示例
+
+<div class="row-fluid">
+	<div class="input-append">
+  		<input id='cardNo' type="text" placeholder="请输入身份证号码...">
+  		<button class="btn" type="button" onclick="validateNo();">验证</button>
+	</div>
+	<div id="cardInfo" style="margin-left:20px;display:inline"></div>
+</div>
