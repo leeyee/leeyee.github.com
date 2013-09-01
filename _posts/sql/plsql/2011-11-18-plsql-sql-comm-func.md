@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PL/SQL常用函数
-description: 本文主要介绍PL/SQL常用函数
+description: 本文主要介绍PL/SQL中常用的函数，比如数字、字符、日期函数等。
 category: pl/sql
 tag: [pl/sql]
 keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]

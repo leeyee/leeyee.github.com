@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 使用javascript检测浏览器版本
-description: 使用javascript检测浏览器版本
+description: 本文介绍如何通过分析浏览器navigator的user-agent属性来检测不同浏览器的版本信息
 category: javascript
 tag: [javascript]
-keywords: [javascript检测浏览器版本, 浏览器版本检测]
+keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 ---
 
 以下浏览器版本的判断方法参考了《JavaScript 高级程序设计》第八章。
