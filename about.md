@@ -10,7 +10,7 @@ title: 关于我
 	</div>
 	<div class="span9 myrow">
 		<div style="padding: 0px 10px">
-			about me
+			about me test
 		</div>
 	</div>		
 </div>
