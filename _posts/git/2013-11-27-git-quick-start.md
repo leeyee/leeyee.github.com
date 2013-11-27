@@ -1,7 +1,7 @@
 ---
 layout: post
 title: git快速入门
-description: 本文介绍了相关hibernate缓存的知识以及缓存配置时关于并发事务级别的相关知识。同时结合hibernate annotation的@Cache注解标签，实际演示了如何使用注解配置hibernate缓存。
+description: 本文分场景演示如何快速上手git，使你能快速的掌握git的基本用法，如需更深入的了解，请直接查阅官方文档。
 category: hibernate
 tag: [git]
 keywords: [git quick start, git快速入门]
@@ -243,7 +243,7 @@ readme文件内容如下：
 
     $ git checkout <filename>
 
-#####step-2-1、全部恢复
+####step-2-1、全部恢复
 
     $ git ls-files -d | xargs git checkout
 
