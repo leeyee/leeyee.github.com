@@ -2,7 +2,7 @@
 layout: post
 title: git快速入门
 description: 本文分场景演示如何快速上手git，使你能快速的掌握git的基本用法，如需更深入的了解，请直接查阅官方文档。
-category: hibernate
+category: git
 tag: [git]
 keywords: [git quick start, git快速入门]
 ---
