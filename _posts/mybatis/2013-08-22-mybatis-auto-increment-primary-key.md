@@ -85,15 +85,24 @@ mybatis进行插入操作时，如果表的主键是自增的，针对不同的�
     `user.id`是有值的。
 
 2. Mysql自增主键配置
-    
-    由于Mysql的自增主键是有Mysql自己维护的，因此为了获取插入的自增主键值，需要通过SQL语句
+
+    针对于Mysql这种自己维护主键的数据库，可以直接使用以下配置在插入后获取插入主键，
+
+        <sql id='TABLE_NAME'>TEST_USER</sql>
+
+        <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="User">
+            insert into <include refid="TABLE_NAME" /> ( NAME, AGE )
+                values ( #{name}, #{age} )
+        </insert>
+
+    当然，由于Mysql的自增主键可以通过SQL语句
 
         select LAST_INSERT_ID();
 
-    来获取的。因此针对Mysql的配置就如下：
-    
+    来获取的。因此针对Mysql，Mybatis也可配置如下：
+
         <sql id='TABLE_NAME'>TEST_USER</sql>
-        
+
         <!-- 注意这里需要先查询自增主键值 -->
         <insert id="insert" parameterType="User">
             <selectKey keyProperty="id" resultType="int" order="BEFORE">
@@ -102,7 +111,10 @@ mybatis进行插入操作时，如果表的主键是自增的，针对不同的�
             insert into <include refid="TABLE_NAME" /> (ID,NAME,AGE)
     	    	values ( #{id}, #{name}, #{age} )
         </insert>
-    
+
+    只不过该中配置需要额外的一条查询SQL!
+
+
 ##小结
 
 1. 当数据插入操作不关心插入后数据的主键（唯一标识），那么建议使用 *不返回自增主键值* 的方式来配置插入语句，这样可以**避免额外的SQL开销**.

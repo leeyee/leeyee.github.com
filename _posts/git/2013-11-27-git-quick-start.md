@@ -239,7 +239,7 @@ readme文件内容如下：
 
     $ git ls-files -d
 
-####step-2、回复被删除的文件（单个回复）
+####step-2、恢复被删除的文件（单个恢复）
 
     $ git checkout <filename>
 
