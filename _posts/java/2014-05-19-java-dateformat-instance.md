@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DateFormat时的语言环境
+title: 使用DateFormat需设置语言环境
 description: DateFormat类在获取其实例时应具体设置语言环境及日期格式。以避免不同语言环境发生解析错误的问题出现。
 category: java
 tag: [java]
@@ -17,7 +17,7 @@ keywords: [DateFormat,DateFormat.getDateInstance,日期格式化,语言环境]
         e.printStackTrace();
     }
 
-这段代码在中文语言环境下是可以测试通过。但在其他语言环境中则会抛出异常。原因是`DateFormat.getDateInstance()`初始化时跟据当前环境设置日志格式。其日期格式是依赖系统语言环境的。
+这段代码在中文语言环境下是可以测试通过。但在其他语言环境中则会抛出异常。原因是`DateFormat.getDateInstance()`初始化时会跟据当前语言环境设置日期格式。
 
 
 1. `DateFormat.getDateInstance()` 根据当前语言环境设置日期模式：
@@ -44,7 +44,6 @@ keywords: [DateFormat,DateFormat.getDateInstance,日期格式化,语言环境]
         DateFormat.getDateInstance(DateFormat.SHORT);// M/d/yy
         DateFormat.getDateInstance(DateFormat.MEDIUM);// MMM d, yyyy
         DateFormat.getDateInstance(DateFormat.FULL);// EEEE, MMMM d, yyyy
-        DateFormat.getDateInstance(DateFormat.DAY_OF_WEEK_IN_MONTH_FIELD);// EEEE, MMMM d, yyyy | Monday, May 19, 2014
 
 
 3. `DateFormat.getDateInstance(int style, Locale aLocale)` 指定语言环境及相应日期模式
