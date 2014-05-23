@@ -23,25 +23,6 @@ log.txt
 
 ## 基本命令
 
-```awk
-    awk '{print $1,$4}' log.txt
-```
-
-```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
-
-```java
-    @PostConstruct
-    public void init() {
-        this.incomingQ = new LinkedBlockingQueue<Runnable>();
-        ThreadPoolExecutor tpe = new ThreadPoolExecutor(5, 5, 5, TimeUnit.MINUTES, incomingQ);
-        incomintExecutors = MoreExecutors.getExitingExecutorService(tpe, 5, TimeUnit.MINUTES);
-    }
-```
-
 1. awk '{[pattern] action}' {filenames}  行匹配语句 **awk ''  只能用单引号**
 
         # 每行按空格或TAB分割，输入分割后的1、4项

@@ -1,13 +1,22 @@
 auto: true
-markdown: rdiscount
-pygments: true
+#markdown: rdiscount
+
+#markdown: kramdown
+#redcarpet:
+#  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+#
+kramdown:
+  input: GFM
+
+# pygments: true
+highlighter: true
 
 permalink: /blog/:year/:month/:day/:title
 
 paginate: 10
 
 title: Leeyee's Blog
-url: http://leeyee.github.com
+url: http://leeyee.github.io
 author: leeyee
 
        
@@ -23,7 +32,7 @@ analytics:
 
 #评论
 comments:
-  provider: disqus
+  provider: uyan
   uyan:
     uid: 1785947
   disqus:
@@ -34,4 +43,24 @@ shares:
   provider: jiathis
   jiathis:
     uid: 1354586152725188
-  
+
+
+# gems: [github-linguist.gemspec]
+
+#_plugins/sitemap_generator.rb https://github.com/kinnetica/jekyll-plugins
+sitemap:
+    file: "/sitemap.xml"
+    exclude:
+        - "/atom.xml"
+        - "/feed.xml"
+        - "/feed/index.xml"
+    include_posts:
+        - "/index.html"
+    change_frequency_name: "change_frequency"
+    priority_name: "priority"
+
+#_plugins/rssgenerator.rb https://github.com/agelber/jekyll-rss
+name: Leeyee's blog
+url:  http://leeyee.github.io
+description:
+rss_name: feed.xml
