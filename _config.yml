@@ -1,6 +1,8 @@
 auto: true
+
 markdown: rdiscount
-  input: GFM
+
+pygments: true
 
 #markdown: kramdown
 #redcarpet:
@@ -10,7 +12,7 @@ markdown: rdiscount
 #  input: GFM
 
 # pygments: true
-highlighter: true
+# highlighter: true
 
 permalink: /blog/:year/:month/:day/:title
 
@@ -62,6 +64,4 @@ sitemap:
 
 #_plugins/rssgenerator.rb https://github.com/agelber/jekyll-rss
 name: Leeyee's blog
-url:  http://leeyee.github.io
-description:
 rss_name: feed.xml
