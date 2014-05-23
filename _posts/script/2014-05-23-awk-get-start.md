@@ -14,12 +14,12 @@ keywords: [awk,忽略大小写,awk脚本,awk正则]
 
 log.txt
 
-> 2 this is a test
-  3 Are you like awk
-  This's a test
-  10 There are orange,apple,mongo
+    2 this is a test
+    3 Are you like awk
+    This's a test
+    10 There are orange,apple,mongo
 
-- - -
+
 
 ## 基本命令
 
@@ -91,7 +91,7 @@ log.txt
 ## 运算符
 
 |运算符|描述|
-|------|----|
+|:------:|:----:|
 |= += -= *= /= %= ^= **=|赋值|
 |?:|C条件表达式|
 |\|\||逻辑或|
