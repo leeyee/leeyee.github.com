@@ -1,12 +1,13 @@
 auto: true
-#markdown: rdiscount
+markdown: rdiscount
+  input: GFM
 
 #markdown: kramdown
 #redcarpet:
 #  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 #
-kramdown:
-  input: GFM
+#kramdown:
+#  input: GFM
 
 # pygments: true
 highlighter: true
@@ -32,7 +33,7 @@ analytics:
 
 #评论
 comments:
-  provider: uyan
+  provider: disqus
   uyan:
     uid: 1785947
   disqus:
