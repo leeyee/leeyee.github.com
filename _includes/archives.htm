@@ -1,0 +1,25 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            {% for post in site.posts %}
+            {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
+            {% if year_month != ym %}
+            {% assign year_month = ym %}
+            <li><a href="/archives.html#{{ym}}">{{ ym }}
+                {% assign count = 0 %}
+                {% for pt in site.posts %}
+                {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
+                {% if year_month == cym %}
+                {% capture count %}{{count | plus:1}}{% endcapture %}
+                {% endif %}
+                {% endfor %}
+                <span class="badge">{{ count }}</span></a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

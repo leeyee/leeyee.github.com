@@ -1,0 +1,17 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            {% assign sort_tags = site.tags | sort %}
+            {% for tag in sort_tags %}
+            <li>
+                <a href="/tags.html#{{ tag[0] }}">{{ tag[0] }}
+                    <span class="badge">{{ tag[1].size }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
