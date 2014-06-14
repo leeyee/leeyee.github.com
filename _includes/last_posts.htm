@@ -3,7 +3,7 @@
         <h2 class="panel-title">最新文章</h2>
     </div>
     <div class="panel-body">
-        <ul class="nav nav-list">
+        <ul class="list-unstyled">
             {% for post in site.posts limit:site.last_pages %}
             <li><a href="{{ post.url }}/">{{ post.title }}</a></li>
             {% endfor %}

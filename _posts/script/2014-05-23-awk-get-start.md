@@ -2,17 +2,12 @@
 layout: post
 title: AWK 入门
 description: 本文主要介绍一些awk的入门语法及相关示例。包括awk基本语法及基本参数，内建参数的使用，awk脚本等相关基础入门内容
+category: 脚本语言
 tag: [srcipt, awk]
 keywords: [awk,忽略大小写,awk脚本,awk正则]
 ---
 
-
-# AWK 入门
-- - -
-
-##准备工作
-
-log.txt
+预先定义log.txt文本内容如下：
 
     2 this is a test
     3 Are you like awk
@@ -91,7 +86,7 @@ log.txt
 ## 运算符
 
 |运算符|描述|
-|:------:|:----:|
+|------|----|
 |= += -= *= /= %= ^= **=|赋值|
 |?:|C条件表达式|
 |\|\||逻辑或|

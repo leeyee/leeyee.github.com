@@ -2,37 +2,25 @@
 layout: default
 title: 文章分类
 ---
-
-
-<div class="row myrow">
-	<div style="padding: 0px 10px">
-		<div class="lead">
-			<h2>文章分类</h2>
-		</div>
-		<div>
-			<ul class="nav nav-pills">
-				{% for category in site.categories %}
-				<li><a href="#{{ category | first }}"><span class="badge badge-info">{{category[0]}}</span><sup
-						style="padding-left: 4px">{{category | last | size}}</sup></a></li>
-				{% endfor %}
-			</ul>
-		</div>
-		{% for category in site.categories %}
-		<div style="margin: 20px 0px;" id="{{ category[0] }}">
-			<ul class="nav nav-list">
-				<li class="nav-header"><h4>{{category[0]}}</h4></li>
-				<li class="divider"></li>
-				<li>
-					<ul class="nav nav-list">
-						{% for post in site.posts %}
-							{% if  post.category == category[1][0].category %}
-						<li><a href="{{ post.url }}/">{{post.title}}{% if post.github %}<img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>{% endif %}</a></li>
-							{% endif %}
-						{% endfor %}
-					</ul>
-				</li>
-			</ul>
-		</div>
-		{% endfor %}
-	</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title self-panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        {% for category in site.categories %}
+        <ul class="list-unstyled">
+            <li><h4 id="{{category[0]}}">{{category[0]}}</h4></li>
+            <li>
+                <ul class="nav nav-list">
+                    {% for post in site.posts %}
+                    {% if  post.category == category[1][0].category %}
+                    <li><a href="{{ post.url }}/">{{post.title}}{% if post.github %}
+                        <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>{% endif %}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
 </div>
