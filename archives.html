@@ -3,33 +3,33 @@ layout: default
 title: 归档
 ---
 
-
-<div class="row myrow">
-	<div style="padding: 0px 10px">
-		<div class="lead">
-			<h2>归档</h2>
-		</div>
-		{% for post in site.posts %}
-			{% capture  ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
-			{% if year_month != ym %}
-				{%	assign year_month = ym %}
-		<div id="{{ ym | strip_html }}">
-			<ul class="nav nav-list">
-				<li class="nav-header"><h4>{{ym}}</h4></li>
-				<li class="divider"></li>
-				<li>
-					<ul class="nav nav-list">
-						{% for pt in site.posts %}
-							{% capture  cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
-							{% if year_month == cym %}
-						<li><a href="{{pt.url}}/">{{pt.title}}{% if post.github %}<img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>{% endif %}</a></li>
-							{% endif %}
-						{% endfor %}
-					</ul>
-				</li>
-			</ul>
-		</div>
-			{% endif %}
-		{% endfor %}
-	</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title self-panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        {% for post in site.posts %}
+        {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
+        {% if year_month != ym %}
+        {% assign year_month = ym %}
+        <ul class="list-unstyled">
+            <li><h4 id="{{ ym | strip_html }}">{{ym}}</h4></li>
+            <li>
+                <ul>
+                    {% for pt in site.posts %}
+                    {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
+                    {% if year_month == cym %}
+                    <li>
+                        <a href="{{pt.url}}/">{{pt.title}}{% if post.github %}
+                            <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>
+                            {% endif %}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>

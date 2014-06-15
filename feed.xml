@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Leeyee's blog</title>
+    <link>http://leeyee.github.io</link>
+    <description>RSS feed for Leeyee's blog</description>
+    <pubDate>Fri, 23 May 2014 00:00:00 +0800</pubDate>
+    <item>
+      <title>AWK 入门</title>
+      <link>http://leeyee.github.io/blog/2014/05/23/awk-get-start</link>
+      <description>&lt;p&gt;log.txt&lt;/p&gt;
+</description>
+      <pubDate>Fri, 23 May 2014 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2014/05/23/awk-get-start</guid>
+      <dc:date>2014-05-23T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>使用DateFormat需设置语言环境</title>
+      <link>http://leeyee.github.io/blog/2014/05/19/java-dateformat-instance</link>
+      <description>&lt;p&gt;先看段代码：&lt;/p&gt;
+</description>
+      <pubDate>Mon, 19 May 2014 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2014/05/19/java-dateformat-instance</guid>
+      <dc:date>2014-05-19T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>git快速入门</title>
+      <link>http://leeyee.github.io/blog/2013/11/27/git-quick-start</link>
+      <description>&lt;h2&gt;约定&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;这只是一个简单的快速入门，如果您已经精通，请绕行;&lt;/li&gt;
+&lt;li&gt;这里我们不会讲GIT、SVN、VSS及CVS的区别。如有需要，请&lt;a href=&quot;http://google.com&quot; title=&quot;谷歌&quot;&gt;Google&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;这里不具体讲解GIT COMMAND的具体含义。如有需要，请git help;&lt;/li&gt;
+&lt;li&gt;这里不讲解GIT如何在windows及Linux下的配置。如有需要，请在&lt;a href=&quot;http://github.com&quot; title=&quot;GitHub 主页&quot;&gt;http://github.com&lt;/a&gt;上寻找&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/11/27/git-quick-start</guid>
+      <dc:date>2013-11-27T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>mybatis自增主键配置</title>
+      <link>http://leeyee.github.io/blog/2013/08/22/mybatis-auto-increment-primary-key</link>
+      <description>&lt;p&gt;mybatis进行插入操作时，如果表的主键是自增的，针对不同的数据库相应的操作也不同。基本上经常会遇到的就是 Oracle Sequece 和  Mysql 自增主键，至于其他的手动生成唯一主键的问题在这里就不讨论了，这里主要说明下在mybatis中对于自增主键的配置。&lt;/p&gt;
+</description>
+      <pubDate>Thu, 22 Aug 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/08/22/mybatis-auto-increment-primary-key</guid>
+      <dc:date>2013-08-22T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>javascript身份证号码验证</title>
+      <link>http://leeyee.github.io/blog/2013/07/31/javascript-idcard-validate</link>
+      <description>&lt;h2&gt;15位身份证号码编码规则&lt;/h2&gt;
+</description>
+      <pubDate>Wed, 31 Jul 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/07/31/javascript-idcard-validate</guid>
+      <dc:date>2013-07-31T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>Hibernate缓存</title>
+      <link>http://leeyee.github.io/blog/2013/07/07/hibernate-cache</link>
+      <description>&lt;p&gt;Hibernate中实现缓存的对象有&lt;code&gt;Session&lt;/code&gt;和&lt;code&gt;SessionFactory&lt;/code&gt;。&lt;/p&gt;
+</description>
+      <pubDate>Sun, 07 Jul 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/07/07/hibernate-cache</guid>
+      <dc:date>2013-07-07T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>数据库事务与并发</title>
+      <link>http://leeyee.github.io/blog/2013/07/04/database-transaction-concurrency</link>
+      <description>&lt;h2&gt;多事务运行时的并发问题&lt;/h2&gt;
+</description>
+      <pubDate>Thu, 04 Jul 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/07/04/database-transaction-concurrency</guid>
+      <dc:date>2013-07-04T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>使用autoMapping配置关联关系时应注意的问题</title>
+      <link>http://leeyee.github.io/blog/2013/05/30/mybatis-association-autoMapping</link>
+      <description>&lt;p&gt;利用&lt;code&gt;association&lt;/code&gt;解决多对一、一对一问题时，在配置&lt;code&gt;resultMap&lt;/code&gt;时使用&lt;code&gt;autoMapping&lt;/code&gt;属性映射表字段时，生成的多端对象数据中是拿不到声明的外键的。&lt;/p&gt;
+
+&lt;p&gt;如果业务有需要在多的一端对象中直接获取外键属性，而不是通过对应的一端来获取，那么就需要在使用&lt;code&gt;autoMapping&lt;/code&gt;时，重新为多端表指明主外键映射关系或者撇弃&lt;code&gt;autoMapping&lt;/code&gt;而改用手工声明。&lt;/p&gt;
+</description>
+      <pubDate>Thu, 30 May 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/05/30/mybatis-association-autoMapping</guid>
+      <dc:date>2013-05-30T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>mybatis分页的简单实现</title>
+      <link>http://leeyee.github.io/blog/2013/05/26/mybatis-simple-pagination</link>
+      <description>&lt;p&gt;最近的项目中使用到了&lt;code&gt;mybatis&lt;/code&gt;，发现&lt;code&gt;mybatis&lt;/code&gt;不支持物理分页，只支持内存分页。因此为了解决这个问题，在网上搜索了一番，不过都比较繁琐。最后使用正则表达过滤查询语句的方式简单解决了该问题.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 26 May 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/05/26/mybatis-simple-pagination</guid>
+      <dc:date>2013-05-26T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>javascript中的null和undefined</title>
+      <link>http://leeyee.github.io/blog/2013/05/07/javascript-null-undefined</link>
+      <description>&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;null&lt;/code&gt;表示无值或不存在的对象；&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+      <pubDate>Tue, 07 May 2013 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2013/05/07/javascript-null-undefined</guid>
+      <dc:date>2013-05-07T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>jQuery插件编写</title>
+      <link>http://leeyee.github.io/blog/2012/12/02/jquery-plugins-authoring</link>
+      <description>&lt;p&gt;原文地址：&lt;a href=&quot;http://docs.jquery.com/Plugins/Authoring&quot;&gt;http://docs.jquery.com/Plugins/Authoring&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sun, 02 Dec 2012 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2012/12/02/jquery-plugins-authoring</guid>
+      <dc:date>2012-12-02T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>mybatis参数映射</title>
+      <link>http://leeyee.github.io/blog/2012/09/27/mybatis-param-mapping-rules</link>
+      <description>&lt;h3&gt;规则&lt;/h3&gt;
+</description>
+      <pubDate>Thu, 27 Sep 2012 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2012/09/27/mybatis-param-mapping-rules</guid>
+      <dc:date>2012-09-27T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>jQuery eTable Plugin</title>
+      <link>http://leeyee.github.io/blog/2012/05/05/jquery-etable-plugin</link>
+      <description>&lt;p&gt;jQuery eTable Plugin 提供对表格操作的一些基本方法.其实质是通过&lt;code&gt;$(table).eTable()&lt;/code&gt;获取封装了表格元素的&lt;code&gt;ETable&lt;/code&gt;对象.&lt;code&gt;eTable&lt;/code&gt;对象封装了一些列针对表格行列进行操作的方法。使用这些方法可以对表格进行行列的插入与删除。&lt;/p&gt;
+</description>
+      <pubDate>Sat, 05 May 2012 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2012/05/05/jquery-etable-plugin</guid>
+      <dc:date>2012-05-05T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>jQuery MsgBox Plugin</title>
+      <link>http://leeyee.github.io/blog/2012/05/04/jquery-msgbox-plugin</link>
+      <description>&lt;h2&gt;&lt;div id='top'&gt;jQuery MsgBox Plugin&lt;/div&gt;&lt;/h2&gt;
+</description>
+      <pubDate>Fri, 04 May 2012 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2012/05/04/jquery-msgbox-plugin</guid>
+      <dc:date>2012-05-04T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>PL/SQL常用函数</title>
+      <link>http://leeyee.github.io/blog/2011/11/18/plsql-sql-comm-func</link>
+      <description>&lt;h3&gt;常用数字函数&lt;/h3&gt;
+</description>
+      <pubDate>Fri, 18 Nov 2011 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2011/11/18/plsql-sql-comm-func</guid>
+      <dc:date>2011-11-18T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>SQL查询语句要点</title>
+      <link>http://leeyee.github.io/blog/2011/11/17/plsql-sql-select</link>
+      <description>&lt;h2&gt;内连接和外连接&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;select table1.column, table2.column
+    from table1 [inner | left | rigth | full ] join table2 ON table1.column1 = table2.column2;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      <pubDate>Thu, 17 Nov 2011 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2011/11/17/plsql-sql-select</guid>
+      <dc:date>2011-11-17T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>SQL分组语句要点</title>
+      <link>http://leeyee.github.io/blog/2011/11/16/plsql-sql-groupby</link>
+      <description>&lt;h3&gt;常用分组函数：&lt;/h3&gt;
+</description>
+      <pubDate>Wed, 16 Nov 2011 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2011/11/16/plsql-sql-groupby</guid>
+      <dc:date>2011-11-16T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>SQL事务语句要点</title>
+      <link>http://leeyee.github.io/blog/2011/11/15/plsql-sql-transaction</link>
+      <description>&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;提交事务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; commit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+      <pubDate>Tue, 15 Nov 2011 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2011/11/15/plsql-sql-transaction</guid>
+      <dc:date>2011-11-15T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>SQL增删改语句要点</title>
+      <link>http://leeyee.github.io/blog/2011/11/14/plsql-sql-cud</link>
+      <description>&lt;h2&gt;SQL分类&lt;/h2&gt;
+</description>
+      <pubDate>Mon, 14 Nov 2011 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2011/11/14/plsql-sql-cud</guid>
+      <dc:date>2011-11-14T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>Spring3 表达式语言(SpEL)介绍</title>
+      <link>http://leeyee.github.io/blog/2011/06/19/spring-expression-language</link>
+      <description>&lt;p&gt;&lt;a href=&quot;http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html&quot;&gt;Spring Expression Language (SpEL)&lt;/a&gt;语言支持在运行时操作和查询对象，其语法类似统一的EL语言，但是&lt;a href=&quot;http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html&quot; title=&quot;SpEL&quot;&gt;SpEL&lt;/a&gt;提供了额外的功能。&lt;a href=&quot;http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html&quot; title=&quot;SpEL&quot;&gt;SpEL&lt;/a&gt;支持以下功能：&lt;/p&gt;
+</description>
+      <pubDate>Sun, 19 Jun 2011 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2011/06/19/spring-expression-language</guid>
+      <dc:date>2011-06-19T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>一些关于javascript、jQuery使用时的建议</title>
+      <link>http://leeyee.github.io/blog/2011/04/09/javascript-jquery-user-suggests</link>
+      <description>&lt;h2&gt;1.在遍历数组时缓存长度&lt;/h2&gt;
+</description>
+      <pubDate>Sat, 09 Apr 2011 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2011/04/09/javascript-jquery-user-suggests</guid>
+      <dc:date>2011-04-09T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>javascript 最佳实践</title>
+      <link>http://leeyee.github.io/blog/2010/04/07/javascript-best-practices</link>
+      <description>&lt;p&gt;原文地址：&lt;a href=&quot;http://www.javascripttoolbox.com/bestpractices/&quot;&gt;http://www.javascripttoolbox.com/bestpractices/&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 07 Apr 2010 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2010/04/07/javascript-best-practices</guid>
+      <dc:date>2010-04-07T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>屏蔽window.close方法在IE中的二次确认</title>
+      <link>http://leeyee.github.io/blog/2009/08/24/javascript-window-close-notconfirm</link>
+      <description>&lt;p&gt;在实际的开发过程中遇到当调用javascript中&lt;code&gt;window.close()&lt;/code&gt;方法时，IE会在页面关闭前询问用户是否要关闭的二次确认对话框。为了避免这个问题，需要在调用&lt;code&gt;window&lt;/code&gt;对象的&lt;code&gt;close&lt;/code&gt;方法前做一些处理&lt;/p&gt;
+</description>
+      <pubDate>Mon, 24 Aug 2009 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2009/08/24/javascript-window-close-notconfirm</guid>
+      <dc:date>2009-08-24T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>使用javascript检测浏览器版本</title>
+      <link>http://leeyee.github.io/blog/2009/08/24/javacript-broswer-check</link>
+      <description>&lt;p&gt;以下浏览器版本的判断方法参考了《JavaScript 高级程序设计》第八章。&lt;/p&gt;
+</description>
+      <pubDate>Mon, 24 Aug 2009 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2009/08/24/javacript-broswer-check</guid>
+      <dc:date>2009-08-24T00:00:00+08:00</dc:date>
+    </item>
+    <dc:date>2014-05-23T00:00:00+08:00</dc:date>
+  </channel>
+</rss>
