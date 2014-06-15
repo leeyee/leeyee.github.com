@@ -57,6 +57,4 @@ sitemap:
     priority_name: "priority"
 
 #_plugins/rssgenerator.rb https://github.com/agelber/jekyll-rss
-name: Leeyee's blog
-rss_name: feed.xml
-rss_path: /
+rss_name: "feed.xml"

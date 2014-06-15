@@ -21,7 +21,8 @@
 # Copyright Assaf Gelber 2014
 
 module Jekyll
-  class RssFeed < Page; end
+  class RssFeed < Page;
+  end
 
   class RssGenerator < Generator
     priority :low
@@ -37,11 +38,11 @@ module Jekyll
 
       # Create the rss with the help of the RSS module
       rss = RSS::Maker.make("2.0") do |maker|
-        maker.channel.title = site.config['name']
+        maker.channel.title = site.config['title']
         maker.channel.link = site.config['url']
         maker.channel.description = site.config['description'] || "RSS feed for #{site.config['name']}"
         maker.channel.author = site.config["author"]
-        maker.channel.updated = site.posts.map { |p| p.date  }.max
+        maker.channel.updated = site.posts.map { |p| p.date }.max
         maker.channel.copyright = site.config['copyright']
 
         post_limit = (site.config['rss_post_limit'] - 1 rescue site.posts.count)
@@ -53,7 +54,7 @@ module Jekyll
             item.guid.content = link
             item.title = post.title
             item.link = link
-            item.description = post.excerpt
+            item.description = "<![CDATA["+post.content+"]]>"
             item.updated = post.date
           end
         end
