@@ -19,10 +19,12 @@ layout: default
         </p>
     </div>
     <div class="panel-footer">
-        <span class="glyphicon glyphicon-calendar"/> {{ post.date | date:"%Y年%m月%d日" }}
+        <span class="glyphicon glyphicon-calendar"/>
+        <a href="/archives.html#{{post.date | date:'%Y-%m'}}">{{ post.date | date:"%Y年%m月%d日" }}</a>
         <span class="glyphicon glyphicon-user"/>
         {% if page.author %} {{ page.author }} {% elsif site.author %} {{ site.author }} {% endif %}
-        <span class="glyphicon glyphicon-folder-close"/> {{ post.category }}
+        <span class="glyphicon glyphicon-folder-close"/>
+        <a href="/categorys.html#{{post.category}}"> {{ post.category }}</a>
         <span class="glyphicon glyphicon-tags"/> {{ post.tag | join: ',' }}
     </div>
 </div>

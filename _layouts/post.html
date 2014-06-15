@@ -23,10 +23,12 @@ layout: default
         <div id="j_article">{{ content }}</div>
     </div>
     <div class="panel-footer">
-        <span class="glyphicon glyphicon-calendar"/> {{ page.date | date:"%Y年%m月%d日" }}
+        <span class="glyphicon glyphicon-calendar"/>
+        <a href="/archives.html#{{page.date | date:'%Y-%m'}}">{{ page.date | date:"%Y年%m月%d日" }}</a>
         <span class="glyphicon glyphicon-user"/>
         {% if page.author %} {{ page.author }} {% elsif site.author %} {{ site.author }} {% endif %}
-        <span class="glyphicon glyphicon-folder-close"/> {{ page.category }}
+        <span class="glyphicon glyphicon-folder-close"/>
+        <a href="/categorys.html#{{page.category}}"> {{ page.category }}</a>
         <span class="glyphicon glyphicon-tags"/> {{ page.tag | join: ',' }}
     </div>
 </div>
