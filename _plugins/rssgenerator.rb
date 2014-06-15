@@ -54,7 +54,7 @@ module Jekyll
             item.guid.content = link
             item.title = post.title
             item.link = link
-            item.description = "<![CDATA["+post.content+"]]>"
+            item.description = post.content
             item.updated = post.date
           end
         end

@@ -5,14 +5,14 @@
      xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
      xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
     <channel>
-        <title>Leeyee's blog</title>
+        <title>Leeyee's Blog</title>
         <link>http://leeyee.github.io</link>
-        <description>RSS feed for Leeyee's blog</description>
+        <description>RSS feed for</description>
         <pubDate>Fri, 23 May 2014 00:00:00 +0800</pubDate>
         <item>
             <title>AWK 入门</title>
             <link>http://leeyee.github.io/blog/2014/05/23/awk-get-start</link>
-            <description>&lt;![CDATA[&lt;p&gt;预先定义log.txt文本内容如下：&lt;/p&gt;
+            <description>&lt;p&gt;预先定义log.txt文本内容如下：&lt;/p&gt;
 
                 &lt;pre&gt;&lt;code&gt;2 this is a test
                 3 Are you like awk
@@ -411,7 +411,7 @@
 
                 &lt;p&gt;[2]. 上善_若水, &lt;a href=&quot;http://blog.csdn.net/tolys/article/details/1807523&quot;&gt;正则表达式awk&lt;/a&gt;,
                 2007-09-30&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Fri, 23 May 2014 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2014/05/23/awk-get-start</guid>
             <dc:date>2014-05-23T00:00:00+08:00</dc:date>
@@ -419,7 +419,7 @@
         <item>
             <title>使用DateFormat需设置语言环境</title>
             <link>http://leeyee.github.io/blog/2014/05/19/java-dateformat-instance</link>
-            <description>&lt;![CDATA[&lt;p&gt;先看段代码：&lt;/p&gt;
+            <description>&lt;p&gt;先看段代码：&lt;/p&gt;
 
                 &lt;pre&gt;&lt;code&gt;String sDate = &quot;2014-12-20&quot;;
                 try {
@@ -479,7 +479,7 @@
                 e.printStackTrace();
                 }
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Mon, 19 May 2014 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2014/05/19/java-dateformat-instance</guid>
             <dc:date>2014-05-19T00:00:00+08:00</dc:date>
@@ -487,7 +487,7 @@
         <item>
             <title>git快速入门</title>
             <link>http://leeyee.github.io/blog/2013/11/27/git-quick-start</link>
-            <description>&lt;![CDATA[&lt;h2&gt;约定&lt;/h2&gt;
+            <description>&lt;h2&gt;约定&lt;/h2&gt;
 
                 &lt;ol&gt;
                 &lt;li&gt;这只是一个简单的快速入门，如果您已经精通，请绕行;&lt;/li&gt;
@@ -776,7 +776,7 @@
 
                 &lt;pre&gt;&lt;code&gt;$ git ls-files -d | xargs git checkout
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Wed, 27 Nov 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/11/27/git-quick-start</guid>
             <dc:date>2013-11-27T00:00:00+08:00</dc:date>
@@ -784,8 +784,8 @@
         <item>
             <title>mybatis自增主键配置</title>
             <link>http://leeyee.github.io/blog/2013/08/22/mybatis-auto-increment-primary-key</link>
-            <description>&lt;![CDATA[&lt;p&gt;mybatis进行插入操作时，如果表的主键是自增的，针对不同的数据库相应的操作也不同。基本上经常会遇到的就是 Oracle Sequece 和
-                Mysql 自增主键，至于其他的手动生成唯一主键的问题在这里就不讨论了，这里主要说明下在mybatis中对于自增主键的配置。&lt;/p&gt;
+            <description>&lt;p&gt;mybatis进行插入操作时，如果表的主键是自增的，针对不同的数据库相应的操作也不同。基本上经常会遇到的就是 Oracle Sequece 和 Mysql
+                自增主键，至于其他的手动生成唯一主键的问题在这里就不讨论了，这里主要说明下在mybatis中对于自增主键的配置。&lt;/p&gt;
 
                 &lt;h2&gt;不返回自增主键值&lt;/h2&gt;
 
@@ -916,7 +916,7 @@
                 的方式配置.&lt;/p&gt;&lt;/li&gt;
                 &lt;/ol&gt;
 
-                ]]&gt;</description>
+            </description>
             <pubDate>Thu, 22 Aug 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/08/22/mybatis-auto-increment-primary-key</guid>
             <dc:date>2013-08-22T00:00:00+08:00</dc:date>
@@ -924,7 +924,7 @@
         <item>
             <title>javascript身份证号码验证</title>
             <link>http://leeyee.github.io/blog/2013/07/31/javascript-idcard-validate</link>
-            <description>&lt;![CDATA[&lt;h2&gt;15位身份证号码编码规则&lt;/h2&gt;
+            <description>&lt;h2&gt;15位身份证号码编码规则&lt;/h2&gt;
 
                 &lt;pre&gt;&lt;code&gt;ddddddyymmddxxp
                 &lt;/code&gt;&lt;/pre&gt;
@@ -1223,7 +1223,7 @@
                 &lt;div id=&quot;cardInfo&quot; style=&quot;margin-left:20px;display:inline&quot;&gt;&lt;/div&gt;
                 &lt;/div&gt;
 
-                ]]&gt;</description>
+            </description>
             <pubDate>Wed, 31 Jul 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/07/31/javascript-idcard-validate</guid>
             <dc:date>2013-07-31T00:00:00+08:00</dc:date>
@@ -1231,7 +1231,7 @@
         <item>
             <title>Hibernate缓存</title>
             <link>http://leeyee.github.io/blog/2013/07/07/hibernate-cache</link>
-            <description>&lt;![CDATA[&lt;p&gt;Hibernate中实现缓存的对象有&lt;code&gt;Session&lt;/code&gt;和&lt;code&gt;SessionFactory&lt;/code&gt;。&lt;/p&gt;
+            <description>&lt;p&gt;Hibernate中实现缓存的对象有&lt;code&gt;Session&lt;/code&gt;和&lt;code&gt;SessionFactory&lt;/code&gt;。&lt;/p&gt;
 
                 &lt;p&gt;&lt;code&gt;Session&lt;/code&gt;的缓存为内置缓存，不可被卸载，称为Hibernate的一级缓存；&lt;/p&gt;
 
@@ -1620,7 +1620,7 @@
                 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
                 &lt;/ol&gt;
 
-                ]]&gt;</description>
+            </description>
             <pubDate>Sun, 07 Jul 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/07/07/hibernate-cache</guid>
             <dc:date>2013-07-07T00:00:00+08:00</dc:date>
@@ -1628,7 +1628,7 @@
         <item>
             <title>数据库事务与并发</title>
             <link>http://leeyee.github.io/blog/2013/07/04/database-transaction-concurrency</link>
-            <description>&lt;![CDATA[&lt;h2&gt;多事务运行时的并发问题&lt;/h2&gt;
+            <description>&lt;h2&gt;多事务运行时的并发问题&lt;/h2&gt;
 
                 &lt;ol&gt;
                 &lt;li&gt;第一类丢失更新：撤销一个事务时，把其他事务已提交的更新数据覆盖；&lt;/li&gt;
@@ -1730,7 +1730,7 @@
 
                 &lt;p&gt;其中&lt;strong&gt;Serializalble&lt;/strong&gt;的隔离级别最高，但并发性能最差。而&lt;strong&gt;Read Uncommited&lt;/strong&gt;的隔离级别最低，但并发性能最好。隔离级别越高，越能保证数据的完整性和一致性，但并发性能则会降低。对于多数程序，可以优先考虑把数据库系统的隔离级别设置为Read
                 Committed，它可以避免脏读，而且具有较好的并发性能。&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Thu, 04 Jul 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/07/04/database-transaction-concurrency</guid>
             <dc:date>2013-07-04T00:00:00+08:00</dc:date>
@@ -1738,7 +1738,7 @@
         <item>
             <title>使用autoMapping配置关联关系时应注意的问题</title>
             <link>http://leeyee.github.io/blog/2013/05/30/mybatis-association-autoMapping</link>
-            <description>&lt;![CDATA[&lt;p&gt;利用&lt;code&gt;association&lt;/code&gt;解决多对一、一对一问题时，在配置&lt;code&gt;resultMap&lt;/code&gt;时使用&lt;code&gt;autoMapping&lt;/code&gt;属性映射表字段时，生成的多端对象数据中是拿不到声明的外键的。&lt;/p&gt;
+            <description>&lt;p&gt;利用&lt;code&gt;association&lt;/code&gt;解决多对一、一对一问题时，在配置&lt;code&gt;resultMap&lt;/code&gt;时使用&lt;code&gt;autoMapping&lt;/code&gt;属性映射表字段时，生成的多端对象数据中是拿不到声明的外键的。&lt;/p&gt;
 
                 &lt;p&gt;如果业务有需要在多的一端对象中直接获取外键属性，而不是通过对应的一端来获取，那么就需要在使用&lt;code&gt;autoMapping&lt;/code&gt;时，重新为多端表指明主外键映射关系或者撇弃&lt;code&gt;autoMapping&lt;/code&gt;而改用手工声明。&lt;/p&gt;
 
@@ -1854,7 +1854,7 @@
 
 
                 &lt;p&gt;改用上述方式后及可以直接在&lt;code&gt;Blog&lt;/code&gt;对象中直接获取&lt;code&gt;authorid&lt;/code&gt;属性了。&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Thu, 30 May 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/05/30/mybatis-association-autoMapping</guid>
             <dc:date>2013-05-30T00:00:00+08:00</dc:date>
@@ -1862,7 +1862,7 @@
         <item>
             <title>mybatis分页的简单实现</title>
             <link>http://leeyee.github.io/blog/2013/05/26/mybatis-simple-pagination</link>
-            <description>&lt;![CDATA[&lt;p&gt;最近的项目中使用到了&lt;code&gt;mybatis&lt;/code&gt;，发现&lt;code&gt;mybatis&lt;/code&gt;不支持物理分页，只支持内存分页。因此为了解决这个问题，在网上搜索了一番，不过都比较繁琐。最后使用正则表达过滤查询语句的方式简单解决了该问题.&lt;/p&gt;
+            <description>&lt;p&gt;最近的项目中使用到了&lt;code&gt;mybatis&lt;/code&gt;，发现&lt;code&gt;mybatis&lt;/code&gt;不支持物理分页，只支持内存分页。因此为了解决这个问题，在网上搜索了一番，不过都比较繁琐。最后使用正则表达过滤查询语句的方式简单解决了该问题.&lt;/p&gt;
 
                 &lt;p&gt;&lt;code&gt;mybatis&lt;/code&gt;物理分页的核心是使用&lt;code&gt;mybatis&lt;/code&gt;的拦截器 &lt;code&gt;org.apache.ibatis.plugin.Interceptor&lt;/code&gt;
                 ,在&lt;code&gt;mybatis&lt;/code&gt;准备好&lt;code&gt;SQL&lt;/code&gt;的时候，对&lt;code&gt;SQL&lt;/code&gt;字符串进行拦截，生成适合&lt;code&gt;Oracle&lt;/code&gt;数据库的分页语句即可。废话不多讲了，直接上代码.&lt;/p&gt;
@@ -2051,7 +2051,7 @@
                 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
                 &lt;/ol&gt;
 
-                ]]&gt;</description>
+            </description>
             <pubDate>Sun, 26 May 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/05/26/mybatis-simple-pagination</guid>
             <dc:date>2013-05-26T00:00:00+08:00</dc:date>
@@ -2059,7 +2059,7 @@
         <item>
             <title>javascript中的null和undefined</title>
             <link>http://leeyee.github.io/blog/2013/05/07/javascript-null-undefined</link>
-            <description>&lt;![CDATA[&lt;ol&gt;
+            <description>&lt;ol&gt;
                 &lt;li&gt;&lt;p&gt;&lt;code&gt;null&lt;/code&gt;表示无值或不存在的对象；&lt;/p&gt;&lt;/li&gt;
                 &lt;li&gt;&lt;p&gt;&lt;code&gt;undefined&lt;/code&gt;表示一个未声明的变量。声明但没有赋值的变量或者一个并不存在的对象属性;&lt;/p&gt;
 
@@ -2126,7 +2126,7 @@
                 老版地址请查看：&lt;br/&gt;
                 &lt;a href=&quot;http://blog.csdn.net/oxcow/article/details/7751835&quot;&gt;ECMAScript中原始类型Null和Undefined小结&lt;/a&gt;
                 或者 &lt;a href=&quot;http://leeyee.iteye.com/admin/blogs/1595338&quot;&gt;ECMAScript中原始类型Null和Undefined小结&lt;/a&gt;&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Tue, 07 May 2013 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2013/05/07/javascript-null-undefined</guid>
             <dc:date>2013-05-07T00:00:00+08:00</dc:date>
@@ -2134,7 +2134,7 @@
         <item>
             <title>jQuery插件编写</title>
             <link>http://leeyee.github.io/blog/2012/12/02/jquery-plugins-authoring</link>
-            <description>&lt;![CDATA[&lt;p&gt;原文地址：&lt;a href=&quot;http://docs.jquery.com/Plugins/Authoring&quot;&gt;http://docs.jquery.com/Plugins/Authoring&lt;/a&gt;&lt;/p&gt;
+            <description>&lt;p&gt;原文地址：&lt;a href=&quot;http://docs.jquery.com/Plugins/Authoring&quot;&gt;http://docs.jquery.com/Plugins/Authoring&lt;/a&gt;&lt;/p&gt;
 
                 &lt;p&gt;So you've become comfortable with jQuery and would like to learn how to write your own plugins.
                 Great! You're in the right spot. Extending jQuery with plugins and methods is very powerful and can save
@@ -2593,7 +2593,7 @@
 
                 &lt;p&gt;If you have translated this article or have some similar one on your blog post a link here.
                 Please mark Full Translated articles with (t) and similar ones with (s).&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Sun, 02 Dec 2012 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2012/12/02/jquery-plugins-authoring</guid>
             <dc:date>2012-12-02T00:00:00+08:00</dc:date>
@@ -2601,7 +2601,7 @@
         <item>
             <title>mybatis参数映射</title>
             <link>http://leeyee.github.io/blog/2012/09/27/mybatis-param-mapping-rules</link>
-            <description>&lt;![CDATA[&lt;h3&gt;规则&lt;/h3&gt;
+            <description>&lt;h3&gt;规则&lt;/h3&gt;
 
                 &lt;ol&gt;
                 &lt;li&gt;&lt;p&gt;非&lt;code&gt;@Param&lt;/code&gt;注解参数时可使用&lt;/p&gt;
@@ -2807,7 +2807,7 @@
                 }
                 }
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Thu, 27 Sep 2012 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2012/09/27/mybatis-param-mapping-rules</guid>
             <dc:date>2012-09-27T00:00:00+08:00</dc:date>
@@ -2815,7 +2815,7 @@
         <item>
             <title>jQuery eTable Plugin</title>
             <link>http://leeyee.github.io/blog/2012/05/05/jquery-etable-plugin</link>
-            <description>&lt;![CDATA[&lt;p&gt;jQuery eTable Plugin 提供对表格操作的一些基本方法.其实质是通过&lt;code&gt;$(table).eTable()&lt;/code&gt;获取封装了表格元素的&lt;code&gt;ETable&lt;/code&gt;对象.&lt;code&gt;eTable&lt;/code&gt;对象封装了一些列针对表格行列进行操作的方法。使用这些方法可以对表格进行行列的插入与删除。&lt;/p&gt;
+            <description>&lt;p&gt;jQuery eTable Plugin 提供对表格操作的一些基本方法.其实质是通过&lt;code&gt;$(table).eTable()&lt;/code&gt;获取封装了表格元素的&lt;code&gt;ETable&lt;/code&gt;对象.&lt;code&gt;eTable&lt;/code&gt;对象封装了一些列针对表格行列进行操作的方法。使用这些方法可以对表格进行行列的插入与删除。&lt;/p&gt;
 
                 &lt;h3&gt;eTable对象的获取&lt;/h3&gt;
 
@@ -2952,7 +2952,7 @@
                 &lt;pre&gt;&lt;code&gt;var colIndexs = [0,2,3];
                 $eTable.deleteCols(colIndexs); //删除第1,3,4行
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Sat, 05 May 2012 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2012/05/05/jquery-etable-plugin</guid>
             <dc:date>2012-05-05T00:00:00+08:00</dc:date>
@@ -2960,7 +2960,7 @@
         <item>
             <title>jQuery MsgBox Plugin</title>
             <link>http://leeyee.github.io/blog/2012/05/04/jquery-msgbox-plugin</link>
-            <description>&lt;![CDATA[&lt;h2&gt;&lt;div id='top'&gt;jQuery MsgBox Plugin&lt;/div&gt;&lt;/h2&gt;
+            <description>&lt;h2&gt;&lt;div id='top'&gt;jQuery MsgBox Plugin&lt;/div&gt;&lt;/h2&gt;
 
                 &lt;blockquote&gt;&lt;p&gt;1.&lt;a href=&quot;#jmask&quot;&gt;jmask 遮罩层&lt;/a&gt;.&lt;/p&gt;
 
@@ -3058,7 +3058,7 @@
                 maskopacity : 0.9
                 });
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Fri, 04 May 2012 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2012/05/04/jquery-msgbox-plugin</guid>
             <dc:date>2012-05-04T00:00:00+08:00</dc:date>
@@ -3066,7 +3066,7 @@
         <item>
             <title>PL/SQL常用函数</title>
             <link>http://leeyee.github.io/blog/2011/11/18/plsql-sql-comm-func</link>
-            <description>&lt;![CDATA[&lt;h3&gt;常用数字函数&lt;/h3&gt;
+            <description>&lt;h3&gt;常用数字函数&lt;/h3&gt;
 
                 &lt;p&gt;&lt;code&gt;abs(n)&lt;/code&gt; : 返回n的绝对值&lt;/p&gt;
 
@@ -3492,7 +3492,7 @@
                 &lt;h3&gt;分组函数&lt;/h3&gt;
 
                 &lt;p&gt;具体请查看&lt;a href=&quot;/blog/2011/11/16/plsql-sql-groupby/&quot;&gt;SQL分组语句要点&lt;/a&gt;&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Fri, 18 Nov 2011 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2011/11/18/plsql-sql-comm-func</guid>
             <dc:date>2011-11-18T00:00:00+08:00</dc:date>
@@ -3500,7 +3500,7 @@
         <item>
             <title>SQL查询语句要点</title>
             <link>http://leeyee.github.io/blog/2011/11/17/plsql-sql-select</link>
-            <description>&lt;![CDATA[&lt;h2&gt;内连接和外连接&lt;/h2&gt;
+            <description>&lt;h2&gt;内连接和外连接&lt;/h2&gt;
 
                 &lt;pre&gt;&lt;code&gt;select table1.column, table2.column
                 from table1 [inner | left | rigth | full ] join table2 ON table1.column1 = table2.column2;
@@ -3878,7 +3878,7 @@
                 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
                 &lt;/ol&gt;
 
-                ]]&gt;</description>
+            </description>
             <pubDate>Thu, 17 Nov 2011 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2011/11/17/plsql-sql-select</guid>
             <dc:date>2011-11-17T00:00:00+08:00</dc:date>
@@ -3886,7 +3886,7 @@
         <item>
             <title>SQL分组语句要点</title>
             <link>http://leeyee.github.io/blog/2011/11/16/plsql-sql-groupby</link>
-            <description>&lt;![CDATA[&lt;h3&gt;常用分组函数：&lt;/h3&gt;
+            <description>&lt;h3&gt;常用分组函数：&lt;/h3&gt;
 
                 &lt;ol&gt;
                 &lt;li&gt;&lt;code&gt;max([all|distinct]expr)&lt;/code&gt; : 获取列或表达式的最大值，适合任何数据类型；&lt;/li&gt;
@@ -4004,7 +4004,7 @@
                 abcdefg 2
                 152号大街 1
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Wed, 16 Nov 2011 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2011/11/16/plsql-sql-groupby</guid>
             <dc:date>2011-11-16T00:00:00+08:00</dc:date>
@@ -4012,7 +4012,7 @@
         <item>
             <title>SQL事务语句要点</title>
             <link>http://leeyee.github.io/blog/2011/11/15/plsql-sql-transaction</link>
-            <description>&lt;![CDATA[&lt;ol&gt;
+            <description>&lt;ol&gt;
                 &lt;li&gt;&lt;p&gt;提交事务&lt;/p&gt;
 
                 &lt;pre&gt;&lt;code&gt; commit
@@ -4101,7 +4101,7 @@
                 &lt;/code&gt;&lt;/pre&gt;
 
                 &lt;p&gt;假设会话A在1设置了顺序事务，会话B在2更新了数据，那么会话A在3查询时将会获取时间点在1的数据，而不是会话B在2更新后的数据&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Tue, 15 Nov 2011 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2011/11/15/plsql-sql-transaction</guid>
             <dc:date>2011-11-15T00:00:00+08:00</dc:date>
@@ -4109,7 +4109,7 @@
         <item>
             <title>SQL增删改语句要点</title>
             <link>http://leeyee.github.io/blog/2011/11/14/plsql-sql-cud</link>
-            <description>&lt;![CDATA[&lt;h2&gt;SQL分类&lt;/h2&gt;
+            <description>&lt;h2&gt;SQL分类&lt;/h2&gt;
 
                 &lt;ol&gt;
                 &lt;li&gt;&lt;p&gt;数据查询语句（&lt;code&gt;select&lt;/code&gt; 语句）：用于检索数据库数据&lt;/p&gt;&lt;/li&gt;
@@ -4220,7 +4220,7 @@
                 &lt;li&gt;&lt;code&gt;delete&lt;/code&gt;操作可以回滚，而&lt;code&gt;truncate&lt;/code&gt;则无法回滚&lt;/li&gt;
                 &lt;/ol&gt;
 
-                ]]&gt;</description>
+            </description>
             <pubDate>Mon, 14 Nov 2011 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2011/11/14/plsql-sql-cud</guid>
             <dc:date>2011-11-14T00:00:00+08:00</dc:date>
@@ -4228,7 +4228,7 @@
         <item>
             <title>Spring3 表达式语言(SpEL)介绍</title>
             <link>http://leeyee.github.io/blog/2011/06/19/spring-expression-language</link>
-            <description>&lt;![CDATA[&lt;p&gt;&lt;a href=&quot;http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html&quot;&gt;Spring
+            <description>&lt;p&gt;&lt;a href=&quot;http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html&quot;&gt;Spring
                 Expression Language (SpEL)&lt;/a&gt;语言支持在运行时操作和查询对象，其语法类似统一的EL语言，但是&lt;a href=&quot;http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html&quot;
                 title=&quot;SpEL&quot;&gt;SpEL&lt;/a&gt;提供了额外的功能。&lt;a href=&quot;http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html&quot;
                 title=&quot;SpEL&quot;&gt;SpEL&lt;/a&gt;支持以下功能：&lt;/p&gt;
@@ -4959,7 +4959,7 @@
                 }
                 }
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Sun, 19 Jun 2011 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2011/06/19/spring-expression-language</guid>
             <dc:date>2011-06-19T00:00:00+08:00</dc:date>
@@ -4967,7 +4967,7 @@
         <item>
             <title>一些关于javascript、jQuery使用时的建议</title>
             <link>http://leeyee.github.io/blog/2011/04/09/javascript-jquery-user-suggests</link>
-            <description>&lt;![CDATA[&lt;h2&gt;1.在遍历数组时缓存长度&lt;/h2&gt;
+            <description>&lt;h2&gt;1.在遍历数组时缓存长度&lt;/h2&gt;
 
                 &lt;p&gt;在遍历数组时应将数组的长度保存在一个变量中，不要在循环中每次都访问数组长度。&lt;/p&gt;
 
@@ -5233,7 +5233,7 @@
 
                 &lt;p&gt;将jQuery源码作为你的文档 -- 保存&lt;a href=&quot;https://github.com/jquery/jquery&quot;&gt;https://github.com/jquery/jquery&lt;/a&gt;
                 在你的书签里，并且经常查阅他.&lt;/p&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Sat, 09 Apr 2011 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2011/04/09/javascript-jquery-user-suggests</guid>
             <dc:date>2011-04-09T00:00:00+08:00</dc:date>
@@ -5241,7 +5241,7 @@
         <item>
             <title>javascript 最佳实践</title>
             <link>http://leeyee.github.io/blog/2010/04/07/javascript-best-practices</link>
-            <description>&lt;![CDATA[&lt;p&gt;原文地址：&lt;a href=&quot;http://www.javascripttoolbox.com/bestpractices/&quot;&gt;http://www.javascripttoolbox.com/bestpractices/&lt;/a&gt;&lt;/p&gt;
+            <description>&lt;p&gt;原文地址：&lt;a href=&quot;http://www.javascripttoolbox.com/bestpractices/&quot;&gt;http://www.javascripttoolbox.com/bestpractices/&lt;/a&gt;&lt;/p&gt;
 
                 &lt;h3&gt;1.总是使用关键字&lt;em&gt;var&lt;/em&gt;声明变量&lt;/h3&gt;
 
@@ -5547,7 +5547,7 @@
 
                 &lt;pre&gt;&lt;code&gt;&amp;lt;script type=&quot;text/javascript&quot;&amp;gt; // code here &amp;lt;/script&amp;gt;
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Wed, 07 Apr 2010 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2010/04/07/javascript-best-practices</guid>
             <dc:date>2010-04-07T00:00:00+08:00</dc:date>
@@ -5555,7 +5555,7 @@
         <item>
             <title>屏蔽window.close方法在IE中的二次确认</title>
             <link>http://leeyee.github.io/blog/2009/08/24/javascript-window-close-notconfirm</link>
-            <description>&lt;![CDATA[&lt;p&gt;在实际的开发过程中遇到当调用javascript中&lt;code&gt;window.close()&lt;/code&gt;方法时，IE会在页面关闭前询问用户是否要关闭的二次确认对话框。为了避免这个问题，需要在调用&lt;code&gt;window&lt;/code&gt;对象的&lt;code&gt;close&lt;/code&gt;方法前做一些处理&lt;/p&gt;
+            <description>&lt;p&gt;在实际的开发过程中遇到当调用javascript中&lt;code&gt;window.close()&lt;/code&gt;方法时，IE会在页面关闭前询问用户是否要关闭的二次确认对话框。为了避免这个问题，需要在调用&lt;code&gt;window&lt;/code&gt;对象的&lt;code&gt;close&lt;/code&gt;方法前做一些处理&lt;/p&gt;
 
                 &lt;p&gt;针对IE的不同版本，处理方式是不同的。因此在处理之前应先判断IE浏览器的版本。&lt;/p&gt;
 
@@ -5589,7 +5589,7 @@
                 &lt;h4&gt;Notes: &lt;/h4&gt; 针对FireFox浏览器时，除了使用&lt;code&gt;window.close()&lt;/code&gt;，为了达到直接关节而无需提示的效果都需要在FireFox的地址栏中输入&lt;code&gt;about:config&lt;/code&gt;，然后将&lt;code&gt;dom.allow_script_to_close_windows&lt;/code&gt;改为true才能达到想要的效果。
                 &lt;/div&gt;
 
-                ]]&gt;</description>
+            </description>
             <pubDate>Mon, 24 Aug 2009 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2009/08/24/javascript-window-close-notconfirm</guid>
             <dc:date>2009-08-24T00:00:00+08:00</dc:date>
@@ -5597,7 +5597,7 @@
         <item>
             <title>使用javascript检测浏览器版本</title>
             <link>http://leeyee.github.io/blog/2009/08/24/javacript-broswer-check</link>
-            <description>&lt;![CDATA[&lt;p&gt;以下浏览器版本的判断方法参考了《JavaScript 高级程序设计》第八章。&lt;/p&gt;
+            <description>&lt;p&gt;以下浏览器版本的判断方法参考了《JavaScript 高级程序设计》第八章。&lt;/p&gt;
 
                 &lt;p&gt;总体上我们验证浏览器及其版本是通过浏览器的&lt;strong&gt;user-agent&lt;/strong&gt;字符串来检测的。常见的有：&lt;/p&gt;
 
@@ -5785,7 +5785,7 @@
                 console.info(&quot;broswer.chrome is &quot;, broswer.chrome);
                 console.info(&quot;broswer.konqueror is &quot;, broswer.konqueror);
                 &lt;/code&gt;&lt;/pre&gt;
-                ]]&gt;</description>
+            </description>
             <pubDate>Mon, 24 Aug 2009 00:00:00 +0800</pubDate>
             <guid>http://leeyee.github.io/blog/2009/08/24/javacript-broswer-check</guid>
             <dc:date>2009-08-24T00:00:00+08:00</dc:date>
