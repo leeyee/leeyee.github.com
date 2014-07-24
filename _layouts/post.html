@@ -4,7 +4,9 @@ layout: default
 <div>
     <ol class="breadcrumb">
         <li><a href="/">首页</a></li>
+        {% if page.category %}
         <li><a href="/categorys.html#{{ page.category }}">{{ page.category }}</a></li>
+        {% endif %}
         <li class="active">{{ page.title }}</li>
     </ol>
 </div>
@@ -24,12 +26,18 @@ layout: default
     </div>
     <div class="panel-footer">
         <span class="glyphicon glyphicon-calendar"/>
+        {% if page.date %}
         <a href="/archives.html#{{page.date | date:'%Y-%m'}}">{{ page.date | date:"%Y年%m月%d日" }}</a>
+        {% elsif site.author %} {{ site.time | date:"%Y年%m月%d日" }} {% endif %}
         <span class="glyphicon glyphicon-user"/>
         {% if page.author %} {{ page.author }} {% elsif site.author %} {{ site.author }} {% endif %}
+        {% if page.category %}
         <span class="glyphicon glyphicon-folder-close"/>
         <a href="/categorys.html#{{page.category}}"> {{ page.category }}</a>
+        {% endif %}
+        {% if page.tag %}
         <span class="glyphicon glyphicon-tags"/> {{ page.tag | join: ',' }}
+        {% endif %}
     </div>
 </div>
 <div class="panel panel-default">

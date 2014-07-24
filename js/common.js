@@ -14,7 +14,7 @@ $(function () {
         var _target = $(ele).attr("target");
         if (href && href.indexOf("#") != 0 && !_target) {
             $(ele).attr("target", "_blank");
-            $(ele).append("<span class='glyphicon glyphicon-new-window' />");
+            //$(ele).append("<span class='glyphicon glyphicon-new-window' />");
         }
     });
 

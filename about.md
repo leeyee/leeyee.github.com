@@ -1,12 +1,10 @@
 ---
-layout: default
+layout: post
 title: 关于我
 ---
-<div class="row-fluid">
-	
-	<div class="span9 myrow">
-		<div style="padding: 0px 10px">
-			about me test
-		</div>
-	</div>		
-</div>
+
+最开始在[CSDN](http://blog.csdn.net/oxcow)上写博客，后来又增加了[iteye](http://leeyee.iteye.com/)，再后来觉得用GitHub搭建比较有意思，于是这个网址就诞生了……
+
+工作也快七年了，慢慢的也开始“七年之痒”了。总觉得技术这个玩意也就那么回事，面试问的基本跟工作没多大关系。往往问的很深入，实际工作也就那么回事，新鲜感很容易消失的。现在是，如何保持新鲜感和激情比多了解几行代码重要。
+
+本质上还是个比较有责任心的人，不过某些情况下就懒得多管“闲事”了。
