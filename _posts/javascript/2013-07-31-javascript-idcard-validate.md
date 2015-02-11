@@ -89,7 +89,7 @@ github: 'id-number-validator'
 			isMale : false,
 			isFemale : false
 		};
-		if (!cardNo && 15 != cardNo.length && 18 != cardNo.length) {
+		if (!cardNo || (15 != cardNo.length && 18 != cardNo.length) ) {
 			info.isTrue = false;
 			return info;
 		}
