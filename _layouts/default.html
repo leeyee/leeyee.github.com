@@ -13,7 +13,6 @@
     <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    {% include analytics %}
     <link href="/js/prettify/prettify.css" rel="stylesheet">
     <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
     <title>{% if page.title %} {{ page.title }} {% elsif site.title %} {{ site.title }} {% endif %}</title>
@@ -48,8 +47,9 @@
         <div class="col-xs-6 col-md-4 col-lg-4">
             <div class="row">
                 <div class="col-xs-6 col-md-6 col-lg-6">
-                    <h4 class="self-margin-top-2px"><a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS
-                        本站</a></h4>
+                    <h4 class="self-margin-top-2px">
+                        <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                    </h4>
                 </div>
                 <!--<div class="col-xs-6 col-md-6 col-lg-6">
                     <h4 style="margin-top: 2px;"><a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS
@@ -78,8 +78,9 @@
 </div>
 <hr/>
 <footer>
-    <p class="text-center">&copy;2014 by Leeyee, All Rights Reserved</p>
+    <p class="text-center">&copy;2015 by Leeyee, All Rights Reserved</p>
 </footer>
 <script type="text/javascript" src="/js/common.js"></script>
+{% include analytics %}
 </body>
 </html>
