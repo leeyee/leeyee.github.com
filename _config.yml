@@ -15,7 +15,7 @@ permalink: /blog/:year/:month/:day/:title
 # 分页大小
 paginate: 10
 # 最新文章显示数
-last_pages: 30
+last_pages: 10
 
 title: Leeyee's Blog
 url: http://leeyee.github.io
@@ -26,7 +26,7 @@ github: https://github.com/oxcow/
 
 #分析
 analytics:
-  provider: google,baidu
+  provider: test
   google: 
     tracking_id: 'UA-40641589-1'
 

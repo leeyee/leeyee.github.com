@@ -9,16 +9,16 @@ title: 文章分类
     <div class="panel-body">
         {% for category in site.categories %}
         <ul class="list-unstyled">
-            <li><h4 id="{{category[0]}}">{{category[0]}}</h4></li>
+            <li><h3 id="{{category[0]}}"><em>{{category[0]}}</em></h3></li>
             <li>
-                <ul>
+                <ol>
                     {% for post in site.posts %}
                     {% if  post.category == category[1][0].category %}
                     <li><a href="{{ post.url }}/">{{post.title}}{% if post.github %}
                         <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>{% endif %}</a></li>
                     {% endif %}
                     {% endfor %}
-                </ul>
+                </ol>
             </li>
         </ul>
         {% endfor %}

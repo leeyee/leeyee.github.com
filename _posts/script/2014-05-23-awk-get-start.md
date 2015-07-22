@@ -3,7 +3,7 @@ layout: post
 title: AWK 入门
 description: 本文主要介绍一些awk的入门语法及相关示例。包括awk基本语法及基本参数，内建参数的使用，awk脚本等相关基础入门内容
 category: 脚本语言
-tag: [srcipt, awk]
+tag: [script, awk]
 keywords: [awk,忽略大小写,awk脚本,awk正则]
 ---
 

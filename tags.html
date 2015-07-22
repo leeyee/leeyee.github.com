@@ -9,9 +9,9 @@ title: 标签
     <div class="panel-body">
        {% for tag in site.tags %}
         <ul class="list-unstyled">
-            <li><h4 id="{{tag[0]}}">{{tag[0]}}</h4></li>
+            <li><h3 id="{{tag[0]}}"><em>{{tag[0]}}</em></h3></li>
             <li>
-                <ul>
+                <ol>
                     {% for post in site.posts %}
                     {% if post.tag contains tag[0] %}
                     <li><a href="{{post.url}}/">{{post.title}}{% if post.github %}<img
@@ -19,7 +19,7 @@ title: 标签
                         {% endif %}</a></li>
                     {% endif %}
                     {% endfor %}
-                </ul>
+                </ol>
             </li>
         </ul>
         {% endfor %}

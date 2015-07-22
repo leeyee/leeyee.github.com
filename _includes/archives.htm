@@ -6,20 +6,16 @@
         <ul class="nav nav-list">
             {% for post in site.posts %}
             {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
-            {% if year_month != ym %}
-            {% assign year_month = ym %}
+            {% if year_month != ym %} {% assign year_month = ym %}
             <li><a href="/archives.html#{{ym}}">{{ ym }}
                 {% assign count = 0 %}
                 {% for pt in site.posts %}
                 {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
-                {% if year_month == cym %}
-                {% capture count %}{{count | plus:1}}{% endcapture %}
-                {% endif %}
+                {% if year_month == cym %} {% capture count %}{{count | plus:1}}{% endcapture %}{% endif %}
                 {% endfor %}
                 <span class="badge">{{ count }}</span></a>
             </li>
-            {% endif %}
-            {% endfor %}
+            {% endif %}{% endfor %}
         </ul>
     </div>
 </div>

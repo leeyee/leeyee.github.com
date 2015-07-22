@@ -46,18 +46,23 @@
             {{ content }}
         </div>
         <div class="col-xs-6 col-md-4 col-lg-4">
-            <div class="row">
-                <div class="col-xs-6 col-md-6 col-lg-6">
-                    <h4 class="self-margin-top-2px">
-                        <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
-                    </h4>
+            <!--<div class="row">-->
+                <!--<div class="col-xs-6 col-md-6 col-lg-6">-->
+                    <!--<h4 class="self-margin-top-2px">-->
+                        <!--<a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>-->
+                    <!--</h4>-->
+                <!--</div>-->
+               <!--&lt;!&ndash;<div class="col-xs-6 col-md-6 col-lg-6">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h4 style="margin-top: 2px;"><a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS&ndash;&gt;-->
+                        <!--&lt;!&ndash;本站</a></h4>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+            <!--<hr class="self-margin-top-2px"/>-->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
                 </div>
-                <!--<div class="col-xs-6 col-md-6 col-lg-6">
-                    <h4 style="margin-top: 2px;"><a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS
-                        本站</a></h4>
-                </div>-->
             </div>
-            <hr class="self-margin-top-2px"/>
             <!-- 本站公告 -->
             {% include notices.htm %}
             <!-- 最新文章 -->

@@ -13,9 +13,9 @@ title: 归档
         {% if year_month != ym %}
         {% assign year_month = ym %}
         <ul class="list-unstyled">
-            <li><h4 id="{{ ym | strip_html }}">{{ym}}</h4></li>
+            <li><h3 id="{{ ym | strip_html }}"><em>{{ym}}</em></h3></li>
             <li>
-                <ul>
+                <ol>
                     {% for pt in site.posts %}
                     {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
                     {% if year_month == cym %}
@@ -26,7 +26,7 @@ title: 归档
                     </li>
                     {% endif %}
                     {% endfor %}
-                </ul>
+                </ol>
             </li>
         </ul>
         {% endif %}
