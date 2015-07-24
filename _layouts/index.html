@@ -27,7 +27,7 @@ layout: default
         <a href="/categorys.html#{{post.category}}"> {{ post.category }}</a>
         <span class="glyphicon glyphicon-tags"/> {{ post.tag | join: ',' }}
         <span class="glyphicon glyphicon-comment"/>
-        <span class="disqus-comment-count" data-disqus-url="{{site.url}}{{post.url}}"></span>
+        <a class="disqus-comment-count dsq-postid" href="{{site.url}}{{post.url}}#disqus_thread"></a>
     </div>
 </div>
 {% endfor %}
