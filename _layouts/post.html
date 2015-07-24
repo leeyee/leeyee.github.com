@@ -36,6 +36,9 @@ layout: default
         <a href="/categorys.html#{{page.category}}"> {{ page.category }}</a>
         {% endif %}
         {% if page.tag %} <span class="glyphicon glyphicon-tags"/> {{ page.tag | join: ',' }} {% endif %}
+        <span class="glyphicon glyphicon-comment"/>
+        <a class="disqus-comment-count" href="{{site.url}}{{post.url}}#disqus_thread">0条评论</a>
+        <span class="disqus-comment-count" data-disqus-url="{{site.url}}{{post.url}}"></span>
     </div>
 </div>
 <div class="panel panel-default">
