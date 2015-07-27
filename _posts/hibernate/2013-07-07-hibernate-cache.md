@@ -115,10 +115,10 @@ Hibernate一级缓存中存放的数据是数据库中数据的拷贝，其表�
 
 Hibernate的二级缓存是进程范围或群集范围的缓存，缓存中存放的是对象的散列数据。二级缓存是可配置的插件，比如：
 
-+ [EHCache]: 可作为进程范围内的缓存，存放数据是物理介质是内存或硬盘，支持Hibernate查询缓存；
-+ [OSCache]: 可作为进程范围内的缓存，存放数据是物理介质是内存或硬盘，提供了丰富的缓存数据过期策略，支持Hibernate查询缓存；
-+ [SwarmCache]: 可作为群集范围内的的缓存，不支持Hibernate查询缓存；
-+ [JBossCache]: 可作为群集范围内的的缓存，支持事务型并发访问策略，支持Hibernate查询缓存。
++ [EHCache] : 可作为进程范围内的缓存，存放数据是物理介质是内存或硬盘，支持Hibernate查询缓存；
++ [OSCache] : 可作为进程范围内的缓存，存放数据是物理介质是内存或硬盘，提供了丰富的缓存数据过期策略，支持Hibernate查询缓存；
++ [SwarmCache] : 可作为群集范围内的的缓存，不支持Hibernate查询缓存；
++ [JBossCache] : 可作为群集范围内的的缓存，支持事务型并发访问策略，支持Hibernate查询缓存。
 
 <table class="table table-bordered">
     <caption>各插件支持的并发访问策略</caption>
