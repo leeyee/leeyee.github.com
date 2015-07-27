@@ -9,13 +9,15 @@ keywords: [DateFormat,DateFormat.getDateInstance,日期格式化,语言环境]
 
 先看段代码：
 
-    String sDate = "2014-12-20";
-    try {
-        DateFormat df = DateFormat.getDateInstance();
-        Date date = df.parse(sDate);
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+```java
+String sDate = "2014-12-20";
+try {
+    DateFormat df = DateFormat.getDateInstance();
+    Date date = df.parse(sDate);
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
 
 这段代码在中文语言环境下是可以测试通过。但在其他语言环境中则会抛出异常。原因是`DateFormat.getDateInstance()`初始化时会跟据当前语言环境设置日期格式。
 

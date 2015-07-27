@@ -1,9 +1,9 @@
 $(function () {
     // 代码高亮
-    $("pre").addClass("prettyprint  linenums");
-    $.getScript('/js/prettify/prettify.js', function () {
-        prettyPrint();
-    });
+    //$("pre").addClass("prettyprint  linenums");
+    //$.getScript('/js/prettify/prettify.js', function () {
+    //    prettyPrint();
+    //});
 
     // 表格
     $("table").addClass("table table-bordered");
