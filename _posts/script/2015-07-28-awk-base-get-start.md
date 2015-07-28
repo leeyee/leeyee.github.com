@@ -21,9 +21,9 @@ Fair as a star, when only one is shining in the sky.
 She lived unknown, and few could know, when lucy ceased to be.
 But she is in her grave, and oh, the difference to me!
 
-##常用命令
+## 常用命令
 
-###1. 使用默认分割符（空格或者TAB）分割.
+### 1. 使用默认分割符（空格或者TAB）分割.
 
 	awk '{print NR,$1}' test.txt
 
@@ -43,7 +43,7 @@ But she is in her grave, and oh, the difference to me!
 : *NR*： [awk]内建变量, 表示当前记录数；
 : *\$n*： 根据空格或者TAB分割后的第n个字符串，从1开始。特殊的  **\$0** 表示所有未被分割的行；
 
-###2. 使用 **-F** 指定分割符
+### 2. 使用 **-F** 指定分割符
 
 	awk -F, 'BEGIN{OFS="."} {print NR,$1} END{print "-- End --"}' test.txt
 
@@ -205,15 +205,16 @@ test.txt:2:6: :12:6::
 test.txt:2:7: :12:7::
 test.txt:2:8: :12:8::
 
-[awk]:https://zh.wikipedia.org/wiki/Awk
 
+
+[awk]:https://zh.wikipedia.org/wiki/Awk
 [^1]: 英文诗歌《失去的爱》，中文翻译如下：
 
 	>失去的爱
-【英】威廉·华兹华斯
-她居住在白鸽泉水的旁边，无人来往的路径通往四面。
-一位姑娘未曾获得称赞，也很少有人爱怜。
-苔藓石旁的一株紫罗兰，半藏着逃离人们的视线！
-美丽得如同天上的孤星，一颗唯一的星清辉闪闪。
-她生无人知，死也无人唁，不知她何时离了人间。
-但她安睡在墓中，哦，可怜，对于我意义全然不同。
+    【英】威廉·华兹华斯
+    她居住在白鸽泉水的旁边，无人来往的路径通往四面。
+    一位姑娘未曾获得称赞，也很少有人爱怜。
+    苔藓石旁的一株紫罗兰，半藏着逃离人们的视线！
+    美丽得如同天上的孤星，一颗唯一的星清辉闪闪。
+    她生无人知，死也无人唁，不知她何时离了人间。
+    但她安睡在墓中，哦，可怜，对于我意义全然不同。
