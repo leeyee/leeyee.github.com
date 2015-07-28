@@ -139,7 +139,7 @@ BEGIN {
 |$|字段引用|
 |in|数组成员
 
-###举例
+### 举例
 
 1. 获取第四行及第五行以后的行
 
@@ -160,7 +160,7 @@ BEGIN {
 
 	>7 She lived unknown, and few could know, when lucy ceased to be.
 
-##内置变量
+## 内置变量
 
 ### 变量说明
 
@@ -188,7 +188,7 @@ BEGIN {
 |RSTART|由match函数所匹配的字符串的第一个位置|
 |SUBSEP|数组下标分隔符(默认值是/034)|
 
-###举例
+### 举例
 
 1. 显示相关内置参数
 
