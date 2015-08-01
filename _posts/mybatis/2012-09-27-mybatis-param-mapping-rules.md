@@ -7,6 +7,9 @@ tag: [mybatis]
 keywords: [mybatis参数映射, ibatis参数映射]
 ---
 
+* any list
+{:toc}
+
 ### 规则
 
 1. 非`@Param`注解参数时可使用

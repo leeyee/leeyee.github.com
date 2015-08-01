@@ -7,6 +7,9 @@ tag: [hibernate, cache]
 keywords: [hibernate cache, hibernate annotation cache, hibernate缓存, hibernate注解缓存]
 ---
 
+* any list
+{:toc}
+
 Hibernate中实现缓存的对象有`Session`和`SessionFactory`。
 
 `Session`的缓存为内置缓存，不可被卸载，称为Hibernate的一级缓存；

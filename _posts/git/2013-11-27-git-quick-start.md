@@ -7,6 +7,9 @@ tag: [git]
 keywords: [git quick start, git快速入门]
 ---
 
+* any list
+{:toc}
+
 ## 约定 ##
 1. 这只是一个简单的快速入门，如果您已经精通，请绕行;
 2. 这里我们不会讲GIT、SVN、VSS及CVS的区别。如有需要，请[Google];

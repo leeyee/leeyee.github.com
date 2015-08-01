@@ -1,8 +1,14 @@
+/*body {*/
+    /*background-color: #F3F8F1;*/
+    /*font-size: 15px;*/
+/*}*/
 body {
-    background-color: #F3F8F1;
+    font-family: "Source Sans Pro",sans-serif;
     font-size: 15px;
+    line-height: 1.45;
+    color: #3f3f3f;
+    background-color: #F3F8F1;
 }
-
 .self-panel-title {
     font-size: 30px;
 }
@@ -34,3 +40,37 @@ body {
 .self-border-color-info {
     border-color: #bce8f1;
 }
+
+dd {
+    margin-left: 40px;
+}
+dt, dd {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 1.45;
+}
+blockquote {
+    border-left-width: 10px;
+    background-color: rgba(128,128,128,0.05);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px 20px;
+}
+
+/*
+#markdown:before {
+    content: "目录";
+    font-weight: bold;
+}
+ul#markdown-toc {
+    list-style: none;
+    position: fixed;
+    padding: 0px;
+    left: 10px;
+    bottom: 200px;
+    border-radius: 0.3em;
+    box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    box-sizing: border-box;
+    border: #fff 0.5em solid;
+    background-color: white;
+}*/

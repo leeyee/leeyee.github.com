@@ -7,6 +7,8 @@ tag: [javascript, jQuery]
 keywords: [一些关于javascript、jQuery使用时的建议]
 ---
 
+* any list
+{:toc}
 
 ## 1.在遍历数组时缓存长度
 

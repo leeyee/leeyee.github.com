@@ -7,6 +7,8 @@ tag: [javascript]
 keywords: [javascript null,javascript undefined]
 ---
 
+* any list
+{:toc}
 
 1. `null`表示无值或不存在的对象；
 

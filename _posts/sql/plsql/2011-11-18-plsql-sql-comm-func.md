@@ -7,6 +7,8 @@ tag: [pl/sql]
 keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
 ---
 
+* TOC
+{:toc}
 
 ### 常用数字函数
 

@@ -6,6 +6,8 @@ category: spring
 tag: [spring]
 keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 ---
+* TOC
+{:toc}
 
 [Spring Expression Language (SpEL)](http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html)语言支持在运行时操作和查询对象，其语法类似统一的EL语言，但是[SpEL]提供了额外的功能。[SpEL]支持以下功能：
 

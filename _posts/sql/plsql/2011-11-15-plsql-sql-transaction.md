@@ -7,6 +7,9 @@ tag: [pl/sql, sql]
 keywords: [SQL事务,SQL要点,SQL语法]
 ---
 
+* TOC
+{:toc}
+
 1. 提交事务
     
         commit

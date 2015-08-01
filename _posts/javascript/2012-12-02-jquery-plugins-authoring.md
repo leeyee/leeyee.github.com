@@ -7,6 +7,9 @@ description: 当你已经熟练掌握`jQuery`并且想学习如何编写属于�
 keywords: [jQuery插件编写]
 ---
 
+* any list
+{:toc}
+
 原文地址：[http://docs.jquery.com/Plugins/Authoring](http://docs.jquery.com/Plugins/Authoring)
 
 So you've become comfortable with jQuery and would like to learn how to write your own plugins. Great! You're in the right spot. Extending jQuery with plugins and methods is very powerful and can save you and your peers a lot of development time by abstracting your most clever functions into plugins. This post will outline the basics, best practices, and common pitfalls to watch out for as you begin writing your plugin.

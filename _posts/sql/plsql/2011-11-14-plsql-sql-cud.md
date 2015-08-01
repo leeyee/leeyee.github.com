@@ -7,6 +7,9 @@ tag: [pl/sql, sql]
 keywords: [SQL数据操纵,DML,insert first,truncate]
 ---
 
+* TOC
+{:toc}
+
 ## SQL分类
 
 1. 数据查询语句（`select` 语句）：用于检索数据库数据

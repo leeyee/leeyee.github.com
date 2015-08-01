@@ -7,6 +7,9 @@ tag: [javascript]
 keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 ---
 
+* any list
+{:toc}
+
 以下浏览器版本的判断方法参考了《JavaScript 高级程序设计》第八章。
 
 总体上我们验证浏览器及其版本是通过浏览器的**user-agent**字符串来检测的。常见的有：

@@ -6,6 +6,8 @@ category: java
 tag: [java]
 keywords: [DateFormat,DateFormat.getDateInstance,日期格式化,语言环境]
 ---
+* any list
+{:toc}
 
 先看段代码：
 

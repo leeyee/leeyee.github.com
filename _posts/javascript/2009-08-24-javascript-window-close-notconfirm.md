@@ -7,6 +7,9 @@ tag: [javascript]
 keywords: [window.close ie]
 ---
 
+* any list
+{:toc}
+
 在实际的开发过程中遇到当调用javascript中`window.close()`方法时，IE会在页面关闭前询问用户是否要关闭的二次确认对话框。为了避免这个问题，需要在调用`window`对象的`close`方法前做一些处理
 
 针对IE的不同版本，处理方式是不同的。因此在处理之前应先判断IE浏览器的版本。

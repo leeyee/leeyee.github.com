@@ -7,13 +7,15 @@ tag: [mybatis]
 keywords: [mybatis分页, ibatis分页, mybatis rowbounds分页]
 ---
 
+* TOC
+{:toc}
+
 最近的项目中使用到了`mybatis`，发现`mybatis`不支持物理分页，只支持内存分页。因此为了解决这个问题，在网上搜索了一番，不过都比较繁琐。最后使用正则表达过滤查询语句的方式简单解决了该问题.
 
 `mybatis`物理分页的核心是使用`mybatis`的拦截器 `org.apache.ibatis.plugin.Interceptor` ,在`mybatis`准备好`SQL`的时候，对`SQL`字符串进行拦截，生成适合`Oracle`数据库的分页语句即可。废话不多讲了，直接上代码.
 
-<div class="alert alert-error">
-<strong>Notes: </strong> 该部分依赖commons-lang3.jar包进行反射写入，也可使用 mybatis 自带的反射类实现这部分功能
-</div>
+> **Note:** 该部分依赖commons-lang3.jar包进行反射写入，也可使用 mybatis 自带的反射类实现这部分功能
+
 
 ### 拦截器代码
 

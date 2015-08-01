@@ -7,6 +7,9 @@ tag: [script, awk]
 keywords: [awk,忽略大小写,awk脚本,awk正则]
 ---
 
+* TOC
+{:toc}
+
 预先定义log.txt文本内容如下：
 
     2 this is a test

@@ -7,8 +7,10 @@ tag: [javascript]
 keywords: [javascript最佳实践]
 ---
 
-原文地址：[http://www.javascripttoolbox.com/bestpractices/](http://www.javascripttoolbox.com/bestpractices/)
+* any list
+{:toc}
 
+原文地址：[http://www.javascripttoolbox.com/bestpractices/](http://www.javascripttoolbox.com/bestpractices/)
 
 ### 1.总是使用关键字_var_声明变量
 
