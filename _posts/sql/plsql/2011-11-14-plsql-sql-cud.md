@@ -7,7 +7,7 @@ tag: [pl/sql, sql]
 keywords: [SQL数据操纵,DML,insert first,truncate]
 ---
 
-##SQL分类
+## SQL分类
 
 1. 数据查询语句（`select` 语句）：用于检索数据库数据
 
@@ -29,7 +29,7 @@ keywords: [SQL数据操纵,DML,insert first,truncate]
      
 	 5.2. `revoke`命令用于收回用户或角色所具有的权限。
 
-##子查询插入数据
+## 子查询插入数据
 
 1. 使用子查询插入数据
     
@@ -45,7 +45,7 @@ keywords: [SQL数据操纵,DML,insert first,truncate]
 + **当要装载大批量数据是，采用2方法装载数据的速度要远远优于1**;
 
 
-##多表插入
+## 多表插入
 
 <span class="label label-important"><em>NOTES：</em></span> **Oracle9i后可以使用!**
 
@@ -88,7 +88,7 @@ keywords: [SQL数据操纵,DML,insert first,truncate]
         else into customer3
 	select * from customer;
 
-##截断表(`truncate table`)
+## 截断表(`truncate table`)
  
     truncate table <table_name>;
 

@@ -15,7 +15,7 @@ keywords: [mybatis分页, ibatis分页, mybatis rowbounds分页]
 <strong>Notes: </strong> 该部分依赖commons-lang3.jar包进行反射写入，也可使用 mybatis 自带的反射类实现这部分功能
 </div>
 
-###拦截器代码
+### 拦截器代码
 
     package org.mybatis.test.interceptor;
     
@@ -125,7 +125,7 @@ keywords: [mybatis分页, ibatis分页, mybatis rowbounds分页]
 		}
 	}
 
-###在spring中配置拦截器
+### 在spring中配置拦截器
 
     <bean name="paginationInterceptor" class="org.mybatis.test.interceptor.PaginationInterceptor"></bean>
 
@@ -140,7 +140,7 @@ keywords: [mybatis分页, ibatis分页, mybatis rowbounds分页]
 		</property>
 	</bean>
 
-###使用
+### 使用
 	
 	public class Test(){
 		private String name;

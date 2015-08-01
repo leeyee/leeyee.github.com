@@ -13,7 +13,7 @@ So you've become comfortable with jQuery and would like to learn how to write yo
 
 当你已经熟练掌握`jQuery`并且想学习如何编写属于自己的插件程序时，你可以参看这篇文章。使用插件程序和方法扩展`jQuery`是非常强大的。你可以将一些想法抽象为函数并封装到插件中以便为你和你的同事节省许多开发时间。
 
-#目录(CONTENTS)
+# 目录(CONTENTS)
 1. [入门知识(Getting Started)](#t1)
 
 2. [上下文(Context)](#t2)
@@ -37,7 +37,7 @@ So you've become comfortable with jQuery and would like to learn how to write yo
 8. [翻译(Translations)](#t8)
 
 
-##<div id='t1'>入门知识(Getting Started)</div>
+## 入门知识(Getting Started)
 To write a jQuery plugin, start by adding a new function property to the jQuery.fn object where the name of the property is the name of your plugin:
 
 编写`jQuery`插件,是从添加一个新的函数属性到`jQuery.fn`对象开始的，其中新的函数属性名为你要编写插件的名称：
@@ -60,7 +60,7 @@ Ah, that's better. Now within that closure, we can use the dollar sign in place 
 
 这样就可以了。现在通过闭包，我们就能使用我们喜爱的`$`符号代替`jQuery`对象了。
 
-##<div id='t2'>上下文(Context)</div>
+## 上下文(Context)
 Now that we have our shell we can start writing our actual plugin code. But before we do that, I'd like to say a word about context. In the immediate scope of the plugin function, the this keyword refers to the jQuery object the plugin was invoked on. This is a common slip up due to the fact that in other instances where jQuery accepts a callback, the this keyword refers to the native DOM element. This often leads to developers unnecessarily wrapping the this keyword (again) in the jQuery function.
 
 现在，有了插件外壳，我们就可以开始编写真正的插件代码了。但是在此之前，我想要谈谈上下文。在插件函数的当前域中，*this* 关键字是指代被调用插件中的`jQuery`对象的。这是一个常见的疏忽，因为在`jQuery`接受回调的其他情况中，*this* 关键字指代的是原生`DOM`元素。这常常会导致开发人员不必要地使用`jQuery`函数来包装 *this* 关键字。
@@ -80,7 +80,7 @@ Now that we have our shell we can start writing our actual plugin code. But befo
     })( jQuery );
     $('#element').myPlugin();
    
-##<div id='t3'>基本要素(The Basics)</div>
+## 基本要素(The Basics)
 Now that we understand the context of jQuery plugins, let's write a plugin that actually does something.
 
 现在，在了解了`jQuery`插件的上下文后，我们来编写一个实现了一些功能的插件。
@@ -101,7 +101,7 @@ This is a simple plugin that leverages .height() to return the height of the tal
 
 这是一个简单的插件，通过调用 `.height()` 来获取页面最高div元素的高度。
 
-##<div id='t4'>保持可链通性(Maintaining Chainability)</div>
+## 保持可链通性(Maintaining Chainability)
 
 The previous example returns an integer value of the tallest div on the page, but often times the intent of a plugin is simply modify the collection of elements in some way, and pass them along to the next method in the chain. This is the beauty of jQuery's design and is one of the reasons jQuery is so popular. So to maintain chainability in a plugin, you must make sure your plugin returns the this keyword.
 
@@ -127,7 +127,7 @@ Because the plugin returns the this keyword in its immediate scope, it maintains
 
 因为插件在其当前的作用范围内返回了 *this* 关键字，所以就维持了可链通性，返回的`jQuery`对象集合也就可以继续被`jQuery`方法操作，比如 `.css`。假如插件不能返回一个内在值，那么就应该总是返回在其当前作用范围内的 *this* 关键字。另外，如你所想，插件调用中的参数也传递到了当前作用范围内的插件函数中。所以在上述示例中，字符串'width'就变成了插件函数中的一个 type 参数。
 
-##<div id='t5'>默认值和可选项(Defaults and Options)</div>
+## 默认值和可选项(Defaults and Options)
 
 For more complex and customizable plugins that provide many options, it's a best practice to have default settings that can get extended (using $.extend) when the plugin is invoked. So instead of calling a plugin with a large number of arguments, you can call it with one argument which is an object literal of the settings you would like to override. Here's how you do it.
 
@@ -164,13 +164,13 @@ This is a great way to offer a highly configurable plugin without requiring the 
 
 这是一种很好的方式。它提供了一个高度可配置的插件，而不需要开发人员去定义所有的可用选项。
 
-##<div id='t6'>命名空间(Namespacing)</div>
+## 命名空间(Namespacing)
 
 Properly namespacing your plugin is a very important part of plugin development. Namespacing correctly assures that your plugin will have a very low chance of being overwritten by other plugins or code living on the same page. Namespacing also makes your life easier as a plugin developer because it helps you keep better track of your methods, events and data.
 
 为你的插件设置一个适当的命名空间是插件开发中非常重要的一部分。合理的命名空间可以降低你的插件被另一些插件或者当前页面上的代码覆盖的几率。命名空间也可以让你的开发变得容易，它可以让你更好的跟踪方法、事件和数据。
 
-###<div id='t61'>插件方法(Plugin Methods)</div>
+### 插件方法(Plugin Methods)
 
 Under no circumstance should a single plugin ever claim more than one namespace in the jQuery.fn object.
 
@@ -239,7 +239,7 @@ This type of plugin architecture allows you to encapsulate all of your methods i
 
 这种类型的插件结构允许在插件的父闭包中封装所有的方法，然后通过先传递方法的字符串名称，再传递其他一些这个方法可能用到的参数来调用。这种方式的方法封装和架构在`jQuery`插件社区是一种标准并被无数的插件采用，包括[jQueryUI](http://jqueryui.com/)插件和组件。
 
-###<div id='t62'>事件(Events)</div>
+### 事件(Events)
 
 A lesser known feature of the [bind](http://docs.jquery.com/Events/bind) method is that is allows for namespacing of bound events. If your plugin binds an event, its a good practice to namespace it. This way, if you need to [unbind](http://docs.jquery.com/Events/unbind) it later, you can do so without interfering with other events that might have been bound to the same type of event. You can namespace your events by appending “.< namespace >”the type of event you're binding.
 
@@ -290,7 +290,7 @@ In this example, when the tooltip is initialized with the init method, it binds 
 
 在这个示例中，当 `tooltip` 使用 `init` 方法初始化时，他会绑定 `reposition` 方法到`window`对象的 `resize` 事件上，这些都是在 'tooltip' 命名空间下进行的。之后，如果开发人员需要销毁 `tooltip` ，就可以通过传递命名空间来解除该命名空间下绑定的事件。这让我们可以安全的解除通过插件绑定的事件，而不用担心将通过插件外其他方式绑定的事件也解除掉。
 
-###<div id='t63'>数据(Data)</div>
+### 数据(Data)
 
 Often times in plugin development, you may need to maintain state or check if your plugin has already been initialized on a given element. Using jQuery's data method is a great way to keep track of variables on a per element basis. However, rather than keeping track of a bunch of separate data calls with different names, it's best to use a single object literal to house all of your variables, and access that object by a single data namespace.
 
@@ -348,7 +348,7 @@ Using data helps you keep track of variables and state across method calls from 
 
 使用数据有助于跟踪变量及来自插件方法调用间的状态。命名空间数据到一个对象字面量中，从一个中心位置来访问  以便从一个中心位置容易的访问所有的插件属性，同时如果有需要还可以轻松的移除不需要的命名空间。
 
-##<div id='t7'>总结和最佳实践(Summary and Best Practices)</div>
+## 总结和最佳实践(Summary and Best Practices)
 
 Writing jQuery plugins allows you to make the most out of the library and abstract your most clever and useful functions out into reusable code that can save you time and make your development even more efficient. Here's a brief summary of the post and what to keep in mind when developing your next jQuery plugin:
 
@@ -379,6 +379,6 @@ Writing jQuery plugins allows you to make the most out of the library and abstra
 
     总是为自己的方法、事件和数据设置命名空间。
 
-##<div id='t8'>Translations</div>
+## Translations
 
 If you have translated this article or have some similar one on your blog post a link here. Please mark Full Translated articles with (t) and similar ones with (s).

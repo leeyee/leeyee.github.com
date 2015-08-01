@@ -10,18 +10,18 @@ github: 'MsgBox-jQuery-Plugin'
 
 ---
 
-##<div id='top'>jQuery MsgBox Plugin</div>
+## jQuery MsgBox Plugin
 
->1.[jmask 遮罩层](#jmask).
+1.[jmask 遮罩层](#jmask).
 
->2.[junmask 关闭遮罩层](#junmask)
+2.[junmask 关闭遮罩层](#junmask)
 
->3.[jalert 消息框](#jalert)
+3.[jalert 消息框](#jalert)
 
->4.[jconfirm 消息确认框](#jconfirm)
+4.[jconfirm 消息确认框](#jconfirm)
 
 
-###<div id='jmask'>jmask(options)</div>
+### jmask(options)
 
 >移动目标元素对象，使其显示在遮罩层正中央。 `jmask` 接受一个参数.
 
@@ -40,7 +40,7 @@ github: 'MsgBox-jQuery-Plugin'
         opacity : 0.6
     });
 
-###<div id='junmask'>junmask()</div>
+### junmask()
 
 >取消使用 `jmask` 方法遮罩的目标元素,并隐藏目标元素。该方法不接受参数.
 
@@ -48,7 +48,7 @@ github: 'MsgBox-jQuery-Plugin'
 
     $("#jmaskDemo").junmask();
     
-###<div id='jalert'>jalert(msg,options)</div>
+### jalert(msg,options)
 
 >打开一个消息提示框。 `jalert` 接受两个参数
 
@@ -75,7 +75,7 @@ github: 'MsgBox-jQuery-Plugin'
         mask : false
     });
 
-###<div id='jconfirm'>jconfirm(msg,url,options)</div>
+### jconfirm(msg,url,options)
 
 >打开一个消息确认框。 `jconfirm` 接受两个参数
 

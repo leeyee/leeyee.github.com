@@ -8,7 +8,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
 ---
 
 
-###常用数字函数
+### 常用数字函数
 
 `abs(n)` : 返回n的绝对值
 
@@ -24,7 +24,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
 
 `trunc(n[,m])` : 截取数字。省略m，数字n去掉小数部分；m为负,数字n截取小数点前m位；m为正，数字n截取小数点后m位
 
-####demo:
+#### demo:
     select
         abs(-12),
         ceil(12.4),
@@ -40,7 +40,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
         trunc(28.3565,-1)
     from dual;
 
-###常用字符函数
+### 常用字符函数
 
 `ascii(char)` : char字符的ascii码
 
@@ -82,7 +82,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
 
 `translate(string,from_str,to_str)` : 将string按照from_str与to_str的对应关系进行转换
 
-####demo:
+#### demo:
     select 
         ascii('a'), -- 字符的assii码
         chr(68), -- 数字对应的字符
@@ -120,7 +120,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
         trim('a' from 'aa123ab') -- 去除字符串两端指定字符
     from dual;
 
-###常用日期时间函数(一)
+### 常用日期时间函数(一)
 
 `add_months(d,n)` : 返回特定日期时间d前后的n个月所对应的日期时间。n为正整数表示之后，负整数表示之后
 
@@ -147,7 +147,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
 
     select next_day(sysdate,'星期一') from dual;
 
-####demo: 
+#### demo:
     select  
         to_char(sysdate,'yyyy-MM-dd hh24:mi:ss'),
         add_months(sysdate, 2), -- 当前时间加两个月
@@ -164,7 +164,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
         next_day(sysdate,'星期二') -- 指定日期后的第一个工作日
     from dual;
 
-###常用日期时间函数(二)
+### 常用日期时间函数(二)
 
 `numtodsinterval(n,char_expr)` : 将数字n转换为INTERVAL DAY TO SECOND格式，char_expr可取 DAY | HOUR | MINUTE | SECOND
 
@@ -209,7 +209,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
     from dual;
 
 
-###转换函数
+### 转换函数
 
     set serveroutput on ;
     declare 
@@ -233,7 +233,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
         to_number('￥100','L99999D99')
     from dual;
 
-###其他单行当行函数
+### 其他单行当行函数
 
 `decode(expr1,serch1,result,[search2,result2,...][,default)` : 如果expr1 = serch1 输出 result ...
     
@@ -395,7 +395,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
     update xml_tables p set p=updatexml(value(p),'/body/div/text()','作为试验，还是让我们来测试一下效果吧。');
 
 
-###分组函数
+### 分组函数
 
 具体请查看[SQL分组语句要点](/blog/2011/11/16/plsql-sql-groupby/)
 

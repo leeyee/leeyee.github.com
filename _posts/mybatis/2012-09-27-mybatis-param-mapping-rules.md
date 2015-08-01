@@ -7,7 +7,7 @@ tag: [mybatis]
 keywords: [mybatis参数映射, ibatis参数映射]
 ---
 
-###规则 
+### 规则
 
 1. 非`@Param`注解参数时可使用
 
@@ -43,13 +43,13 @@ keywords: [mybatis参数映射, ibatis参数映射]
 
     来访问参数
     
-###示例
+### 示例
 
 为了明确上述规则，我们的示例具体细分了各种情况进行展示。
 
-####非注解型
+#### 非注解型
 
-#####一个参数
+##### 一个参数
     User getUserById(int id);
     
     select * from <TABLE> where id = #{id}
@@ -62,7 +62,7 @@ keywords: [mybatis参数映射, ibatis参数映射]
     
     select * from <TABLE> where name = #{name} and age = #{age}
     
-#####多个参数
+##### 多个参数
 
     User getUser(String name, int age);  
         
@@ -76,9 +76,9 @@ keywords: [mybatis参数映射, ibatis参数映射]
     // or  
     select * from <TABLE> where name = #{param1.name} and age = {param1.age} and flag = #{param2}
     
-####注解型
+#### 注解型
 
-#####一个参数
+##### 一个参数
  
     User getUserById(@Param(value="keyId") int id);  
 
@@ -92,7 +92,7 @@ keywords: [mybatis参数映射, ibatis参数映射]
     // or  
     select * from <TABLE> where name = #{param1.name} and age = #{param1.age}
 
-#####多个参数
+##### 多个参数
 
     User getUser(@Param(value="xm") String name, @Param(value="nl") int age);  
 
@@ -110,7 +110,7 @@ keywords: [mybatis参数映射, ibatis参数映射]
     // or  
     select * from <TABLE> where name = #{usr.name} and age = #{param1.age} and flag = #{param2}
 
-####非注解和注解型混合型
+#### 非注解和注解型混合型
 
 当采用部分参数使用`@Param`注解时，参数注释为将以上两种情况结合起来即可.
 
@@ -119,9 +119,9 @@ keywords: [mybatis参数映射, ibatis参数映射]
     // 对于age的访问不能是 #{1} 只能是 #{param2} | #{nl}  
     select * from <TABLE> where name = #{0} and age = #{nl} and gendar = #{param3)
 
-###框架主要映射处理代码
+### 框架主要映射处理代码
 
-####参数的获取
+#### 参数的获取
 
 `org.apache.ibatis.binding.MapperMethod`
 
@@ -150,7 +150,7 @@ keywords: [mybatis参数映射, ibatis参数映射]
         }  
     }
 
-####SQL预编译参数设置
+#### SQL预编译参数设置
 
 `org.apache.ibatis.executor.parameter.DefaultParameterHandler`
   

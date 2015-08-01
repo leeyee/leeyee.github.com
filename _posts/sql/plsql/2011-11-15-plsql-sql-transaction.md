@@ -49,7 +49,7 @@ keywords: [SQL事务,SQL要点,SQL语法]
     SQL> rollback -- 回滚所有事务.或者exec dbms_transaction.rollback
         
     
-###只读事务
+### 只读事务
 
     set transaction read only
     exec dbms_transaction.read_only
@@ -67,7 +67,7 @@ keywords: [SQL事务,SQL要点,SQL语法]
 假设会话A在1设置了顺序事务，会话B在2更新了数据，那么会话A在3查询时将会获取时间点在1的数据，而不是会话B在2更新后的数据
 
 
-###顺序事务
+### 顺序事务
 
     set transaction isolation level serializable
 

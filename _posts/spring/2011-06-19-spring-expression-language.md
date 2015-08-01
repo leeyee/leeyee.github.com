@@ -43,7 +43,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
     exp.getValue()
 
 
-##<div id='t1'>2.1 文本表达式</div>
+## <div id='t1'>2.1 文本表达式</div>
 
 文本表达式支持字符表达式、日期、数字（正数、实数及十六进制数）、布尔类型及null.其中字符表达式需要用单引号声明。
 
@@ -60,7 +60,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertTrue(exp.parseExpression(lELs[3]).getValue(Boolean.class));
 	assertNull(exp.parseExpression(lELs[4]).getValue());
 
-##<div id='t5'>2.2 属性、数组、列表、字典(map)及索引
+## <div id='t5'>2.2 属性、数组、列表、字典(map)及索引
 
 在表达式中访问类属性时直接使用属性名，属性名首字母大小写均可。
 
@@ -88,7 +88,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 					.getValue(secontext, String.class));
 
 
-##2.3 内置列表
+## 2.3 内置列表
 
 列表可以直接表示在表达式中使用`{}`符号表达。`{}`本身代表一个空的`list`
 
@@ -103,7 +103,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertEquals(Arrays.asList(1, 2), listOfLists.get(0));
 
 
-##<div id='t5'>2.4 数组构造(spring3.0.3中会抛出异常)</div>
+## <div id='t5'>2.4 数组构造(spring3.0.3中会抛出异常)</div>
 
 可以通过熟悉的java语法在表达是语言中定义。但目前不支持定义一个初始化的多维数组
 
@@ -120,7 +120,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertEquals(4, c.length);
 	assertEquals(5, c[0].length);
 
-##<div id='t6'>2.5 方法调用</div>
+## <div id='t6'>2.5 方法调用</div>
 
 表达式中的方法调用遵循java语法。
     	
@@ -137,9 +137,9 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 			secontext, Boolean.class));
 		
 				
-##2.6 操作符
+## 2.6 操作符
 
-###<div id='t7'>2.6.1 关系操作符</div>
+### <div id='t7'>2.6.1 关系操作符</div>
 
 支持`eq("==")`、`ne("!=")`、`le("<=")`、`lt("<")`、`gt(">")`、`ge(">=")`、`div("/")`、`mod("%")`、`not("!")`、正则表达式及`instanceof`操作
 
@@ -155,13 +155,13 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertTrue(exp.parseExpression("'5.00' matches '^-?\\d+(\\.\\d{2})?$'")
 				.getValue(Boolean.class));
 				
-###2.6.2 逻辑操作符
+### 2.6.2 逻辑操作符
 
 逻辑操作符支持`and`,`or`,`not`
 
     assertTrue(exp.parseExpression("true and true").getValue(Boolean.class));
 
-###2.6.3 数学运算操作符
+### 2.6.3 数学运算操作符
 
 加法运算符可以用于数字，字符串和日期。减法可以用在数字和日期。乘法和除法只能用于对数字。其他受支持的数学运算是模数（％）和指数幂（^）。运行顺序按标准运算符优先级执行
 
@@ -169,7 +169,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
     		exp.parseExpression("1 + 2 * 8 div 4 mod 2 + 2 ^ 3 * 3e0")
 					.getValue());
 
-##<div id='t8'>2.7 赋值操作</div>
+## <div id='t8'>2.7 赋值操作</div>
 
 通过赋值操作进行属性设置。通常是调用`setValue`方法，但也可以在调用`getValue`时设置。
 
@@ -184,7 +184,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertEquals("abc",
 			exp.parseExpression("Name = 'abc'").getValue(secontext));
 				
-##2.8 类型
+## 2.8 类型
 
 通过特殊的`T`操作符可以用来指定一个`java.lang.Class`的实例。在实例话对象的静态方法将会被调用。
 
@@ -195,7 +195,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 					"T(java.math.RoundingMode).CEILING < T(java.math.RoundingMode).FLOOR")
 			.getValue(Boolean.class));		
 	
-###<div id='t9'>2.9 构造器</div>
+### <div id='t9'>2.9 构造器</div>
 
 构造器通过`new`操作被调用。在`new`操作时需要指明类的完全类名(包括包路径)
 
@@ -204,7 +204,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 					"new  leeyee.study.spring3.bean.SpelTestInnerClass('constructTest',23)")
 			.getValue(SpelTestInnerClass.class);
 				
-##<div id='t14'>2.10 变量</div>
+## <div id='t14'>2.10 变量</div>
 
 变量可以通过 `#变量名` 在表达式中被引用。变量通过`StandardEvaluationContext`类的`setVariable`方法进行设置
 
@@ -216,7 +216,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 			.getValue(secontext);
 	assertEquals(vList, list);
 		
-###<div id='t14'>2.10.1 `#this`变量</div>
+### <div id='t14'>2.10.1 `#this`变量</div>
 
 变量`#this`被定义为当前操作对象的引用。
 
@@ -232,12 +232,12 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 			new Class[] { String.class }));
 	assertEquals(3, exp.parseExpression("#len('abc')").getValue(context));
 		
-##<div id='t13'>2.12 三元操作</div>
+## <div id='t13'>2.12 三元操作</div>
 
     assertTrue(exp.parseExpression(" true ? true :false").getValue(
 			Boolean.class));
 				
-##2.13 Elvis操作
+## 2.13 Elvis操作
 
 `Elvis`操作是一个短的三元操作符语法，通常在[Groovy]语言中使用。
 
@@ -251,7 +251,7 @@ __*Note:*__ `Elvis`操作在表达式中可以用来生成默认值，当被访�
 	assertEquals("name is null", ex.getValue(secontext, String.class));
 	spel.setName("override");
 		
-###2.14 安全导航操作
+### 2.14 安全导航操作
 
 该操作是为避免空指针异常。他是来自[Groovy]语言的。典型的当你有一个指向对象的引用，在你访问其方法或属性时，可能需要验证该对象的方法或属性是否为空，为了避免验证，使用安全导航操作将简单的返回`null`而不是空指针异常。
 
@@ -262,7 +262,7 @@ __*Note:*__ `Elvis`操作在表达式中可以用来生成默认值，当被访�
 	assertNull(exp.parseExpression("innerClass?.name").getValue(secontext,
 			String.class));
 
-##<div id='t17'>2.15 集合选择</div>
+## <div id='t17'>2.15 集合选择</div>
 
 选择是一个强大的表达式语言属性，可以使用选择表达式过滤源集合，从而生成一个新的符合选择条件的集合
 
@@ -292,14 +292,14 @@ __*Note:*__ `Elvis`操作在表达式中可以用来生成默认值，当被访�
 			"maps.?[key > 2 and key < 4 ]").getValue(secontext);
 	assertEquals(mapk, tmap);
 		
-##<div id='t16'>2.16 集合投影</div>
+## <div id='t16'>2.16 集合投影</div>
 
 语法`![projectionExpression]`判断集合中每个元素是否符合语法要求
 
     assertEquals(Arrays.asList(5, 6, 7, 8, 9), exp
 			.parseExpression("numbers.![#this+3]").getValue(secontext));
 
-##<div id='t18'>2.17 模板表达式</div>
+## <div id='t18'>2.17 模板表达式</div>
 
 表达式模板允许混合文字表达式，一个或多个值计算块。每一个值计算块被声明通过可被自定义的前缀和后缀，一般选择使用`#{}`作为一个定界符。
 

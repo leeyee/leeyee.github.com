@@ -8,7 +8,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
 ---
 
 
-##1.在遍历数组时缓存长度 
+## 1.在遍历数组时缓存长度
 
 在遍历数组时应将数组的长度保存在一个变量中，不要在循环中每次都访问数组长度。
 
@@ -23,7 +23,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
         // TODO something  
     }  
 
-##2.如果需要给DOM中添加新的元素，避免创建一个元素添加一次。应尽量只添加一次
+## 2.如果需要给DOM中添加新的元素，避免创建一个元素添加一次。应尽量只添加一次
 
     // bad code  
     $.each(aArray, function(i, item) {  
@@ -47,7 +47,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
     $('ul').html(sHtml); // 使用jQuery的$.fn.html()方法添加改字符串  
 
 
-##3.避免重复，保持代码干燥
+## 3.避免重复，保持代码干燥
 
     // bad code  
     if ($eventfade.data('currently') != 'showing') {  
@@ -68,7 +68,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
         }  
     });  
 
-##4.当心匿名函数。
+## 4.当心匿名函数。
 
 绑定匿名函数是让人头疼的，对于他们调试，修改，测试或者重用都是困难的。因此可以使用对象去组织和命名你的处理方法和回调函数
 
@@ -98,9 +98,9 @@ keywords: [一些关于javascript、jQuery使用时的建议]
     };  
     $(document).ready(PI.onReady);  
 
-##5.选择器的优化
+## 5.选择器的优化
 
-###5.1.通过ID来获取元素是最好的选择
+### 5.1.通过ID来获取元素是最好的选择
 
     // fast  
     $('#container div.robotarm'); // 获取元素id=container中div元素class=robotarm的元素
@@ -110,7 +110,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
 
 `$.fn.find`方法是快速的，因为对于第一个选择`$('#container')`其实质是通过`document.getElementById()`来实现的。`document.getElementById()`是浏览器原生方法 
 
-###5.2.选择器的右边要具体化，而不是左边。
+### 5.2.选择器的右边要具体化，而不是左边。
 
 如果可以尽量使`tag.class`出现在右边，而单独的`tag`或者`.class`出现在左边
     
@@ -120,13 +120,13 @@ keywords: [一些关于javascript、jQuery使用时的建议]
     // 优化后  
     $('.data td.gonzalez');  
 
-###5.3.避免选择器过度具体化
+### 5.3.避免选择器过度具体化
 
     $('.data table.attendees td.gonzalez');  
     // better : drop the middle if possible  
     $('.data td.gonzalez');  
 
-###5.4.避免使用通配符选择器。(能被匹配在任何地方的指定或隐含的选择器运行是非常慢的)
+### 5.4.避免使用通配符选择器。(能被匹配在任何地方的指定或隐含的选择器运行是非常慢的)
 
     // 查询效率低下  
     $('.buttons > *'); 
@@ -143,7 +143,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
     // much better  
     $('.gender input:radio');  
 
-##6.使用事件委托(Use Event Delegation)
+## 6.使用事件委托(Use Event Delegation)
 
 事件委托允许绑定一个事件处理程序到一个容器元素上（比如，一个无序序列）替代多容器元素（比如，列表项）。
 
@@ -161,7 +161,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
     // $('#myList')中的所有<li class='trigger'/>都将绑定handlerFn事件。其他<li class='trigger'/>则未被绑定  
     $('#myList').delegate('li.trigger', 'click', handlerFn);  
 
-##7.使用`$.fn.detach`从DOM中移除元素 
+## 7.使用`$.fn.detach`从DOM中移除元素
 
 操作DOM是缓慢的；你应该尽可能避免操作他们。在jQuery的1.4版本中提供`$.fn.detach`来解决这个问题。`$.fn.detach`允许从DOM中移除一个元素。
 
@@ -171,7 +171,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
     // TODO 添加一些行到table中  
     $parent.append($table); // 将table重新添加到原来位置  
 
-##8.使用样式表改变样式，当需要改变许多元素样式时 
+## 8.使用样式表改变样式，当需要改变许多元素样式时
 
 假如你将使用`$.fn.css`改变超过20个元素的样式时，请考虑添加一个样式标签到页面。这样可以提升约60%的执行速度
 
@@ -183,7 +183,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
             a.swedverg { color ：#asd123 }
         </style>').appendTo('head');  
 
-##9.使用`$.data`替代`$.fn.data`存储数据 
+## 9.使用`$.data`替代`$.fn.data`存储数据
 
 在DOM元素上使用`$.data`替代在jQuery选择器上调用`$.fn.data`将带来可达10倍的速度提升。因为`$.data`是jQuery的底层方法
 
@@ -193,7 +193,7 @@ keywords: [一些关于javascript、jQuery使用时的建议]
     // 十倍速度的  
     $.data(element, key, value); 
 
-##10.不要对不存在的元素施加操作 
+## 10.不要对不存在的元素施加操作
 
 jQuery不会告诉你是否正在一大堆空的选择器上运行代码，他会当做没有事情是错的继续运行。因此你需要自己去核实选择器包含的一些元素
 
@@ -215,7 +215,7 @@ jQuery不会告诉你是否正在一大堆空的选择器上运行代码，他�
         // make it ajax！ /ｏ/  
     });  
 
-##11.变量定义 
+## 11.变量定义
 
 多变量可被定义可以用一条语句替代几条语句
 
@@ -236,7 +236,7 @@ jQuery不会告诉你是否正在一大堆空的选择器上运行代码，他�
         console.log("foo+bar --> " + (foo + bar));  
     })(1, 2);  
 
-##12.条件语句
+## 12.条件语句
 
     // old way  
     if (type == 'foo' || type == 'bar') {  
@@ -256,6 +256,6 @@ jQuery不会告诉你是否正在一大堆空的选择器上运行代码，他�
     // TODO something  
     }  
 
-##13.不要把jQuery视作一个黑盒子 
+## 13.不要把jQuery视作一个黑盒子
 
 将jQuery源码作为你的文档 -- 保存[https://github.com/jquery/jquery](https://github.com/jquery/jquery) 在你的书签里，并且经常查阅他.

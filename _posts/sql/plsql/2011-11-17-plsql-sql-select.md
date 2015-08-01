@@ -8,11 +8,11 @@ keywords: [left join,union,union all,sql子查询]
 ---
 
 
-##内连接和外连接
+## 内连接和外连接
     select table1.column, table2.column
         from table1 [inner | left | rigth | full ] join table2 ON table1.column1 = table2.column2;
 
-###内连接
+### 内连接
 
 内连接用于返回满足连接条件的所有记录；默认情况下，在执行连接查询时如果没有指定任何连接操作符，那么这些连接查询都属于内连接。
 	
@@ -28,11 +28,11 @@ keywords: [left join,union,union all,sql子查询]
 
     SQL> select dname,ename from department natrual join employee;
 
-###外连接
+### 外连接
 
 外连接是内连接的扩展，不仅会返回满足连接条件的所有记录，还会返回不满足连接条件的记录。
 
-####左外连接
+#### 左外连接
 
 左外连接通过`left [outer] join`实现。左外连接返回满足连接条件的记录，同时返回不满足条件的连接操作符左边表的其他行。
 
@@ -45,7 +45,7 @@ keywords: [left join,union,union all,sql子查询]
 		test1				
 		test2
 			
-####右外连接
+#### 右外连接
 
 右外连接通过`rigth [outer] join`实现。右外连接返回满足连接条件的记录，同时返回不满足条件的连接操作符右边表的其他行。
 
@@ -58,7 +58,7 @@ keywords: [left join,union,union all,sql子查询]
 					king3
 					king4
 								
-####完全外连接
+#### 完全外连接
 
 完全外连接通过`full [outer] join`实现。完全外连接时左外连接和右外连接的结合。
 
@@ -73,7 +73,7 @@ keywords: [left join,union,union all,sql子查询]
 					king3
 					king4		
 									
-####使用`(+)`操作符
+#### 使用`(+)`操作符
 		
 Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外连接。语法如下：
 
@@ -97,16 +97,16 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
         2.2 右外连接示例可写成
         SQL> select a.dname, b.ename from department a, employee b where a.deptno(+) = b.deptno;
 			
-##子查询
+## 子查询
 
-###单行子查询
+### 单行子查询
 
 只返回一行数据的子查询语句。当在`where`中引用单行子查询时，可以使用单行比较符 =,>,<,>=,<=,<>
     
     SQL> select ename, salary, deptno from employee where deptno = 
     SQL> (select deptno from employee where ename = 'scott');
 
-###多行子查询
+### 多行子查询
 
 返回多行数据的子查询语句。当在`where`中引用多行子查询时，必须要使用如下多行比较符:
     
@@ -125,7 +125,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
         SQL> select ename,job,sal,deptno from emp where sal > any
         SQL> (select sal from emp where deptno = 10);	
 
-###多列子查询
+### 多列子查询
 
 多列子查询返回多列数据的子查询语句。
     
@@ -145,9 +145,9 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
 		    SQL> and nvl(comm,-1) in
 		    SQL> (select nvl(comm,-1) from emp where deptno = 30);
 
-###其他子查询
+### 其他子查询
 
-####相关子查询
+#### 相关子查询
 
 相关子查询是指需要引用主查询表列的子查询语句，相关子查询是通过`exists` 谓词实现的。
 
@@ -157,7 +157,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
 <span class="label label-important"><em>NOTES：</em></span>
 当使用`exists`谓词时，如果子查询存在返回结果，则条件为`TRUE`; 如果子查询没有返回结果，则条件为`FALSE`
 		
-####在from子句中使用子查询
+#### 在from子句中使用子查询
 
 `from`中的子查询会被当作视图对待，因此也被称作内嵌视图。
 
@@ -168,7 +168,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
     SQL> (select deptno, avg(sal) avgsal from emp group by deptno) dept 
     SQL> where emp.deptno = deptno and sal > dept.avgsal;
 	
-####在`DML`语句中使用子查询
+#### 在`DML`语句中使用子查询
 	
 1. 在`insert`语句中使用子查询
 
@@ -209,7 +209,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
             SQL> select deptno, job, avg(sal) avasal, sum(sal) sumsal 
             SQL> from emp group by cube(deptno, job);
 			
-##合并查询
+## 合并查询
     
     select 语句1 [union | union all | intersect | minus] select 语句2
 	
@@ -219,7 +219,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
 4. 对于`long`列来说，`union`、`intersect`、`minus`操作无效
 5. 如果选择列表包含了表达式，则必须要为其指定列别名
 	
-###union
+### union
 
 合并结果集，并会自动去掉结果集中的重复行，并且会以第一列的结果进行排序
 
@@ -227,7 +227,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
     SQL> union
     SQL> select ename,sal,job from emp where job = 'manager';
     
-###union all
+###  union all
 
 合并结果集，但不会去掉结果集中的重复行，也不会进行任何排序，只是简单的做合并
     
@@ -235,7 +235,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
     SQL> union all
     SQL> select ename,sal,job from emp where job = 'manager';
     
-###intersect
+### intersect
 
 获取两个结果集的交集，并以第一列的结果进行排序
 
@@ -243,7 +243,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
     SQL> intersect
     SQL> select ename,sal,job from emp where job = 'manager';
 
-###minus
+### minus
 
 获取两个结果集的差集。只显示在第一个结果集中存在，在第二结果集中不存在的数据，并以第一列的结果进行排序
 
@@ -251,9 +251,9 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
     SQL> minus
     SQL> select ename,sal,job from emp where job = 'manager';
 			
-##其他复杂查询
+## 其他复杂查询
 
-###层次查询
+### 层次查询
 
 当表具有层次结构时，使用层次查询可以更直观的显示数据结果，并显示其数据之间的层次关系
 
@@ -275,7 +275,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
 	SQL> where job <> 'clean' start with mgr is null
 	SQL> connect by mgr = prior empno;
 
-###case表达式
+### case表达式
 
 为了在 SQL 语句中使用 `if..then..else`语法，可以使用 `case`表达式。当使用`case`表达式时，可以使用 `where`子句指定条件语句。
 
@@ -285,7 +285,7 @@ Oracle9i前使用`(+)`操作符。Oracle9i后建议使用`outer join`执行外�
 	SQL> else 1 end grade
 	SQL> from emp where deptno = 10;
 		
-###使用with语句重用子查询
+### 使用with语句重用子查询
 
 Oracle9i开始，通过`with`子句可以给子查询指定一个名称，并且使得在一条语句中可以完成所有任务，避免使用临时表
 
@@ -296,7 +296,7 @@ Oracle9i开始，通过`with`子句可以给子查询指定一个名称，并且
 	SQL> select dname, dept_total from summary where dept_total > 
 	SQL> ( select sum(dept_total) * 1/3 from summary);
 		
-###倒叙查询
+### 倒叙查询
 
 默认情况下执行查询操作只能看到最近提交的数据。从Oracle9i开始，通过使用倒叙查询([Flashback Query][2])特征，可以查看到过去某个时间点所提交的数据。
 

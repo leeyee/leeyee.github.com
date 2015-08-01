@@ -66,8 +66,5 @@ keywords: [javascript null,javascript undefined]
 
 `typeof`方法返回的是变量的引用类型的字符名称。因此`if(typeof param){}`为永真。如果要判断引用类型，可以使用`instanceof`，但此时变量的声明应使用`new`关键字创建。
 
-  
-<br/>
-<br/>
 老版地址请查看：<br/>
 [ECMAScript中原始类型Null和Undefined小结](http://blog.csdn.net/oxcow/article/details/7751835) 或者 [ECMAScript中原始类型Null和Undefined小结](http://leeyee.iteye.com/admin/blogs/1595338)

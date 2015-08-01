@@ -13,7 +13,7 @@ keywords: [window.close ie]
 
 浏览器及其版本的判断可以使用jQuery1.9版本之前的[$.browser](http://api.jquery.com/jQuery.browser/)方法或者[使用javascript检测浏览器版本](/blog/2009/08/24/javacript-broswer-check/)中提到的方式检测，这里不在赘述直接给出相关代码。
 
-###IE7及其以上版本
+### IE7及其以上版本
 
     if(isMinIE7||isMinIE8){ // IE7以上  
         window.open('','_top');  
@@ -21,7 +21,7 @@ keywords: [window.close ie]
         return ;  
     }  
     
-###IE6及其以下版本
+### IE6及其以下版本
 
     if(isMinIE6){//IE6   
         window.opener=null;  
@@ -29,7 +29,7 @@ keywords: [window.close ie]
         return ;  
     }  
 
-###Chrome,Safari和Firefox
+### Chrome,Safari和Firefox
 
      window.close(); 
      

@@ -8,7 +8,7 @@ keywords: [javascript身份证号码验证, 身份证号码验证, 身份证号�
 github: 'id-number-validator'
 ---
 
-##15位身份证号码编码规则
+## 15位身份证号码编码规则
 
     ddddddyymmddxxp
 
@@ -17,7 +17,7 @@ github: 'id-number-validator'
 3. xx: 顺序类编码，无法确定
 4. p: 性别。奇数位男，偶数为女
 
-##18位身份证号码编码规则
+## 18位身份证号码编码规则
 
     ddddddyyyymmddxxxy
     
@@ -76,7 +76,7 @@ github: 'id-number-validator'
 > 5. isMale : 是否为男性。默认false
 > 6. isFemale : 是否为女性。默认false
 
-###源代码
+### 源代码
 
 您可进入[该项目的GitHub页](https://github.com/oxcow/id-number-validator)进行下载或贡献
 
@@ -276,7 +276,7 @@ github: 'id-number-validator'
     }
 </script>
 
-###验证示例
+### 验证示例
 
 <div class="row-fluid">
 	<div class="input-append">

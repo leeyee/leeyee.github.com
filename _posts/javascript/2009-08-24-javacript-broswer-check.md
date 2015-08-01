@@ -21,7 +21,7 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
     var sUserAgent = navigator.userAgent;    
 
 
-###Opera浏览器检测
+### Opera浏览器检测
 
     var isOpera = sUserAgent.indexOf("Opera") > -1;
     if (isOpera) {
@@ -36,7 +36,7 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 		}
 	}
 
-###Google Chrome浏览器检测
+### Google Chrome浏览器检测
 
     var isChrome = sUserAgent.indexOf("Chrome") > -1;
 	if (isChrome) {
@@ -45,7 +45,7 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
         version = parseFloat(RegExp['$1']);
 	}
 
-###IE浏览器检测
+### IE浏览器检测
 
     // !isOpera 避免是由Opera伪装成的IE  
     var isIE = sUserAgent.indexOf("compatible") > -1
@@ -57,7 +57,7 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 	}
 
 
-###Konqueror/Safari 浏览器检测
+### Konqueror/Safari 浏览器检测
 
     //排除Chrome信息，因为在Chrome的user-agent字符串中会出现Konqueror/Safari的关键字
     var isKHTML = (sUserAgent.indexOf("KHTML") > -1
@@ -82,7 +82,7 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 		}
 	}
 
-###Mozilla FireFox浏览器检测
+### Mozilla FireFox浏览器检测
 
     //排除Chrome 及Konqueror/Safari的伪装
 	var isMoz = sUserAgent.indexOf("Gecko") > -1 && !isChrome && !isKHTML;
@@ -98,7 +98,7 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 
 提示的信息具体分析相应浏览器的**user-agent**，然后进行过处理获取浏览器个性信息及版本。
 
-###完整的代码
+### 完整的代码
 
     var broswer = function() {
 		var _broswer = {};
