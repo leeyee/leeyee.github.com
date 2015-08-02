@@ -6,29 +6,11 @@ category: spring
 tag: [spring]
 keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 ---
-* TOC
-{:toc}
 
 [Spring Expression Language (SpEL)](http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html)语言支持在运行时操作和查询对象，其语法类似统一的EL语言，但是[SpEL]提供了额外的功能。[SpEL]支持以下功能：
 
-- [文本表达式](#t1)
-- [布尔类和关系操作](#t2)
-- [正则表达式](#t3)
-- [类表达式](#t4)
-- [访问属性、数组、集合和map](#t5)
-- [方法调用](#t6)
-- [关系操作](#t7)
-- [赋值操作](#t8)
-- [调用构造函数](#t9)
-- [Bean 引用](#t10)
-- [数组构造](#t11)
-- [内联list](#t12)
-- [三元操作](#t13)
-- [变量](#t14)
-- [用户自定义函数](#t15)
-- [集合投影](#t16)
-- [集合选择](#t17)
-- [模板表达式](#t18)
+* TOC
+{:toc}
 
 使用SpEl进行表达式操作，基本操作如下：
 
@@ -45,7 +27,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
     exp.getValue()
 
 
-## <div id='t1'>2.1 文本表达式</div>
+## 2.1 文本表达式
 
 文本表达式支持字符表达式、日期、数字（正数、实数及十六进制数）、布尔类型及null.其中字符表达式需要用单引号声明。
 
@@ -62,7 +44,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertTrue(exp.parseExpression(lELs[3]).getValue(Boolean.class));
 	assertNull(exp.parseExpression(lELs[4]).getValue());
 
-## <div id='t5'>2.2 属性、数组、列表、字典(map)及索引
+## 2.2 属性、数组、列表、字典(map)及索引
 
 在表达式中访问类属性时直接使用属性名，属性名首字母大小写均可。
 
@@ -105,7 +87,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertEquals(Arrays.asList(1, 2), listOfLists.get(0));
 
 
-## <div id='t5'>2.4 数组构造(spring3.0.3中会抛出异常)</div>
+## 2.4 数组构造(spring3.0.3中会抛出异常)
 
 可以通过熟悉的java语法在表达是语言中定义。但目前不支持定义一个初始化的多维数组
 
@@ -122,7 +104,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 	assertEquals(4, c.length);
 	assertEquals(5, c[0].length);
 
-## <div id='t6'>2.5 方法调用</div>
+## 2.5 方法调用
 
 表达式中的方法调用遵循java语法。
     	
@@ -141,7 +123,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 				
 ## 2.6 操作符
 
-### <div id='t7'>2.6.1 关系操作符</div>
+### 2.6.1 关系操作符
 
 支持`eq("==")`、`ne("!=")`、`le("<=")`、`lt("<")`、`gt(">")`、`ge(">=")`、`div("/")`、`mod("%")`、`not("!")`、正则表达式及`instanceof`操作
 
@@ -171,7 +153,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
     		exp.parseExpression("1 + 2 * 8 div 4 mod 2 + 2 ^ 3 * 3e0")
 					.getValue());
 
-## <div id='t8'>2.7 赋值操作</div>
+## 2.7 赋值操作
 
 通过赋值操作进行属性设置。通常是调用`setValue`方法，但也可以在调用`getValue`时设置。
 
@@ -197,7 +179,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 					"T(java.math.RoundingMode).CEILING < T(java.math.RoundingMode).FLOOR")
 			.getValue(Boolean.class));		
 	
-### <div id='t9'>2.9 构造器</div>
+### 2.9 构造器
 
 构造器通过`new`操作被调用。在`new`操作时需要指明类的完全类名(包括包路径)
 
@@ -206,7 +188,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 					"new  leeyee.study.spring3.bean.SpelTestInnerClass('constructTest',23)")
 			.getValue(SpelTestInnerClass.class);
 				
-## <div id='t14'>2.10 变量</div>
+## 2.10 变量
 
 变量可以通过 `#变量名` 在表达式中被引用。变量通过`StandardEvaluationContext`类的`setVariable`方法进行设置
 
@@ -218,7 +200,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 			.getValue(secontext);
 	assertEquals(vList, list);
 		
-### <div id='t14'>2.10.1 `#this`变量</div>
+### 2.10.1 `#this`变量
 
 变量`#this`被定义为当前操作对象的引用。
 
@@ -226,7 +208,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
     		"#list.?[#this >5]").getValue(secontext); // 获取值大于5的元素集合
 	assertEquals(nums, Arrays.asList(6, 7, 9));
 		
-##<div id='t15'>2.11 用户自定义函数</div>
+## 2.11 用户自定义函数
 
 你可以扩展[SpEL]通过注册自定义函数。注册后的函数可以在表达式中通过其名称进行调用。函数的注册是通过`StandardEvaluationContext`类的`registerFunction`方法进行声明
 
@@ -234,7 +216,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 			new Class[] { String.class }));
 	assertEquals(3, exp.parseExpression("#len('abc')").getValue(context));
 		
-## <div id='t13'>2.12 三元操作</div>
+## 2.12 三元操作
 
     assertTrue(exp.parseExpression(" true ? true :false").getValue(
 			Boolean.class));
@@ -243,7 +225,7 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 
 `Elvis`操作是一个短的三元操作符语法，通常在[Groovy]语言中使用。
 
-__*Note:*__ `Elvis`操作在表达式中可以用来生成默认值，当被访问属性为空时。比如`@Value`
+> **Note:** `Elvis`操作在表达式中可以用来生成默认值，当被访问属性为空时。比如`@Value`
 
     @Value("#systemPro['mail.port'] ? : 25}")
 	// 当mail.port为空时将默认为25
@@ -264,7 +246,7 @@ __*Note:*__ `Elvis`操作在表达式中可以用来生成默认值，当被访�
 	assertNull(exp.parseExpression("innerClass?.name").getValue(secontext,
 			String.class));
 
-## <div id='t17'>2.15 集合选择</div>
+## 2.15 集合选择
 
 选择是一个强大的表达式语言属性，可以使用选择表达式过滤源集合，从而生成一个新的符合选择条件的集合
 
@@ -294,14 +276,14 @@ __*Note:*__ `Elvis`操作在表达式中可以用来生成默认值，当被访�
 			"maps.?[key > 2 and key < 4 ]").getValue(secontext);
 	assertEquals(mapk, tmap);
 		
-## <div id='t16'>2.16 集合投影</div>
+## 2.16 集合投影
 
 语法`![projectionExpression]`判断集合中每个元素是否符合语法要求
 
     assertEquals(Arrays.asList(5, 6, 7, 8, 9), exp
 			.parseExpression("numbers.![#this+3]").getValue(secontext));
 
-## <div id='t18'>2.17 模板表达式</div>
+## 2.17 模板表达式
 
 表达式模板允许混合文字表达式，一个或多个值计算块。每一个值计算块被声明通过可被自定义的前缀和后缀，一般选择使用`#{}`作为一个定界符。
 
@@ -311,9 +293,9 @@ __*Note:*__ `Elvis`操作在表达式中可以用来生成默认值，当被访�
 					new TemplateParserContext()).getValue(secontext,
 					String.class));
                     
-一大段测试用例：
+## 一大段测试用例
 
- 	import static org.junit.Assert.*;
+    import static org.junit.Assert.*;
 	import java.util.*;
 	import org.junit.*;
 
