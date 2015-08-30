@@ -3,7 +3,7 @@ layout: post
 title: SQL查询语句要点
 description: 本文主要介绍一些SQL语法中有查询操作的要点.主要涉及内外链接查询、合并查询等
 category: SQL
-tag: [pl/sql, sql]
+tag: [pl/sql]
 keywords: [left join,union,union all,sql子查询]
 ---
 
