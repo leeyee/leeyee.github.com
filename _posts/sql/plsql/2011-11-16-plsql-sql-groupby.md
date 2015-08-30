@@ -2,7 +2,7 @@
 layout: post
 title: SQL分组语句要点
 description: 本文主要介绍一些SQL语法中有关分组操作的要点
-category: pl/sql
+category: SQL
 tag: [pl/sql, sql]
 keywords: [group by,group by rollup,group by cube,grouping,grouping sets]
 ---
