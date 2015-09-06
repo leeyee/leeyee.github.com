@@ -1,7 +1,7 @@
 ---
 layout: post
-title: window下Git命令组的实现
-description: window环境下配置常用git命令组合
+title: windows下Git命令组的实现
+description: windows环境下配置常用git命令组合
 category: git
 tag: [git]
 keywords: [git命令集合]
@@ -28,7 +28,7 @@ git pull --rebase
 git stash pop
 ```
 
-同样，针对window系统，处理方式是相同，只不过是完成bat脚本。当然了，一般开发过程中使用的都是[Git-preview],为了可以直接在这个工具下使用自定义命令组，可以进行如下配置：
+同样，针对windows系统，处理方式是相同，只不过是完成bat脚本。当然了，一般开发过程中使用的都是[Git-preview],为了可以直接在这个工具下使用自定义命令组，可以进行如下配置：
 
 1. 首先新建一个没有后缀的文件，这里我们叫 *mypull*，内容如下：
 
