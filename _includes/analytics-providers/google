@@ -4,7 +4,6 @@
 	_gaq.push([ '_require', 'inpage_linkid', pluginUrl ]);
 	_gaq.push([ '_setAccount', '{{ site.analytics.google.tracking_id }}' ]);
 	_gaq.push([ '_trackPageview' ]);
-
 	(function() {
 		var ga = document.createElement('script');
 		ga.type = 'text/javascript';
