@@ -22,7 +22,12 @@ layout: default
             </a>
             {% endif %}
         </address>
-        <div id="j_article">{{ content }}</div>
+        <div id="j_article">
+            <div>永久链接：<a href="{{site.url}}{{page.url}}">{{site.url}}{{page.url}}</a></div>
+            <br/>
+            {{ content }}
+        </div>
+        <div style="margin-bottom: 8px;">永久链接：<a href="{{site.url}}{{page.url}}">{{site.url}}{{page.url}}</a></div>
         <div class="panel" style="margin-top: 40px">
             <dl style="margin: 5px 0px">
                 <dt style="border-bottom:1px #cccccc dashed;margin-bottom: 5px;padding-bottom: 3px">相关阅读</dt>
