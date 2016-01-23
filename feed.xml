@@ -8,9 +8,293 @@
     <title>Leeyee's Blog</title>
     <link>http://leeyee.github.io</link>
     <description>RSS feed for </description>
-    <pubDate>Sun, 17 Jan 2016 00:00:00 +0800</pubDate>
+    <pubDate>Tue, 19 Jan 2016 00:00:00 +0800</pubDate>
     <item>
-      <title>Spring Retry中文文档</title>
+      <title>Spring Retry 常用示例</title>
+      <link>http://leeyee.github.io/blog/2016/01/19/spring-retry-common-case</link>
+      <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot;&gt;重试策略&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#n&quot;&gt;连续重试N次&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot;&gt;规定时间内连续重试&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot;&gt;组合重试&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot;&gt;异常分类重试&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#backoff&quot;&gt;等待策略（BackOff）&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot;&gt;指定时间等待&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-5&quot;&gt;指数级等待&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot;&gt;指数级随机等待&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-7&quot;&gt;指定范围内的随机等待&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-8&quot;&gt;基于注解的重试&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;重试策略&lt;/h2&gt;
+
+&lt;h3 id=&quot;n&quot;&gt;连续重试N次&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;SimpleRetryPolicy&lt;/code&gt;可以实现指定次数的重试。只需要设置 &lt;em&gt;maxAttempts&lt;/em&gt; 参数即可。其默认重试次数是3次。该策略为创建&lt;code&gt;RetryTemplate&lt;/code&gt;对象时默认的重试策略。具体使用如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
+simpleRetryPolicy.setMaxAttempts(4);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;规定时间内连续重试&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;TimeoutRetryPolicy&lt;/code&gt;可以实现指定时间内的重试。超时时间通过参数 &lt;em&gt;timeout&lt;/em&gt; 进行设置。默认超时时间1s。使用方式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// all spend 1s
+TimeoutRetryPolicy timeoutRetryPolicy = new TimeoutRetryPolicy(); 
+timeoutRetryPolicy.setTimeout(2000L);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;组合重试&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;CompositeRetryPolicy&lt;/code&gt;实现了重试策略的组合。通过其 &lt;em&gt;policies&lt;/em&gt; 字段，可以为其添加多个重试策略。组合策略执行的过程中，所有策略只要有一个达成终止条件，那么该重试结束。我们可以用组合重试策略实现一些相对比较复杂的重试。比如我们要实现在指定时间1s内重试3次，每次重试间隔0.2秒，就可以使用以下方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CompositeRetryPolicy compositeRetryPolicy = new CompositeRetryPolicy();
+
+SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
+
+TimeoutRetryPolicy timeoutRetryPolicy = new TimeoutRetryPolicy();
+
+FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
+fixedBackOffPolicy.setBackOffPeriod(200); // 每次重试间隔200ms
+
+compositeRetryPolicy.setPolicies(new RetryPolicy[]{ 
+		simpleRetryPolicy,
+		timeoutRetryPolicy,
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过该方法，如果重试总耗时超过1s，重试次数不超过3次，那么重试终止；如果未超过1s，但重试次数已达到3次，那么重试终止！（重试等待的设置可以看下文）&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;异常分类重试&lt;/h3&gt;
+
+&lt;p&gt;有可能存在这样一种场景，比如在进行HTTP请求时，有可能因为网络原因导致请求超时，也有可能在拿到HTTP响应结果后的业务处理中发生异常，针对这两种异常我们可能需要不同的异常重试机制。这时就可以通过&lt;code&gt;ExceptionClassifierRetryPolicy&lt;/code&gt;对异常分类进行分类：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ExceptionClassifierRetryPolicy retryPolicy = new ExceptionClassifierRetryPolicy();
+Map&amp;lt;Class&amp;lt;? extends Throwable&amp;gt;, RetryPolicy&amp;gt; policyMap = Maps.newHashMap();
+
+policyMap.put(NullPointerException.class, new SimpleRetryPolicy());
+policyMap.put(ArithmeticException.class, new TimeoutRetryPolicy());
+
+retryPolicy.setPolicyMap(policyMap);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上述示例中，我们针对重试业务抛出的空指针异常使用&lt;code&gt;SimpleRetryPolicy&lt;/code&gt;策略，而对于算术异常采用&lt;code&gt;TimeoutRetryPolicy&lt;/code&gt;策略。实际的重试过程中，这两中情况有可能交替出现，但不管如何，只要有一个重试策略达到终止状态，则整个重试调用终止。&lt;/p&gt;
+
+&lt;h2 id=&quot;backoff&quot;&gt;等待策略（BackOff）&lt;/h2&gt;
+
+&lt;p&gt;重试策略&lt;code&gt;RetryPolicy&lt;/code&gt;只是实现了基本的重试功能，也就是核心的循环逻辑，形如以下的代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;do ... while
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;那么每次重试之间的相关场景该如何处理呢？为此，Spring Retry 将重试间可能有的重试等待策略抽像成了&lt;code&gt;BackoffPolicy&lt;/code&gt;接口，并提供了一些简单的实现。&lt;/p&gt;
+
+&lt;p&gt;在使用&lt;code&gt;RetryTemplate&lt;/code&gt;时，可以通过&lt;em&gt;setBackOffPolicy&lt;/em&gt;方法进行设置。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;指定时间等待&lt;/h3&gt;
+
+&lt;p&gt;首先&lt;code&gt;FixedBackOffPolicy&lt;/code&gt;应该是最常用的重试间隔&lt;sup id=&quot;fnref:comment1&quot;&gt;&lt;a href=&quot;#fn:comment1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;策略！通过该类，可以指定重试之间需要等待的时间。FixedBackOffPolicy 有两个基本属性：&lt;em&gt;backOffPeriod&lt;/em&gt; 和 &lt;em&gt;sleeper&lt;/em&gt;。可以通过&lt;em&gt;backOffPeriod&lt;/em&gt; 直接设定间隔实现，当然也可以通过&lt;em&gt;sleeper&lt;/em&gt;属性，实现自己的重试间隔方法。同时，&lt;em&gt;backOffPeriod&lt;/em&gt;实质上还是调用了Sleeper实现（&lt;code&gt;sleeper.sleep(backOffPeriod);&lt;/code&gt;）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
+fixedBackOffPolicy.setBackOffPeriod(1500);	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;指数级等待&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;ExponentialBackOffPolicy&lt;/code&gt;类提供了指数级重试间隔的实现。通过该类，可以使重试之间的等待按指数级增长。其中&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;initialInterval&lt;/em&gt;属性为初始默认间隔，默认值是100毫秒；&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;maxInterval&lt;/em&gt;属性为最大默认间隔。当实际计算出的间隔超过该值时，使用该值。默认为30秒；&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;multiplier&lt;/em&gt;为乘数。默认2，当其等于1时，其行为同&lt;code&gt;FixedBackOffPolicy&lt;/code&gt;为固定时间间隔。建议不要使用1，会造成重试过快！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;FixedBackOffPolicy&lt;/code&gt;的时间间隔计算公式是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Math.min(maxInterval, Math.pow(initialInterval, multiplier))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;源码为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public synchronized long getSleepAndIncrement() {
+	long sleep = this.interval;
+	if (sleep &amp;gt; maxInterval) {
+		sleep = maxInterval;
+	}
+	else {
+		this.interval = getNextInterval();
+	}
+	return sleep;
+}
+
+protected long getNextInterval() {
+	return (long)(this.interval * this.multiplier);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;指数级随机等待&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;ExponentialRandomBackOffPolicy&lt;/code&gt;继承自&lt;code&gt;ExponentialBackOffPolicy&lt;/code&gt;，只是重写了获取重试时间间隔的方法。在获取重试间隔后，在加上一些随机的时间。具体实现可参看源码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Override
+public synchronized long getSleepAndIncrement() {
+	long next = super.getSleepAndIncrement();
+	next = (long)(next*(1 + r.nextFloat()*(getMultiplier()-1)));
+	return next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;指定范围内的随机等待&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;UniformRandomBackOffPolicy&lt;/code&gt;允许给定最大，最小等待时间，然后让每次的重试在其之间进行随机等待。参数&lt;em&gt;minBackOffPeriod&lt;/em&gt;和&lt;em&gt;maxBackOffPeriod&lt;/em&gt;的默认值分别为500ms和1500ms，具体的计算方式是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;protected void doBackOff() throws BackOffInterruptedException {
+	try {
+		long delta = maxBackOffPeriod==minBackOffPeriod ? 0 : random.nextInt((int) (maxBackOffPeriod - minBackOffPeriod));
+		sleeper.sleep(minBackOffPeriod + delta );
+	}
+	catch (InterruptedException e) {
+		throw new BackOffInterruptedException(&quot;Thread interrupted while sleeping&quot;, e);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;基于注解的重试&lt;/h2&gt;
+
+&lt;p&gt;最后我们了解下如何使用注解实现重试机制。最基本的，我们需要以下这几个注解：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;@EnableRetry：能否重试。注解类的，其&lt;em&gt;proxyTargetClass&lt;/em&gt;属性为&lt;em&gt;true&lt;/em&gt;时，使用CGLIB代理。默认使用标准JAVA注解。当类中有@Retryable注释的方法时，对该方法生成代理。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;@Retryable：注解需要被重试的方法。
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;include&lt;/em&gt; 指定处理的异常类。默认所有异常&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;maxAttempts&lt;/em&gt; 最大重试次数。默认3次&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;backoff&lt;/em&gt; 重试等待策略。默认使用@Backoff注解&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;@Backoff：重试等待策略。
+    &lt;ul&gt;
+      &lt;li&gt;不设置参数时，默认使用&lt;code&gt;FixedBackOffPolicy&lt;/code&gt;，重试等待1000ms&lt;/li&gt;
+      &lt;li&gt;只设置&lt;em&gt;delay()&lt;/em&gt;属性时，使用&lt;code&gt;FixedBackOffPolicy&lt;/code&gt;，重试等待指定的毫秒数&lt;/li&gt;
+      &lt;li&gt;当设置&lt;em&gt;delay()&lt;/em&gt;和&lt;em&gt;maxDealy()&lt;/em&gt;属性时，重试等待在这两个值之间均态分布&lt;/li&gt;
+      &lt;li&gt;使用&lt;em&gt;delay()&lt;/em&gt;，&lt;em&gt;maxDealy()&lt;/em&gt;和&lt;em&gt;multiplier()&lt;/em&gt;属性时，使用&lt;code&gt;ExponentialBackOffPolicy&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;当设置&lt;em&gt;multiplier()&lt;/em&gt;属性不等于0时，同时也设置了&lt;em&gt;random()&lt;/em&gt;属性时，使用&lt;code&gt;ExponentialRandomBackOffPolicy&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;@Recover: 用于方法。用于@Retryable失败时的“兜底”处理方法。@Recover注释的方法参数为@Retryable异常类，返回值应与重试方法返回相同，否则无法识别！因此可以针对可能异常设置多个@Recover方法进行“兜底”处理。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对于@Backoff 可以具体查看下参数不同时源码是如何处理的&lt;sup id=&quot;fnref:codefrom1&quot;&gt;&lt;a href=&quot;#fn:codefrom1&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;private BackOffPolicy getBackoffPolicy(Backoff backoff) {
+	long min = backoff.delay() == 0 ? backoff.value() : backoff.delay();
+	long max = backoff.maxDelay();
+	if (backoff.multiplier() &amp;gt; 0) {
+		ExponentialBackOffPolicy policy = new ExponentialBackOffPolicy();
+		if (backoff.random()) {
+			policy = new ExponentialRandomBackOffPolicy();
+		}
+		policy.setInitialInterval(min);
+		policy.setMultiplier(backoff.multiplier());
+		policy.setMaxInterval(max &amp;gt; min ? max : ExponentialBackOffPolicy.DEFAULT_MAX_INTERVAL);
+		if (sleeper != null) {
+			policy.setSleeper(sleeper);
+		}
+		return policy;
+	}
+	if (max &amp;gt; min) {
+		UniformRandomBackOffPolicy policy = new UniformRandomBackOffPolicy();
+		policy.setMinBackOffPeriod(min);
+		policy.setMaxBackOffPeriod(max);
+		if (sleeper != null) {
+			policy.setSleeper(sleeper);
+		}
+		return policy;
+	}
+	FixedBackOffPolicy policy = new FixedBackOffPolicy();
+	policy.setBackOffPeriod(min);
+	if (sleeper != null) {
+		policy.setSleeper(sleeper);
+	}
+	return policy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后给出一个使用示例，供大家参考下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Service
+@EnableRetry()
+public class AnnoService {
+	public Logger logger = LoggerFactory.getLogger(AnnoService.class);
+
+	@Retryable(maxAttempts = 5, backoff = @Backoff(random = true))
+	public String someService() {
+		int random = (int) (Math.random() * 10);
+
+		if (random &amp;lt; 4) {
+			logger.info(&quot;random={} Null Pointer Excep&quot;, random);
+			throw new NullPointerException();
+		} else if (random &amp;lt; 9) {
+			logger.info(&quot;random={} Arithmetic Excep&quot;, random);
+			throw new ArithmeticException();
+		}
+
+		logger.info(&quot;random={} ok !!!!&quot;, random);
+		return &quot;ok&quot;;
+	}
+
+	@Recover
+	public String recover(NullPointerException ne) {
+		logger.info(&quot;{}&quot;, &quot;NullPointerException&quot;);
+		return &quot;null pointer recover&quot;;
+	}
+
+	@Recover
+	public String recover(ArithmeticException ne) {
+		logger.info(&quot;{}&quot;, &quot;ArithmeticException&quot;);
+		return &quot;ArithmeticException recover&quot;;
+	}
+
+}
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+
+		ApplicationContext context = new AnnotationConfigApplicationContext(&quot;com.leeyee.spring.retry.*&quot;);
+
+		AnnoService annoService = context.getBean(AnnoService.class);
+		String result = annoService.someService();
+		System.out.println(result);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:comment1&quot;&gt;
+      &lt;p&gt;英文原文是BackOffPolicy也就是回退策略，看具体的作用的话，感觉还是重试间隔比较好理解 &lt;a href=&quot;#fnref:comment1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:codefrom1&quot;&gt;
+      &lt;p&gt;org.springframework.retry.annotation.AnnotationAwareRetryOperationsInterceptor &lt;a href=&quot;#fnref:codefrom1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Tue, 19 Jan 2016 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2016/01/19/spring-retry-common-case</guid>
+      <dc:date>2016-01-19T00:00:00+08:00</dc:date>
+    </item>
+    <item>
+      <title>Spring Retry 简介</title>
       <link>http://leeyee.github.io/blog/2016/01/17/spring-retry-simple-introduce</link>
       <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#retrytemplate-&quot;&gt;9.1  RetryTemplate 重试模板方法&lt;/a&gt;    &lt;ul&gt;
@@ -30,7 +314,9 @@
 
 &lt;h2 id=&quot;retrytemplate-&quot;&gt;9.1  RetryTemplate 重试模板方法&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;Note：&lt;/strong&gt; The retry functionality was pulled out of Spring Batch as of 2.2.0. It is now part of a new library, Spring Retry.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;The retry functionality was pulled out of Spring Batch as of 2.2.0. It is now part of a new library, Spring Retry.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;从Spring Batch 2.2.0开始，重试功能作为一个新的项目Spring Retry单独维护&lt;/p&gt;
 
@@ -180,8 +466,9 @@ public static void main(String... args) throws Exceptioin {
 
 &lt;p&gt;这种方式下，失败操作被标识为状态在每次重试操作时返回。对于标识的状态，可以通过提供一个能返回唯一标识的&lt;code&gt;RetryState&lt;/code&gt; 对象来定义。该标识在 &lt;code&gt;RetryContextCache&lt;/code&gt; 对象被当作一个唯一键处理。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;br /&gt;
-Be very careful with the implementation of Object.equals() and Object.hashCode() in the key returned by RetryState. The best advice is to use a business key to identify the items. In the case of a JMS message the message ID can be used.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Be very careful with the implementation of Object.equals() and Object.hashCode() in the key returned by RetryState. The best advice is to use a business key to identify the items. In the case of a JMS message the message ID can be used.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;通过 &lt;code&gt;RetryState&lt;/code&gt; 返回 key 时，要小心 key 的 &lt;code&gt;equals()&lt;/code&gt; 和 &lt;code&gt;hashCode()&lt;/code&gt; 方法。最好的方式是使用一个业务键去标识。比如在使用JMS消息时，可以使用消息的ID作为key。&lt;/p&gt;
 
@@ -199,8 +486,9 @@ Be very careful with the implementation of Object.equals() and Object.hashCode()
 
 &lt;p&gt;&lt;code&gt;RetryTemplate&lt;/code&gt;决定重试与否是由&lt;code&gt;RetryPolicy&lt;/code&gt;方法（&lt;code&gt;RetryPolicy&lt;/code&gt;是通过 &lt;code&gt;RetryContext&lt;/code&gt;来操作的）来决定。&lt;code&gt;RetryTemplate&lt;/code&gt;通过当前的 &lt;code&gt;RetryPolicy&lt;/code&gt;创建一个&lt;code&gt;RetryContext&lt;/code&gt;并在每一次重试尝试时调用&lt;code&gt;RetryCallback&lt;/code&gt;。回调失败后&lt;code&gt;RetryTemplate&lt;/code&gt;通知&lt;code&gt;RetryPolicy&lt;/code&gt;让其更新状态（状态信息存储在&lt;code&gt;RetryContext&lt;/code&gt;中），并询问&lt;code&gt;RetryPolicy&lt;/code&gt;是否进行可以进行下一次重试。假如重试不可用（比如到达重试次数限制或者重试超时），&lt;code&gt;RetryPolicy&lt;/code&gt;将修改其状态。&lt;code&gt;RetryPolicy&lt;/code&gt; 简单的实现只是抛出&lt;code&gt;RetryExhaustedException&lt;/code&gt;&lt;sup id=&quot;fnref:correct1&quot;&gt;&lt;a href=&quot;#fn:correct1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;这将导致所有的封闭事务回滚。更复杂的实现方式可能会试图尝试一些恢复性操作，在这种情况下，事务是保持不变的。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;&lt;br /&gt;
-Failures are inherently either retryable or not - if the same exception is always going to be thrown from the business logic, it doesn’t help to retry it. So don’t retry on all exception types - try to focus on only those exceptions that you expect to be retryable. It’s not usually harmful to the business logic to retry more aggressively, but it’s wasteful because if a failure is deterministic there will be time spent retrying something that you know in advance is fatal.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Failures are inherently either retryable or not - if the same exception is always going to be thrown from the business logic, it doesn’t help to retry it. So don’t retry on all exception types - try to focus on only those exceptions that you expect to be retryable. It’s not usually harmful to the business logic to retry more aggressively, but it’s wasteful because if a failure is deterministic there will be time spent retrying something that you know in advance is fatal.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;技巧：&lt;/strong&gt; 对于失败，无论是重试与否，如果业务逻辑总是抛出相同的异常，那么重试是没有意义的。因此，不要对所有的异常都进行重试，而是将重试的焦点放在那些你希望进行重试的异常上。虽然对所以异常都进行重试对于业务没有影响，但这会将时间浪费在事先已知的致命错误上。&lt;/p&gt;
 
@@ -357,6 +645,8 @@ public static void testExceptionClassifierRetryPolicy() throws Exception {
 &lt;p&gt;The example above uses a default RetryTemplate inside the interceptor. To change the policies or listeners, you only need to inject an instance of RetryTemplate into the interceptor.&lt;/p&gt;
 
 &lt;p&gt;上面的例子使用拦截器内部默认的RetryTemplate。可以通过注入新的重试策略和监听到拦截器中，改变上述默认机制。&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
@@ -7684,6 +7974,6 @@ console.info(&quot;broswer.konqueror is &quot;, broswer.konqueror);
       <guid>http://leeyee.github.io/blog/2009/08/24/javacript-broswer-check</guid>
       <dc:date>2009-08-24T00:00:00+08:00</dc:date>
     </item>
-    <dc:date>2016-01-17T00:00:00+08:00</dc:date>
+    <dc:date>2016-01-19T00:00:00+08:00</dc:date>
   </channel>
 </rss>

@@ -15,9 +15,11 @@ keywords: [spring-retry,retry,spring重试,spring retry 中文]
 
 ## 9.1  RetryTemplate 重试模板方法
 
-** Note：** The retry functionality was pulled out of Spring Batch as of 2.2.0. It is now part of a new library, Spring Retry.
+**Note** 
 
-** 注意：**从Spring Batch 2.2.0开始，重试功能作为一个新的项目Spring Retry单独维护
+The retry functionality was pulled out of Spring Batch as of 2.2.0. It is now part of a new library, Spring Retry.
+
+**注意：**从Spring Batch 2.2.0开始，重试功能作为一个新的项目Spring Retry单独维护
 
 To make processing more robust and less prone to failure, sometimes it helps to automatically retry a failed operation in case it might succeed on a subsequent attempt. Errors that are susceptible to this kind of treatment are transient in nature. For example a remote call to a web service or RMI service that fails because of a network glitch or a DeadLockLoserException in a database update may resolve themselves after a short wait. To automate the retry of such operations Spring Batch has the RetryOperations strategy. The RetryOperations interface looks like this:
 
@@ -160,10 +162,11 @@ The way the failed operations are recognized is by identifying the state across 
 
 这种方式下，失败操作被标识为状态在每次重试操作时返回。对于标识的状态，可以通过提供一个能返回唯一标识的`RetryState` 对象来定义。该标识在 `RetryContextCache` 对象被当作一个唯一键处理。
 
-** Warning **
+**Warning**
+
 Be very careful with the implementation of Object.equals() and Object.hashCode() in the key returned by RetryState. The best advice is to use a business key to identify the items. In the case of a JMS message the message ID can be used.
 
-** 注意：**通过 `RetryState` 返回 key 时，要小心 key 的 `equals()` 和 `hashCode()` 方法。最好的方式是使用一个业务键去标识。比如在使用JMS消息时，可以使用消息的ID作为key。
+**注意：**通过 `RetryState` 返回 key 时，要小心 key 的 `equals()` 和 `hashCode()` 方法。最好的方式是使用一个业务键去标识。比如在使用JMS消息时，可以使用消息的ID作为key。
 
 When the retry is exhausted there is also the option to handle the failed item in a different way, instead of calling the RetryCallback (which is presumed now to be likely to fail). Just like in the stateless case, this option is provided by the RecoveryCallback, which can be provided by passing it in to the execute method of RetryOperations.
 
@@ -179,10 +182,11 @@ Inside a RetryTemplate the decision to retry or fail in the execute method is de
 
 `RetryTemplate`决定重试与否是由`RetryPolicy`方法（`RetryPolicy`是通过 `RetryContext`来操作的）来决定。`RetryTemplate`通过当前的 `RetryPolicy`创建一个`RetryContext`并在每一次重试尝试时调用`RetryCallback`。回调失败后`RetryTemplate`通知`RetryPolicy`让其更新状态（状态信息存储在`RetryContext`中），并询问`RetryPolicy`是否进行可以进行下一次重试。假如重试不可用（比如到达重试次数限制或者重试超时），`RetryPolicy`将修改其状态。`RetryPolicy` 简单的实现只是抛出`RetryExhaustedException`[^correct1]这将导致所有的封闭事务回滚。更复杂的实现方式可能会试图尝试一些恢复性操作，在这种情况下，事务是保持不变的。
 
-** Tip **
+**Tip**
+
 Failures are inherently either retryable or not - if the same exception is always going to be thrown from the business logic, it doesn't help to retry it. So don't retry on all exception types - try to focus on only those exceptions that you expect to be retryable. It's not usually harmful to the business logic to retry more aggressively, but it's wasteful because if a failure is deterministic there will be time spent retrying something that you know in advance is fatal.
 
-** 技巧：** 对于失败，无论是重试与否，如果业务逻辑总是抛出相同的异常，那么重试是没有意义的。因此，不要对所有的异常都进行重试，而是将重试的焦点放在那些你希望进行重试的异常上。虽然对所以异常都进行重试对于业务没有影响，但这会将时间浪费在事先已知的致命错误上。
+**技巧：** 对于失败，无论是重试与否，如果业务逻辑总是抛出相同的异常，那么重试是没有意义的。因此，不要对所有的异常都进行重试，而是将重试的焦点放在那些你希望进行重试的异常上。虽然对所以异常都进行重试对于业务没有影响，但这会将时间浪费在事先已知的致命错误上。
 
 Spring Batch provides some simple general purpose implementations of stateless RetryPolicy, for example a SimpleRetryPolicy, and the TimeoutRetryPolicy used in the example above.
 
