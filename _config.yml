@@ -34,13 +34,13 @@ github: https://github.com/oxcow/
 
 #分析
 analytics:
-  provider:
+  provider: google,baidu
   google:
     tracking_id: 'UA-40641589-1'
 
 #评论
 comments:
-  provider:
+  provider: disqus
   uyan:
     uid: 1785947
   disqus:
