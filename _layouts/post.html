@@ -34,7 +34,7 @@ layout: default
                 {% assign my_num = 0 %}
                 {% for post in site.posts %} {% if post.tag contains page.tag[0] and post.id != page.url%}
                 {% capture my_num %}{{ my_num | plus : 1 }}{% endcapture %} <!--capture的变量均为字符串-->
-                <dd><a href="{{post.url}}/">{{post.title}}</a></dd>
+                <dd><a href="{{post.url}}">{{post.title}}</a></dd>
                 {% endif %} {% if my_num == '6' %} {% break %} {% endif %} {% endfor %}
             </dl>
         </div>
