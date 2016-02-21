@@ -5,7 +5,7 @@
     <div class="list-group">
 <!--        <a  class="list-group-item active">最新文章</a>-->
         {% for post in site.posts limit:site.last_pages %}
-        <a href="{{ post.url }}/" class="list-group-item">{{ post.title }}</a>
+        <a href="{{ post.url }}" class="list-group-item">{{ post.title }}</a>
         {% endfor %}
     </div>
 </div>

@@ -20,7 +20,7 @@ title: 归档
                     {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
                     {% if year_month == cym %}
                     <li>
-                        <a href="{{pt.url}}/">{{pt.title}}{% if post.github %}
+                        <a href="{{pt.url}}">{{pt.title}}{% if post.github %}
                             <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>
                             {% endif %}</a>
                     </li>
