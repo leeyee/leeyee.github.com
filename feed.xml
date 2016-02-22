@@ -8,7 +8,85 @@
     <title>Leeyee's Blog</title>
     <link>http://leeyee.github.io</link>
     <description>RSS feed for </description>
-    <pubDate>Tue, 19 Jan 2016 00:00:00 +0800</pubDate>
+    <pubDate>Sun, 21 Feb 2016 00:00:00 +0800</pubDate>
+    <item>
+      <title>Ubuntu14下配置Intellj IDEA快捷方式</title>
+      <link>http://leeyee.github.io/blog/2016/02/21/linux-intellj-idea-desktop</link>
+      <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#jdk&quot;&gt;JDK环境变量的问题&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#jdk-etcprofile&quot;&gt;JDK环境变量在 etc/profile&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#jdkbashrcbashprofile&quot;&gt;JDK环境变量在当前用户的.bashrc或者.bash_profile下&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面是一些在Ubuntu14下安装Intellj IDEA后配置桌面快捷方式时一些坑，记录下。&lt;/p&gt;
+
+&lt;h2 id=&quot;jdk&quot;&gt;JDK环境变量的问题&lt;/h2&gt;
+
+&lt;p&gt;ubuntu中，我们将环境变量配置在etc/profile 或者当前登陆用户的.bashrc/.bash_profile文件中。因此其对应的使用范围也是不同的。&lt;/p&gt;
+
+&lt;p&gt;etc/profile 针对所有登录用户，因此为省事期间，可以将JDK配置在这里，一劳永逸，也就不会出现后续问题。&lt;/p&gt;
+
+&lt;p&gt;但是如果要区分用用户，那么最好还算将其配置在需要的用户.bashrc/.bash_profile目录下。（.bash_profile文件不已经有！比如我使用的ubuntu14.0.4）&lt;/p&gt;
+
+&lt;p&gt;JDK环境变量：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export IDEA_JDK=/usr/java/jdk1.8.0_73
+export JAVA_HOME=/usr/java/jdk1.8.0_73
+export PATH=$JAVA_HOME/bin:$IDEA_JDK/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;jdk-etcprofile&quot;&gt;JDK环境变量在 etc/profile&lt;/h3&gt;
+
+&lt;p&gt;idea.desktop文件内容如下&lt;sup id=&quot;fnref:comment&quot;&gt;&lt;a href=&quot;#fn:comment&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA
+Icon=/home/leeyee/develop/idea-IU-14.0.4/bin/idea.png  # 实际安装路径
+Exec=&quot;/home/leeyee/develop/idea-IU-14.0.4/bin/idea.sh&quot; %f # 实际启动脚本
+Comment=Develop with pleasure!
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此时直接点击对应的图标即可启动。&lt;/p&gt;
+
+&lt;h3 id=&quot;jdkbashrcbashprofile&quot;&gt;JDK环境变量在当前用户的.bashrc或者.bash_profile下&lt;/h3&gt;
+
+&lt;p&gt;此时的idea.desktop中的Exec就需要将JDK的路径配置进去，否则双击启动时无法找到JDK，导致启动失败&lt;/p&gt;
+
+&lt;p&gt;idea.desktop文件内容如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA
+Icon=/home/leeyee/develop/idea-IU-14.0.4/bin/idea.png
+Exec=env JAVA_HOME=/usr/java/jdk1.8.0_73 &quot;/home/leeyee/develop/idea-IU-14.0.4/bin/idea.sh&quot; %f # 这里多了指定JAVA_HOME
+Comment=Develop with pleasure!
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:comment&quot;&gt;
+      &lt;p&gt;Intellj IDEA安装完成后使用idea.sh初次启动时，会在交互页面中提示是否需要生成快捷方式到usr/share/applications。该段内容即为其自动生成的。 &lt;a href=&quot;#fnref:comment&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0800</pubDate>
+      <guid>http://leeyee.github.io/blog/2016/02/21/linux-intellj-idea-desktop</guid>
+      <dc:date>2016-02-21T00:00:00+08:00</dc:date>
+    </item>
     <item>
       <title>Spring Retry 常用示例</title>
       <link>http://leeyee.github.io/blog/2016/01/19/spring-retry-common-case</link>
@@ -7974,6 +8052,6 @@ console.info(&quot;broswer.konqueror is &quot;, broswer.konqueror);
       <guid>http://leeyee.github.io/blog/2009/08/24/javacript-broswer-check</guid>
       <dc:date>2009-08-24T00:00:00+08:00</dc:date>
     </item>
-    <dc:date>2016-01-19T00:00:00+08:00</dc:date>
+    <dc:date>2016-02-21T00:00:00+08:00</dc:date>
   </channel>
 </rss>
