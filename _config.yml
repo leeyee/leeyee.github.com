@@ -66,3 +66,4 @@ sitemap:
 
 #_plugins/rssgenerator.rb https://github.com/agelber/jekyll-rss
 rss_name: "feed.xml"
+rss_path: "../"
