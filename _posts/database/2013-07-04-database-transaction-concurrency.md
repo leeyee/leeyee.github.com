@@ -22,7 +22,7 @@ keywords: [数据库事务, 并发, 数据库锁, 事务隔离级别, 如何防�
 
 <table class="table table-bordered">
     <tr>
-        <th>资源上已防止的锁</th>
+        <th>资源上已放置的锁</th>
         <th>第二个事务读操作</th>
         <th>第二个事务更新操作</th>
     </tr>
