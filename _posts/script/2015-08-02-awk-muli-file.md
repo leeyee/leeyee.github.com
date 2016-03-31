@@ -48,7 +48,7 @@ keywords: [awk多文件处理,awk文件关联]
 awk 'FNR > 1 {print $1,$2,$3,$4}' s.log t.log
 ```
 
-> 1 1 张三 18
+>   1 1 张三 18
 2 1 李四 19
 3 2 马六 17
 4 2 王五 17
@@ -83,7 +83,7 @@ awk 'FNR > 1 {print $1,$2,$3,$4}' s.log t.log
 awk 'NR==FNR {if($1==1)print $0} NR>FNR {if($3==23)print $0}' s.log t.log
 ```
 
-> 1 1 张三 18 北京朝阳
+>   1 1 张三 18 北京朝阳
 4 吴立  23      体育
 
 现在我们需要复杂一点的数据，比如我们需要查询学生信息中关联的老师信息，并展示在一行，
@@ -92,7 +92,7 @@ awk 'NR==FNR {if($1==1)print $0} NR>FNR {if($3==23)print $0}' s.log t.log
 awk 'NR==FNR {a[$1]=$0} NR!=FNR {if(FNR>1)print $0,a[$2] }' t.log s.log
 ```
 
-> 1 1 张三 18 北京朝阳 1 张正     35      数学
+>   1 1 张三 18 北京朝阳 1 张正     35      数学
 2 1 李四 19 北京西城 1 张正     35      数学
 3 2 马六 17 北京海淀 2 聂磊     40      语文
 4 2 王五 17 北京昌平 2 聂磊     40      语文
@@ -123,7 +123,7 @@ awk 'NR==FNR {a[$1]=$0} NR!=FNR {if(FNR>1)print $0,a[$2] }' t.log s.log
 awk 'ARGIND==1 {if(FNR>3)print FNR,$3 } ARGIND==2 {if(FNR>1)print FNR,$2} ARGIND==3 {if(FNR<3)print FNR,$NF}' s.log t.log s.log
 ```
 
-> 4 马六
+>   4 马六
 5 王五
 6 唐七
 7 徐六
