@@ -14,7 +14,7 @@ keywords: [awk入门,awk内置参数]
 
 首先我们使用以下的文件片段演示。文件片段[^pome]内容如下：
 
->The Lost Love
+> The Lost Love
 William Wordsworth
 She dwelt among the untrodden ways beside the springs of dove.
 A maid whom there were none to praise, and very few to love.
@@ -31,7 +31,7 @@ But she is in her grave, and oh, the difference to me!
 
 输出：
 
->1 The
+> 1 The
 2 William
 3 She
 4 A
@@ -51,7 +51,7 @@ But she is in her grave, and oh, the difference to me!
 
 输出：
 
->1.The Lost Love
+> 1.The Lost Love
 2.William Wordsworth
 3.She dwelt among the untrodden ways beside the springs of dove.
 4.A maid whom there were none to praise
@@ -78,7 +78,7 @@ But she is in her grave, and oh, the difference to me!
 
 输出：
 
->2 The end
+> 2 The end
 3 William end
 4 She end
 5 A end
@@ -111,7 +111,7 @@ BEGIN {
 ```
 输出：
 
->2 The end
+> 2 The end
 3 William end
 4 She end
 5 A end
@@ -160,7 +160,7 @@ BEGIN {
 
 	输出：
 
-	>7 She lived unknown, and few could know, when lucy ceased to be.
+	> 7 She lived unknown, and few could know, when lucy ceased to be.
 
 ## 内置变量
 
@@ -198,7 +198,7 @@ BEGIN {
 
 	输出：
 
-	>test.txt:2:1: :3:1::
+	> test.txt:2:1: :3:1::
 test.txt:2:2: :2:2::
 test.txt:2:3: :11:3::
 test.txt:2:4: :13:4::
