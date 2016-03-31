@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/myprettify/sons-of-obsidian-dark-prettity.css">
     <link rel="stylesheet" href="/css/self.css">
     <title>{% if page.title %} {{ page.title }} {% elsif site.title %} {{ site.title }} {% endif %}</title>
+    {% include analytics %}
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -94,6 +95,5 @@
 <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
 <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-{% include analytics %}
 </body>
 </html>
