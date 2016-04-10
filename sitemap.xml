@@ -1,151 +1,88 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+---
+layout: null
+sitemap:
+    exclude: 'yes'
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for post in site.posts %}
+    {% unless post.published == false %}
     <url>
-        <loc>http://leeyee.github.io/blog/2009/08/24/javacript-broswer-check</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
+        <loc>{{ site.url }}{{ post.url }}</loc>
+        {% if post.sitemap.lastmod %}
+        <lastmod>{{ post.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+        {% elsif post.date %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+        {% else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        {% if post.sitemap.changefreq %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+        {% else %}
+        <changefreq>monthly</changefreq>
+        {% endif %}
+        {% if post.sitemap.priority %}
+        <priority>{{ post.sitemap.priority }}</priority>
+        {% else %}
+        <priority>0.5</priority>
+        {% endif %}
     </url>
+    {% endunless %}
+    {% endfor %}
+
+    {% for page in site.pages %}
+    {% assign split_path = page.path | split: "." %}
+    {% assign extension = split_path | last %}
+
+    {% if page.sitemap.exclude != "yes" and extension == "html" and page.path != "/404.html" %}
     <url>
-        <loc>http://leeyee.github.io/blog/2009/08/24/javascript-window-close-notconfirm</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
+        <loc>{{ site.url }}{{ page.permalink | remove: "index.html" }}</loc>
+        {% if page.sitemap.lastmod %}
+        <lastmod>{{ page.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+        {% elsif page.date %}
+        <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
+        {% else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        {% if page.sitemap.changefreq %}
+        <changefreq>{{ page.sitemap.changefreq }}</changefreq>
+        {% else %}
+        <changefreq>monthly</changefreq>
+        {% endif %}
+        {% if page.sitemap.priority %}
+        <priority>{{ page.sitemap.priority }}</priority>
+        {% else %}
+        <priority>0.3</priority>
+        {% endif %}
     </url>
+    {% endif %}
+    {% endfor %}
+
+    {% for collection in site.collections %}
+    {% if collection[1].output %}
+    {% for doc in collection[1].docs %}
     <url>
-        <loc>http://leeyee.github.io/blog/2010/04/07/javascript-best-practices</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
+        <loc>{{ site.url }}{{ doc.url | remove: "index.html" }}</loc>
+        {% if doc.sitemap.lastmod %}
+        <lastmod>{{ doc.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+        {% elsif doc.date %}
+        <lastmod>{{ doc.date | date_to_xmlschema }}</lastmod>
+        {% else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        {% if doc.sitemap.changefreq %}
+        <changefreq>{{ doc.sitemap.changefreq }}</changefreq>
+        {% else %}
+        <changefreq>monthly</changefreq>
+        {% endif %}
+        {% if doc.sitemap.priority %}
+        <priority>{{ doc.sitemap.priority }}</priority>
+        {% else %}
+        <priority>0.3</priority>
+        {% endif %}
     </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2011/04/09/javascript-jquery-user-suggests</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2011/06/19/spring-expression-language</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2011/11/14/plsql-sql-cud</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2011/11/15/plsql-sql-transaction</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2011/11/16/plsql-sql-groupby</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2011/11/17/plsql-sql-select</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2011/11/18/plsql-sql-comm-func</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2012/05/04/jquery-msgbox-plugin</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2012/05/05/jquery-etable-plugin</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2012/09/27/mybatis-param-mapping-rules</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2012/12/02/jquery-plugins-authoring</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/05/07/javascript-null-undefined</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/05/26/mybatis-simple-pagination</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/05/30/mybatis-association-autoMapping</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/07/04/database-transaction-concurrency</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/07/07/hibernate-cache</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/07/31/javascript-idcard-validate</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/08/22/mybatis-auto-increment-primary-key</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2013/11/27/git-quick-start</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2014/05/19/java-dateformat-instance</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2015/07/28/awk-base-get-start</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2015/08/02/awk-muli-file</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2015/08/11/git-cmdgroup</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2015/08/30/plsql-complex-data-type</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2015/08/30/plsql-control-statement</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2015/08/30/plsql-sql-use-sql-in-block</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2016/01/17/spring-retry-simple-introduce</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2016/01/19/spring-retry-common-case</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/blog/2016/02/21/linux-intellj-idea-desktop</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/about.html</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/archives.html</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/categorys.html</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://leeyee.github.io/tags.html</loc>
-        <lastmod>2016-02-22T09:51:00+08:00</lastmod>
-    </url>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
 </urlset>
