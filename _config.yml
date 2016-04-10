@@ -34,7 +34,7 @@ github: https://github.com/oxcow/
 
 #分析
 analytics:
-#  provider: google,baidu
+  provider: google,baidu
   google:
     tracking_id: 'UA-40641589-1'
 
