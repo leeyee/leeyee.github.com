@@ -40,7 +40,7 @@ analytics:
 
 #评论
 comments:
-#  provider: disqus
+  provider: disqus
   uyan:
     uid: 1785947
   disqus:
