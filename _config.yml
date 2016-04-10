@@ -25,8 +25,9 @@ paginate: 10
 # 最新文章显示数
 last_pages: 10
 
-title: Leeyee's Blog
-url: http://leeyee.github.io
+name: Leeyee's Blog
+description: 我的技术类博客
+url: http://iyiguo.net
 author: leeyee
 
 #GitHub项目地址
