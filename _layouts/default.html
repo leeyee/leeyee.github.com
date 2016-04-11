@@ -4,17 +4,10 @@
     <link rel="alternate" type="application/rss+xml" title="My Site RSS" href="/feed.xml" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="{{ page.keywords | join:',' }}">
-    <meta name="description" content="{{ page.description }}"/>
-    <meta name="baidu-site-verification" content="ujuVjapZUR" />
-   <!-- <link rel="stylesheet" href="/css/bootstrap.min.css">-->
-    <!--<link href="/js/prettify/prettify.css" rel="stylesheet">-->
+    {% seo %}
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
-    <!--<link href="http://apps.bdimg.com/libs/prettify/r298/prettify.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="/css/myprettify/sons-of-obsidian-dark-prettity.css">
     <link rel="stylesheet" href="/css/self.css">
-    <title>{% if page.title %} {{ page.title }} {% elsif site.name %} {{ site.name }} {% endif %}</title>
-    {% include analytics %}
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -82,9 +75,10 @@
 </div>
 <hr/>
 <footer>
-    <p class="text-center">&copy;2015 by Leeyee, All Rights Reserved</p>
+    <p class="text-center">&copy;2016 by Leeyee, All Rights Reserved</p>
 </footer>
-<script type="text/javascript" src="/js/MathJax.js"></script>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
     !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
