@@ -4,7 +4,6 @@ title: Spring Retry 简介
 description: Spring-Retry 简介
 category: spring
 tag: [spring]
-keywords: [spring-retry,retry,spring重试,spring retry 中文]
 ---
 
 * TOC

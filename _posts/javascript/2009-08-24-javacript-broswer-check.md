@@ -4,7 +4,6 @@ title: 使用javascript检测浏览器版本
 description: 本文介绍如何通过分析浏览器navigator的user-agent属性来检测不同浏览器的版本信息
 category: javascript
 tag: [javascript]
-keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 ---
 
 * any list
@@ -14,7 +13,7 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 
 总体上我们验证浏览器及其版本是通过浏览器的**user-agent**字符串来检测的。常见的有：
 
-    Safari： Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2
+> Safari： Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2
     Chrome： Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31
     IE：     Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; InfoPath.2; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
     Firefox：Mozilla/5.0 (Windows NT 5.1; rv:19.0) Gecko/20100101 Firefox/19.0 
@@ -22,7 +21,6 @@ keywords: [javascript检测浏览器版本, 浏览器版本检测, user-agent]
 因此对浏览器的版本分析都是基于该字符串中所包含的信息进行的。可以通过如下代码获取**user-agent**信息：
     
     var sUserAgent = navigator.userAgent;    
-
 
 ### Opera浏览器检测
 

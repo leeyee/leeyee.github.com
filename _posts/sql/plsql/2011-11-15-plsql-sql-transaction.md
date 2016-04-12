@@ -4,7 +4,6 @@ title: SQL事务语句要点
 description: 本文主要介绍一些关于SQL语法中有关事务操作的要点
 category: SQL
 tag: [pl/sql]
-keywords: [SQL事务,SQL要点,SQL语法]
 ---
 
 * TOC

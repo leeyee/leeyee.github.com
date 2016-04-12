@@ -4,7 +4,6 @@ title: 使用DateFormat需设置语言环境
 description: DateFormat类在获取其实例时应具体设置语言环境及日期格式。以避免不同语言环境发生解析错误的问题出现。
 category: java
 tag: [java]
-keywords: [DateFormat,DateFormat.getDateInstance,日期格式化,语言环境]
 ---
 * any list
 {:toc}

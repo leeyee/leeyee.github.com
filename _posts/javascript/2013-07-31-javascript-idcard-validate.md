@@ -4,7 +4,6 @@ title: javascript身份证号码验证
 description: 根据身份证号码的生成规则，对其使用javascript进行有效性验证。从而可以在web应用中针对用户输入的身份证号码进行客户端验证
 category: javascript
 tag: [javascript]
-keywords: [javascript身份证号码验证, 身份证号码验证, 身份证号码验证号码生成算法]
 github: 'id-number-validator'
 ---
 

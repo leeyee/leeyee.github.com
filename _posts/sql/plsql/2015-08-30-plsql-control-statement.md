@@ -4,7 +4,6 @@ title: PL/SQL流程控制语言
 description: PL/SQL流程控制语言
 category: SQL
 tag: [pl/sql]
-keywords: [pl/sql流程控制,pl/sql loop]
 ---
 
 * TOC

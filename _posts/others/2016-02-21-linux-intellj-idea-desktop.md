@@ -4,7 +4,6 @@ title: Ubuntu14下配置Intellj IDEA快捷方式
 description: 本文介绍Intellj IDEA在Ubuntu14下配置桌面快捷时需要主要的一些问题
 category: 其他
 tag: [linux]
-keywords: [linux idea, ubuntu idea, ubuntu idea desktop, idea desktop]
 ---
 
 * TOC

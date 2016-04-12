@@ -4,7 +4,6 @@ title: 屏蔽window.close方法在IE中的二次确认
 description: 在实际的开发过程中遇到当调用javascript中window.close方法时，IE7+会在页面关闭前询问用户是否要关闭的二次确认对话框。为了避免这个问题，需要在调用window对象的close方法前做一些处理
 category: javascript
 tag: [javascript]
-keywords: [window.close ie]
 ---
 
 * any list

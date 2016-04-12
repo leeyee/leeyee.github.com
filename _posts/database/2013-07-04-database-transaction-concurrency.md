@@ -4,7 +4,6 @@ title: 数据库事务与并发
 description: 数据库事务、并发、锁以及事务隔离级别的说明
 category: database
 tag: [database]
-keywords: [数据库事务, 并发, 数据库锁, 事务隔离级别, 如何防止死锁]
 ---
 
 * TOC

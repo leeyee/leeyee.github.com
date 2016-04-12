@@ -4,7 +4,6 @@ title: Spring3 表达式语言(SpEL)介绍
 description: 本文主要介绍Spring3表达式语言(SpEL)的相关功能
 category: spring
 tag: [spring]
-keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 ---
 
 [Spring Expression Language (SpEL)](http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html)语言支持在运行时操作和查询对象，其语法类似统一的EL语言，但是[SpEL]提供了额外的功能。[SpEL]支持以下功能：
@@ -32,7 +31,6 @@ keywords: [Spring Expression Language,SpEL,Spring,Spring表达式语言]
 文本表达式支持字符表达式、日期、数字（正数、实数及十六进制数）、布尔类型及null.其中字符表达式需要用单引号声明。
 
 对数字支持负数、指数及小数。默认情况下实数使用`Double.parseDouble()`进行表达式类型转换
-
 
     String[] lELs = { "'hello SpEL'", "1.028E+7", "0x12EF", "true", "null" };
     assertEquals("hello SpEL",

@@ -4,7 +4,6 @@ title:  Spring Retry 常用示例
 description: Spring Retry 常用示例
 category: spring
 tag: [spring]
-keywords: [spring-retry,retry,spring重试,spring retry 注解]
 ---
 
 * TOC

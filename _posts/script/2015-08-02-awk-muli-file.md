@@ -4,7 +4,6 @@ title: awk多文件处理
 description: awk多文件处理及相关关联查询
 category: 脚本语言
 tag: [awk]
-keywords: [awk多文件处理,awk文件关联]
 ---
 
 * TOC

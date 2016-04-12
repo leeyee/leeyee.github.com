@@ -4,7 +4,6 @@ title: javascript中的null和undefined
 description: 本文主要就ECMAScript对null、undefined定义变量的区别以及在使用typeof方法操作这两类变量时返回的结果进行了详细说明。
 category: javascript
 tag: [javascript]
-keywords: [javascript null,javascript undefined]
 ---
 
 * any list

@@ -4,7 +4,6 @@ title:  Linux下的Jekyll开发环境配置
 description: 在linux Ubuntu14下配置github静态网站开发环境Jekyll
 category: 其他
 tag: [linux]
-keywords: [linux, jekyll, jekyll3]
 ---
 
 * [TOC]
@@ -122,7 +121,11 @@ jekyll3支持feed、sitemap、seo的自动生成[^jekyll-comment]，不过在使
 
 参考：[https://github.com/jekyll/jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag) 
 
-其实配置很简单，只要post中存在title、discription即可，然后在default模板中</head>前添加 {% seo %} 即可
+其实配置很简单，只要post中存在title、discription即可，然后在default模板中</head>前添加
+
+> {% seo %}
+
+即可。
 
 ### jekyll安装中可能遇到的问题
 

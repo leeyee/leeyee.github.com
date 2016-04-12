@@ -4,7 +4,6 @@ title: PL/SQL常用函数
 description: 本文主要介绍PL/SQL中常用的函数，比如数字、字符、日期函数等。
 category: SQL
 tag: [pl/sql]
-keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
 ---
 
 * TOC
@@ -27,6 +26,7 @@ keywords: [SQL函数, sql function, pl/sql函数, pl/sql function]
 `trunc(n[,m])` : 截取数字。省略m，数字n去掉小数部分；m为负,数字n截取小数点前m位；m为正，数字n截取小数点后m位
 
 #### demo:
+
     select
         abs(-12),
         ceil(12.4),

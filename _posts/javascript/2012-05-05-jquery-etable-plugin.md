@@ -1,13 +1,10 @@
 ---
 layout: post
 title: jQuery eTable Plugin
+description: 基于jQuery的简单table元素操作插件。该插件使用jQuery对针对table元素的行列添加及行列删除等常用操作进行了封装，形成了一些简单的API方法，方便在实际开发过程中的简单调用。
 category: jQuery
 tag: [javascript, jQuery]
-description: 基于jQuery的简单table元素操作插件。该插件使用jQuery对针对table元素的行列添加及行列删除等常用操作进行了封装，形成了一些简单的API方法，方便在实际开发过程中的简单调用。
-keywords: [jQuery table]
-
 github: 'eTable'
-
 ---
 
 * any list

@@ -4,7 +4,6 @@ title: windows下Git命令组的实现
 description: windows环境下配置常用git命令组合
 category: git
 tag: [git]
-keywords: [git命令集合]
 ---
 
 * [TOC]

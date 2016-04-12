@@ -4,7 +4,6 @@ title: awk入门
 description: 本文主要介绍一些awk的入门语法及相关示例。包括awk基本语法及基本参数，内建参数的使用，awk脚本等相关基础入门内容
 category: 脚本语言
 tag: [awk]
-keywords: [awk入门,awk内置参数]
 ---
 
 * TOC

@@ -4,7 +4,6 @@ title: PL/SQL块中使用SQL
 description: 本文主要介绍SQL语句在PL/SQL程序块中的应用
 category: SQL
 tag: [pl/sql]
-keywords: [SQL函数,pl/sql函数,pl/sql块,SQL游标]
 ---
 
 * TOC

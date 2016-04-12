@@ -4,7 +4,6 @@ title: PL/SQL复合数据类型
 description: 介绍pl/sql复合数据类型。包括记录表、集合、嵌套表、变长数组等数据类型
 category: SQL
 tag: [pl/sql]
-keywords: [pl/sql复合数据类型,pl/sql记录,集合,嵌套表,变长数组]
 ---
 
 * TOC
