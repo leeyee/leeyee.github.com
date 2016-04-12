@@ -123,7 +123,7 @@ jekyll3支持feed、sitemap、seo的自动生成[^jekyll-comment]，不过在使
 
 其实配置很简单，只要post中存在title、discription即可，然后在default模板中</head>前添加
 
-> {% seo %}
+> {\% seo \%}
 
 即可。
 
