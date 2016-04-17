@@ -149,7 +149,9 @@ h6, .h6 {
     color: #999;
 }
 
-
+.blog-post-meta span{
+    margin: 10px 10px;
+}
 /*
  * Footer
  */
