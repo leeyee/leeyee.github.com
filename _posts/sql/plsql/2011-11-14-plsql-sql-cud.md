@@ -41,7 +41,7 @@ tag: [pl/sql]
 
         insert /*+append */ into customer(name,age) select name,age from employee where eno = 200;
 
-<span class="label label-important"><em>NOTES：</em></span>
+> _**NOTES：**_
 
 + **以上两条语句的执行结果一样，但2使用了<code>/*+append */</code>来表示采用直接装载方式**;
 + **当要装载大批量数据是，采用2方法装载数据的速度要远远优于1**;
@@ -49,7 +49,7 @@ tag: [pl/sql]
 
 ## 多表插入
 
-<span class="label label-important"><em>NOTES：</em></span> **Oracle9i后可以使用!**
+_**NOTES：**_ **Oracle9i后可以使用!**
 
     insert all insert_into_clause [value_clause] subquery;
     insert coditional_insert_clause subquery;
