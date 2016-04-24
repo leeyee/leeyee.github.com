@@ -23,8 +23,6 @@ layout: default
             {% endif %}
         </address>
         <div id="j_article">
-            {{ content }}
-            <hr/>
             <div class="alert alert-warning" role="alert">
                 <strong>版权声明：</strong>
                 <ul>
@@ -33,8 +31,8 @@ layout: default
                     <li>如需转载需要注明来源于<a href="{{site.url}}{{page.url}}">{{site.url}}{{page.url}}</a></li>
                 </ul>
             </div>
+            {{ content }}
         </div>
-
         <div class="alert alert-info" role="alert">
             <strong>相关阅读：</strong>
             <ul>{% assign my_num = 0 %}
