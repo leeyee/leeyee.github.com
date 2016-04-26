@@ -166,3 +166,11 @@ h6, .h6 {
 .blog-footer p:last-child {
     margin-bottom: 0;
 }
+
+.footnotes{
+    border-top: 0.1em solid;
+    margin-top: 20px;
+    padding-top: 10px;
+    font-size: 14px;
+    color: #008080;
+}

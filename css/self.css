@@ -72,6 +72,13 @@ blockquote {
     border-bottom-right-radius: 5px;
     padding: 15px 20px;
 }
+.footnotes{
+    border-top: 0.1em solid;
+    margin-top: 20px;
+    padding-top: 10px;
+    font-size: 14px;
+    color: #008080;
+}
 
 .toTop{
     position: fixed;

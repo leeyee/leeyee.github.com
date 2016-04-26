@@ -12,8 +12,8 @@ layout: default
         </h3>
     </div>
     <div class="panel-body">
-        {% assign ct = post.content | split: '</p>' %}
-        {% for p in ct limit:3 %} {{ p | append : '</p>' }} {% endfor %}
+        {% assign ct = post.content | split: '<p>' %}
+        {% for p in ct offset:1 limit:3 %} {{ p | prepend : '</p>' }} {% endfor %}
         <p class="pull-right">
           <a href="{{post.url}}">阅读全文......</a>
         </p>
