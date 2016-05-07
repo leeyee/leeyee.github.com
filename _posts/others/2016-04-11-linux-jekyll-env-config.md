@@ -153,7 +153,7 @@ jekyll3支持feed、sitemap、seo的自动生成[^jekyll-comment]，不过在使
 [^jekyll-comment]: 之前使用的是2.0版本的，sitemap/feed都是通过第三方插件的方式生成的；当前最新的版本自带这些功能。
 [^jekyll pit]: 可参考 https://tonypepelu.github.io/archivers/how-to-use-jekyll-with-easybook-to-create-blog
 
-[Ruby]: (https://www.ruby-lang.org/zh_cn/) "ruby"
-[Rails]: (http://rubyonrails.org/) "rails"
-[RVM]: (https://rvm.io/) "rvm"
-[Jekyll]: (http://jekyllcn.com/) "jekyll"
+[Ruby]: https://www.ruby-lang.org/zh_cn/ "ruby"
+[Rails]: http://rubyonrails.org/ "rails"
+[RVM]: https://rvm.io/ "rvm"
+[Jekyll]: http://jekyllcn.com/ "jekyll"
