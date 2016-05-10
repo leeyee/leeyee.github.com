@@ -8,9 +8,16 @@ html {
     background: #6c7989 linear-gradient(#6c7989, #434b55) fixed;
 }
 
+@media (min-width: 1900px) {
+    .container {
+        width: 1600px;
+    }
+}
+
 body {
-    font-family: 'Hiragino Sans GB', 'Microsoft Yahei', "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 17px;
+	/** 'Hiragino Sans GB', 'Microsoft Yahei', "Open Sans", "Helvetica Neue", */
+    font-family: Rosarivo, Georgia, serif;
+    font-size: 16px;
     line-height: 1.45;
     color: #3f3f3f;
     /*background-color: #F3F8F1;*/
@@ -66,6 +73,7 @@ dt, dd {
     line-height: 1.45;
 }
 blockquote {
+	font-size: 15px;
     border-left-width: 10px;
     background-color: rgba(128,128,128,0.05);
     border-top-right-radius: 5px;
