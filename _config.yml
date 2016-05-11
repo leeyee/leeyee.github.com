@@ -19,7 +19,7 @@ kramdown:
       coderay_bold_every:        10
       coderay_css:               style
 
-permalink: /blog/:year/:month/:day/:title
+permalink: /blog/:year/:month/:day/:title/
 
 # 分页大小
 paginate: 10
