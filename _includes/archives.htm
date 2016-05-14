@@ -7,7 +7,7 @@
             {% for post in site.posts %}
             {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
             {% if year_month != ym %} {% assign year_month = ym %}
-            <li><a href="/archives.html#{{ym}}">{{ ym }}
+            <li><a href="/archives#{{ym}}">{{ ym }}
                 {% assign count = 0 %}
                 {% for pt in site.posts %}
                 {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}

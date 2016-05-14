@@ -5,7 +5,7 @@
     <div class="list-group">
        <!-- <a  class="list-group-item active">文章标签</a>-->
         {% for tag in site.tags %}
-        <a href="/tags.html#{{ tag[0] }}" class="list-group-item">{{ tag[0] }}<span class="badge">{{ tag[1].size }}</span></a>
+        <a href="/tags#{{ tag[0] }}" class="list-group-item">{{ tag[0] }}<span class="badge">{{ tag[1].size }}</span></a>
         {% endfor %}
     </div>
 </div>
