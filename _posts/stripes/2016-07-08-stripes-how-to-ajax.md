@@ -9,6 +9,8 @@ tag: [stripes,译文]
 * [TOC]
 {:toc}
 
+原文链接：[https://stripesframework.atlassian.net/wiki/display/STRIPES/AJAX](https://stripesframework.atlassian.net/wiki/display/STRIPES/AJAX)
+
 
 如果你没有听说过[Ajax]那么你有可能还生活在穴居时代，因此这里我们不会去讲[Ajax]是什么。如果你真的需要了解，那么建议你点击[这里][1]。因为[Ajax]作为客户端技术，Stripes作为服务器端框架，所以这篇文档主要关注如何使用[Ajax]技术与Stripes进行交互。如果你关注的是客户端视觉效果和一些[Ajax]技巧，那么通过谷歌搜索你能得到比本文更好的说明。
 

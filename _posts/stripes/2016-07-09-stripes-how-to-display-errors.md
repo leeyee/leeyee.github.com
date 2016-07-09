@@ -9,6 +9,8 @@ tag: [stripes,译文]
 * [TOC]
 {:toc}
 
+原文链接：[https://stripesframework.atlassian.net/wiki/display/STRIPES/Display+Errors](https://stripesframework.atlassian.net/wiki/display/STRIPES/Display+Errors)
+
 web应用几乎没有例外的会在某些点上生成一些验证错误信息，提示用户做错了什么，应该怎么样正确的去做。这些提示应该与你的应用UI策略一致，能明确的告诉用户如何去处理。下面介绍如何利用Stripes进行错误信息展示。
 
 ## 输出错误
