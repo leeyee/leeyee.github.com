@@ -5,7 +5,7 @@ layout: default
     <ol class="breadcrumb" style="background-color: #F3F8F1; ">
         <li><a href="/">首页</a></li>
         {% if page.category %}
-        <li><a href="/categorys#{{ page.category }}">{{ page.category }}</a></li>
+        <li><a href="/categorys/#{{ page.category }}">{{ page.category }}</a></li>
         {% endif %}
         <li class="active">{{ page.title }}</li>
     </ol>
@@ -46,13 +46,13 @@ layout: default
     <div class="panel-footer">
         <span class="glyphicon glyphicon-calendar"/>
         {% if page.date %}
-        <a href="/archives#{{page.date | date:'%Y-%m'}}">{{ page.date | date:"%Y年%m月%d日" }}</a>
+        <a href="/archives/#{{page.date | date:'%Y-%m'}}">{{ page.date | date:"%Y年%m月%d日" }}</a>
         {% elsif site.author %} {{ site.time | date:"%Y年%m月%d日" }} {% endif %}
         <span class="glyphicon glyphicon-user"/>
         {% if page.author %} {{ page.author }} {% elsif site.author %} {{ site.author }} {% endif %}
         {% if page.category %}
         <span class="glyphicon glyphicon-folder-close"/>
-        <a href="/categorys#{{page.category}}"> {{ page.category }}</a>
+        <a href="/categorys/#{{page.category}}"> {{ page.category }}</a>
         {% endif %}
         {% if page.tag %} <span class="glyphicon glyphicon-tags"/> {{ page.tag | join: ',' }} {% endif %}
     </div>
