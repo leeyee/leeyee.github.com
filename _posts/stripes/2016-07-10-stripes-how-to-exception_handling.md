@@ -3,7 +3,7 @@ layout: post
 title: Stripes框架如何做系列-异常处理
 description: stripes框架如何做系列中文翻译
 category: stripes
-tag: [stripes]
+tag: [stripes,译文]
 ---
 
 * [TOC]
