@@ -103,7 +103,7 @@ multipard表单数据的解析要做正确是相当困难的，基于这个原�
 
 出于向后兼容的原因，[COS]实现已经重构到一个实现了[MultipartWrapper]接口，名叫[CosMultipartWrapper]的实现类中，并且依旧作为默认的上传处理实现。
 
-如果你要使用`CommonsFileupload`，你同样需要添加cos包到你的类路径中，同时可以明确的配置[CosMultipartWrapper]通过添加配置参数到Stripes过滤器中：
+如果你要使用`CommonsFileupload`，你同样需要添加cos包到你的类路径中，同时可以明确的配置[CommonsMultipartWrapper]通过添加配置参数到Stripes过滤器中：
 
 	<init-param>
 	    <param-name>MultipartWrapper.Class</param-name>
@@ -125,3 +125,4 @@ multipard表单数据的解析要做正确是相当困难的，基于这个原�
 [COS]: http://servlets.com/cos/
 [CosMultipartWrapper]: http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/controller/multipart/CommonsMultipartWrapper.html
 [MultipartWrapperFactory]: http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/controller/multipart/MultipartWrapperFactory.html
+[CommonsMultipartWrapper]: http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/controller/multipart/CommonsMultipartWrapper.html
