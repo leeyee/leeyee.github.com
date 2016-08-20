@@ -20,6 +20,7 @@ Stripes是一个web应用框架，它被设计成易于使用并能提升开发�
 这一节简要展示如何安装和配置Spring，以便能在Stripes应用中使用。这里并不包含所有可能的配置，但提供了一种简单可用的方式。我们从http://www.springframework.org/download下载最新的Spring版本开始，下载完成后解压下载文件并找到dist/spring.jar文件，复制该文件到你的应用路径下，你的应用路径有可能是*WEB-INF/lib*.
 
 > 精简你的classpath
+> 
 >  > 假如你不想被类路径下许多没有使用的类包困扰，你可能需要花一些时间在*dist*目录下查看spring-*.jar并判断出那些类包是你需要使用Spring的最小类包集合。对于我（这里指原文作者： Rick Grashel ）来说，我是懒于做这些事情的，因此我使用了spring.jar包，这个包包含了所有需要的及一些额外的类。
 
 配置好了jar包后，需要创建一个spring上下文文件，并且在web.xml中配置web应用上下文。让我们看下web.xml：
@@ -106,6 +107,7 @@ Stripes首先将尝试通过名称自动注入，如果找不到则通过类型�
 值得注意的是，虽然ActionBeans本身不是Spring beans，但通过这种方式，通过Spring上下文被注入的 beans是完全由Spring管理的，并能访问其他Spring bean提供的所有Spring服务。
 
 > 公共的Get/Set方法对于Spring beans是危险的
+> 
 > > 因为Stripes通过名称映射变量，而该变量来自ActionBeans中需要注入的属性。因此，使用公共方法作为Spring bean匹配JavaBean属性的方式是非常不明智的（比如`public void setBugManager(...)`）。这样做将允许恶意用户设置你的Spring bean为空，甚至可能将其设置为他自己的内嵌属性，假如你的Spring bean有*getter*方法。
 >
 > > 虽然这种情况发生的可能性相当小——一个恶意用户成功猜到你在使用Spring，猜到访问Spring Beans的方法名以及Spring Beans的属性。但是理论上这是可能的，因此你应该降低这个风险（特别是因为他很容被规避）。
