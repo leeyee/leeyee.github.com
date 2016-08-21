@@ -139,7 +139,7 @@ Stripes识别两种类型的本地化信息。第一种类型是错误信息；�
 
 ## 传递本地化变量到布局
 
-假如你正在使用Stripes的[布局](https://stripesframework.atlassian.net/wiki/display/STRIPES/Layout+Reuse)属性，你可能想传递本地化值给布局。你可以通过[传递额外信息到布局](2016-07-17-stripes-how-to-layout-reuse.md)了解更多关于如何传递任意格式化内容给布局的信息。
+假如你正在使用Stripes的[布局](https://stripesframework.atlassian.net/wiki/display/STRIPES/Layout+Reuse)属性，你可能想传递本地化值给布局。你可以通过[传递额外信息到布局](http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/)了解更多关于如何传递任意格式化内容给布局的信息。
 
 
 ## 本地化的其他事情
