@@ -172,9 +172,7 @@ POST请求后重定向是一个相当简单的技术。其思想是，表单POST
 > 
 > > 如果重定向到JSP，那么这么做。如果重定向到一个转发到JSP的`ActionBean`，那么被闪存的`ActionBean`将被你重定向的`ActionBean`重写。
 
-
-###　在JSP中访问FlashScope
-
+### 在JSP中访问FlashScope
 
 比方说在你的`ActionBeans`中调用此方法：
 
