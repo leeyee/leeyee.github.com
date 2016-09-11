@@ -3,7 +3,7 @@ layout: post
 title: Spring Retry 简介
 description: Spring-Retry 简介
 category: spring
-tag: [spring]
+tag: [spring,译文]
 ---
 
 * TOC
