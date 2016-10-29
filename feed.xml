@@ -18,10 +18,10 @@ layout: null
                         <li>关于<a href="{{site.url}}{{post.url}}">《{{post.title}}》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com"　class="alert-link">@Leeyee</a>所有；</li>
                     <li>非商用、非衍生;</li>
                     <li>如需转载需要注明来源于<a href="{{site.url}}{{post.url}}">{{site.url}}{{post.url}}</a></li>
-                </ul></div>
+                </ul></div>]]>
                 {% assign ct = post.content | split: '<p>' %}
                 {% for p in ct offset:1 limit:3 %} {{ p | prepend : '</p>' | xml_escape }} {% endfor %}
-                <p class="pull-right">
+                <![CDATA[<p class="pull-right">
                     <a href="{{site.url}}{{post.url}}">阅读全文......</a>
                 </p>]]>
             </description>
