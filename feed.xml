@@ -19,10 +19,10 @@ layout: null
                     <li>非商用、非衍生;</li>
                     <li>如需转载需要注明来源于<a href="{{site.url}}{{post.url}}">{{site.url}}{{post.url}}</a></li>
                 </ul></div>]]>
-                {{ post.content | xml_escape }}
+                {{ post.content | strip_html | truncate: 500 }}
             </description>
             <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-            <link>{{ site.url }}{{ post.url }}</link>s
+            <link>{{ site.url }}{{ post.url }}</link>
             <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
         </item>  {% endunless %} {% endfor %}
     </channel>
