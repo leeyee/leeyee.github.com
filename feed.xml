@@ -19,7 +19,11 @@ layout: null
                     <li>非商用、非衍生;</li>
                     <li>如需转载需要注明来源于<a href="{{site.url}}{{post.url}}">{{site.url}}{{post.url}}</a></li>
                 </ul></div>]]>
-                {{ post.content | strip_html | truncate: 500 }}
+                {% assign ct = post.content | split: '<p>' %}
+                {% for p in ct offset:1 limit:3 %} {{ p | prepend : '</p>' | xml_escape }} {% endfor %}
+                <p class="pull-right">
+                    <a href="{{post.url}}">阅读全文......</a>
+                </p>
             </description>
             <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
             <link>{{ site.url }}{{ post.url }}</link>
