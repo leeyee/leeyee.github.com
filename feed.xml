@@ -22,7 +22,7 @@ layout: null
                 {% assign ct = post.content | split: '<p>' %}
                 {% for p in ct offset:1 limit:3 %} {{ p | prepend : '</p>' | xml_escape }} {% endfor %}
                 <p class="pull-right">
-                    <a href="{{post.url}}">阅读全文......</a>
+                    <a href="{{site.url}}{{post.url}}">阅读全文......</a>
                 </p>
             </description>
             <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
