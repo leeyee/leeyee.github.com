@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Leeyee’s Blog - 我的技术类博客</title>
+<meta property="og:title" content="Leeyee’s Blog">
+<meta name="description" content="我的技术类博客">
+<meta property="og:description" content="我的技术类博客">
+<link rel="canonical" href="http://iyiguo.net/page3/">
+<meta property="og:url" content="http://iyiguo.net/page3/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "headline": "Leeyee’s Blog",
+    "description": "我的技术类博客",
+    "url": "http://iyiguo.net/page3/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <!--site.members | where:"graduation_year","2014"
+ --  -- /page3/ 
+-->
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2015/08/30/plsql-sql-use-sql-in-block/">PL/SQL块中使用SQL</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         在PL/SQL块中使用select语句，可以将数据库数据检索到变量中。
+
+  当在PL/SQL块中使用select语句时，必须要带有<strong>into</strong>子句。语法如下：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>SELECT select_list
+	INTO {variable_name[,variable_name]... | record_name}
+FROM table_name
+WHERE condition;
+</code></pre>
+</div>
+
+  其中，
+
+<ul>
+  <li>select_list为指定查询列；</li>
+  <li>variable_name为接收指定查询列的标量变量名；</li>
+  <li>record_name为接收指定查询列的记录变量名；</li>
+</ul>
+
+<h3 id="section-1">1、使用标量变量接收数据</h3>
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2015/08/30/plsql-sql-use-sql-in-block/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2015-08">2015年08月30日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#SQL"> SQL</a>
+        <span class="glyphicon glyphicon-tags"></span> pl/sql
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2015/08/30/plsql-sql-use-sql-in-block/" href="http://iyiguo.net/blog/2015/08/30/plsql-sql-use-sql-in-block/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2015/08/30/plsql-control-statement/">PL/SQL流程控制语言</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         语法：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>IF condition THEN
+	statements;
+[ELSIF condition THEN
+	statements;]
+[ELSE
+	statements;]
+END IF;
+</code></pre>
+</div>
+
+  示例：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>DECLARE
+	v_age NUMBER(3);
+BEGIN
+	SELECT age INTO v_age FROM user
+	WHERE lower(name) = lower('&amp;&amp;name');
+	IF v_age &lt; 20 THEN
+		UPDATE user SET age = v_age*2 WHERE lower(name) = lower('&amp;&amp;name');
+	ELSEIF v_age &lt; 40 THEN
+	  UPDATE user SET age = v_age*3 WHERE lower(name) = lower('&amp;&amp;name');
+	ELSE
+		UPDATE user SET age = v_age/2 WHERE lower(name) = lower('&amp;&amp;name');
+	END IF;
+END;
+</code></pre>
+</div>
+
+<h3 id="case">CASE语句</h3>
+
+  语法：
+
+<ol>
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2015/08/30/plsql-control-statement/">阅读全文......</a>
+        </p>
+    </li>
+</ol>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2015-08">2015年08月30日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#SQL"> SQL</a>
+        <span class="glyphicon glyphicon-tags"></span> pl/sql
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2015/08/30/plsql-control-statement/" href="http://iyiguo.net/blog/2015/08/30/plsql-control-statement/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2015/08/30/plsql-complex-data-type/">PL/SQL复合数据类型</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         PL/SQL记录类似高级语句中的结构，用于处理<strong>单行多列</strong>数据。
+
+<h3 id="plsql-1">自定义PL/SQL记录</h3>
+
+  语法：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>TYPE type_name IS RECORD(
+	filed_declaration[,filed_declaration]...
+);
+
+indetifier type_name;
+</code></pre>
+</div>
+
+  示例：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>DECALRE
+	TYPE user_record_type IS RECORD(
+		name user.name%TYPE,
+		age user.age%TYPE
+	);
+	
+	user_record user_type;
+...
+</code></pre>
+</div>
+
+<h3 id="rowtype">使用%ROWTYPE属性定义记录变量</h3>
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2015/08/30/plsql-complex-data-type/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2015-08">2015年08月30日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#SQL"> SQL</a>
+        <span class="glyphicon glyphicon-tags"></span> pl/sql
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/" href="http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2015/08/11/git-cmdgroup/">windows下Git命令组的实现</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         使用git进行项目版本管理时，在实际的操作中经常会有使用多个命令完成一个操作的情况出现，比如常见的代码远程更新操作可能就包含以下几个步骤：
+
+<ol>
+  <li>保存当前工作区。<a href="http://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89"><code class="highlighter-rouge">git stash</code></a>
+</li>
+  <li>拉取远程分支代码到本地。<a href="http://git-scm.com/docs/git-pull"><code class="highlighter-rouge">git pull --rebase</code></a>
+</li>
+  <li>恢复当前工作区。<code class="highlighter-rouge">git stash pop</code>
+</li>
+</ol>
+
+  那么有没有办法可以使用一个自定义命令一次完成上述三个命令的执行？
+
+  其实要完成上述命令组很简单，我们只要完成一个包含这几条命令的脚本文件即可。linux环境下我们可以直接自定一个shell脚本，比如下面的形式：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code><span class="c">#!/bin/sh</span>
+
+git stash
+git pull --rebase
+git stash pop
+</code></pre>
+</div>
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2015/08/11/git-cmdgroup/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2015-08">2015年08月11日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#git"> git</a>
+        <span class="glyphicon glyphicon-tags"></span> git
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2015/08/11/git-cmdgroup/" href="http://iyiguo.net/blog/2015/08/11/git-cmdgroup/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2015/08/02/awk-muli-file/">awk多文件处理</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         日常的开发中，经常会针对不同的需要将程序中的日志进行分类存储，但在运维或者异常处理需要查看时，又不得不针对多个日志文件进行联合处理。甚至有些时候需要进行日志关联查询。这种情况下，一般的 <em>linux</em> 命令，比如 <em>grep</em> 等就显得功能不够强大了。此时可以考虑使用 <em>awk</em> 进行多文件处理，借助其语法可以很方便的实现文件内容关联查询，完成类似 <em>sql</em> 式的<strong>关联查询</strong>。
+
+  首先，定义如下两个文件。一个是学生信息 <em>s.log</em>
+
+<blockquote>
+    sid tid name age address<br>
+1 1 张三 18 北京朝阳<br>
+2 1 李四 19 北京西城<br>
+3 2 马六 17 北京海淀<br>
+4 2 王五 17 北京昌平<br>
+5 3 唐七 18 北京西城<br>
+6 1 徐六 16 北京朝阳
+</blockquote>
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2015/08/02/awk-muli-file/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2015-08">2015年08月02日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80"> 脚本语言</a>
+        <span class="glyphicon glyphicon-tags"></span> awk
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2015/08/02/awk-muli-file/" href="http://iyiguo.net/blog/2015/08/02/awk-muli-file/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2015/07/28/awk-base-get-start/">awk入门</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         <a href="https://zh.wikipedia.org/wiki/Awk">awk</a>是一款强大的文本分析工具。<a href="https://zh.wikipedia.org/wiki/Awk">awk</a> 按行解析数据，并对其进行分割处理。下面是一些<a href="https://zh.wikipedia.org/wiki/Awk">awk</a>的入门语法与示例。
+
+  首先我们使用以下的文件片段演示。文件片段<sup id="fnref:pome"><a href="#fn:pome" class="footnote">1</a></sup>内容如下：
+
+<blockquote>
+    The Lost Love<br>
+William Wordsworth<br>
+She dwelt among the untrodden ways beside the springs of dove.<br>
+A maid whom there were none to praise, and very few to love.<br>
+A violet by a mossy stone, half hidden from the eye!<br>
+Fair as a star, when only one is shining in the sky.<br>
+She lived unknown, and few could know, when lucy ceased to be.<br>
+But she is in her grave, and oh, the difference to me!
+</blockquote>
+
+<h2 id="section">常用命令</h2>
+
+<h3 id="tab">1. 使用默认分割符（空格或者TAB）分割.</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>awk '{print NR,$1}' test.txt
+</code></pre>
+</div>
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2015/07/28/awk-base-get-start/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2015-07">2015年07月28日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80"> 脚本语言</a>
+        <span class="glyphicon glyphicon-tags"></span> awk
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2015/07/28/awk-base-get-start/" href="http://iyiguo.net/blog/2015/07/28/awk-base-get-start/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2014/05/19/java-dateformat-instance/">使用DateFormat需设置语言环境</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         先看段代码：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>String sDate = "2014-12-20";
+try {
+    DateFormat df = DateFormat.getDateInstance();
+    Date date = df.parse(sDate);
+} catch (Exception e) {
+    e.printStackTrace();
+}
+</code></pre>
+</div>
+
+  这段代码在中文语言环境下是可以测试通过。但在其他语言环境中则会抛出异常。原因是<code class="highlighter-rouge">DateFormat.getDateInstance()</code>初始化时会跟据当前语言环境设置日期格式。
+
+<ol>
+  <li>
+      <code class="highlighter-rouge">DateFormat.getDateInstance()</code> 根据当前语言环境设置日期模式：
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> zh_CN : yyyy-MM-dd : 2014-05-19
+ en_us : MMM d, yyyy : May 19, 2014
+</code></pre>
+    </div>
+  </li>
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2014/05/19/java-dateformat-instance/">阅读全文......</a>
+        </p>
+    </li>
+</ol>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2014-05">2014年05月19日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#java"> java</a>
+        <span class="glyphicon glyphicon-tags"></span> java
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2014/05/19/java-dateformat-instance/" href="http://iyiguo.net/blog/2014/05/19/java-dateformat-instance/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/11/27/git-quick-start/">git快速入门</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         我们这里模拟几种场景，以便您快速上手.
+
+<h3 id="git">场景一：【本地建立GIT版本管理并添加文件】</h3>
+
+<h4 id="step-1">step-1、创建项目根目录</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ mkdir gitProject
+</code></pre>
+</div>
+
+<h4 id="step-2">step-2、进入目录并初始版本管理</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ cd gitProject
+$ git init
+</code></pre>
+</div>
+
+  <code class="highlighter-rouge">git init</code>后，将在 gitProject目录下生成 .git隐藏文件。可使用 <code class="highlighter-rouge">ls -a</code> 进行查看
+
+<h4 id="step-3gitproject">step-3、添加文件到目录gitProject</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ touch HelloWorld.java
+</code></pre>
+</div>
+
+<h4 id="step-4">step-4、查看当前版本仓库状态</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git status     # 这里应该会显示HelloWorld.java为untracked files,也就是尚未进行版本管理
+</code></pre>
+</div>
+
+<h4 id="step-5helloworldjava">step-5、将HelloWorld.java添加到版本管理中</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git add HelloWorld.java
+</code></pre>
+</div>
+
+<h4 id="step-6">step-6、再次查看版本仓库状态</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git status     # 此时将会显示HelloWorld为一个new file，需要提交到版本库中
+</code></pre>
+</div>
+
+<h4 id="step-7helloworldjava">step-7、提交HelloWorld.java到版本库</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git commit HelloWorld.java
+</code></pre>
+</div>
+
+<h4 id="step-8helloworldjava">step-8、为HelloWorld.java添加内容</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ vi HelloWorld.java
+</code></pre>
+</div>
+
+<h4 id="step-9helloworldjava">step-9、查看当前HelloWorld.java文件与提交的版本库中的差异</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git diff
+</code></pre>
+</div>
+
+<h4 id="step-10helloworldjava">step-10、提交修改后的HelloWorld.java到版本库</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git commit -m 'init import' HelloWorld.java
+</code></pre>
+</div>
+
+<h4 id="step-11">step-11、查看操作日志</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git log
+</code></pre>
+</div>
+
+  <em>补充知识</em>：
+
+<ol>
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2013/11/27/git-quick-start/">阅读全文......</a>
+        </p>
+    </li>
+</ol>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-11">2013年11月27日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#git"> git</a>
+        <span class="glyphicon glyphicon-tags"></span> git
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/11/27/git-quick-start/" href="http://iyiguo.net/blog/2013/11/27/git-quick-start/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/08/22/mybatis-auto-increment-primary-key/">mybatis自增主键配置</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         mybatis进行插入操作时，如果表的主键是自增的，针对不同的数据库相应的操作也不同。基本上经常会遇到的就是 Oracle Sequece 和  Mysql 自增主键，至于其他的手动生成唯一主键的问题在这里就不讨论了，这里主要说明下在mybatis中对于自增主键的配置。
+
+<h2 id="section">不返回自增主键值</h2>
+
+  如果考虑到插入数据的主键不作为其他表插入数据的外键使用，那么可以考虑使用这种方式。
+
+<ol>
+  <li>
+      Oracle Sequence 配置
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> &lt;sql id='TABLE_NAME'&gt;TEST_USER&lt;/sql&gt;
+ &lt;sql id='TABLE_SEQUENCE'&gt;SEQ_TEST_USER_ID.nextval&lt;/sql&gt;
+
+ &lt;!-- 注意这里直接调用sequence的nextval函数 --&gt;
+ &lt;insert id="insert" parameterType="User"&gt;
+     insert into &lt;include refid="TABLE_NAME" /&gt; (ID,NAME,AGE)
+         values ( &lt;include refid="TABLE_SEQUENCE" /&gt; ,#{name}, #{age} )
+ &lt;/insert&gt;
+</code></pre>
+    </div>
+
+     
+        <p class="pull-right">
+          <a href="/blog/2013/08/22/mybatis-auto-increment-primary-key/">阅读全文......</a>
+        </p>
+    </li>
+</ol>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-08">2013年08月22日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#mybatis"> mybatis</a>
+        <span class="glyphicon glyphicon-tags"></span> mybatis
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/08/22/mybatis-auto-increment-primary-key/" href="http://iyiguo.net/blog/2013/08/22/mybatis-auto-increment-primary-key/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/07/31/javascript-idcard-validate/">javascript身份证号码验证</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         加权因子<strong>W<sub>i</sub></strong>
+
+      从右到左依次定义为：
+
+    <blockquote>
+        <strong>W<sub>i</sub> = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]</strong>
+    </blockquote>
+  
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2013/07/31/javascript-idcard-validate/">阅读全文......</a>
+        </p>
+    </li>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-07">2013年07月31日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#javascript"> javascript</a>
+        <span class="glyphicon glyphicon-tags"></span> javascript
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/" href="http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/#disqus_thread"></a>
+    </div>
+</div>
+
+
+<div>
+    <ul class="pagination pagination-md">
+        <li><span>第 3 / 5 页</span></li>
+        <li>
+            
+            <a href="/page2">«</a>
+            
+        </li>
+        
+        
+        <li><a href="/index.html">1</a></li>
+        
+        
+        
+        <li><a href="/page2">
+            2 </a></li>
+        
+        
+        
+        <li class="active"><span>3 <span class="sr-only">(current)</span></span></li>
+        
+        
+        
+        <li><a href="/page4">
+            4 </a></li>
+        
+        
+        
+        <li><a href="/page5">
+            5 </a></li>
+        
+        
+        
+        <li><a href="/page4">»</a></li>
+        
+    </ul>
+</div>
+
+<script id="dsq-count-scr" src="//oxcow.disqus.com/count.js" async></script>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

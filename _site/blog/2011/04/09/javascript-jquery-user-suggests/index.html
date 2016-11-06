@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>一些关于javascript、jQuery使用时的建议 - Leeyee’s Blog</title>
+<meta property="og:title" content="一些关于javascript、jQuery使用时的建议">
+<meta name="description" content="这篇文章介绍一些关于javascript及jQuery代码开发过程中首选的最佳实践。">
+<meta property="og:description" content="这篇文章介绍一些关于javascript及jQuery代码开发过程中首选的最佳实践。">
+<link rel="canonical" href="http://iyiguo.net/blog/2011/04/09/javascript-jquery-user-suggests/">
+<meta property="og:url" content="http://iyiguo.net/blog/2011/04/09/javascript-jquery-user-suggests/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-04-09T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2011/06/19/spring-expression-language/" title="Spring3 表达式语言(SpEL)介绍">
+<link rel="prev" href="http://iyiguo.net/blog/2010/04/07/javascript-best-practices/" title="javascript 最佳实践">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "一些关于javascript、jQuery使用时的建议",
+    "datePublished": "2011-04-09T00:00:00+08:00",
+    "description": "这篇文章介绍一些关于javascript及jQuery代码开发过程中首选的最佳实践。",
+    "url": "http://iyiguo.net/blog/2011/04/09/javascript-jquery-user-suggests/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#javascript">javascript</a></li>
+        
+        <li class="active">一些关于javascript、jQuery使用时的建议</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> 一些关于javascript、jQuery使用时的建议 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2011/04/09/javascript-jquery-user-suggests/">《一些关于javascript、jQuery使用时的建议》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2011/04/09/javascript-jquery-user-suggests/">http://iyiguo.net/blog/2011/04/09/javascript-jquery-user-suggests/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">1.在遍历数组时缓存长度</a></li>
+  <li><a href="#dom" id="markdown-toc-dom">2.如果需要给DOM中添加新的元素，避免创建一个元素添加一次。应尽量只添加一次</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">3.避免重复，保持代码干燥</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">4.当心匿名函数。</a></li>
+  <li>
+<a href="#section-3" id="markdown-toc-section-3">5.选择器的优化</a>    <ul>
+      <li><a href="#id" id="markdown-toc-id">5.1.通过ID来获取元素是最好的选择</a></li>
+      <li><a href="#section-4" id="markdown-toc-section-4">5.2.选择器的右边要具体化，而不是左边。</a></li>
+      <li><a href="#section-5" id="markdown-toc-section-5">5.3.避免选择器过度具体化</a></li>
+      <li><a href="#section-6" id="markdown-toc-section-6">5.4.避免使用通配符选择器。(能被匹配在任何地方的指定或隐含的选择器运行是非常慢的)</a></li>
+    </ul>
+  </li>
+  <li><a href="#use-event-delegation" id="markdown-toc-use-event-delegation">6.使用事件委托(Use Event Delegation)</a></li>
+  <li><a href="#fndetachdom" id="markdown-toc-fndetachdom">7.使用<code class="highlighter-rouge">$.fn.detach</code>从DOM中移除元素</a></li>
+  <li><a href="#section-7" id="markdown-toc-section-7">8.使用样式表改变样式，当需要改变许多元素样式时</a></li>
+  <li><a href="#datafndata" id="markdown-toc-datafndata">9.使用<code class="highlighter-rouge">$.data</code>替代<code class="highlighter-rouge">$.fn.data</code>存储数据</a></li>
+  <li><a href="#section-8" id="markdown-toc-section-8">10.不要对不存在的元素施加操作</a></li>
+  <li><a href="#section-9" id="markdown-toc-section-9">11.变量定义</a></li>
+  <li><a href="#section-10" id="markdown-toc-section-10">12.条件语句</a></li>
+  <li><a href="#jquery" id="markdown-toc-jquery">13.不要把jQuery视作一个黑盒子</a></li>
+</ul>
+
+<h2 id="section">1.在遍历数组时缓存长度</h2>
+
+<p>在遍历数组时应将数组的长度保存在一个变量中，不要在循环中每次都访问数组长度。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// bad code  
+for ( var i = 0; i &lt; aArray.length; i++) {  
+    // TODO something  
+}  
+
+// better code  
+var iLen = aArray.length;  
+for ( var i = 0; i &lt; iLen; i++) {  
+    // TODO something  
+}  
+</code></pre>
+</div>
+
+<h2 id="dom">2.如果需要给DOM中添加新的元素，避免创建一个元素添加一次。应尽量只添加一次</h2>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// bad code  
+$.each(aArray, function(i, item) {  
+    var newListItem = '&lt;li&gt;' + item + '&lt;/li&gt;';  
+    $('ul').append(newListItem); // 这里每append一次都将会重载DOM  
+});  
+
+// better code  
+var frag = document.createDocumentFragment(); // 创建文档碎片  
+$.each(aArray, function(i, item) {  
+    var newListItem = '&lt;li&gt;' + item + '&lt;/li&gt;';  
+    frag.appendChild(newListItem); // 这里不会刷新DOM  
+});  
+$('ul').appendChild(frag); // 添加新元素，此时重载DOM一次  
+
+// or do this  
+var sHtml = '';  
+$.each(aArray, function(i, item) {  
+    html += '&lt;li&gt;' + item + '&lt;/li&gt;'; // 构造需要添加元素的字符串  
+});  
+$('ul').html(sHtml); // 使用jQuery的$.fn.html()方法添加改字符串  
+</code></pre>
+</div>
+
+<h2 id="section-1">3.避免重复，保持代码干燥</h2>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// bad code  
+if ($eventfade.data('currently') != 'showing') {  
+    $eventfade.stop();  
+}  
+if ($eventhover.data('currently') != 'showing') {  
+    $eventhover.stop();  
+}  
+if ($spans.data('currently') != 'showing') {  
+    $spans.stop();  
+}  
+
+// good  
+var $elems = [ $eventfade, $eventhover, $spans ]; // 构造一个数组  
+$.each($elems, function(i, elem) {  
+    if (elem.data('currently') != 'showing') {  
+        elem.stop();  
+    }  
+});  
+</code></pre>
+</div>
+
+<h2 id="section-2">4.当心匿名函数。</h2>
+
+<p>绑定匿名函数是让人头疼的，对于他们调试，修改，测试或者重用都是困难的。因此可以使用对象去组织和命名你的处理方法和回调函数</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// bad code  
+$(document).ready(function() {  
+    $('#magic').click(function(e){  
+            $('#yayeffects').slideUp(function() {  
+                    // TODO some codes  
+            });  
+    });  
+    $("#happiness").load(url + ' #unicorns',function(){  
+        // TODO some codes  
+    });  
+});  
+  
+// better  
+var PI = {  
+     onReady :  function(){  
+            $('#magci').click(PI.candyMtn);  
+            $('#happiness').load(PI.url + ' #unicorns', PI.unicornCb);  
+     },  
+     candyMtn : function(e) {  
+            $('#yayeffects').slideUp(PI.slideCb);  
+     },  
+     slideCb : function() { // TODO some codes},  
+     unicornCb : function() { // TODO some codes}  
+};  
+$(document).ready(PI.onReady);  
+</code></pre>
+</div>
+
+<h2 id="section-3">5.选择器的优化</h2>
+
+<h3 id="id">5.1.通过ID来获取元素是最好的选择</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// fast  
+$('#container div.robotarm'); // 获取元素id=container中div元素class=robotarm的元素
+
+// super-fast  
+$('#container').find('div.robotarm');  
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">$.fn.find</code>方法是快速的，因为对于第一个选择<code class="highlighter-rouge">$('#container')</code>其实质是通过<code class="highlighter-rouge">document.getElementById()</code>来实现的。<code class="highlighter-rouge">document.getElementById()</code>是浏览器原生方法</p>
+
+<h3 id="section-4">5.2.选择器的右边要具体化，而不是左边。</h3>
+
+<p>如果可以尽量使<code class="highlighter-rouge">tag.class</code>出现在右边，而单独的<code class="highlighter-rouge">tag</code>或者<code class="highlighter-rouge">.class</code>出现在左边</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// 未经优化的  
+$('div.data .gonzalez'); 
+
+// 优化后  
+$('.data td.gonzalez');  
+</code></pre>
+</div>
+
+<h3 id="section-5">5.3.避免选择器过度具体化</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$('.data table.attendees td.gonzalez');  
+// better : drop the middle if possible  
+$('.data td.gonzalez');  
+</code></pre>
+</div>
+
+<h3 id="section-6">5.4.避免使用通配符选择器。(能被匹配在任何地方的指定或隐含的选择器运行是非常慢的)</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// 查询效率低下  
+$('.buttons &gt; *'); 
+
+// much better  
+$('.buttons').children(); 
+
+// 隐含的通配选择 no good  
+$('.gender :radio'); 
+
+// 和上面一样。明确的通配选择 no good  
+$('.gender *:radio'); 
+
+// much better  
+$('.gender input:radio');  
+</code></pre>
+</div>
+
+<h2 id="use-event-delegation">6.使用事件委托(Use Event Delegation)</h2>
+
+<p>事件委托允许绑定一个事件处理程序到一个容器元素上（比如，一个无序序列）替代多容器元素（比如，列表项）。</p>
+
+<p>使用jQuery的<code class="highlighter-rouge">$.fn.live</code>和<code class="highlighter-rouge">$.fn.delegate</code>是易于实现事件委托的。在可能的情况下应该使用<code class="highlighter-rouge">$.fn.delegate</code>替代<code class="highlighter-rouge">$.fn.live</code>,因为<code class="highlighter-rouge">$.fn.delegate</code>省去了不必要的选择，并且当DOM上下文明确时，相对<code class="highlighter-rouge">$.fn.live</code>，使用<code class="highlighter-rouge">$.fn.delegate</code>能减少约80%的开销。</p>
+
+<p>除了性能方面的好处外，事件委托会在添加新容器元素到页面时直接绑定处理程序，而无需对新添容器元素重新绑定处理程序</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// bad (当有很多&lt;li class='trigger'/&gt;时，该种调用将会很慢)  
+$('li.trigger').click(handlerFn); // 当动态添加&lt;li class='trigger'/&gt;元素时，该新增元素上将无法自动添加handlerFn时间，需重新绑定
+
+// better: 使用$.fn.live实现事件委托 所有&lt;li class='trigger'/&gt;都将绑定handlerFn事件  
+$('li.trigger').live('click', handlerFn);
+
+// best: 使用$.fn.delegate实现事件委托，允许你很容易的指定一个上下
+// $('#myList')中的所有&lt;li class='trigger'/&gt;都将绑定handlerFn事件。其他&lt;li class='trigger'/&gt;则未被绑定  
+$('#myList').delegate('li.trigger', 'click', handlerFn);  
+</code></pre>
+</div>
+
+<h2 id="fndetachdom">7.使用<code class="highlighter-rouge">$.fn.detach</code>从DOM中移除元素</h2>
+
+<p>操作DOM是缓慢的；你应该尽可能避免操作他们。在jQuery的1.4版本中提供<code class="highlighter-rouge">$.fn.detach</code>来解决这个问题。<code class="highlighter-rouge">$.fn.detach</code>允许从DOM中移除一个元素。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>var $table = $('#myTable');  
+var $parent = $table.parent(); // 获取$table元素的父节点  
+$table.detach(); // 从DOM中移除该表格  
+// TODO 添加一些行到table中  
+$parent.append($table); // 将table重新添加到原来位置  
+</code></pre>
+</div>
+
+<h2 id="section-7">8.使用样式表改变样式，当需要改变许多元素样式时</h2>
+
+<p>假如你将使用<code class="highlighter-rouge">$.fn.css</code>改变超过20个元素的样式时，请考虑添加一个样式标签到页面。这样可以提升约60%的执行速度</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// 前20个是比较快的，往后会越来越慢  
+$('a.swedberg').css('color', '#asd123'); // 考虑到$('a.swedberg')选择的匹配元素的数量很大时  
+// instead of  
+$('&lt;style type="text/css"&gt;
+        a.swedverg { color ：#asd123 }  
+        a.swedverg { color ：#asd123 }
+    &lt;/style&gt;').appendTo('head');  
+</code></pre>
+</div>
+
+<h2 id="datafndata">9.使用<code class="highlighter-rouge">$.data</code>替代<code class="highlighter-rouge">$.fn.data</code>存储数据</h2>
+
+<p>在DOM元素上使用<code class="highlighter-rouge">$.data</code>替代在jQuery选择器上调用<code class="highlighter-rouge">$.fn.data</code>将带来可达10倍的速度提升。因为<code class="highlighter-rouge">$.data</code>是jQuery的底层方法</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// 惯用的  
+$(element).data(key, value); 
+
+// 十倍速度的  
+$.data(element, key, value); 
+</code></pre>
+</div>
+
+<h2 id="section-8">10.不要对不存在的元素施加操作</h2>
+
+<p>jQuery不会告诉你是否正在一大堆空的选择器上运行代码，他会当做没有事情是错的继续运行。因此你需要自己去核实选择器包含的一些元素</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// bad  
+$('#nosuchthing').slideUp(); // 在实现.slideUp前应先确保$('#nosuchthing')是存在的
+
+// better  
+var $mySelection = $('#nosuchthing');  
+if ($mySelection.length) {  
+    $mySelection.slideUp();  
+} 
+
+// best：添加一个doOnce插件  
+jQuery.fn.doOnce = function(func) { // doOnce的作用类似公共函数  
+    this.length &amp;&amp; func.apply(this);  
+    return this;  
+};  
+$('li.cartitmes').doOnce(function() {  
+    // make it ajax！ /ｏ/  
+});  
+</code></pre>
+</div>
+
+<h2 id="section-9">11.变量定义</h2>
+
+<p>多变量可被定义可以用一条语句替代几条语句</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// old &amp; busted  
+var test = 1;  
+var test2 = function() {  
+    // TODO some things  
+};  
+var test3 = test2(test); 
+
+// new hotness  
+var test = 1, test2 = function() {  
+    // TODO some things  
+}, test3 = test2(test);  
+// 在自动执行函数中，变量的定义可被整块跳过  
+// out foo+bar --&gt; 3  
+(function(foo, bar) {  
+    console.log("foo+bar --&gt; " + (foo + bar));  
+})(1, 2);  
+</code></pre>
+</div>
+
+<h2 id="section-10">12.条件语句</h2>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// old way  
+if (type == 'foo' || type == 'bar') {  
+    // TODO something  
+} 
+
+// better  
+if (/^(foo|bar)$/.test(type)) {  
+    // TODO something  
+}  
+
+// object literal lookup  
+if (({  
+    foo : 1,  
+    bar : 1  
+})[type]) {  
+// TODO something  
+}  
+</code></pre>
+</div>
+
+<h2 id="jquery">13.不要把jQuery视作一个黑盒子</h2>
+
+<p>将jQuery源码作为你的文档 – 保存<a href="https://github.com/jquery/jquery">https://github.com/jquery/jquery</a> 在你的书签里，并且经常查阅他.</p>
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                                                                                                        
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2013/07/31/javascript-idcard-validate/">javascript身份证号码验证</a></li>
+                               
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2013/05/07/javascript-null-undefined/">javascript中的null和undefined</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/12/02/jquery-plugins-authoring/">jQuery插件编写</a></li>
+                      
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/05/05/jquery-etable-plugin/">jQuery eTable Plugin</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/05/04/jquery-msgbox-plugin/">jQuery MsgBox Plugin</a></li>
+                                     
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/04/09/javascript-jquery-user-suggests/">一些关于javascript、jQuery使用时的建议</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2011-04">2011年04月09日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#javascript"> javascript</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> javascript,jQuery 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

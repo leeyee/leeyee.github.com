@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Stripes框架如何做系列-布局复用 - Leeyee’s Blog</title>
+<meta property="og:title" content="Stripes框架如何做系列-布局复用">
+<meta name="description" content="stripes框架如何做系列中文翻译">
+<meta property="og:description" content="stripes框架如何做系列中文翻译">
+<link rel="canonical" href="http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/">
+<meta property="og:url" content="http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-07-17T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2016/07/22/stripes-how-to-indexed-properties/" title="Stripes框架如何做系列-索引属性">
+<link rel="prev" href="http://iyiguo.net/blog/2016/07/16/stripes-how-to-intercept-execution/" title="Stripes框架如何做系列-拦截器">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Stripes框架如何做系列-布局复用",
+    "datePublished": "2016-07-17T00:00:00+08:00",
+    "description": "stripes框架如何做系列中文翻译",
+    "url": "http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#stripes">stripes</a></li>
+        
+        <li class="active">Stripes框架如何做系列-布局复用</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> Stripes框架如何做系列-布局复用 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/">《Stripes框架如何做系列-布局复用》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/">http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#stripes" id="markdown-toc-stripes">使用Stripes布局标签进行基本布局</a></li>
+  <li><a href="#section" id="markdown-toc-section">传递额外信息到布局</a></li>
+  <li>
+<a href="#section-1" id="markdown-toc-section-1">布局嵌套</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">页面布局片段</a></li>
+      <li><a href="#section-3" id="markdown-toc-section-3">嵌套布局</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>原文地址：<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Layout+Reuse">https://stripesframework.atlassian.net/wiki/display/STRIPES/Layout+Reuse</a></p>
+
+<p>几乎所有的web应用程序都不止一个页面。但大多数情况所有的页面（或者针对每个页面子集使用不同的布局）都有基本相同的主题或者布局。因此常规的通用处理方式是编写如下的JSP页面：</p>
+
+<blockquote>
+  <p>使用include标签进行简单的布局复用</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;jsp:include page="/nav/header.jsp"/&gt;
+...
+&lt;jsp:include page="/nav/context.jsp"/&gt;
+My page content here
+&lt;jsp:include page="/nav/footer.jsp" /&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>对于简单的场景，这种处理方式恰如其分，但是仍会带来一些问题。当没有在指定位置包含正确的JSP时，页面很容易被搞坏掉。亦或因为想在head节点中插入脚本和样式，而不得不为每个页面定义head节点并开放或关闭body节点。如此以来，页面会变得不一致。更何况，如果想改变现有布局，就不得不修改站点中的每一个页面。同时，现在几乎没有在不同布局中展示页面而不用修改页面的情况出现。</p>
+
+<p>当然，这个问题并不是没有解决方案，而是可以通过已有的工具，比如<a href="http://struts.apache.org/userGuide/dev_tiles.html">Tiles</a>和<a href="http://www.opensymphony.com/sitemesh/">Sitemesh</a>来解决的。但我不认为这个问题已经通过简单的方式被解决了。Tiles虽然功能很全，但对于百分之九十九的人来说其使用起来是复杂的。我更偏向使用Sitemesh，因为它提供了一些Stripes没有的布局标签（下面将会讲到）。但它依赖一些XML配置和第三方包等。因此Stripes提供了一个非常简单但很强大的解决方案去解决该问题。如果符合你的要求，那么建议使用，否则可以看看Sitemesh。</p>
+
+<h2 id="stripes">使用Stripes布局标签进行基本布局</h2>
+
+<p>Stripes包含三个简单的标签用来创建和使用布局，它们是：</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">&lt;stripes:layout-definition&gt;</code>：定义一个可复用布局</li>
+  <li>
+<code class="highlighter-rouge">&lt;stripes:layout-component&gt;</code>：定义一个布局内的组件</li>
+  <li>
+<code class="highlighter-rouge">&lt;stripes:layout-render&gt;</code>：在页面中展示布局内容</li>
+</ul>
+
+<p>Stripes使用JSP定义和展示布局内容。下面是一个简单的使用Stripes布局标签展示有统一页眉和页脚的布局示例：</p>
+
+<blockquote>
+  <p>/layout/default.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code><span class="err">&lt;</span>%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
+<span class="err">&lt;</span>%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %&gt;
+ 
+<span class="nt">&lt;stripes:layout-definition&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+	<span class="nt">&lt;title&gt;</span>Layout Example<span class="nt">&lt;/title&gt;</span>
+	<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span>
+	    <span class="na">type=</span><span class="s">"text/css"</span>
+	    <span class="na">xhref=</span><span class="s">"${pageContext.request.contextPath}/style/default.css"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"html_head"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+ 
+    <span class="nt">&lt;body&gt;</span>
+	<span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"header"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">"/layout/_header.jsp"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/stripes:layout-component&gt;</span>
+ 
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pageContent"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"contents"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+ 
+	<span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"footer"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">"/layout/_footer.jsp"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/stripes:layout-component&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+<span class="nt">&lt;/stripes:layout-definition&gt;</span>
+</code></pre>
+  </div>
+</blockquote>
+
+<p>当这个布局被渲染时，有以下事情发生：</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">&lt;stripes:layout-definition&gt;</code>外的内容是被忽略的</li>
+  <li>任何<code class="highlighter-rouge">&lt;stripes:layout-definition&gt;</code>内<code class="highlighter-rouge">&lt;stripes:layout-component&gt;</code>外的内容将被直接展示</li>
+  <li>当遇到<code class="highlighter-rouge">&lt;stripes:layout-component&gt;</code>标签时，除非没有被重写，那么内容将被直接渲染，否则将使用重写内容替代当前定义中已有的内容</li>
+</ul>
+
+<p>让我们看下使用了这个布局的Hello World页面。</p>
+
+<blockquote>
+  <p>/HelloWorld.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %&gt;
+&lt;stripes:layout-render name="/layout/default.jsp"&gt;
+    &lt;stripes:layout-component name="contents"&gt;
+	Hello World!
+    &lt;/stripes:layout-component&gt;
+&lt;/stripes:layout-render&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>注意这里<em>stripes:layout-render</em>的<em>name</em>属性就是default.jsp的文件路径。在这个示例中再次使用了<code class="highlighter-rouge">&lt;stripes:layout-component&gt;</code>标签，但重写了布局组件的页面内容。布局中的任何组件都可以被重写。在示例布局顶部，有一个叫做“html_head”的布局组件。一个具体的页面可以重写这个组件内容（添加一个<code class="highlighter-rouge">&lt;script&gt;</code>块或者一些meta标签），而不用去直接修改布局代码。</p>
+
+<blockquote>
+  <p><strong>使用绝对路径</strong></p>
+
+  <blockquote>
+    <p>在<em>stripes:layout-render</em> 标签的<em>name</em>属性中，始终使用以／开始的绝对路径名。</p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <p><strong>使用有效的java命名规则命名组件名</strong></p>
+
+  <blockquote>
+    <p>虽然在一些场景下使用类似“body-content”（命名包含连字符）这样的组件命名可以正常工作，但它仍可能产生一些难以跟踪的问题。请考虑将使用java命名规则去命名组件作为一种最佳编程实践。尤其是使用下划线替代连字符，如“body_content”，以及不要在名字中使用空格等。</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="section">传递额外信息到布局</h2>
+
+<p>当你想让你的页面看起来更加标准，那么当前这么做就已经很不错了。但或许页面的标题应该使用一种特定的风格被显示，并且总是在同一个位置。或许你还想让浏览器窗口显示页面标题。好吧，你可以强迫你的用户通过<code class="highlighter-rouge">&lt;stripes:layout-components&gt;</code>重写像页面标题这样的小事情的内容，但这样会让人感觉很笨重。</p>
+
+<p>出于这样的考虑，<code class="highlighter-rouge">&lt;stripes:layout-render&gt;</code>标签是可以接受动态属性的。这意味着你可以在<code class="highlighter-rouge">&lt;stripes:layout-render&gt;</code>标签中使用任何你喜欢的属性。所有这些属性被当做布局定义页面的上下文属性。这样可以很方便的通过EL表达式来访问这些属性了。想象下，将JSP示例改成这样：</p>
+
+<blockquote>
+  <p>/HelloWorld.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %&gt;
+&lt;stripes:layout-render name="/layout/default.jsp" pageTitle="Using A Layout"&gt;
+    &lt;stripes:layout-component name="contents"&gt;
+	Hello World!
+    &lt;/stripes:layout-component&gt;
+&lt;/stripes:layout-render&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>然后我们就可以在布局定义中使用<em>pageTitle</em> 了：</p>
+
+<blockquote>
+  <p>/layout/default.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>...
+<span class="nt">&lt;stripes:layout-definition&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+	<span class="nt">&lt;title&gt;</span>Examples: ${pageTitle}<span class="nt">&lt;/title&gt;</span>
+	<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span>
+	    <span class="na">type=</span><span class="s">"text/css"</span>
+	    <span class="na">xhref=</span><span class="s">"${pageContext.request.contextPath}/style/default.css"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"html_head"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+ 
+    <span class="nt">&lt;body&gt;</span>
+	<span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"header"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">"/layout/_header.jsp"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/stripes:layout-component&gt;</span>
+ 
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"title&gt;${pageTitle}&lt;/div&gt;
+ 
+	&lt;div class="</span><span class="na">pageContent</span><span class="err">"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"contents"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+ 
+	<span class="nt">&lt;stripes:layout-component</span> <span class="na">name=</span><span class="s">"footer"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">"/layout/_footer.jsp"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/stripes:layout-component&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+<span class="nt">&lt;/stripes:layout-definition&gt;</span>
+</code></pre>
+  </div>
+</blockquote>
+
+<p>但是，假设在某些情况下，页面标题不是这么简单呢？或许我们要包含用户名并且做一些格式化和国际化呢？好吧，碰巧的是<em>layout-components</em>标签的<em>name</em>属性值也可在页面上下文中被使用。因此我们可以使用如下的方式定义另一个JSP传递<em>pageTitle</em>:</p>
+
+<blockquote>
+  <p>/HelloWorld2.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %&gt;
+&lt;stripes:layout-render name="/layout/default.jsp"&gt;
+    &lt;stripes:layout-component name="contents"&gt;
+	Hello World!
+    &lt;/stripes:layout-component&gt;
+    &lt;stripes:layout-component name="pageTitle"&gt;
+	&lt;jsp:useBean scope="session" name="user" class="com.myco.myapp.User"/&gt;
+	&lt;c:choose&gt;
+	    &lt;c:when test="${user.male}&gt;Mr.&lt;/c:when&gt;
+	    &lt;c:otherwise&gt;Ms.&lt;/c:otherwise&gt;
+	&lt;c:choose&gt;
+	${user.lastName} is using a Layout
+    &lt;/stripes:layout-component&gt;
+&lt;/stripes:layout-render&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>这里有一些值得我们注意的点：</p>
+
+<ul>
+  <li>只要你愿意你可以传递许多参数到布局</li>
+  <li>参数不仅可以当做渲染标签属性，也可以当做渲染标签内的组件属性</li>
+  <li>
+<strong>但是：</strong> 只有组件可以通过<code class="highlighter-rouge">&lt;stripes:layout-component&gt;</code>标签被放入到布局中，渲染属性仅作为页面上下文属性使用</li>
+  <li>布局组件必须生成一个字符串，而渲染属性可以是任何类型（比如，可以传递一个列表或者一个User对象到布局）</li>
+</ul>
+
+<h2 id="section-1">布局嵌套</h2>
+
+<p>目前为止所有的示例都是使用单一布局来设计整个页面。这一节将介绍如何使用页面布局片段、嵌套布局或者继承布局来进行页面设计。</p>
+
+<h3 id="section-2">页面布局片段</h3>
+
+<p>显而易见，你可以使用布局来控制一小块页面的渲染。在这种方式下使用布局标签和使用JSP片段自定义新的标签文件是非常相似的。但重要的区别在于，通过JSP片段自定义标签文件时，这些JSP片段中不能包含任何脚本。通常这都不是问题，但有些时候这种方式却会带来一些问题。不管怎么样，可以想象下，或许可以通过一个标准的方式展示带有标题的图片，那么你可以定义一个如下的布局：</p>
+
+<blockquote>
+  <p>/layout/imgage.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;stripes:layout-definition&gt;
+    &lt;table style="minimal"&gt;
+	&lt;tr&gt;
+	    &lt;td align="center"&gt;&lt;img xsrc="${pageContext.request.contextPath}/${src}" alt="${caption}" /&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	    &lt;td style="caption"&gt;${caption}&lt;/td&gt;
+	&lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/stripes:layout-definition&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>然后在JSP中给图片一个统一的设置：</p>
+
+<blockquote>
+  <p>/HelloWorld.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %&gt;
+&lt;stripes:layout-render name="/layout/default.jsp" pageTitle="Using A Layout"&gt;
+    &lt;stripes:layout-component name="contents"&gt;
+	&lt;p&gt;Lookee! An image!&lt;/p&gt;
+ 
+	&lt;stripes:layout-render name="/layout/image.jsp"
+	    xsrc="/HelloWorld.jpg" caption="Hello World!"/&gt;
+    &lt;/stripes:layout-component&gt;
+&lt;/stripes:layout-render&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>现在，当用户突然决定他们想将图片展示的标题从底部挪到旁边时，那们你只需要改变布局即可，而不是去更新站点下的所有JSP页面。</p>
+
+<h3 id="section-3">嵌套布局</h3>
+
+<p>到这一步为止你的站点看起来很不错，所有的导航都是一致的。但是仍然有一堆去做不同搜索的页面，它们只是略有不同。同时，一些搜索条件是在结果的上方，一些则是在下方，还有一些按钮是左对齐，另一些则是右对齐。那么你可以为搜索定义一个布局，并将其作为全局布局！它可能看起来是这样的：</p>
+
+<blockquote>
+  <p>/layout/search.jsp</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;stripes:layout-definition&gt;
+    &lt;stripes:layout-render name="/layout/default.jsp" pageTitle="${type} Search"&gt;
+	&lt;stripes:layout-component name="contents"&gt;
+	    &lt;div class="searchFields"&gt;${inputs}&lt;/div&gt;
+	    &lt;div class="searchButtons"&gt;${buttons}&lt;/div&gt;
+	    &lt;div class="searchResults"&gt;${results}&lt;/div&gt;
+	&lt;/stripes:layout-component&gt;
+    &lt;/stripe:layout-render&gt;
+&lt;/stripes:layout-definition&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>在这个示例中，我们看到用一个布局去定义另一个布局（搜索使用默认布局），但是在默认布局的页面上下文中强制增加了额外的结构。</p>
+
+<blockquote>
+  <p>因为将<code class="highlighter-rouge">&lt;stripes:layout-render&gt;</code>标签内嵌在了<code class="highlighter-rouge">&lt;stripes:layout-definition&gt;</code>标签中，所以<code class="highlighter-rouge">&lt;stripes:layout-render&gt;</code>标签内任何<code class="highlighter-rouge">&lt;stripes:layout-component&gt;</code>标签将被绑定到<code class="highlighter-rouge">&lt;stripes:layout-render&gt;</code>标签中，而不是<code class="highlighter-rouge">&lt;stripes:layout-definition&gt;</code>标签中。这就是为什么在示例中，通过EL表达式（inputs,buttons和results）替代<code class="highlighter-rouge">&lt;stripes:layout-component&gt;</code>标签从页面上下文中导入组件的原因。</p>
+</blockquote>
+
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                 
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/11/06/stripes-how-to-wizard_forms/">Stripes框架如何做系列-向导表单</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/">Stripes框架如何做系列-更多使用默认配置</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/10/stripes-how-to-unit_testing/">Stripes框架如何做系列-单元测试</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/25/stripes-how-to-state_management/">Stripes框架如何做系列-状态管理</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/21/stripes-how-to-localization/">Stripes框架如何做系列-本地化</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/">Stripes框架如何做系列-Spring和Stripes</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2016-07">2016年07月17日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#stripes"> stripes</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> stripes,译文 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

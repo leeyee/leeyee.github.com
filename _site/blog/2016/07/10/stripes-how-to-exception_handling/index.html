@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Stripes框架如何做系列-异常处理 - Leeyee’s Blog</title>
+<meta property="og:title" content="Stripes框架如何做系列-异常处理">
+<meta name="description" content="stripes框架如何做系列中文翻译">
+<meta property="og:description" content="stripes框架如何做系列中文翻译">
+<link rel="canonical" href="http://iyiguo.net/blog/2016/07/10/stripes-how-to-exception_handling/">
+<meta property="og:url" content="http://iyiguo.net/blog/2016/07/10/stripes-how-to-exception_handling/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-07-10T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2016/07/10/stripes-how-to-extensions/" title="Stripes框架如何做系列-扩展">
+<link rel="prev" href="http://iyiguo.net/blog/2016/07/09/stripes-how-to-display-errors/" title="Stripes框架如何做系列-展示错误">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Stripes框架如何做系列-异常处理",
+    "datePublished": "2016-07-10T00:00:00+08:00",
+    "description": "stripes框架如何做系列中文翻译",
+    "url": "http://iyiguo.net/blog/2016/07/10/stripes-how-to-exception_handling/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#stripes">stripes</a></li>
+        
+        <li class="active">Stripes框架如何做系列-异常处理</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> Stripes框架如何做系列-异常处理 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2016/07/10/stripes-how-to-exception_handling/">《Stripes框架如何做系列-异常处理》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2016/07/10/stripes-how-to-exception_handling/">http://iyiguo.net/blog/2016/07/10/stripes-how-to-exception_handling/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">异常处理简介</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">默认异常处理</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">委派异常处理</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">自定义异常处理</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">配置异常处理</a></li>
+  <li><a href="#actionbeanactionbeancontext" id="markdown-toc-actionbeanactionbeancontext">在异常处理中访问ActionBean、ActionBeanContext等</a></li>
+</ul>
+
+<p>原文地址：<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Exception+Handling">https://stripesframework.atlassian.net/wiki/display/STRIPES/Exception+Handling</a></p>
+
+<h2 id="section">异常处理简介</h2>
+
+<p>Servlet规范的内建异常处理机制是有限的，对于处理Web应用产生的异常。具体来说，当异常发生时，它只能将请求转向到一个JSP或者一个文件，而不能指向一个servlet或者一个没有可执行代码的JSP。而这些就是Stripes的异常处理机制要去解决的。</p>
+
+<p>Stripes大多数主要的接口都允许开发者抛出任何不想处理的异常。比如处理方法、验证方法等。调用所有抛出的异常，取决于你定义的异常处理策略：Stripes是不会强加给你的。也就说，Stripes的作者建议应该传递不能处理的异常，让Stripes框架帮你处理，而不是捕获、包装或者抛出异常。</p>
+
+<p>Stripes异常处理是通过实现<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/ExceptionHandler.html">ExceptionHandler</a>接口来完成的。该接口用来处理请求期间出现的任何异常。他们可能重新抛出异常，或者执行任意代码并返回一个<code class="highlighter-rouge">Resolution</code>告诉Stripes下一步应该去做什么。</p>
+
+<blockquote>
+  <p><a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/ExceptionHandler.html">ExceptionHandler</a>在Stripes过滤中被调用。这样就可以在过滤器中处理来自ActionBeans、JSP，甚至其他比Stripes过滤器级别低（Filter Chain 过滤器链路）的Servelet过滤器中生成的异常。</p>
+</blockquote>
+
+<h2 id="section-1">默认异常处理</h2>
+
+<p>默认的异常处理类<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DefaultExceptionHandler.html">DefaultExceptionHandler</a>并没有做太多事情。基本上就做了如下操作而已：如果当前正在处理的异常是ServletException，那么该异常将被重新抛出去，否则它将会被包装成StripesServletException对象后在被抛出去。</p>
+
+<p>然而，通过扩展<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DefaultExceptionHandler.html">DefaultExceptionHandler</a>能很容易的通过不同的方式去处理不同类型的异常。你唯一要做的就是添加并任意命名一个包含异常类型、http请求和http响应三个参数的方法。此外，如果你的方法返回一个<code class="highlighter-rouge">Resolution</code>，那么该<code class="highlighter-rouge">Resolution</code>将会被执行。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyExceptionHandler extends DefaultExceptionHandler {
+    public Resolution handleDatabaseException(SQLException exc, HttpServletRequest request, HttpServletResponse response) {
+	// do something to handle SQL exceptions
+	return new ForwardResolution(...);
+    }
+ 
+    public Resolution handleGeneric(Exception exc, HttpServletRequest request, HttpServletResponse response) {
+    // general exception handling
+	return new ForwardResolution(...);
+    }
+}
+</code></pre>
+</div>
+
+<p>当一个异常被处理时，<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DefaultExceptionHandler.html">DefaultExceptionHandler</a>查找最符合该异常的方法进行处理。如果不能找到与触发异常最匹配的处理方法，它将层层寻找该异常的父类型。如果依旧无法找到，那么该异常将会被重新抛出。因此针对此种情况，建议在继承<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DefaultExceptionHandler.html">DefaultExceptionHandler</a>实现异常处理时，一定要有一个处理所有异常父类的方法，比如上述代码中的<code class="highlighter-rouge">handleGeneric</code>方法。</p>
+
+<h2 id="section-2">委派异常处理</h2>
+
+<p><a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DelegatingExceptionHandler.html">DelegatingExceptionHandler</a>允许针对异常可以有多个处理类，只要每一个处理类实现<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/AutoExceptionHandler.html">AutoExceptionHandler</a>接口即可。除此之外，它的工作方式与<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DefaultExceptionHandler.html">DefaultExceptionHandler</a>是相似的。</p>
+
+<p>实现了<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/AutoExceptionHandler.html">AutoExceptionHandler</a>接口的类允许有一个或多个相同签名的方法：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>public Resolution someMethod(Exception e, HttpServletRequest req, HttpServletResponse res);
+public Resolution someMethod(NullPointerException npe, HttpServletRequest req, HttpServletResponse res);
+</code></pre>
+</div>
+
+<p>当<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DelegatingExceptionHandler.html">DelegatingExceptionHandler</a>初始化时，它将扫描类路径下实现了<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/AutoExceptionHandler.html">AutoExceptionHandler</a>接口的方法。类路径配置可以在Stripes拦截器中通过init-param节点配置DelegatingExceptionHandler.Packages或Extension.Packages参数。</p>
+
+<blockquote>
+  <p>web.xml</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;init-param&gt;
+     &lt;param-name&gt;DelegatingExceptionHandler.Packages&lt;/param-name&gt;
+     &lt;param-value&gt;com.myco.web,com.myco.shared&lt;/param-value&gt;
+ &lt;/init-param&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<h2 id="section-3">自定义异常处理</h2>
+
+<p>自定义异常处理相当简单。你只需要实现<code class="highlighter-rouge">ExceptionHandler</code>接口并实现两个方法（包含继承的一个）即可。比如：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyExceptionHandler implements ExceptionHandler {
+    /** Doesn't have to do anything... */
+    public void init(Configuration configuration) throws Exception { }
+ 
+    /** Do something a bit more complicated that just going to a view. */
+    public void handle(Throwable throwable, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	TransactionUtil.rollback(); // rollback any tx in progress
+	if (AppProperties.isDevMode()) {
+	    throw new StripesServletException(throwable);
+	}
+	else {
+	    request.setAttribute("exception", throwable);
+		    request.getRequestDispatcher("/error.jsp").forward(request, response);
+	}
+    }
+}
+</code></pre>
+</div>
+
+<p>更简单的方式是继承<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/DefaultExceptionHandler.html">DefaultExceptionHandler</a>类并添加上述的异常处理方法即可。</p>
+
+<h2 id="section-4">配置异常处理</h2>
+
+<p>当创建了自定义异常处理类后，还需要对其进行配置才能使其正常工作。方法是在扩展(具体可看<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Extensions">Extensions</a>)包或者ExceptionHandler.Class参数中指定自定义异常类。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;init-param&gt;
+    &lt;param-name&gt;ExceptionHandler.Class&lt;/param-name&gt;
+    &lt;param-value&gt;com.myco.exception.MyExceptionHandler&lt;/param-value&gt;
+&lt;/init-param&gt;
+</code></pre>
+</div>
+
+<h2 id="actionbeanactionbeancontext">在异常处理中访问ActionBean、ActionBeanContext等</h2>
+
+<p>异常处理的接口是相当简单的：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>public void handle(Throwable throwable, HttpServletRequest request, HttpServletResponse response) throws ServletException;
+</code></pre>
+</div>
+
+<p>这主要是因为异常处理可以处理来自Stripes应用中任何地方的异常，甚至是在异常发生前已被创建的ActionBean和ActionBeanContext！<a href="http://stripes.sourceforge.net/docs/current/javadoc/index.html?net/sourceforge/stripes/exception/AutoExceptionHandler.html">AutoExceptionHandler</a>接口也是如此。因此这可能会让你想知道该如何去访问ActionBean等信息。例如，你可能知道，基于被处理异常的类型是来自那个<code class="highlighter-rouge">ActionBean</code>的。或者你可能只是简单的希望在当前异常所在<code class="highlighter-rouge">ActionBean</code>中做一些不同的处理。</p>
+
+<p>获取<code class="highlighter-rouge">ActionBean</code>是相对简单的。获取后就可以很容易的通过<code class="highlighter-rouge">ActionBean</code>获取<code class="highlighter-rouge">ActionBeanContext</code>和<code class="highlighter-rouge">ValidationErrors</code>信息了。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>/**
+ * If there's an ActionBean present, send the user back where they came from with
+ * a stern warning, otherwise send them to the global error page.
+ */
+public void handle(Throwable throwable, HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    ActionBean bean = (ActionBean) request.getAttribute(StripesConstants.REQ_ATTR_ACTION_BEAN);
+ 
+    if (bean != null) {
+        bean.getContext().getValidationErrors().addGlobalError(new SimpleError("You made something blow up! Bad user!"));
+        bean.getContext.getSourcePageResolution().execute(request, response);
+    }
+    else {
+        request.getRequestDispatcher("/error.jsp").forward(request, response);
+    }
+}
+</code></pre>
+</div>
+
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                 
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/11/06/stripes-how-to-wizard_forms/">Stripes框架如何做系列-向导表单</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/">Stripes框架如何做系列-更多使用默认配置</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/10/stripes-how-to-unit_testing/">Stripes框架如何做系列-单元测试</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/25/stripes-how-to-state_management/">Stripes框架如何做系列-状态管理</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/21/stripes-how-to-localization/">Stripes框架如何做系列-本地化</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/">Stripes框架如何做系列-Spring和Stripes</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2016-07">2016年07月10日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#stripes"> stripes</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> stripes,译文 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

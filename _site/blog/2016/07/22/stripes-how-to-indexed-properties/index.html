@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Stripes框架如何做系列-索引属性 - Leeyee’s Blog</title>
+<meta property="og:title" content="Stripes框架如何做系列-索引属性">
+<meta name="description" content="stripes框架如何做系列中文翻译">
+<meta property="og:description" content="stripes框架如何做系列中文翻译">
+<link rel="canonical" href="http://iyiguo.net/blog/2016/07/22/stripes-how-to-indexed-properties/">
+<meta property="og:url" content="http://iyiguo.net/blog/2016/07/22/stripes-how-to-indexed-properties/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-07-22T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2016/08/03/stripes-how-to-spring-with-stripes/" title="Stripes框架如何做系列-Spring和Stripes">
+<link rel="prev" href="http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/" title="Stripes框架如何做系列-布局复用">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Stripes框架如何做系列-索引属性",
+    "datePublished": "2016-07-22T00:00:00+08:00",
+    "description": "stripes框架如何做系列中文翻译",
+    "url": "http://iyiguo.net/blog/2016/07/22/stripes-how-to-indexed-properties/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#stripes">stripes</a></li>
+        
+        <li class="active">Stripes框架如何做系列-索引属性</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> Stripes框架如何做系列-索引属性 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2016/07/22/stripes-how-to-indexed-properties/">《Stripes框架如何做系列-索引属性》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2016/07/22/stripes-how-to-indexed-properties/">http://iyiguo.net/blog/2016/07/22/stripes-how-to-indexed-properties/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#jsp" id="markdown-toc-jsp">JSP中的数字索引属性</a></li>
+  <li><a href="#actionbean" id="markdown-toc-actionbean">使用ActionBean中列表的数字索引的属性</a></li>
+  <li><a href="#section" id="markdown-toc-section">索引属性校验</a></li>
+  <li><a href="#mapskey" id="markdown-toc-mapskey">Maps的索引属性（任意key类型）</a></li>
+</ul>
+
+<p>原文地址：<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Indexed+Properties">https://stripesframework.atlassian.net/wiki/display/STRIPES/Indexed+Properties</a></p>
+
+<p>这篇如何做将涉及如何使用数字索引和字符索引映射属性。定义数字索引是有点困难的，但可以用示例很容易展示出来。试想下，如果想要在页面上编辑一些关于bug的信息，那么可以通过一个包含像 “bug.name”, “bug.description”, “bug.priority”等信息域的表单来完成该操作。现在，如果需要在一个页面一次编辑多个bug，那么可以写许多包含类似”bug1.name”, “bug2.name”的域属性在一个表单中（同样ActionBean中一样）。但是这样做太费事了。此时可以考虑使用Stripes定义的符号（和其他工具类似）并用类似 bug[0].name和 bug[1].name的方式来替换表单域。</p>
+
+<p>为完成上述功能还有两个方面需要考虑：如何在表单内生成域字段名和如何在ActionBean中去接收他们。其实，这两者都是很简单的。</p>
+
+<h2 id="jsp">JSP中的数字索引属性</h2>
+
+<p>本质上，在JSP中构建参数名是由开发者决定的。这是一个好消息也是一个坏消息。坏消息是这意味着开发人员需要略多做点工作，但也仅仅只是多做一点。好消息是说它意味着更多的灵活性。这么做有以下优点：</p>
+
+<ul>
+  <li>索引可以内嵌在属性名内的任何位置</li>
+  <li>一个单独的属性可以有多个索引（比如：<code class="highlighter-rouge">bugs[0].watchers[3].name</code>）</li>
+  <li>索引可以来自任何地方——允许与任何循环提供访问其索引的标签互操作，这些标签允许访问其索引，比如<em>c:for*</em>标签、<em><a href="http://www.displaytag.org/">display:table</a></em>标签等。</li>
+</ul>
+
+<p>下面是一段JSP使用索引属性的示例片段（它是来自Bugzooky<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Sample+Application">简单应用</a>的简化版页面）:</p>
+
+<blockquote>
+  <p>在JSP中使用索引属性</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;stripes:form action="/bugzooky/EditPeople.action"&gt;
+    &lt;table class="display"&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;Username&lt;/th&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th&gt;Email&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;c:forEach items="${personManager.allPeople}" var="person" varStatus="loop"&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    ${person.id}
+                    &lt;stripes:hidden name="people[${loop.index}].id" value="${person.id}"/&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;stripes:text name="people[${loop.index}].username" value="${person.username}"/&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;stripes:text name="people[${loop.index}].firstName" value="${person.firstName}"/&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;stripes:text name="people[${loop.index}].lastName" value="${person.lastName}"/&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;stripes:text name="people[${loop.index}].email" value="${person.email}"/&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;c:set var="newIndex" value="${loop.index + 1}" scope="page"/&gt;
+        &lt;/c:forEach&gt;
+        &lt;%-- And now, an empty row, to allow the adding of new users. --%&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;td&gt;
+                &lt;stripes:text name="people[${newIndex}].username"/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;stripes:text name="people[${newIndex}].firstName"/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;stripes:text name="people[${newIndex}].lastName"/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;stripes:text name="people[${newIndex}].email"/&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&gt; 
+    &lt;div class="buttons"&gt;
+        &lt;stripes:submit name="Save" value="Save Changes"/&gt;
+    &lt;/div&gt;
+&lt;/stripes:form&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>通过使用<em>c:forEach</em> 标签，<em>varStatus</em>属性（包含当前遍历对象索引）变量被命名为<em>loop</em>。然后在表单字域中，<em>loop.index</em> 通过EL表达式被插入到表单域名中。比如，<code class="highlighter-rouge">people[$loop.index}].username</code> 在运行时将被解释为<code class="highlighter-rouge">people[0].username</code>,<code class="highlighter-rouge">people[1}].username</code>等。</p>
+
+<h2 id="actionbean">使用ActionBean中列表的数字索引的属性</h2>
+
+<p>这是Stripes真正擅长的地方。上述表单对应的相关ActionBean代码如下：</p>
+
+<blockquote>
+  <p>在ActionBean中使用索引属性</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>  private List&lt;Person&gt; people;
+
+  @ValidateNestedProperties ({
+  @Validate(field="username", required=true, minlength=3, maxlength=15),
+  @Validate(field="firstName", required=true, maxlength=25),
+  @Validate(field="lastName", required=true, maxlength=25),
+  @Validate(field="email", mask="[\\w\\.]+@[\\w\\.]+\\.\\w+")
+  })
+  public List&lt;Person&gt; getPeople() { return people; }
+  public void setPeople(List&lt;Person&gt; people) { this.people = people; }
+</code></pre>
+  </div>
+</blockquote>
+
+<p>正如你所看到的，带有索引的表单域对象被声明成一个具有相应泛型类型的List属性（后者实现了List接口的对象），并为其提供了<em>getter</em>和<em>setter</em>方法。Stripes将会在运行时检测出<em>people</em>属性是一个List对象，然后将实例化并绑定了参数的<em>people</em>对象添加到List对象中。你不需要对列表进行实例化，这些动作都是由 Stripes帮你完成的。</p>
+
+<blockquote>
+  <p>设置另外一些没有索引的集合</p>
+
+  <blockquote>
+    <p>Stripes是明确不支持Sets的索引属性，也不支持不保证元素顺序或顺序固定的集合对象（比如<em>SortedSet</em>）——不依赖外部索引的集合对象。这样做的原因是，这些集合是不可能保证排序的一致性，添加或修改元素会让集合元素顺序重排，导致索引无效甚至带来一些危害。</p>
+  </blockquote>
+
+  <blockquote>
+    <p>基于上述原因，Stripes现在及未来都不会直接去支持用于Sets的索引属性。假如你仍然想使用Set集合，推荐的解决方案是在ActionBean中初始化一个Map（key最好是一个id字段）或者List，并用Set中的元素填充它，同时为其提供存取方法。使用Map的解决方案是安全的，因为其允许通过key而不是一个数字索引来访问。 假如你更偏向使用List方式，那么建议使用<code class="highlighter-rouge">Collections.unmodifiable()</code>方法确保List不能添加或者删除元素，以确保顺序的稳定性。</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="section">索引属性校验</h2>
+
+<p>你可能已经注意到<code class="highlighter-rouge">getPeople()</code>方法是被注解了的，但没有去校验列表的有效性而是校验列表项的有效性——在这个例子中也就是<code class="highlighter-rouge">Person</code>对象。Stripes对每个索引或列表中的行进行校验。对于数字或列表索引属性以及Map属性都是真实的，而不管List/Map是否是ActionBean的属性或者是其内嵌的子属性。（ Stripes performs validations for each index or row in the list as if it were a regular property. This is true for both numeric/List indexed properties and Map properties, regardless of whether the List/Map is a property of the ActionBean or a sub-property nested within a property of the ActionBean.）</p>
+
+<p>举个例子，如果需要在页面上编辑一个<code class="highlighter-rouge">Person</code>对象，该<code class="highlighter-rouge">Person</code>对象有一叫<em>pets</em>的属于<code class="highlighter-rouge">Pet</code>对象的List属性，并且每个<code class="highlighter-rouge">Pet</code>对象都有一个<em>Nicknames</em> 属性的List。对于这些属性我们不需要通过任何索引去写校验，仅仅只是将其当作普通属性来处理即可：</p>
+
+<blockquote>
+  <p>索引属性的指定校验</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>  @ValidateNestedProperties({
+  @Validate(field="phoneNumber", required=true),
+  @Validate(field="pets.age", required=true, maxvalue=100),
+  @Validate(field="pets.nicknames.name", required=true, maxlength=50),
+  })
+  private Person person;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>然而，这里的校验有个大的变化。要支持必填字段的校验，相同索引域至少要有一个值。为了理解这一点很容易想到作为创建多行表单机制的索引属性。因此这种变化意味着空的表单行将被忽略掉。</p>
+
+<p>例如，在Bugzooky的示例应用中，Bugzooky管理页面展示了一个上述我们已经用作示例的表单。回头看看JSP示例你将会注意到一个放在最后并且没有值的额外行。如果用户没有在这一行输入任何值就提交该表单，Stripes将忽略它并不提示错误，因为该行所有域的值都是空的。但是，如果用户输入任何一个域，比如用户名，而其他域为空，那么提交后服务端的验证错误信息将会展示出来。</p>
+
+<h2 id="mapskey">Maps的索引属性（任意key类型）</h2>
+
+<p>就像可以使用数字索引在ActionBean中构造列表一样，也可以通过Stripes知道的如何转化的任意类型（比如，数字，字符串，日期，用户自定义类型等）去构造Maps。Stripes将使用Map对应的getter/setter方法上的信息去确定Map key的类型和value的类型。</p>
+
+<p>Map索引语法和上述列表的示例是相似的（实际上和使用数字索引一样，它们是相同的）。如果方括号中的值是字符串或字符，那么应该使用引号进行包裹（单引号或者双引号都是可以的），否则直接使用该值即可。</p>
+
+<p>下面的示例将展示如何通过使用Map索引属性尽可能简便的去获取大的选项集或者参数集。在这示例中，Map key是变量的字符串名，value是变量的数字值。</p>
+
+<blockquote>
+  <p>在JSP中Map或索引属性使用字符串key</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;stripes:form ... &gt;
+    ...
+    &lt;table&gt;
+        &lt;c:forEach items="${toolParams}" var="toolParam"&gt;
+            &lt;tr&gt;
+                &lt;td&gt;${toolParam.name}:&lt;/td&gt;
+                &lt;td&gt;&lt;stripes:text name="toolParameters['${toolParam.name}']"/&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/c:forEach&gt;
+    &lt;/table&gt;
+    ...
+&lt;/stripes:form&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>对应ActionBean中的代码片段是：</p>
+
+<blockquote>
+  <p>在ActionBean中Map或索引属性使用字符串key</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>private Map&lt;String,Double&gt; toolParameters;
+ 
+public Map&lt;String,Double&gt; getToolParameters() { return toolParameters; }
+public void setToolParameters(Map&lt;String,Double&gt; toolParameters) {
+    this.toolParameters = toolParameters;
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>##高级索引属性</p>
+
+<p>下面是一些关于Strinpes处理索引属性值得了解的事情：</p>
+
+<ul>
+  <li>Map keys 是可以被Stripes转化的任何类型（不是因为对于类型有一个被注册的<code class="highlighter-rouge">TypeConverter</code>，就是因为有一个共用的公共字符串构造函数）</li>
+  <li>列表中的对象和Map中的values 是可以被Stripes转化的任何类型，或者任何使用内嵌属性的复杂类型</li>
+  <li>Stripes将实例化列表对象和Map对象（包含<code class="highlighter-rouge">SortedMap</code>对象）</li>
+  <li>Stripes将实例化列表对象和Map对象中的复杂类型，为了设置内嵌属性，只要该类型有公共的无参构造方法就行。</li>
+  <li>可以使用链式索引属性</li>
+</ul>
+
+<p>最后一点是值得详细说明的。这意味着你可以有如下的ActionBean属性：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>public Map&lt;Date,List&lt;Appointment&gt;&gt; getAppoinments() { return appointments; } 
+public void setAppoinments(Map&lt;Date,List&lt;Appointment&gt;&gt; appointments) { 
+    this.appointments = appointments; 
+} 
+</code></pre>
+</div>
+
+<p>输出方式如下：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>Note: &lt;stripes:text name="appointments[${date}][${idx}].note"/&gt;
+</code></pre>
+</div>
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                 
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/11/06/stripes-how-to-wizard_forms/">Stripes框架如何做系列-向导表单</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/">Stripes框架如何做系列-更多使用默认配置</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/10/stripes-how-to-unit_testing/">Stripes框架如何做系列-单元测试</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/25/stripes-how-to-state_management/">Stripes框架如何做系列-状态管理</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/21/stripes-how-to-localization/">Stripes框架如何做系列-本地化</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/">Stripes框架如何做系列-Spring和Stripes</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2016-07">2016年07月22日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#stripes"> stripes</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> stripes,译文 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

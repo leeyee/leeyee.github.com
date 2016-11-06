@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Stripes框架如何做系列-本地化 - Leeyee’s Blog</title>
+<meta property="og:title" content="Stripes框架如何做系列-本地化">
+<meta name="description" content="stripes框架如何做系列中文翻译">
+<meta property="og:description" content="stripes框架如何做系列中文翻译">
+<link rel="canonical" href="http://iyiguo.net/blog/2016/08/21/stripes-how-to-localization/">
+<meta property="og:url" content="http://iyiguo.net/blog/2016/08/21/stripes-how-to-localization/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-08-21T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/" title="Stripes框架如何做系列-状态管理">
+<link rel="prev" href="http://iyiguo.net/blog/2016/08/03/stripes-how-to-spring-with-stripes/" title="Stripes框架如何做系列-Spring和Stripes">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Stripes框架如何做系列-本地化",
+    "datePublished": "2016-08-21T00:00:00+08:00",
+    "description": "stripes框架如何做系列中文翻译",
+    "url": "http://iyiguo.net/blog/2016/08/21/stripes-how-to-localization/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#stripes">stripes</a></li>
+        
+        <li class="active">Stripes框架如何做系列-本地化</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> Stripes框架如何做系列-本地化 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2016/08/21/stripes-how-to-localization/">《Stripes框架如何做系列-本地化》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2016/08/21/stripes-how-to-localization/">http://iyiguo.net/blog/2016/08/21/stripes-how-to-localization/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">选择使用的语言环境</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">选择使用的字符编码</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">寻找本地化资源</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">本地化验证</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">本地化错误信息</a></li>
+  <li><a href="#section-5" id="markdown-toc-section-5">本地化按钮和标签</a></li>
+  <li><a href="#section-6" id="markdown-toc-section-6">传递本地化变量到布局</a></li>
+  <li><a href="#section-7" id="markdown-toc-section-7">本地化的其他事情</a></li>
+</ul>
+
+<p>原文地址：<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Localization">https://stripesframework.atlassian.net/wiki/display/STRIPES/Localization</a></p>
+
+<p>本地化是越来越多的网站必须处理的事情。本地化从来都不是不容易的，但是Stripes尽量让其做起来简单。这篇文档我们将覆盖以下内容：</p>
+
+<ul>
+  <li>选择使用的语言环境</li>
+  <li>选择使用的字符编码</li>
+  <li>寻找本地化资源</li>
+  <li>本地化验证</li>
+  <li>本地化错误信息
+    <ul>
+      <li>在自定义代码中使用本地化错误信息</li>
+    </ul>
+  </li>
+  <li>本地化按钮和标签</li>
+  <li>传递本地化变量到布局</li>
+  <li>本地化的其他事情</li>
+</ul>
+
+<h2 id="section">选择使用的语言环境</h2>
+
+<p>构建一个本地化应用可能面临的第一个挑战是针对指定的请求使用哪一个本地化设置。因为有可能你支持的语言和区域不止一个。当用户提交请求，该请求可以包含用户首选语言环境的有序列表。因此你不得不基于支持的语言环境，以及用户首选的语言环境去选择为用户服务的语言环境。</p>
+
+<p>Stripes使用<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/localization/LocalePicker.html">LocalPicker</a>选择器决定针对当前请求使用那个语言环境。<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/localization/LocalePicker.html">LocalPicker</a>从Stripes拦截器中开始执行，所以它甚至会执行直接指向JSP的请求（你不需要通过ActionBean来完成）。一旦<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/localization/LocalePicker.html">LocalPicker</a>确定了使用的语言环境，Stripes将通过<code class="highlighter-rouge">HttpServletRequestWrapper</code>类去调用<code class="highlighter-rouge">request.getLocale()</code>和<code class="highlighter-rouge">request.getLocales()</code>方法返回唯一选择的语言环境。这意味着不仅Stripes不需要重新选择就能使用正确的语言环境，也意味着任何其他的本地化工具通过调用<code class="highlighter-rouge">request.getLocale[s]()</code>方法也将默认返回正确的语言环境。这包括JSTL的_fmt:*_标签——是不是很酷？</p>
+
+<p>Stripes使用<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/localization/DefaultLocalePicker.html">DefaultLocalePicker</a>作为默认的选择器。<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/localization/DefaultLocalePicker.html">DefaultLocalePicker</a>通过一个语言<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Configuration+Reference">配置</a>列表决定系统支持的语言环境。假如没有配置列表，它将使用默认的与当前系统环境相同的语言环境。比如，通过调用<code class="highlighter-rouge">java.util.Locale.getDefault()</code>方法来获取。一个支持美语或者日本语的配置列表可能看起来如下：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;init-param&gt;
+    &lt;param-name&gt;LocalePicker.Locales&lt;/param-name&gt;
+    &lt;param-value&gt;en_US,ja&lt;/param-value&gt;
+&lt;/init-param&gt;
+</code></pre>
+</div>
+
+<p>请求发生时，<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/localization/DefaultLocalePicker.html">DefaultLocalePicker</a>遍历用户首选的语言配置列表，并且尝试匹配系统中可用语言区域的设置。选择算法是：优先匹配多段，对于相同匹配段数，优先匹配用户配置列表。</p>
+
+<blockquote>
+  <p>很明显的en_US_foo匹配具有三段的en_US_foo，同样它也匹配_en_，因为_en_被当做有所有的三段来对待。这是因为在第二个例子中，语言段和变量段都有两个空字符串，因此被视为相等。</p>
+</blockquote>
+
+<h2 id="section-1">选择使用的字符编码</h2>
+
+<p>选择使用正确的字符编码也是非常棘手的。许多浏览器在提交表单数据时没有指明字符编码，这导致服务器端使用系统默认的字符编码。这可能会造成一些问题，特别是处理多字符编码时！</p>
+
+<p>为了应对这种情况，Stripes允许针对每一个语言指定字符编码；只要遵循使用冒号将语言配置和字符配置分隔即可。比如：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;init-param&gt;
+    &lt;param-name&gt;LocalePicker.Locales&lt;/param-name&gt;
+    &lt;param-value&gt;en_US:UTF-8,ja:Shift_JIS&lt;/param-value&gt;
+&lt;/init-param&gt;
+</code></pre>
+</div>
+
+<p>如果声明了字符编码，Stripes将确保<code class="highlighter-rouge">HttpServletRequest</code>中所有的字符数据被转成指定编码后的字符，并且所有返回客户端的字符数据将使用同样的字符编码。如果没有指定字符编码，Stripes则不会进行字符编码，而是将其交给<code class="highlighter-rouge">Servlet</code>容器去选择编码并处理。</p>
+
+<h2 id="section-2">寻找本地化资源</h2>
+
+<p>Stripes识别两种类型的本地化信息。第一种类型是错误信息；第二种是字段名。每一种类型的信息通过<a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ResourceBundle.html">资源包</a>查找使用。如果你要写一个本地化应用，那么花一些时间去深入了解下资源包是值得的。我不打算在这里解释关于资源包的所有事情，只要知道具有相同名称的一组属性文件的[PropertyResourceBundle]可能是最常见的资源包类型即可。</p>
+
+<p>默认情况下，Stripes对于错误信息和字段名使用一个单独的资源包。其包名是<em>StripesResources</em>。这意味着，Stripes通过类似<em>StripesResources.properties</em>、<em>StripesResources_en_US.properties</em>的文件名寻找属性文件（在类路径下），资源包<br>
+是半智能的，因此假如没有完全匹配到，它也总是返回一个包，并尝试使用最匹配的。</p>
+
+<p>可以通过两种方式来改变Stripes使用包的方式。最简单的方式是使用不同名字配置<code class="highlighter-rouge">DefaultLocalizationBundleFactory</code>。可以对错误信息和字段名使用不同的包，或者相同的，这取决于你。</p>
+
+<blockquote>
+  <p>包名应该总是由前缀（比如，StripesResources）而不是文件名（比如，StripesResources.properties）组成。有多种类型的包，因此假如文件包属性是你没有遇到过的，那么可以查看JDK文档。</p>
+</blockquote>
+
+<h2 id="section-3">本地化验证</h2>
+
+<p>关于本地化验证实际上没有什么可说的。内置数字和日期类型的转换器使用java.text包的本地化功能进行类型转换，因此如果服务用户的页面本地化为法语，那么预期用户输入的数字和日期应被法语化。</p>
+
+<p><a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/validation/BooleanTypeConverter.html">BooleanTypeConverter</a>和<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/validation/EnumeratedTypeConverter.html">EnumeratedTypeConverter</a>不接受本地化输入。布尔类型通常不作为文本或者手动输入展示给用户，所以JDK不支持本地化布尔类型，同样Stripes也不支持。如果你需要这样做，实现起来也不是很困难（使用字典在语言包中查找单词true和false等）。枚举类型被定义为有限数量的值，这些值是在编译时被确定的，因此对其本地化是没有意义的。</p>
+
+<h2 id="section-4">本地化错误信息</h2>
+
+<p>所有通过Stripes内置验证和类型转换产生的验证错误信息都是一个<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/validation/ScopedLocalizableError.html">ScopedLocalizableError</a>类实例。这样确保了错误信息被展示给用户时可以被本地化，如果在需要时。通过查看<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Validation+Reference">验证指南</a>可以了解用到的验证错误信息的名称。</p>
+
+<p>在验证消息中使用字段名是相当普遍的，可以通过许多方式实现。你的第一个方式可能是硬编码字段名在消息中。由于消息本身可以被本地化，因此这种方式可正常工作。但是对于不同的字段可能使用相同的错误信息，因此你将不得不多次拷贝/粘贴/编辑错误信息。</p>
+
+<p>一个好的方式是使用提供的替换变量在消息模板中插入字段名。因此你能定义一个全局消息-{0}是必须的字段-而不用写几百个使用内嵌字段的消息。{0}在运行时被字段名的替换…但其字段名各有其来处。</p>
+
+<p>如果你不想定义字段名，Stripes将试图提供通过分解表单字段名得来的用户友好的一些东西。但是这些将不会被本地化。最好的替代方式是为你的字段名提供一些本地化的值。通常是在StripesResources中，语法如下：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>actionPath.fieldName=Field Name 
+# or just... 
+fieldName=Field Name 
+</code></pre>
+</div>
+
+<p>这允许你指定具体的表单字段名，并只需定义一次你在许多地方需要使用的字段名。例如，你有一个action等于<em>/security/login.action</em>的表单，并且有一个叫<em>user.password</em>的字段名，那么Stripes将首先寻找如下的资源声明：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>/security/login.action.user.password=Secret Magic Word 
+</code></pre>
+</div>
+
+<p>如果不能找到，Stripes将会接着寻找：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>user.password=Secret Magic Word
+</code></pre>
+</div>
+
+<p>使用斜杠开始的字段名看起来有点奇怪，但是你应该能习惯！</p>
+
+<p>###在自定义代码中使用本地化错误信息</p>
+
+<p>当你需要在应用中包含错误并且应用需要本地化时，有至少两种可能出现的情况。</p>
+
+<p>首先，假如自定义<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/validation/TypeConverter.html">TypeConverter</a>类，当转换失败的时候你可能需要提供验证错误信息。这种情况下，你或许应该使用<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/validation/ScopedLocalizableError.html">ScopedLocalizableError</a>，因为其允许你提供默认的错误消息然后在特定的地方重载他们。</p>
+
+<p>其次，假如任何实现了<code class="highlighter-rouge">Validatable</code>接口的自定义ActionBeans，你需要对自定义验证失败提供你自己的错误信息。因为这些错误信息可能是针对特定的ActionBeans的，因此建议使用<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/validation/LocalizableError.html">LocalizableError</a>类。错误消息的名称完全由你决定，但是建议使用action路径开始，这样可以和其他错误消息关键字保持一致。</p>
+
+<h2 id="section-5">本地化按钮和标签</h2>
+
+<p>本地化按钮和标签只是一个在“本地化错误信息”那一节描述的本地化字段名的特列。Stripes提供以下标签用来生成表单按钮：<code class="highlighter-rouge">&lt;stripes:button.../&gt;</code>， <code class="highlighter-rouge">&lt;stripes:submit.../&gt;</code> 和 <code class="highlighter-rouge">&lt;stripes:reset.../&gt;</code>以及一个单独用来生成表单字段label的标签：<code class="highlighter-rouge">&lt;stripes:label.../&gt;</code>。这些标签允许你去决定在页面上直接显示给用户的值，他们也支持通过字段名去查找本地化的值。重现刚才上面说的，假如你有一个类似下面的表单：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;stripes:form action="/security/login.action"&gt;
+&lt;stripes:label for="username"/&gt;: &lt;stripes:text name="username"/&gt;
+&lt;stripes:submit name="login"/&gt; &lt;stripes:reset name="reset"/&gt;
+&lt;/stripes:form&gt;
+</code></pre>
+</div>
+
+<p>然后你可能想要在你的字段名包中定义下面的资源：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code># Like this... 
+/security/login.action.username=Username 
+/security/login.action.login=Log In 
+/security/login.action.reset=Clear Form 
+
+# Or Maybe just like this... 
+username=Username 
+login=Log In 
+reset=Clear Form
+</code></pre>
+</div>
+
+<p>如果没有合适的本地化资源可用于给定的按钮或者标签，那么标签将检查标签体（标签的text）和值属性。假如标签体是非null同时也是非空的，那么将被使用。否则值属性将被使用。这意味着，如果你需要使用本地化包但又不以Stripe默认方式展示属性名，你可以这样做：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;stripes:submit name="save"&gt;
+	&lt;fmt:message bundle="MyBundle" key="button.save"/&gt;
+&lt;/stripes:submit&gt;
+</code></pre>
+</div>
+
+<h2 id="section-6">传递本地化变量到布局</h2>
+
+<p>假如你正在使用Stripes的<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Layout+Reuse">布局</a>属性，你可能想传递本地化值给布局。你可以通过<a href="http://iyiguo.net/blog/2016/07/17/stripes-how-to-layout-reuse/">传递额外信息到布局</a>了解更多关于如何传递任意格式化内容给布局的信息。</p>
+
+<h2 id="section-7">本地化的其他事情</h2>
+
+<p>出于以下几个原因，Stripes没有提供本地化整个应用的工具：</p>
+
+<ol>
+  <li>工作量太大</li>
+  <li>人们喜欢用不同的方式去本地化（比如，一个本地化JSP对每个语言环境一个JSP）</li>
+  <li>Stripes集成了JSTL格式化标签并将其做为默认选项</li>
+</ol>
+
+<p>使用集成了JSTL格式化标签的stripes，提供了一个整洁并且更加完整的本地化解决方案。但有几件事情需要考虑：</p>
+
+<p>首先，使用相同资源包提供Stripes本地化资源和通过JSTL标签提供本地化的资源是绝对没有错的。这样做是没有问题的，因此，例如，你需要字段名被展示在页面的其他地方，没有理由不去访问StripesResources包。配置JSTL本地化通过在web.xml中声明stripes资源包的名字即可：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;context-param&gt;
+    &lt;param-name&gt;
+	javax.servlet.jsp.jstl.fmt.localizationContext
+    &lt;/param-name&gt;
+    &lt;param-value&gt;StripesResources&lt;/param-value&gt;
+&lt;/context-param&gt;
+</code></pre>
+</div>
+
+<p>其次，你应该很少有需要用到<code class="highlighter-rouge">&lt;fmt:setLocal.../&gt;</code>标签。因为Stripes的策略是使用过滤器和请求包装，因此应用中所有的组件，包括JSTL标签，当他们调用<code class="highlighter-rouge">request.getLocal()</code>方法时总是能得到正确的的本地语言环境。</p>
+
+<p>但有个例外是，<code class="highlighter-rouge">&lt;fmt:message&gt;</code>不能调用<code class="highlighter-rouge">request.getLocal()</code>方法<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>。在一个请求没有设置<code class="highlighter-rouge">accept-language</code>头信息的情况下，你需要在<code class="highlighter-rouge">&lt;fmt:message&gt;</code>前调用<code class="highlighter-rouge">&lt;fmt:setLocale value="${pageContext.request.locale}"/&gt;</code></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://www.stripesframework.org/jira/browse/STS-676">http://www.stripesframework.org/jira/browse/STS-676</a> <a href="#fnref:1" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                 
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/11/06/stripes-how-to-wizard_forms/">Stripes框架如何做系列-向导表单</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/">Stripes框架如何做系列-更多使用默认配置</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/10/stripes-how-to-unit_testing/">Stripes框架如何做系列-单元测试</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/25/stripes-how-to-state_management/">Stripes框架如何做系列-状态管理</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/21/stripes-how-to-localization/">Stripes框架如何做系列-本地化</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/">Stripes框架如何做系列-Spring和Stripes</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2016-08">2016年08月21日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#stripes"> stripes</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> stripes,译文 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

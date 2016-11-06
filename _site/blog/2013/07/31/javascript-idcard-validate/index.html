@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>javascript身份证号码验证 - Leeyee’s Blog</title>
+<meta property="og:title" content="javascript身份证号码验证">
+<meta name="description" content="根据身份证号码的生成规则，对其使用javascript进行有效性验证。从而可以在web应用中针对用户输入的身份证号码进行客户端验证">
+<meta property="og:description" content="根据身份证号码的生成规则，对其使用javascript进行有效性验证。从而可以在web应用中针对用户输入的身份证号码进行客户端验证">
+<link rel="canonical" href="http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/">
+<meta property="og:url" content="http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2013-07-31T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2013/08/22/mybatis-auto-increment-primary-key/" title="mybatis自增主键配置">
+<link rel="prev" href="http://iyiguo.net/blog/2013/07/07/hibernate-cache/" title="Hibernate缓存">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "javascript身份证号码验证",
+    "datePublished": "2013-07-31T00:00:00+08:00",
+    "description": "根据身份证号码的生成规则，对其使用javascript进行有效性验证。从而可以在web应用中针对用户输入的身份证号码进行客户端验证",
+    "url": "http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#javascript">javascript</a></li>
+        
+        <li class="active">javascript身份证号码验证</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> javascript身份证号码验证 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+            <a href="https://github.com/oxcow/id-number-validator" target="_blank">
+                <img src="/img/Octocat-90px.gif" class="self-img-20">
+                <em>https://github.com/oxcow/id-number-validator</em>
+            </a>
+            
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/">《javascript身份证号码验证》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/">http://iyiguo.net/blog/2013/07/31/javascript-idcard-validate/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">15位身份证号码编码规则</a></li>
+  <li>
+<a href="#section-1" id="markdown-toc-section-1">18位身份证号码编码规则</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">校验规则</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#javascript" id="markdown-toc-javascript">javascript编码实现</a>    <ul>
+      <li><a href="#section-3" id="markdown-toc-section-3">源代码</a></li>
+      <li><a href="#section-4" id="markdown-toc-section-4">验证示例</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="section">15位身份证号码编码规则</h2>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>ddddddyymmddxxp
+</code></pre>
+</div>
+
+<ol>
+  <li>dddddd: 地区码</li>
+  <li>yymmdd: 出生年月日</li>
+  <li>xx: 顺序类编码，无法确定</li>
+  <li>p: 性别。奇数位男，偶数为女</li>
+</ol>
+
+<h2 id="section-1">18位身份证号码编码规则</h2>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>ddddddyyyymmddxxxy
+</code></pre>
+</div>
+
+<ol>
+  <li>dddddd: 地区码</li>
+  <li>yyyymmdd: 出生年月日</li>
+  <li>xxx：顺序类编码，无法确定。奇数为男，偶数为女</li>
+  <li>y: 校验位。可通过前17位计算获取</li>
+</ol>
+
+<h3 id="section-2">校验规则</h3>
+
+<ol>
+  <li>
+    <p>加权因子<strong>W<sub>i</sub></strong></p>
+
+    <p>从右到左依次定义为：</p>
+
+    <blockquote>
+      <p><strong>W<sub>i</sub> = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]</strong></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>校验位值</p>
+
+    <blockquote>
+      <p><strong>Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ]</strong></p>
+    </blockquote>
+
+    <p>其中 <em>10</em> 身份证中用 <em>X</em> 替代。</p>
+  </li>
+  <li>
+    <p>校验位位置</p>
+
+    <blockquote>
+      <p><strong>Y_P = mod(Σ(A<sub>i</sub>+W<sub>i</sub>),11)</strong></p>
+    </blockquote>
+
+    <p>其中下标 <strong>i</strong> 为身份证号码 <strong>从右往左</strong> 的 2…8 位;  <strong>A<sub>i</sub></strong>为身份证号对应位数值。</p>
+
+    <p>该公式表示将身份证的前17位与其对应的加权因子 <strong>W<sub>i</sub></strong> 相乘并求和，再将得到的结果与 11 求模，所得的结果即为校验位值所在的位置。然后直接在校验位值 <strong>Y</strong> 中查找即可得到校验位值.</p>
+  </li>
+</ol>
+
+<p>比如有一为 <em>330304197002051590</em> 的身份证号，那么最后一位校验位 <strong>0</strong> 的验证过程如下：</p>
+
+<ol>
+  <li>
+    <p>加权求和</p>
+
+    <p>3×7 + 3×9 + 0×10 + 3×5 + 0×8 + 4×4 + 1×2 + 9×1 + 7×6 + 0×3 + 0×7 + 2×9 + 0×10 + 5×5 + 1×8 + 5×4 + 9×2  = <strong>221</strong></p>
+  </li>
+  <li>
+    <p>求模</p>
+
+    <p>221 % 11 = 1</p>
+  </li>
+  <li>
+    <p>获取验证位数值</p>
+
+    <p>Y[1] = 0</p>
+  </li>
+</ol>
+
+<h2 id="javascript">javascript编码实现</h2>
+
+<p>针对上述身份证生成规则的描述，在验证时针对15位身份证号只需要判断其出生日期是否正确即可；而针对18位身份证号，除了验证出生日期外还需要对最后的校验位进行验证。</p>
+
+<p>因此我们命名一个名为<code class="highlighter-rouge">getIdCardInfo</code>的函数，接受身份证号作为参数进行验证。该函数返回身份证信息对象。该对象具有5个属性，分别为：</p>
+
+<blockquote>
+  <ol>
+    <li>isTrue : 身份证号是否有效。默认为 false</li>
+    <li>year : 出生年。默认为null</li>
+    <li>month : 出生月。默认为null</li>
+    <li>day : 出生日。默认为null</li>
+    <li>isMale : 是否为男性。默认false</li>
+    <li>isFemale : 是否为女性。默认false</li>
+  </ol>
+</blockquote>
+
+<h3 id="section-3">源代码</h3>
+
+<p>您可进入<a href="https://github.com/oxcow/id-number-validator">该项目的GitHub页</a>进行下载或贡献</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>function getIdCardInfo(cardNo) {
+	var info = {
+		isTrue : false,
+		year : null,
+		month : null,
+		day : null,
+		isMale : false,
+		isFemale : false
+	};
+	if (!cardNo || (15 != cardNo.length &amp;&amp; 18 != cardNo.length) ) {
+		info.isTrue = false;
+		return info;
+	}
+	if (15 == cardNo.length) {
+		var year = cardNo.substring(6, 8);
+		var month = cardNo.substring(8, 10);
+		var day = cardNo.substring(10, 12);
+		var p = cardNo.substring(14, 15); //性别位
+		var birthday = new Date(year, parseFloat(month) - 1,
+				parseFloat(day));
+		// 对于老身份证中的年龄则不需考虑千年虫问题而使用getYear()方法  
+		if (birthday.getYear() != parseFloat(year)
+				|| birthday.getMonth() != parseFloat(month) - 1
+				|| birthday.getDate() != parseFloat(day)) {
+			info.isTrue = false;
+		} else {
+			info.isTrue = true;
+			info.year = birthday.getFullYear();
+			info.month = birthday.getMonth() + 1;
+			info.day = birthday.getDate();
+			if (p % 2 == 0) {
+				info.isFemale = true;
+				info.isMale = false;
+			} else {
+				info.isFemale = false;
+				info.isMale = true
+			}
+		}
+		return info;
+	}
+	if (18 == cardNo.length) {
+		var year = cardNo.substring(6, 10);
+		var month = cardNo.substring(10, 12);
+		var day = cardNo.substring(12, 14);
+		var p = cardNo.substring(14, 17)
+		var birthday = new Date(year, parseFloat(month) - 1,
+				parseFloat(day));
+		// 这里用getFullYear()获取年份，避免千年虫问题
+		if (birthday.getFullYear() != parseFloat(year)
+				|| birthday.getMonth() != parseFloat(month) - 1
+				|| birthday.getDate() != parseFloat(day)) {
+			info.isTrue = false;
+			return info;
+		}
+		var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];// 加权因子  
+		var Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ];// 身份证验证位值.10代表X 
+		// 验证校验位
+		var sum = 0; // 声明加权求和变量
+		var _cardNo = cardNo.split("");
+
+		if (_cardNo[17].toLowerCase() == 'x') {
+			_cardNo[17] = 10;// 将最后位为x的验证码替换为10方便后续操作  
+		}
+		for ( var i = 0; i &lt; 17; i++) {
+			sum += Wi[i] * _cardNo[i];// 加权求和  
+		}
+		var i = sum % 11;// 得到验证码所位置
+
+		if (_cardNo[17] != Y[i]) {
+			return info.isTrue = false;
+		}
+		info.isTrue = true;
+		info.year = birthday.getFullYear();
+		info.month = birthday.getMonth() + 1;
+		info.day = birthday.getDate();
+		if (p % 2 == 0) {
+			info.isFemale = true;
+			info.isMale = false;
+		} else {
+			info.isFemale = false;
+			info.isMale = true
+		}
+		return info;
+	}
+	return info;
+}
+</code></pre>
+</div>
+
+<script type="text/javascript">
+    function getIdCardInfo(cardNo) {
+		var info = {
+			isTrue : false,
+			year : null,
+			month : null,
+			day : null,
+			isMale : false,
+			isFemale : false
+		};
+		if (!cardNo && 15 != cardNo.length && 18 != cardNo.length) {
+			info.isTrue = false;
+			return info;
+		}
+		if (15 == cardNo.length) {
+			var year = cardNo.substring(6, 8);
+			var month = cardNo.substring(8, 10);
+			var day = cardNo.substring(10, 12);
+			var p = cardNo.substring(14, 15); //性别位
+			var birthday = new Date(year, parseFloat(month) - 1,
+					parseFloat(day));
+			// 对于老身份证中的年龄则不需考虑千年虫问题而使用getYear()方法  
+			if (birthday.getYear() != parseFloat(year)
+					|| birthday.getMonth() != parseFloat(month) - 1
+					|| birthday.getDate() != parseFloat(day)) {
+				info.isTrue = false;
+			} else {
+				info.isTrue = true;
+				info.year = birthday.getFullYear();
+				info.month = birthday.getMonth() + 1;
+				info.day = birthday.getDate();
+				if (p % 2 == 0) {
+					info.isFemale = true;
+					info.isMale = false;
+				} else {
+					info.isFemale = false;
+					info.isMale = true
+				}
+			}
+			return info;
+		}
+		if (18 == cardNo.length) {
+			var year = cardNo.substring(6, 10);
+			var month = cardNo.substring(10, 12);
+			var day = cardNo.substring(12, 14);
+			var p = cardNo.substring(14, 17)
+			var birthday = new Date(year, parseFloat(month) - 1,
+					parseFloat(day));
+			// 这里用getFullYear()获取年份，避免千年虫问题
+			if (birthday.getFullYear() != parseFloat(year)
+					|| birthday.getMonth() != parseFloat(month) - 1
+					|| birthday.getDate() != parseFloat(day)) {
+				info.isTrue = false;
+				return info;
+			}
+			var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];// 加权因子  
+			var Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ];// 身份证验证位值.10代表X 
+			// 验证校验位
+			var sum = 0; // 声明加权求和变量
+			var _cardNo = cardNo.split("");
+
+			if (_cardNo[17].toLowerCase() == 'x') {
+				_cardNo[17] = 10;// 将最后位为x的验证码替换为10方便后续操作  
+			}
+			for ( var i = 0; i < 17; i++) {
+				sum += Wi[i] * _cardNo[i];// 加权求和  
+			}
+			var i = sum % 11;// 得到验证码所位置
+
+			if (_cardNo[17] != Y[i]) {
+				return info.isTrue = false;
+			}
+			info.isTrue = true;
+			info.year = birthday.getFullYear();
+			info.month = birthday.getMonth() + 1;
+			info.day = birthday.getDate();
+			if (p % 2 == 0) {
+				info.isFemale = true;
+				info.isMale = false;
+			} else {
+				info.isFemale = false;
+				info.isMale = true
+			}
+			return info;
+		}
+		return info;
+	}
+</script>
+
+<script type="text/javascript">
+    function validateNo(){
+        var cardNo = document.getElementById('cardNo').value;
+        var cardInfo = getIdCardInfo(cardNo);
+        var showInfo = '';
+        if(cardInfo.isTrue){
+             showInfo = '<span class="text-success">验证通过！</span>';
+             if(cardInfo.isMale){
+                showInfo += '<span class="text-info">男,生于	' + cardInfo.year + '.' + cardInfo.month + '.' + cardInfo.day + '</span>';
+             }
+             if(cardInfo.isFemale){
+                showInfo += '<span class="text-info">女,生于	' + cardInfo.year + '.' + cardInfo.month + '.' + cardInfo.day + '</span>';
+             }
+        }else{
+            showInfo = '<span class="text-error">号码无效！</span>';
+        }
+        document.getElementById('cardInfo').innerHTML = showInfo;
+    }
+</script>
+
+<h3 id="section-4">验证示例</h3>
+
+<div class="row-fluid">
+	<div class="input-append">
+  		<input id="cardNo" type="text" placeholder="请输入身份证号码...">
+  		<button class="btn" type="button" onclick="validateNo();">验证</button>
+	</div>
+	<div id="cardInfo" style="margin-left:20px;display:inline"></div>
+</div>
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                                                                                                        
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2013/07/31/javascript-idcard-validate/">javascript身份证号码验证</a></li>
+                               
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2013/05/07/javascript-null-undefined/">javascript中的null和undefined</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/12/02/jquery-plugins-authoring/">jQuery插件编写</a></li>
+                      
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/05/05/jquery-etable-plugin/">jQuery eTable Plugin</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/05/04/jquery-msgbox-plugin/">jQuery MsgBox Plugin</a></li>
+                                     
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/04/09/javascript-jquery-user-suggests/">一些关于javascript、jQuery使用时的建议</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2013-07">2013年07月31日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#javascript"> javascript</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> javascript 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

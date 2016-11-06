@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Leeyee’s Blog - 我的技术类博客</title>
+<meta property="og:title" content="Leeyee’s Blog">
+<meta name="description" content="我的技术类博客">
+<meta property="og:description" content="我的技术类博客">
+<link rel="canonical" href="http://iyiguo.net/page4/">
+<meta property="og:url" content="http://iyiguo.net/page4/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "headline": "Leeyee’s Blog",
+    "description": "我的技术类博客",
+    "url": "http://iyiguo.net/page4/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <!--site.members | where:"graduation_year","2014"
+ --  -- /page4/ 
+-->
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/07/07/hibernate-cache/">Hibernate缓存</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         Hibernate中实现缓存的对象有<code class="highlighter-rouge">Session</code>和<code class="highlighter-rouge">SessionFactory</code>。
+
+  <code class="highlighter-rouge">Session</code>的缓存为内置缓存，不可被卸载，称为Hibernate的一级缓存；
+
+  <code class="highlighter-rouge">SessionFactory</code>有一个内置缓存和一个外置缓存。其中外置缓存可插拔，被称作Hibernate的二级缓存。
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2013/07/07/hibernate-cache/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-07">2013年07月07日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#hibernate"> hibernate</a>
+        <span class="glyphicon glyphicon-tags"></span> hibernate,cache
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/07/07/hibernate-cache/" href="http://iyiguo.net/blog/2013/07/07/hibernate-cache/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/07/04/database-transaction-concurrency/">数据库事务与并发</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         用于读数据操作，他是非独占的，允许其他事务同时读取其锁定的资源，但不允许其他事务更新他。
+
+<ol>
+  <li>加锁条件：当一个事务执行<code class="highlighter-rouge">select</code>语句时。</li>
+  <li>解锁条件：默认情况下，数据读取后，数据库系统立即释放共享锁。</li>
+  <li>兼容性：放置共享锁后还可放置共享锁和更新锁。</li>
+  <li>并发性：具有良好的并发性能。当多个事务读取相同的数据时，每个事务都会获得一把共享锁，因此可以同时读锁定的数据。</li>
+</ol>
+
+<h3 id="section-3">独占锁</h3>
+
+  也叫排他锁，使用与修改数据的场合。他锁定的资源，其他事务不能进行读写。
+
+<ol>
+  <li>加锁条件：当一个事务执行<code class="highlighter-rouge">insert</code>,<code class="highlighter-rouge">update</code>,<code class="highlighter-rouge">delete</code>时，数据库系统会自动对被操作的数据使用独占锁。如果该数据已有其他锁存在，则不能放置独占锁。</li>
+  <li>解锁条件：事务结束。</li>
+  <li>兼容性：不和其他锁兼容。</li>
+  <li>并发性：并发性差，只允许有一个事务访问锁定数据。其他事务需等待，直到当前事务结束。</li>
+</ol>
+
+<h3 id="section-4">更新锁</h3>
+
+  更新操作的初始阶段用来锁定可以能要被修改资源的锁。更新锁可避免使用共享锁造成的死锁现象。
+
+<ol>
+  <li>加锁条件：当执行<code class="highlighter-rouge">update</code>时，数据库系统会先为事务分配一个更新锁。</li>
+  <li>解锁条件：当读取数据完毕，执行更新操作时，更新锁升级为独占锁。</li>
+  <li>兼容性：与共享锁兼容。一个资源可同时放置更新锁和共享锁，但只能放置一把更新锁。</li>
+  <li>并发性：允许多个事务同时读锁定的资源，但不允许其他事务修改。</li>
+</ol>
+
+<h2 id="section-5">如何防止死锁</h2>
+
+<ol>
+  <li>合理安排表访问顺序；</li>
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2013/07/04/database-transaction-concurrency/">阅读全文......</a>
+        </p>
+    </li>
+</ol>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-07">2013年07月04日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#database"> database</a>
+        <span class="glyphicon glyphicon-tags"></span> database
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/07/04/database-transaction-concurrency/" href="http://iyiguo.net/blog/2013/07/04/database-transaction-concurrency/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/05/30/mybatis-association-autoMapping/">使用autoMapping配置关联关系时应注意的问题</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         利用 <strong>association</strong> 解决多对一、一对一问题时，在配置 <strong>resultMap</strong> 时使用 <strong><em>autoMapping</em></strong> 属性映射表字段时，生成的多端对象数据中是拿不到声明的外键的。
+
+  如果业务有需要在多的一端对象中直接获取外键属性，而不是通过对应的一端来获取，那么就需要在使用 <strong>autoMapping</strong> 时，重新为多端表指明主外键映射关系或者撇弃 <strong><em>autoMapping</em></strong> 而改用手工声明。
+
+  首先做如下定义：
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2013/05/30/mybatis-association-autoMapping/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-05">2013年05月30日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#mybatis"> mybatis</a>
+        <span class="glyphicon glyphicon-tags"></span> mybatis
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/05/30/mybatis-association-autoMapping/" href="http://iyiguo.net/blog/2013/05/30/mybatis-association-autoMapping/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/05/26/mybatis-simple-pagination/">mybatis分页的简单实现</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         最近的项目中使用到了<code class="highlighter-rouge">mybatis</code>，发现<code class="highlighter-rouge">mybatis</code>不支持物理分页，只支持内存分页。因此为了解决这个问题，在网上搜索了一番，不过都比较繁琐。最后使用正则表达过滤查询语句的方式简单解决了该问题.
+
+  <code class="highlighter-rouge">mybatis</code>物理分页的核心是使用<code class="highlighter-rouge">mybatis</code>的拦截器 <code class="highlighter-rouge">org.apache.ibatis.plugin.Interceptor</code> ,在<code class="highlighter-rouge">mybatis</code>准备好<code class="highlighter-rouge">SQL</code>的时候，对<code class="highlighter-rouge">SQL</code>字符串进行拦截，生成适合<code class="highlighter-rouge">Oracle</code>数据库的分页语句即可。废话不多讲了，直接上代码.
+
+<blockquote>
+    <strong>Note:</strong> 该部分依赖commons-lang3.jar包进行反射写入，也可使用 mybatis 自带的反射类实现这部分功能
+</blockquote>
+
+<h3 id="section">拦截器代码</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>package org.mybatis.test.interceptor;
+
+import java.sql.Connection;
+import java.util.*;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.ibatis.executor.statement.StatementHandler;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.session.RowBounds;
+
+@Intercepts(@Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }))
+public class PaginationInterceptor implements Interceptor {
+
+	private final static String SQL_SELECT_REGEX = "(?is)^\\s*SELECT.*$";
+	private final static String SQL_COUNT_REGEX = "(?is)^\\s*SELECT\\s+COUNT\\s*\\(\\s*(?:\\*|\\w+)\\s*\\).*$";
+
+	//@Override
+	public Object intercept(Invocation inv) throws Throwable {
+
+		StatementHandler target = (StatementHandler) inv.getTarget();
+
+		BoundSql boundSql = target.getBoundSql();
+
+		String sql = boundSql.getSql();
+
+		if (StringUtils.isBlank(sql)) {
+			return inv.proceed();
+		}
+		System.out.println("origin sql&gt;&gt;&gt;&gt;&gt;" + sql.replaceAll("\n", ""));
+
+		// 只有为select查询语句时才进行下一步
+		if (sql.matches(SQL_SELECT_REGEX)
+				&amp;&amp; !Pattern.matches(SQL_COUNT_REGEX, sql)) {
+
+			Object obj = FieldUtils.readField(target, "delegate", true);
+			// 反射获取 RowBounds 对象。
+			RowBounds rowBounds = (RowBounds) FieldUtils.readField(obj,
+					"rowBounds", true);
+					
+			// 分页参数存在且不为默认值时进行分页SQL构造
+			if (rowBounds != null &amp;&amp; rowBounds != RowBounds.DEFAULT) {
+				FieldUtils.writeField(boundSql, "sql", newSql(sql, rowBounds),
+						true);
+				System.out.println("new sql&gt;&gt;&gt;&gt;&gt;"
+						+ boundSql.getSql().replaceAll("\n", ""));
+
+				// 一定要还原否则将无法得到下一组数据(第一次的数据被缓存了)
+				FieldUtils.writeField(rowBounds, "offset",
+						RowBounds.NO_ROW_OFFSET, true);
+				FieldUtils.writeField(rowBounds, "limit",
+						RowBounds.NO_ROW_LIMIT, true);
+			}
+		}
+		return inv.proceed();
+	}
+
+	public String newSql(String oldSql, RowBounds rowBounds) {
+		String start = " SELECT * FROM   (SELECT   row_.*, ROWNUM rownum_ FROM ( ";
+		String end = " ) row_ WHERE   ROWNUM &lt;= " + rowBounds.getLimit()
+				+ ") WHERE   rownum_ &gt; " + rowBounds.getOffset();
+
+		return start + oldSql + end;
+	}
+
+	//@Override
+	public Object plugin(Object target) {
+		return Plugin.wrap(target, this);
+	}
+
+	//@Override
+	public void setProperties(Properties arg0) {
+		System.out.println(arg0);
+	}
+    
+    //测试正则表达式是否能正常工作
+	public static void main(String[] args) {
+		String SQL_SELECT_REGEX = "^\\s*SELECT.*$";
+		String SQL_COUNT_REGEX = "^\\s*SELECT\\s+COUNT\\s*\\(\\s*(?:\\*|\\w+)\\s*\\).*$";
+		List&lt;String&gt; tests = new ArrayList&lt;String&gt;();
+		tests.add("select count(*) from abc \n\t\t where\n abc");
+		tests.add("SELECT 	COUNT(*) from abc");
+		tests.add(" select count  (*) from abc");
+		tests.add("  select count(  *) from abc");
+		tests.add("select count( *  ),id   from abc");
+		tests.add("select * from abc");
+		tests.add("select abc,test,fdas from abc");
+		tests.add("select count(adb) from abc");
+		tests.add("select count(0) from abc");
+		tests.add("select min(count(*)) from abc");
+		tests.add("update min(count(*)) from abc");
+		tests.add("delete min(count(*)) from abc");
+		Pattern p1 = Pattern.compile(SQL_SELECT_REGEX, Pattern.DOTALL
+				| Pattern.CASE_INSENSITIVE);
+		Pattern p2 = Pattern.compile(SQL_COUNT_REGEX, Pattern.DOTALL
+				| Pattern.CASE_INSENSITIVE);
+		for (String str : tests) {
+			Matcher m1 = p1.matcher(str);
+			Matcher m2 = p2.matcher(str);
+			System.out.println("匹配字符串: " + str);
+			System.out.println("	是select语句? " + m1.matches());
+			System.out.println("	是count语句? " + m2.matches());
+			System.out.println();
+		}
+	}
+}
+</code></pre>
+</div>
+
+<h3 id="spring">在spring中配置拦截器</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;bean name="paginationInterceptor" class="org.mybatis.test.interceptor.PaginationInterceptor"&gt;&lt;/bean&gt;
+
+&lt;!-- define the SqlSessionFactory --&gt;
+&lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt;
+	&lt;property name="dataSource" ref="dataSource" /&gt;
+	&lt;property name="typeAliasesPackage" value="org.mybatis.test.domain" /&gt;
+	&lt;property name="plugins"&gt;
+		&lt;list&gt;
+			&lt;ref bean="paginationInterceptor" /&gt;
+		&lt;/list&gt;
+	&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+
+<h3 id="section-1">使用</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>public class Test(){
+	private String name;
+	private int age;
+	// set/get省
+}
+</code></pre>
+</div>
+
+<ol>
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2013/05/26/mybatis-simple-pagination/">阅读全文......</a>
+        </p>
+    </li>
+</ol>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-05">2013年05月26日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#mybatis"> mybatis</a>
+        <span class="glyphicon glyphicon-tags"></span> mybatis
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/05/26/mybatis-simple-pagination/" href="http://iyiguo.net/blog/2013/05/26/mybatis-simple-pagination/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2013/05/07/javascript-null-undefined/">javascript中的null和undefined</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         <code class="highlighter-rouge">null</code>表示无值或不存在的对象；
+  
+  <li>
+      <code class="highlighter-rouge">undefined</code>表示一个未声明的变量。声明但没有赋值的变量或者一个并不存在的对象属性;
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> var param; // 声明但不赋值，其等价于
+ var param = undefined;
+
+ var obj = {}; //声明一个对象
+ var param1 = obj.param; // 对象不存在的属性
+ console.info(param1); // undefined
+ console.info(param1 === undefined); // true
+</code></pre>
+    </div>
+  </li>
+  <li>
+      <code class="highlighter-rouge">undefined</code>不同于<strong>未定义</strong>，但在使用<code class="highlighter-rouge">typeof</code>方法时，该方法并不区分<code class="highlighter-rouge">undefined</code>和<strong>未定义</strong>，其返回值均为<em>字符串<code class="highlighter-rouge">undefined</code></em>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> var param; 
+ console.info(typeof param); // 打印 "undefined"
+ console.info(typeof param === 'undefined'); // true
+
+ // 注意：param1并未被声明，属于首次使用
+ console.info(typeof param1); // 打印 "undefined"
+ console.info(typeof param1 === 'undefined'); // true
+</code></pre>
+    </div>
+  </li>
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2013/05/07/javascript-null-undefined/">阅读全文......</a>
+        </p>
+    </li>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2013-05">2013年05月07日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#javascript"> javascript</a>
+        <span class="glyphicon glyphicon-tags"></span> javascript
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2013/05/07/javascript-null-undefined/" href="http://iyiguo.net/blog/2013/05/07/javascript-null-undefined/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2012/12/02/jquery-plugins-authoring/">jQuery插件编写</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         原文地址：<a href="http://docs.jquery.com/Plugins/Authoring">http://docs.jquery.com/Plugins/Authoring</a>
+
+  So you’ve become comfortable with jQuery and would like to learn how to write your own plugins. Great! You’re in the right spot. Extending jQuery with plugins and methods is very powerful and can save you and your peers a lot of development time by abstracting your most clever functions into plugins. This post will outline the basics, best practices, and common pitfalls to watch out for as you begin writing your plugin.
+
+  当你已经熟练掌握<code class="highlighter-rouge">jQuery</code>并且想学习如何编写属于自己的插件程序时，你可以参看这篇文章。使用插件程序和方法扩展<code class="highlighter-rouge">jQuery</code>是非常强大的。你可以将一些想法抽象为函数并封装到插件中以便为你和你的同事节省许多开发时间。
+
+<h1 id="contents">目录(CONTENTS)</h1>
+<ol>
+  <li>
+     
+        <p class="pull-right">
+          <a href="/blog/2012/12/02/jquery-plugins-authoring/">阅读全文......</a>
+        </p>
+    </li>
+</ol>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2012-12">2012年12月02日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#jQuery"> jQuery</a>
+        <span class="glyphicon glyphicon-tags"></span> javascript,jQuery,译文
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2012/12/02/jquery-plugins-authoring/" href="http://iyiguo.net/blog/2012/12/02/jquery-plugins-authoring/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2012/09/27/mybatis-param-mapping-rules/">mybatis参数映射</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         当参数未使用<code class="highlighter-rouge">@Param</code>注解时，可以通过以下方式访问：
+
+<blockquote>
+    #{参数位置[0..n-1]}
+</blockquote>
+
+  或者
+
+<blockquote>
+   
+        <p class="pull-right">
+          <a href="/blog/2012/09/27/mybatis-param-mapping-rules/">阅读全文......</a>
+        </p>
+    </blockquote>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2012-09">2012年09月27日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#mybatis"> mybatis</a>
+        <span class="glyphicon glyphicon-tags"></span> mybatis
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2012/09/27/mybatis-param-mapping-rules/" href="http://iyiguo.net/blog/2012/09/27/mybatis-param-mapping-rules/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2012/05/05/jquery-etable-plugin/">jQuery eTable Plugin</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         很多时候我们需要对页面上的表格进行添加一行，删除一行这样的基本操作。如果我们使用原生的javascrip来写会很不方便。为了解决这个问题我们封装了一些常规的页面表格处理方式，集成到jQuery中，方面我们后续使用。
+
+  如此，jQuery eTable Plugin 便应运而生了。该套函数库提供对表格操作的一些基本方法。其实质是通过<code class="highlighter-rouge">$(table).eTable()</code>获取封装了表格元素的<code class="highlighter-rouge">ETable</code>对象，同时.<code class="highlighter-rouge">eTable</code>对象封装了一些列针对表格行列进行操作的方法。使用这些方法可以对表格进行行列的插入与删除。
+
+  可以通过如下方式获取页面表格对象：
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>var $eTable = $("#table1").eTable();
+var $eTable = $(document.getElementById('table1')).eTable();
+</code></pre>
+</div>
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2012/05/05/jquery-etable-plugin/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2012-05">2012年05月05日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#jQuery"> jQuery</a>
+        <span class="glyphicon glyphicon-tags"></span> javascript,jQuery
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2012/05/05/jquery-etable-plugin/" href="http://iyiguo.net/blog/2012/05/05/jquery-etable-plugin/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2012/05/04/jquery-msgbox-plugin/">jQuery MsgBox Plugin</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         移动目标元素对象，使其显示在遮罩层正中央。 <code class="highlighter-rouge">jmask</code> 接受一个参数.
+
+
+<blockquote>
+    <strong>options</strong>: 该参数为对象类型。用来设置遮罩层默认全局属性,默认属性为：
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>$.fn.jmask.defaults = {
+	bgcolor : '#eee',
+	opacity : 0.8
+};
+</code></pre>
+  </div>
+</blockquote>
+
+  <strong>Example</strong>:
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$("#jmaskDemo").jmask();
+$("#jmaskDemo").jmask({
+    bgcolor:'pink',
+    opacity : 0.6
+});
+</code></pre>
+</div>
+
+<h3 id="junmask-">junmask() 关闭遮罩层</h3>
+
+<blockquote>
+   
+        <p class="pull-right">
+          <a href="/blog/2012/05/04/jquery-msgbox-plugin/">阅读全文......</a>
+        </p>
+    </blockquote>
+</div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2012-05">2012年05月04日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#jQuery"> jQuery</a>
+        <span class="glyphicon glyphicon-tags"></span> javascript,jQuery
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2012/05/04/jquery-msgbox-plugin/" href="http://iyiguo.net/blog/2012/05/04/jquery-msgbox-plugin/#disqus_thread"></a>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title self-panel-title">
+            <a href="/blog/2011/11/18/plsql-sql-comm-func/">PL/SQL常用函数</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        
+         <code class="highlighter-rouge">abs(n)</code> : 返回n的绝对值
+
+  <code class="highlighter-rouge">ceil(n)</code> : 返回大于等于数字n的最小整数
+
+  <code class="highlighter-rouge">floor(n)</code> : 返回小于等于数字n的最大整数
+
+ 
+        <p class="pull-right">
+          <a href="/blog/2011/11/18/plsql-sql-comm-func/">阅读全文......</a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <a href="/archives/#2011-11">2011年11月18日</a>
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#SQL"> SQL</a>
+        <span class="glyphicon glyphicon-tags"></span> pl/sql
+        <span class="glyphicon glyphicon-comment"></span>
+        <a class="disqus-comment-count" data-disqus-url="http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/" href="http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/#disqus_thread"></a>
+    </div>
+</div>
+
+
+<div>
+    <ul class="pagination pagination-md">
+        <li><span>第 4 / 5 页</span></li>
+        <li>
+            
+            <a href="/page3">«</a>
+            
+        </li>
+        
+        
+        <li><a href="/index.html">1</a></li>
+        
+        
+        
+        <li><a href="/page2">
+            2 </a></li>
+        
+        
+        
+        <li><a href="/page3">
+            3 </a></li>
+        
+        
+        
+        <li class="active"><span>4 <span class="sr-only">(current)</span></span></li>
+        
+        
+        
+        <li><a href="/page5">
+            5 </a></li>
+        
+        
+        
+        <li><a href="/page5">»</a></li>
+        
+    </ul>
+</div>
+
+<script id="dsq-count-scr" src="//oxcow.disqus.com/count.js" async></script>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

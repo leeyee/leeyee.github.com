@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>PL/SQL复合数据类型 - Leeyee’s Blog</title>
+<meta property="og:title" content="PL/SQL复合数据类型">
+<meta name="description" content="介绍pl/sql复合数据类型。包括记录表、集合、嵌套表、变长数组等数据类型">
+<meta property="og:description" content="介绍pl/sql复合数据类型。包括记录表、集合、嵌套表、变长数组等数据类型">
+<link rel="canonical" href="http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/">
+<meta property="og:url" content="http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-08-30T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2015/08/30/plsql-control-statement/" title="PL/SQL流程控制语言">
+<link rel="prev" href="http://iyiguo.net/blog/2015/08/11/git-cmdgroup/" title="windows下Git命令组的实现">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "PL/SQL复合数据类型",
+    "datePublished": "2015-08-30T00:00:00+08:00",
+    "description": "介绍pl/sql复合数据类型。包括记录表、集合、嵌套表、变长数组等数据类型",
+    "url": "http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#SQL">SQL</a></li>
+        
+        <li class="active">PL/SQL复合数据类型</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> PL/SQL复合数据类型 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/">《PL/SQL复合数据类型》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/">http://iyiguo.net/blog/2015/08/30/plsql-complex-data-type/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li>
+<a href="#plsql" id="markdown-toc-plsql">PL/SQL记录</a>    <ul>
+      <li><a href="#plsql-1" id="markdown-toc-plsql-1">自定义PL/SQL记录</a></li>
+      <li><a href="#rowtype" id="markdown-toc-rowtype">使用%ROWTYPE属性定义记录变量</a></li>
+      <li><a href="#section" id="markdown-toc-section">使用示例</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#plsql-2" id="markdown-toc-plsql-2">PL/SQL集合</a>    <ul>
+      <li><a href="#plsql-3" id="markdown-toc-plsql-3">索引表(PL/SQL表)</a></li>
+      <li><a href="#nested-table" id="markdown-toc-nested-table">嵌套表(Nested Table)</a></li>
+      <li><a href="#varray" id="markdown-toc-varray">变长数组(VARRAY)</a></li>
+      <li><a href="#plsql-4" id="markdown-toc-plsql-4">PL/SQL记录表</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">多级集合</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-2" id="markdown-toc-section-2">集合方法</a></li>
+</ul>
+
+<h2 id="plsql">PL/SQL记录</h2>
+
+<p>PL/SQL记录类似高级语句中的结构，用于处理<strong>单行多列</strong>数据。</p>
+
+<h3 id="plsql-1">自定义PL/SQL记录</h3>
+
+<p>语法：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>TYPE type_name IS RECORD(
+	filed_declaration[,filed_declaration]...
+);
+
+indetifier type_name;
+</code></pre>
+</div>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>DECALRE
+	TYPE user_record_type IS RECORD(
+		name user.name%TYPE,
+		age user.age%TYPE
+	);
+	
+	user_record user_type;
+...
+</code></pre>
+</div>
+
+<h3 id="rowtype">使用%ROWTYPE属性定义记录变量</h3>
+
+<p><strong>%ROWTYPE</strong>属性可以<strong>基于表或视图</strong>定义记录变量。使用该属性后，记录变量成员的名称和类型与表或视图的名称和类型完全相同。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>user_record user%ROWTYPE;
+</code></pre>
+</div>
+
+<h3 id="section">使用示例</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>set serveroutput on 
+	DECLARE
+		TYPE user_record_type IS RECORD(
+			name user.name%TYPE,
+			age user.age%TYPE
+		);			
+		user_record user_record_type;
+		user_record1 user_record_type;
+		user_record2 user%ROWTYPE;
+		user_record3 user%ROWTYPE;
+	BEGIN
+		-- 在 SELECT INTO 语句中使用 PL/SQL 记录
+		SELECT name,age into user_record
+		FROM user where uid = 1;
+		dbms_output.put_line(user_record.name);
+		
+		-- 在 SELECT INTO 语句中使用记录变量
+		SELECT name into user_record1.name 
+		FROM user where uid = 2;
+		dbms_output.put_line(user_record1.name);
+		
+		user_record2.uid := 100;
+		user_record2.name := 'name1';
+		user_record2.age := 56;
+		
+		-- 在 VALUES 子句中使用记录变量(Oracle9i新特性)
+		INSERT INTO user VALUES user_record2; 
+		
+		user_record3.name := user_record2.name;
+		user_record3.age := user_record2.age;
+		UPDATE user SET ROW = user_record3 WHERE uid = user_record2.uid;
+	END;
+</code></pre>
+</div>
+
+<h2 id="plsql-2">PL/SQL集合</h2>
+
+<p>PL/SQL集合<strong>相当于高级语言的数组</strong>。用于<strong>存放多行单列数据</strong>。PL/SQL集合包括<em>索引表</em>(PL/SQL表)、<em>嵌套表</em>(Nested Table)和<em>变长数组</em>(VARRAY)等三种类型</p>
+
+<h3 id="plsql-3">索引表(PL/SQL表)</h3>
+
+<p>该类型数据为Oracle早期类型。索引表的元素个数没有限制，并且下标可以为负值。</p>
+
+<p>语法：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>TYPE type_name IS TABLE OF element_type
+[NOT NULL] INDEX BY key_type;
+identifier type_name;
+</code></pre>
+</div>
+
+<ul>
+  <li>type_name : 定义的索引表名称</li>
+  <li>element_type : 索引表中的元数据类型</li>
+  <li>NOT NULL : 可选项。索引表中的元素不能引用NULL元素</li>
+  <li>key_type ：索引表元素下标数据类型</li>
+</ul>
+
+<p><em>Oracle9i之前key_type只能为 BINARY_INTEGER 和 PLS_INTEGER;从Oracle9i开始key_type也可以使用VARCHAR2.</em></p>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>set serveroutput on 
+	DECLARE
+		TYPE name_table_type IS TABLE OF user.name%TYPE
+			INDEX BY BINARY_INTEGER;
+		names_table name_table_type;
+		
+		TYPE area_table_type IS TABLE OF NUMBER
+			INDEX BY VARCHAR2(10);
+		area_table area_table_type;
+	BEGIN
+		SELECT name INTO names_table(-1) FROM user
+		WHERE uid = 1;
+		dbms_output.put_line('姓名'||names_table(-1));
+		
+		area_table('北京') := 1;
+		area_table('上海') := 2;
+		area_table('天津') := 3;
+		dbms_output.put_line('first-&gt;'||area_table('北京')); -- 1
+		dbms_output.put_line('second-&gt;'||area_table('上海')); -- 2
+		dbms_output.put_line('last-&gt;'||area_table.last); -- 天津
+		
+	END;
+</code></pre>
+</div>
+
+<h3 id="nested-table">嵌套表(Nested Table)</h3>
+
+<ul>
+  <li>嵌套表的<strong>元素下标从1开始</strong>，元素<strong>个数没有限制</strong>，同时其<strong>元素值可以是稀疏的</strong>；</li>
+  <li>索引表不能作为表列属性，但嵌套表<strong>可以作为表列属性进行表列定义</strong>；</li>
+  <li>使用嵌套表元素时，<strong>必须首先使用其构造方法初始化嵌套表</strong>。</li>
+</ul>
+
+<p>语法：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>TYPE type_name IS TABLE OF element_type;
+identifier type_name;
+</code></pre>
+</div>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>DECLARE
+	TYPE name_table_type IS TABLE OF user.name%TYPE;
+	name_table name_table_type := name_table_type('a','a'); -- 初始化嵌套表
+BEGIN
+	SELECT name INTO name_table(2) FROM user WHERE uid = 1;
+	dbms_output.put_line('姓名:' || name_table(2));
+END;
+</code></pre>
+</div>
+
+<p><em>当嵌套表类型当作表列的数据类型使用时，必须首先使用 CREATE TYPE 命令建立嵌套表，必须为嵌套表列指定专门的存储表。</em></p>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>CREATE TYPE phone_type IS TABLE OF VARCHAR2(20);
+	
+CREATE TABLE user (
+	id NUMBER(3),name VARCHAR2(10),salary NUMBER(6,2),phone phone_type
+) NESTED TABLE phone STORE AS phone_type;
+</code></pre>
+</div>
+
+<ol>
+  <li>
+    <p>为嵌套表插入数据</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> BEGIN 
+     INSERT INTO user VALUES(1,'leeyee',800,phone_type('13800000000','13912345678'));
+ END;
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>检索嵌套表数据</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> set serveroutput on
+ DECLARE
+     phone_table phone_type;
+ BEGIN
+     SELECT phone INTO phone_table FROM user WHERE id = 1 ;
+     FOR i IN 1..phone_table.COUNT LOOP
+         dbms_output.put_line('电话号码:'||phone_table(i));
+     end LOOP;
+ END;
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>更新嵌套表数据</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> DECLARE
+     phone_table phone_type := phone_type('15900001111','15896543219','13345678923');
+ BEGIN
+     UPDATE user SET phone = phone_table WHERE id = 1;
+ END;
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<h3 id="varray">变长数组(VARRAY)</h3>
+
+<p>PL/SQL 数组数据类型，可作为<strong>表列数据类型</strong>使用。该数据类型与高级语言<strong>数组</strong>类似，元素<strong>下标从1开始</strong>，并且元素<strong>最大个数有限</strong>。当使用VARRAY是，应首先进行<strong>初始化</strong>。</p>
+
+<p>语法：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>TYPE type_name IS VARRAY(size) OF element_type [NOT NULL]
+indentifier type_name;
+</code></pre>
+</div>
+
+<ul>
+  <li>type_name : 变长数组类型名</li>
+  <li>size : 数组最大元素个数</li>
+  <li>element_type ：数组元素数据类型</li>
+</ul>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>DECLARE
+	TYPE user_varray_type IS VARRAY(20) OF user.name%TYPE;
+	user_varray user_varray_type := user_varray_type('oxcow','leeyee'); -- 初始化 VARRAY
+BEGIN
+	SELECT name INTO user_varray(1) FROM user WHERE uid = 1 ;
+	dbms_output.put_line('姓名' || user_varray(1));
+END;
+-- 表列属性
+-- 创建表列属性
+CREATE TYPE phone_type IS VARRAY(20) OF VARCHAR2(20);
+CREATE TABLE user(
+	id NUMBER(3),name VARCHAR2(20),phone phone_type
+);
+-- 插入、检索及更新同嵌套表
+</code></pre>
+</div>
+
+<h3 id="plsql-4">PL/SQL记录表</h3>
+
+<p>PL/SQL记录表用来<strong>存储多行多列数据</strong>。</p>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>DECLARE
+	TYPE user_table_type IS TABLE OF user%ROWTYPE
+		INDEX BY BINNARY_INTEGER;
+	user_table user_table_type;
+BEGIN
+	SELECT * INTO user_table(1) FROM user WHERE uid = 1;
+	SELECT * INTO user_table(2) FROM user WHERE uid = 2;
+	dbms_output.put_line('姓名: ' || user_table(1).name);
+	dbms_output.put_line('姓名: ' || user_table(2).name);
+END;
+</code></pre>
+</div>
+
+<h3 id="section-1">多级集合</h3>
+
+<p>多级集合是指<strong>嵌套了集合类型的集合类型</strong>。通过使用多级集合，可以在PL/SQL中实现类似于<strong>多维数组</strong>的功能。<em>(Oracle9i以后可以使用)</em></p>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>-- 在块中使用多级 VARRAY
+-- 定义VARRAY(10,10)
+DECLARE
+	-- 定义一维VARRAY
+	TYPE al_varray_type IS VARRAY(10) OF INT;
+	-- 定义二维VARRAY
+	TYPE nal_varray_type IS VARRAY(10) OF al_varray_type;
+	-- 初始化二维集合变量
+	nvl_array nal_array_type := nal_varray_type(
+		al_varray_type(58,100,12),
+		al_varray_type(432,43,211),
+		al_varray_type(2,4)
+	);
+BEGIN
+	dbms_output.put_line('显示二维数组所有元素');
+	FOR i in 1..nvl_array.COUNT LOOP
+		FOR j in 1..nvl_array(i).COUNT LOOP
+		    dbms_output.put_line('nvl_array('||i||','||j||')='||nvl_array(i)(j));
+		END LOOP;
+	END LOOP;
+END;
+	
+-- 在块中使用多级嵌套表
+DECLARE
+	-- 定义一维嵌套表
+	TYPE al_table_type IS TABLE OF INT;
+	-- 定义二维嵌套表
+	TYPE nal_table_type IS TABLE OF al_table_type;
+	-- 初始化二维集合变量
+	nvl_table nal_table_type := nal_table_type(
+		al_table_type(58,100,12),
+		al_table_type(432,43,211),
+		al_table_type(2,4)
+	);
+	
+--  在块中使用多级索引表
+DECLARE
+	-- 定义一维table
+	TYPE al_table_type IS TABLE OF INT INDEX BY BINARY_INTEGER;
+	-- 定义二维table
+	TYPE nal_table_type IS TABLE OF al_table_type INDEX BY BINARY_INTEGER;
+	-- 初始化二维集合变量
+	nvl_table nal_table_type;
+	nvl_table(1)(1) := 2;
+	nvl_table(1)(2) := 3;
+	nvl_table(2)(1) := 4;
+	nvl_table(2)(2) := 25;
+</code></pre>
+</div>
+
+<h2 id="section-2">集合方法</h2>
+
+<ol>
+  <li>EXISTS<br>
+ 该方法用来<strong>确定集合元素是否存在</strong>。如果存在返回TRUE，否则返回FALSE</li>
+  <li>COUNT<br>
+ 该方法返回当前<strong>集合变量中的元素总个数</strong>。</li>
+  <li>LIMIT<br>
+ 该方法返回<strong>当前集合元素的最大个数</strong>。对于嵌套表和索引表，由于其个数没有限制，则在使用该方法时会返回NULL。</li>
+  <li>FIRST 和 LAST<br>
+ FIRST 方法<strong>返回集合变量第一个元素的下标</strong>；<br>
+ LAST 方法<strong>返回集合变量的最后一个元素下标</strong>；</li>
+  <li>PRIOR 和 NEXT	<br>
+ PRIOR 方法<strong>返回当前集合元素的前一个元素的下标</strong>；<br>
+ NEXT 方法<strong>返回当前集合元素的后一个元素下标</strong>；</li>
+  <li>EXTEND<br>
+ 该方法用来<strong>扩展集合变量的尺寸</strong>，并为他们<strong>增加元素</strong>。该方法<strong>只适用于嵌套表和VARRAY</strong>。
+    <ul>
+      <li>EXTEND : 为集合变量添加一个NULL元素</li>
+      <li>EXTEND(n) : 为集合变量添加n个NULL元素</li>
+      <li>EXTEND(n,i) : 为集合变量添加n个元素，元素值与第i个元素相同</li>
+    </ul>
+  </li>
+  <li>TRIM<br>
+ 该方法从集合尾部删除元素。该方法<strong>只适应于嵌套表和VARRAY</strong>
+    <ul>
+      <li>TRIM : 从尾部删除一个元素</li>
+      <li>TRIM(n) : 从尾部删除n个元素</li>
+    </ul>
+  </li>
+  <li>DELETE<br>
+ 该方法用于删除集合元素。该方法<strong>只适用于嵌套表和索引表</strong>。
+    <ul>
+      <li>DELETE : 删除集合变量中的所有元素</li>
+      <li>DELETE(n) : 删除集合变量的第n个元素</li>
+      <li>DELETE(n,m) : 删除集合变量从第n个到第m个的所有元素</li>
+    </ul>
+  </li>
+</ol>
+
+<p>示例：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>DECLARE
+	TYPE name_table_type IS TABLE OF user.name%TYPE;
+	name_type name_table_type;
+BEGIN
+	IF name_type.EXISTS(1）THEN
+		name_type(1) := 'leeyee';
+	ELSE
+		dbms_output_line("必须初始化集合元素");
+	END IF;
+END;
+</code></pre>
+</div>
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                                                                             
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/08/30/plsql-sql-use-sql-in-block/">PL/SQL块中使用SQL</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/08/30/plsql-control-statement/">PL/SQL流程控制语言</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/08/30/plsql-complex-data-type/">PL/SQL复合数据类型</a></li>
+                                                                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/11/18/plsql-sql-comm-func/">PL/SQL常用函数</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/11/17/plsql-sql-select/">SQL查询语句要点</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/11/16/plsql-sql-groupby/">SQL分组语句要点</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2015-08">2015年08月30日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#SQL"> SQL</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> pl/sql 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

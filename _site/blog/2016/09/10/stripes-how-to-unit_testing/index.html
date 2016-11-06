@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Stripes框架如何做系列-单元测试 - Leeyee’s Blog</title>
+<meta property="og:title" content="Stripes框架如何做系列-单元测试">
+<meta name="description" content="stripes框架如何做系列中文翻译。单元测试">
+<meta property="og:description" content="stripes框架如何做系列中文翻译。单元测试">
+<link rel="canonical" href="http://iyiguo.net/blog/2016/09/10/stripes-how-to-unit_testing/">
+<meta property="og:url" content="http://iyiguo.net/blog/2016/09/10/stripes-how-to-unit_testing/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-09-10T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2016/09/15/stripes-how-to-use_defaults_more/" title="Stripes框架如何做系列-更多使用默认配置">
+<link rel="prev" href="http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/" title="Stripes框架如何做系列-状态管理">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Stripes框架如何做系列-单元测试",
+    "datePublished": "2016-09-10T00:00:00+08:00",
+    "description": "stripes框架如何做系列中文翻译。单元测试",
+    "url": "http://iyiguo.net/blog/2016/09/10/stripes-how-to-unit_testing/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#stripes">stripes</a></li>
+        
+        <li class="active">Stripes框架如何做系列-单元测试</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> Stripes框架如何做系列-单元测试 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2016/09/10/stripes-how-to-unit_testing/">《Stripes框架如何做系列-单元测试》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2016/09/10/stripes-how-to-unit_testing/">http://iyiguo.net/blog/2016/09/10/stripes-how-to-unit_testing/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#actionbean" id="markdown-toc-actionbean">方法１：直接调用你的ActionBean</a></li>
+  <li>
+<a href="#section" id="markdown-toc-section">方法２：模拟容器用法</a>    <ul>
+      <li><a href="#mockroundtripsspring" id="markdown-toc-mockroundtripsspring">MockRoundtrips和Spring兼容！</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-1" id="markdown-toc-section-1">使用方法2:模拟容器用法进行向导行为测试</a></li>
+</ul>
+
+<p>原文地址：<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/Unit+Testing">https://stripesframework.atlassian.net/wiki/display/STRIPES/Unit+Testing</a></p>
+
+<p>这篇文档介绍两种主要的方式用来测试ActionBeans和与之关联的外部容器类，比如Tomcat，Resin或者Jetty。要决定哪种方式适合你，应该大概去了解下两者。这不是用一个方案就可以解决所有问题的，你可能需要在你的项目中同时使用这两种技术。</p>
+
+<p>但是首先，让我们先说明一些事情……</p>
+
+<ol>
+  <li>自动化测试是一件好事情。自动化测试可以让你方便的对代码进行重构，直到写出更高质量的代码。</li>
+  <li>我不想通过哲学层面去说明单元测试的好与不好；但良好的可自动运行的测试是值得提倡的，这不关乎他们是否是技术性的单元测试。</li>
+  <li>有工具可以让你测试整个包含在常规servelt容器内渲染的JSP的周期；我发现这有一点像是努力工作并当可能的时候去测试我的外部容器<sup id="fnref:commnet1"><a href="#fn:commnet1" class="footnote">1</a></sup>。</li>
+  <li>对每个Stripes用户，我个人比较推荐使用<a href="http://www.testng.org/">TestNG</a>。它要比JUnit先进，如果你有做过任何的单元测试，那么<a href="http://www.testng.org/">TestNG</a>的上手时间也就大概15分钟。</li>
+</ol>
+
+<p>为了证明上述四点，这篇文档的所有示例（实际上包含Stripes的所有单元测试）均使用<a href="http://www.testng.org/">TestNG</a>。</p>
+
+<h2 id="actionbean">方法１：直接调用你的ActionBean</h2>
+
+<p>由于<strong>ActionBean</strong>类是一个简单的<strong>POJO</strong>,因此对他们实例化，设置属性以及调用处理方法都是可以直接进行的。下面的代码用来测试CalculatorActionBean类：</p>
+
+<blockquote>
+  <p>CalculatorActionBeanTest.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class CalculatorActionBeanTest {
+    @Test
+    public void myFirstTest() throws Exception {
+	CalculatorActionBean bean = new CalculatorActionBean();
+	bean.setContext( new ActionBeanContext() );
+	bean.setNumberOne(2);
+	bean.setNumberTwo(2);
+	bean.add();
+	Assert.assertEquals(bean.getResult(), 4, "Oh man, our math must suck!");
+    }
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>当ActionBeans被当做单独的实体，这段用例是完美的。但假如我们要去处理存储在会话中的值或者响应中的cookie时，我们不得不去做进一步的改进。希望现在你已经读过<a href="/blog/2016/08/25/stripes-how-to-state_management/">状态管理</a>，如果没有，你应该先去读它。它说明了如何通过Strips使用自定义的ActionBeanContext子类实现清晰的状态管理，类型安全以及独立的Servlet应用程序接口。让我们想象下我们用如下的抽象ActionBeanContext子类去定义我们的接口：</p>
+
+<blockquote>
+  <p>MyAbstractActionBeanContext.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyAbstractActionBeanContext extends ActionBeanContext {
+    public abstract void setUser(User user);
+    public abstract User getUser();
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>这个类的具体实现应该看起来如下：</p>
+
+<blockquote>
+  <p>MyActionBeanContext.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyActionBeanContext extends MyAbstractActionBeanContext {
+    public void setUser(User user) {
+	getRequest().getSession().setAttribute("user", user);
+    }
+ 
+    public User getUser() {
+	return (User) getRequest().getSession().getAttribute("user");
+    }
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>到目前为止一切看来还不错？现在，假如所有自定义ActionBeans编码继承MyAbstractActionBeanContext类，那么它将可以接受任何子类，而不仅仅只是我们用在普通应用程序中的MyActionBeanContext类。这意味着我们可以写一个测试实现并在测试中替换它。这个实现看起来可能如下：</p>
+
+<blockquote>
+  <p>MyTestActionBeanContext.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyTestActionBeanContext extends MyAbstractActionBeanContext {
+    private Map&lt;String,Object&gt; fakeSession = new HashMap&lt;String,Object&gt;();
+ 
+    public void setUser(User user) {
+	this.fakeSession.put("user", user);
+    }
+ 
+    public User getUser() {
+	return (User) this.fakeSession.get("user");
+    }
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>注意，我们在测试实现中只用了User类型的属性，但是如果你要存放超过两个对象在会话中，使用Map可能更容易。虽然上述只是演示包装会话，但是相同的模式可被应用到与任何Servlet API有关的场景中，比如设置和检索cookie，设置请求属性等。假如你通过自定义ActionBeanContext去调度所有访问的Servlet API类，那么你的ActionBean可以两全其美——当他们需要它时使用Servlet API，并且是完全独立于Servlet API的。</p>
+
+<p>下面将展示如何使用这项技术对LoginActionBean进行测试：</p>
+
+<blockquote>
+  <p>LoginActionBeanTest.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class LoginActionBeanTest {
+    @Test
+    public void successfulLogin() throws Exception {
+	MyAbstractActionBeanContext ctx = new MyTestActionBeanContext();
+	LoginActionBean bean = new LoginActionBean();
+	bean.setContext(ctx);
+	bean.setUsername("shaggy");
+	bean.setPassword("shaggy");
+	bean.login();
+ 
+	Assert.assertNotNull(ctx.getUser());
+	Assert.assertEquals(ctx.getUser().getFirstName(), "Shaggy");
+	Assert.assertEquals(ctx.getUser().getLastName(), "Rogers");
+    }
+ 
+    @Test
+    public void failedLogin() throws Exception {
+	MyAbstractActionBeanContext ctx = new MyTestActionBeanContext();
+	LoginActionBean bean = new LoginActionBean();
+	bean.setContext(ctx);
+	bean.setUsername("shaggy");
+	bean.setPassword("scooby");
+	bean.login();
+ 
+	Assert.assertNull(ctx.getUser());
+	Assert.assertNotNull(ctx.getValidationErrors());
+	Assert.assertEquals(ctx.getValidationErrors().get("password").size(), 1);
+    }
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>这个方法是不错的，但是还有几个缺点：</p>
+
+<ul>
+  <li>它不能测试类上绑定的URL</li>
+  <li>它不能测试验证和类型转换是否工作正常</li>
+  <li>随着ActionBeans变得更加复杂，你的测试看起来会越来越像一个容器</li>
+  <li>它对于测试Resolutions是否正常工作是困难的</li>
+</ul>
+
+<h2 id="section">方法２：模拟容器用法</h2>
+
+<p>从版本1.1.1开始，Stripes包提供了一套丰富的模拟对象，这些对象实现了大量在Servlet中声明了的接口。这些对象可以用于构建处理请求的模拟容器。虽然有点小复杂，但能更逼真的模拟ActionBean被执行的场景。同时对于测试你在注解中的声明也是有好处的。</p>
+
+<p>这些类可以在net.sourceforge.stripes.mock包下找到。随着时间推移，你可能需要了解其中的大多数类，但是现在你只需要将注意力放在类<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/mock/MockServletContext.html">MockServletContext</a>和 <a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/mock/MockRoundtrip.html">MockRoundtrip</a>上即可。</p>
+
+<p><a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/mock/MockServletContext.html">MockServletContext</a>是servlet环境中单个上下文的模拟实现。我们将设置该类型的类去接受和处理我们的请求。这只需要很少的代码就能实现：</p>
+
+<blockquote>
+  <p>设置MockServletContext</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>MockServletContext context = new MockServletContext("test");
+ 
+// Add the Stripes Filter
+Map&lt;String,String&gt; filterParams = new HashMap&lt;String,String&gt;();
+filterParams.put("ActionResolver.Packages", "net.sourceforge.stripes");
+context.addFilter(StripesFilter.class, "StripesFilter", filterParams);
+ 
+// Add the Stripes Dispatcher
+context.setServlet(DispatcherServlet.class, "StripesDispatcher", null);
+</code></pre>
+  </div>
+</blockquote>
+
+<p>在这个示例中，我们做了以下几件事：</p>
+
+<ul>
+  <li>初始化MockServletContext类并使用_test_命名（比如，所有的URL将以/test开始）</li>
+  <li>为StripesFilter设置一些初始化参数</li>
+  <li>插入StripesFilter到模拟上下文中</li>
+  <li>注册Stripes DispatcherServlet在模拟上下文中</li>
+</ul>
+
+<p>针对上述几点你可能会问，为什么要复制这些步骤？嗯，好吧，这些代码除去注释和空行只有五行代码。原因很简单，使用Stripes包含的模拟对象没有以任何方式被捆绑在Stripes中。如果你有一对用户自定义servlet（当你使用Stripes时，为什么还要这样做？有点跑题了），那么你可以用这些模拟对象进行高效的测试。</p>
+
+<p>上述提供给Stripes过滤器的初始化变量与在web.xml中容器使用的变量是相同的。你可以自由的提供相同的值，或者提供更适合测试的值。这完全取决于你。</p>
+
+<blockquote>
+  <p><strong>添加额外的过滤器</strong><br>
+你可以添加额外的过滤器，只要能确保你的ActionBeans功能正常。如果你用过滤器去实现OpenSessionInView模式，或者实现自己的安全模式，那么你也可以添加过滤器到上文中。唯一需要知道的是过滤器是按其插入到上下文中的顺序被调用的。</p>
+</blockquote>
+
+<p>作为模拟对象，而不是一个完整的Servlet容器，你应该知道其中的一些限制：</p>
+
+<ul>
+  <li>没有URL匹配；所有的过滤器被用到每一个请求</li>
+  <li>MockServletContext仅支持单一的Servlet，因此你只能一次测试一件事情</li>
+  <li>转发、重定向和包含是不被处理的（但是关于它们的信息为了验证则是被记录的）</li>
+</ul>
+
+<p>最后，在我们继续之前，将实例化MockServletContext的代码包装在一个测试类中可能是一个好主意。实例化一个模拟上下文要比启动一个完整的servlet容器廉价的多，但仍需花费一到两秒钟。这是微不足道的，但是如果你为每一个单元测试方法都去实例化一个模拟上下文，那么当你有几百个待测试方法时，你将不得不等待一段时间。因此可以实现一个普通的延迟创建单一模拟上下文的，并将其提供给需要它的任何测试类的常规类。或者通过使用TestNG的<code class="highlighter-rouge">@Configuration(beforeSuite=true)</code>注解方法生成上下文。例如：</p>
+
+<blockquote>
+  <p>TestFixture.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class TestFixture {
+    private static MockServletContext context;
+ 
+    @Configuration(beforeTest=true)
+    public void setupNonTrivialObjects() {
+	TestFixture.context = new MockServletContext("test");
+	...
+    }
+ 
+    public static MockServletContext getServletContext() {
+	return TestFixture.context;
+    }
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>现在到了有趣的地方——写一些实际的测试。当你确信直接去实例化并使用所有在模拟包下的类时，它是容易使用MockRoundtrip替代的。MockRoundtrip充当其他几个模拟对象的门面，并介绍了Stripe如何使事情尽可能简单的工作的知识。下面是使用MockRoundtrip的一个基本测试：</p>
+
+<blockquote>
+  <p>使用MockRoundtrip的简单测试</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>@Test
+public void positiveTest() throws Exception {
+    // Setup the servlet engine
+    MockServletContext ctx = TestFixture.getServletContext();
+ 
+    MockRoundtrip trip = new MockRoundtrip(ctx, CalculatorActionBean.class);
+    trip.setParameter("numberOne", "2");
+    trip.setParameter("numberTwo", "2");
+    trip.execute();
+ 
+    CalculatorActionBean bean = trip.getActionBean(CalculatorActionBean.class);
+    Assert.assertEquals(bean.getResult(), 4.0);
+    Assert.assertEquals(trip.getDestination(), "/index.jsp");
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>这个小片段中有不少信息。首先我们从TestFixture中获取MockServletContext。接着我们通过上下文和想要调用的ActionBean去实例化一个新的MockRoundtrip。其中上下文被用来帮助生成请求时的URL，并在后续的请求处理中被用到。ActionBean类仅被用来获取来自@UrlBinding注解的URL。如果你愿意，也可以使用参数为URL字符串的构造函数来替代ActionBean类。此外由于没有MockHttpSession，MockRoundtrip将为我们创建一个。对于较大较长的测试，你可能需要创建一个MockHttpSession并在一些请求中使用它，以便模拟真实的会话。</p>
+
+<p>MockRoundtrip创建完成后，我们为其设置两个请求变量。注意，就像其他普通的请求参数一样，它们都是字符串。如果你需要为任何变量提供超过一个值，你可以通过可变参数方法<code class="highlighter-rouge">setParameter()</code>和<code class="highlighter-rouge">addParameter</code>提供额外的值。</p>
+
+<p><code class="highlighter-rouge">trip.execute()</code>在servlet上下文中（当我们构造MockRoundtrip时提供的）执行请求。它将（假设我们的测试工作）调用CalculatorActionBean中默认的操作。还有另一个<code class="highlighter-rouge">execute()</code>方法，它接受一个事件名称作为参数，并且如果被请求的事件已被提交，它将格式化请求。</p>
+
+<p>最后进行验证。我们从MockRoundtrip中获取ActionBean实例。需要明确的是：这是一个被Stripes和刚刚处理过的请求实例化的ActionBean。第一个断言是相当简单的，它检查确保被计算出的结果是正确的（默认的是加法操作）。第二个断言检查ActionBean转发或重定向给用户正确的页面。一个重要的需要注意的事情是：MockRoundtrip将使用的路径转发或重定向到web应用的相对路径上。无论是转发还是重定向的请求结果，你都将得到相同的返回路径，同时这些路径是不包含上下文路径的。这样做只是为了测试简单，假如你在两种跳转方式上来回切换时。</p>
+
+<p>测试失败的用例也很简单：</p>
+
+<blockquote>
+  <p>使用MockRoundtrip测试失败用例</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>@Test
+public void negativeTest() throws Exception {
+    // Setup the servlet engine
+    MockServletContext ctx = TestFixture.getServletContext();
+ 
+    MockRoundtrip trip = new MockRoundtrip(ctx, CalculatorActionBean.class);
+    // Omit first parameter - we could also have set it to ""
+    trip.setParameter("numberTwo", "abc");
+    trip.execute();
+ 
+    CalculatorActionBean bean = trip.getActionBean(CalculatorActionBean.class);
+    Assert.assertEquals(bean.getContext().getValidationErrors().size(), 2);
+    Assert.assertEquals(trip.getDestination(), MockRoundtrip.DEFAULT_SOURCE_PAGE);
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>这段示例和上述的示例是非常相似的，除了我们忽略了一个必填参数和传递”abc”字符串给数字类型的参数。第一个断言检查确保在ValidationErrors中有两个实体。ValidationErrors的结构是一个使用域名映射ValiationError数组的Map。如果想进一步验证，可以循环遍历错误列表中的每一个域并确保每个域都得到一个错误。</p>
+
+<p>第二个断言检查该请求导致导航返回到原页面。Stripes要求请求提供其来源路径页面（至少如果请求可以生成验证错误）。这通常是由<code class="highlighter-rouge">&lt;stripes:form&gt;</code>标签声明的，但是在这个例子中，MockRoundtrip为我们插入了一个默认的值。如果关心这个值，可以通过<code class="highlighter-rouge">MockRoundtrip.setSourcePage(String url)</code>方法进行设置。</p>
+
+<p>最后，我们可能在ActionBean中处理方法时用返回数据流的方式替代JSP页面给用户。比如下面来自AJAX CalculatorActionBean的代码片段：</p>
+
+<blockquote>
+  <p>处理流数据方法到客户端</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>@HandlesEvent("Addition") @DefaultHandler
+public Resolution addNumbers() {
+    String result = String.valueOf(numberOne + numberTwo);
+    return new StreamingResolution("text", new StringReader(result));
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>在这个示例中我们返回的数据流大小很小——单个浮点数。但原理是相同的，如果我们返回大量的xml或者Javascript流。我们可以使用下面的方式对其进行测试：</p>
+
+<blockquote>
+  <p>测试返回流式数据的ActionBean</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>@Test
+public void testWithStreamingOutput() throws Exception {
+    MockServletContext ctx = TestFixture.getServletContext();
+ 
+    MockRoundtrip trip = new MockRoundtrip(ctx, CalculatorActionBean.class);
+    trip.setParameter("numberOne", "2");
+    trip.setParameter("numberTwo", "2");
+    trip.execute("Addition");
+ 
+    CalculatorActionBean bean = trip.getActionBean(CalculatorActionBean.class);
+    Assert.assertEquals(bean.getResult(), 4.0);
+    Assert.assertEquals(trip.getOutputString(), "4.0");
+    Assert.assertEquals(trip.getValidationErrors().size(), 0);
+    Assert.assertNull(trip.getDestination());
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>这里的关键行是第二个断言。这个测试是通过ActionBean输出的字符串完全等于“4.0”的。我们当然可以测试大的字符串，通过检查它们含有的模式或已知的数据。MockRoundtrip也有一个<code class="highlighter-rouge">getOutputBytes()</code>方法，该方法可被用来检索输出的一个字节<sup id="fnref:comment2"><a href="#fn:comment2" class="footnote">2</a></sup>。</p>
+
+<p>关于使用MockRoundtrip更多的信息以及其他模拟对象请参考<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/mock/package-summary.html">java文档</a></p>
+
+<h3 id="mockroundtripsspring">MockRoundtrips和Spring兼容！</h3>
+
+<p>现在你想在spring/stripes应用中使用MockRoundtrip，那么你将得到一个异常：</p>
+
+<blockquote>
+  <p>集成spring使用时的异常</p>
+
+  <blockquote>
+    <p>15:01:19,277 WARN DefaultExceptionHandler:90<br>
+- Unhandled exception caught by the Stripes default exception handler.<br>
+net.sourceforge.stripes.exception.StripesRuntimeException:<br>
+Exception while trying to lookup and inject a Spring bean into a bean of type MyActionBean using field access on field private<br>
+com.xxx.service.MySpringBean<br>
+com.xxx.action.GenericActionBean.mySpringBean</p>
+  </blockquote>
+</blockquote>
+
+<p>为了修正它，你只需要在初始化你的MockServletContext时做一点改变:</p>
+
+<blockquote>
+  <p>添加对Spring的兼容</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>private static MockServletContext context;
+ 
+@Before
+public static void initContext() {
+    Map&lt;String, String&gt; filterParams = new HashMap&lt;String, String&gt;();
+    //add stripes extensions
+    filterParams.put("Interceptor.Classes", "net.sourceforge.stripes.integration.spring.SpringInterceptor");
+ 
+    filterParams.put("ActionResolver.Packages", "net.sourceforge.stripes");
+ 
+    context.addFilter(StripesFilter.class, "StripesFilter", filterParams);
+ 
+    //here goes your own configuration file
+    context.addInitParameter("contextConfigLocation", "/WEB-INF/applicationContext.xml");
+ 
+    // bind your context with an initializer
+    ContextLoaderListener springContextListener = new ContextLoaderListener();
+    springContextListener.contextInitialized(new ServletContextEvent(context));
+ 
+    // Add the Stripes Dispatcher
+    context.setServlet(DispatcherServlet.class, "StripesDispatcher", null);
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>也可参看：</p>
+
+<ul>
+  <li>http://article.gmane.org/gmane.comp.java.stripes.user/9134</li>
+  <li>http://blog.xebia.com/2008/12/16/unit-testing-a-stripes-actionbean-wired-with-spring-beans/</li>
+</ul>
+
+<h2 id="section-1">使用方法2:模拟容器用法进行向导行为测试</h2>
+
+<p>向导行为测试是诡异的，因此为了测试它，我们应该做一些额外的工作。要配置的MockServletContext样例和往常一样。</p>
+
+<blockquote>
+  <p>配置MockServletContext</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>private MockServletContext ctx;
+..........
+@Before
+public void setUpMockServletContext() {
+    ctx = new MockServletContext("test");
+ 
+    // Add the Stripes Filter
+    Map&lt;String,String&gt; filterParams = new HashMap&lt;String,String&gt;();
+    filterParams.put("ActionResolver.Packages", "com.yourpackage.action");
+    // filterParams.put("LocalePicker.Locales", ".....");
+    // filterParams.put("Extension.Packages", "com.yourpackage.action.extention");
+    ctx.addFilter(StripesFilter.class, "StripesFilter", filterParams);
+    // Add the Stripes Dispatcher
+    ctx.setServlet(DispatcherServlet.class, "StripesDispatcher", null);
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>正如看到的，当前的配置中只有一个过滤器。稍后我们将会使用到它。</p>
+
+<p>假设在你的向导行为bean中有以下几个用在页面向导处理的域名，域名是filed1,filed2,filed3.</p>
+
+<p>你可以和之前一样尝试运行你的测试。</p>
+
+<blockquote>
+  <p>未处理异常在测试方法中</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>@Test
+public void negativeTest() throws Exception {
+    MockRoundtrip trip = new MockRoundtrip(ctx, MyWizardActionBean.class);
+    trip.setParameter("field1", "abc");
+    trip.execute();
+    // ....... the rest of test code
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>你最可能得到的结果是像这样的错误：</p>
+
+<blockquote>
+  <p>未处理的异常信息</p>
+
+  <blockquote>
+    <p>WARN net.sourceforge.stripes.exception.DefaultExceptionHandler - Unhandled exception caught by the Stripes default exception handler.<br>
+net.sourceforge.stripes.exception.StripesRuntimeException: Submission of a wizard form in Stripes absolutely<br>
+requires that the hidden field Stripes writes containing the names of the fields present on the form is present<br>
+and encrypted (as Stripes write it). This is necessary to prevent a user from spoofing the system and getting<br>
+around any security/data checks.</p>
+  </blockquote>
+</blockquote>
+
+<p>产生这个异常是因为向导行为被Stripes做了特殊处理。解决方法是在测试方法中添加如下代码：</p>
+
+<blockquote>
+  <p>解决向导行为中的未处理异常</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>import net.sourceforge.stripes.util.CryptoUtil;
+.......
+@Test
+public void negativeTest() throws Exception {
+    MockRoundtrip trip = new MockRoundtrip(ctx, MyWizardActionBean.class);
+    trip.setParameter("__fp", CryptoUtil.encrypt("||field1||field2||field3"));// used for @Wizard action
+    trip.setParameter("field1", "abc");
+    trip.execute();
+    // ....... the rest of test code
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>域名加密代码应该用||开始并用其分割所有域名。然后将加密值指定给由Stripes内部使用的特殊参数“__fp”。</p>
+
+<p>现在所有你的测试都很好的通过并退出，但是在测试日志中你仍有极大可能看到如下的错误信息：</p>
+
+<blockquote>
+  <p>向导行为测试日志中的错误</p>
+
+  <blockquote>
+    <p>ERROR net.sourceforge.stripes.controller.StripesFilter - net.sourceforge.stripes.exception.StripesRuntimeException:<br>
+Something is trying to access the current Stripes configuration but the current request was never routed through<br>
+the StripesFilter! As a result the appropriate Configuration object cannot be located. Please take a look at the<br>
+exact URL in your browser’s address bar and ensure that any requests to that URL will be filtered through the<br>
+StripesFilter according to the filter mappings in your web.</p>
+  </blockquote>
+</blockquote>
+
+<p>你应该在你的测试中增加一个JUnit的固定方法来解决该问题。你应该从你的MockServletContext中移除Stripe过滤器并重新为每一个测试方法设置它。添加下面的代码到你的测试中，并在次尝试运行：</p>
+
+<blockquote>
+  <p>解决导行为测试日志中的第二个异常</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>@After
+public void cleanUp() {
+    // destroy Stripes filter for every test method
+    ctx.getFilters().get(0).destroy(); // assume you have only one (first and single) filter in config
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>我们在每个测试方法之后摧毁内部配置的Stripes过滤器。该代码假定在测试中您只有一个过滤器（<em>译者注：对应本节开始时的示例代码——只有一个过滤器</em>），所以你有几个过滤器，你就应该为你的示例调整你的代码。</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:commnet1">
+      <p>I find these are a bit too much like hard work and prefer to test outside of my container when possible <a href="#fnref:commnet1" class="reversefootnote">↩</a></p>
+    </li>
+    <li id="fn:comment2">
+      <p>Also MockRoundtrip has a getOutputBytes() method that can be used to retrieve a byte[] of output in case the ActionBean’s output was not text. <a href="#fnref:comment2" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                 
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/11/06/stripes-how-to-wizard_forms/">Stripes框架如何做系列-向导表单</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/">Stripes框架如何做系列-更多使用默认配置</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/10/stripes-how-to-unit_testing/">Stripes框架如何做系列-单元测试</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/25/stripes-how-to-state_management/">Stripes框架如何做系列-状态管理</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/21/stripes-how-to-localization/">Stripes框架如何做系列-本地化</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/">Stripes框架如何做系列-Spring和Stripes</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2016-09">2016年09月10日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#stripes"> stripes</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> stripes,译文 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>Stripes框架如何做系列-状态管理 - Leeyee’s Blog</title>
+<meta property="og:title" content="Stripes框架如何做系列-状态管理">
+<meta name="description" content="stripes框架如何做系列中文翻译。访问Session、Cookies等">
+<meta property="og:description" content="stripes框架如何做系列中文翻译。访问Session、Cookies等">
+<link rel="canonical" href="http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/">
+<meta property="og:url" content="http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-08-25T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2016/09/10/stripes-how-to-unit_testing/" title="Stripes框架如何做系列-单元测试">
+<link rel="prev" href="http://iyiguo.net/blog/2016/08/21/stripes-how-to-localization/" title="Stripes框架如何做系列-本地化">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Stripes框架如何做系列-状态管理",
+    "datePublished": "2016-08-25T00:00:00+08:00",
+    "description": "stripes框架如何做系列中文翻译。访问Session、Cookies等",
+    "url": "http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#stripes">stripes</a></li>
+        
+        <li class="active">Stripes框架如何做系列-状态管理</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> Stripes框架如何做系列-状态管理 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/">《Stripes框架如何做系列-状态管理》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/">http://iyiguo.net/blog/2016/08/25/stripes-how-to-state_management/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li>
+<a href="#section" id="markdown-toc-section">状态管理</a>    <ul>
+      <li><a href="#actionbeancontext" id="markdown-toc-actionbeancontext">ActionBeanContext子类</a></li>
+      <li><a href="#actionbeancontext-1" id="markdown-toc-actionbeancontext-1">使用自定义ActionBeanContext</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">可测试</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#post" id="markdown-toc-post">POST请求后重定向</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">闪存域</a></li>
+      <li><a href="#actionbeans" id="markdown-toc-actionbeans">闪存中的ActionBeans</a></li>
+      <li><a href="#jspflashscope" id="markdown-toc-jspflashscope">在JSP中访问FlashScope</a></li>
+      <li><a href="#flashscope" id="markdown-toc-flashscope">FlashScope是如何工作的</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-3" id="markdown-toc-section-3">综述</a></li>
+</ul>
+
+<p>原文地址：<a href="https://stripesframework.atlassian.net/wiki/display/STRIPES/State+Management">https://stripesframework.atlassian.net/wiki/display/STRIPES/State+Management</a></p>
+
+<p>这篇文档有两个主要部分：</p>
+
+<ol>
+  <li>使用<code class="highlighter-rouge">ActionBeanContext</code>进行状态管理</li>
+  <li>使用<code class="highlighter-rouge">FlashScope</code>进行POST请求后重定向</li>
+</ol>
+
+<h2 id="section">状态管理</h2>
+
+<p>这一节我们将介绍如何在保证类型安全和ActionBean类可测试的情况下，去访问<code class="highlighter-rouge">HttpSession</code>，<code class="highlighter-rouge">Cookies</code>和其他<code class="highlighter-rouge">HttpServletRequest/Response</code>行为。关键点就在于提供一个自己<code class="highlighter-rouge">ActionBeanContext</code>子类。</p>
+
+<h3 id="actionbeancontext">ActionBeanContext子类</h3>
+
+<p>下面是一个允许在类型安全下访问存储在会话中的用户对象的示例子类：</p>
+
+<blockquote>
+  <p>ActionBeanContext子类</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyAppActionBeanContext extends ActionBeanContext {
+    public void setUser(User user) {
+		getRequest().getSession().setAttribute("user", user);
+    }
+ 
+	 public User getUser() {
+		return (User) getRequest().getSession().getAttribute("user");
+    }
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>现在你有了自定义<code class="highlighter-rouge">ActionBeanContext</code>对象，接下来需要告诉Stripes如何去使用它。最简单的方式是将其放在扩展包中（请看<a href="http://iyiguo.net/blog/2016/07/10/stripes-how-to-extensions/">扩展</a>一文）。另外，你可以在web.xml中为Stripes过滤器添加如下的初始参数：</p>
+
+<blockquote>
+  <p>配置ActionBeanContext</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;init-param&gt;
+    &lt;param-name&gt;ActionBeanContext.Class&lt;/param-name&gt;
+    &lt;param-value&gt;com.myco.MyAppActionBeanContext&lt;/param-value&gt;
+&lt;/init-param&gt;
+</code></pre>
+  </div>
+</blockquote>
+
+<h3 id="actionbeancontext-1">使用自定义ActionBeanContext</h3>
+
+<p>现在，被设置为你的<code class="highlighter-rouge">ActionBean</code>的<code class="highlighter-rouge">ActionBeanContext</code>将总是被当做<code class="highlighter-rouge">MyAppActionBeanContext</code>。你仍然需要对那些在你的<code class="highlighter-rouge">ActionBean</code>中接收到的对象做类型转换，但是幸运的是在Java1.5中有一个叫做<a href="https://blogs.oracle.com/sundararajan/entry/covariant_return_types_in_java">协变返回类型</a>的新属性，你可以至少使用该属性一次，而不是通过类型强制转换代码。</p>
+
+<blockquote>
+  <p>在ActionBean中使用协变返回类型</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyActionBean implements ActionBean {
+    private MyAppActionBeanContext context;
+ 
+    /** Interface method from ActionBean. */
+    public setContext(ActionBeanContext context) {
+		this.context = (MyAppActionBeanContext) context;
+    }
+ 
+    /** Interface method from ActionBean, using a co-variant return type! */
+    public MyAppActionBeanContext getContext() {
+		return this.context;
+    }
+ 
+...
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>在Java1.4及之前，<code class="highlighter-rouge">getContext()</code>方法将不能通过编译，因为接口声明必须返回<code class="highlighter-rouge">ActionBeanContext</code>而不是<code class="highlighter-rouge">MyAppActionBeanContext</code>，虽然<code class="highlighter-rouge">MyAppActionBeanContext</code>继承自<code class="highlighter-rouge">ActionBeanContext</code>。但在Java1.5中却是被允许的，这有助于代码清晰。假如你创建自定义的<code class="highlighter-rouge">BaseActionBean</code>类，你可以将这些代码放在其中并且不用再次看到它们。</p>
+
+<p>现在当你有了自定义的<code class="highlighter-rouge">ActionBeanContext</code>后你可以：</p>
+
+<ul>
+  <li>添加类型安全的方法用来访问你需要存储在会话中的对象（希望没有太多的对象）</li>
+  <li>添加类型安全的方法用来获取或者设置cookie</li>
+  <li>在一个地方存放所有针对上述需要操作的字符串或者关键字</li>
+  <li>访问方法及请求和响应对象的功能而不用将ActionBeans耦合进它们</li>
+</ul>
+
+<p>同时，因为<code class="highlighter-rouge">ActionBeanContext</code>被组装在你的<code class="highlighter-rouge">ActionBean</code>中，并且你的<code class="highlighter-rouge">ActionBean</code>又被放进到了请求属性中，所以现在你可以通过两种方式访问存储在会话中的对象。在JSP中：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;div&gt;${user} == ${actionBean.context.user}&lt;/div&gt;
+</code></pre>
+</div>
+
+<p>虽然这看起来微不足道，但是有一个好处。第一个语法<code class="highlighter-rouge">${user}</code>是假设你已经通过属性关键字“user”将用户对象放置到JSP范围中（比如会话中）。如果你修改了这个关键字，比如改成“__secretPlace_user”，那么JSP将会阻断。你大概不太可能去改变	<code class="highlighter-rouge">ActionBeanContext</code>中类型安全的方法，因此<code class="highlighter-rouge">${actionBean.context.user}</code>可能更安全。这些虽然微不足道，但值的一提。</p>
+
+<h3 id="section-1">可测试</h3>
+
+<p>对于web层面的类进行测试通常来说是困难的。这通常是因为它们不仅需要和以Http开头的对象相互作用，还被迫需要和Servlet、Action或者其他模型的API进行交互。Stripes ActionBeans的单元测试已经是非常简单的了（仅仅需要初始化，设置上下文，设置属性然后继续），但是当你的ActionBean真的需要和请求或会话交互时，你的单元测试将无法继续。因此你可能不得不去构造一个假的Http对象等。</p>
+
+<p>只需要多一点工作，就可以让<code class="highlighter-rouge">ActionBeans</code>完全可测试化。使用上面提到的<code class="highlighter-rouge">MyAppActionBeanContext</code>做示例，我们可以创建一个抽象类，而我们的<code class="highlighter-rouge">ActionBeanContext</code>将会继承它，同时我们的<code class="highlighter-rouge">ActionBeans</code>也将用到它。让我们重构下：</p>
+
+<blockquote>
+  <p>MyAppActionBeanContext.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public abstract class MyAppActionBeanContext extends ActionBeanContext { 
+	public abstract void setUser(User user); 
+	public abstract User getUser(); 
+} 
+</code></pre>
+  </div>
+</blockquote>
+
+<p>我们真正的类看起来和之前是相同的，但是或许这次会以不同的名字命名它：</p>
+
+<blockquote>
+  <p>MyAppActionBeanContextImpl.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyAppActionBeanContextImpl extends MyAppActionBeanContext { 
+	public void setUser(User user) { 
+		getRequest().getSession().setAttribute("user", user); 
+	} 
+
+	public User getUser() { 
+		return (User) getRequest().getSession().getAttribute("user"); 
+	} 
+} 
+</code></pre>
+  </div>
+</blockquote>
+
+<p>然后，创建我们自己的<code class="highlighter-rouge">ActionBeanContext</code>测试类:</p>
+
+<blockquote>
+  <p>MyAppActionBeanContextTestImpl.java</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public class MyAppActionBeanContextTestImpl extends MyAppActionBeanContext { 
+	private User user; 
+
+	public void setUser(User user) { this.user = user; } 
+
+	public User getUser() {return this.user; } 
+} 
+</code></pre>
+  </div>
+</blockquote>
+
+<p>这样，我们就拥有了一个自定义ActionBean的测试类，使的能通过很少的努力就能模拟真实环境。你可以想象下其他处理方式。获取测试版本（指<code class="highlighter-rouge">MyAppActionBeanContextTestImpl</code>）可以简单地继承“真”版本（指<code class="highlighter-rouge">MyAppActionBeanContextImpl</code>）并且重载访问会话或者请求的方法。你甚至可以进一步在你的“真实”上下文类中定义一个被称作类似<code class="highlighter-rouge">setInSession(String key, Object value)</code>的受保护的助手方法，这样在正式版本中调用<code class="highlighter-rouge">getRequest().getSession().setAttribute()</code>，而在测试版本中仅将值存放在本地<code class="highlighter-rouge">Map</code>中。</p>
+
+<h2 id="post">POST请求后重定向</h2>
+
+<p>POST请求后重定向是一个相当简单的技术。其思想是，表单POST请求后服务器会做一些重要的操作（比如创建用户，进行交易等），这些是安全的，然后重定向用户到另外一个页面（也有可能是同一个页面）。通过重定向可以确保，当用户点击刷新按钮时不会再次重新提交表单。假如只是在POST后简单的转发到页面，那么刷新操作将会重新提交表单。</p>
+
+<p>但是对于重定向，也有不好的一面。当重定向发出时，任何存储在请求中的属性值会丢失（因为对于页面的请求和当前请求不是同一个请求）。一种选择是将需要的属性值存放在会话中，但这是一个不好的主意。因为当用户使用多个浏览器打开应用时，属性会被破坏掉。</p>
+
+<h3 id="section-2">闪存域</h3>
+
+<p><a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/controller/FlashScope.html">FlashScope</a>被设计用来解决这个问题。本质上，闪存域是类似请求域、会话域等的。而请求域是被定义为当前请求的生命周期而存在，闪存域则被定义为当前请求和后续请求的生命周期而存在。任何闪存域内的添加的项，都将被当做当前请求以及下一个请求的可用属性。</p>
+
+<p>一个闪存域用法的示例是Stripes中的非错误消息功能。<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/action/ActionBeanContext.html">ActionBeanContext</a>有一个<code class="highlighter-rouge">getMessages()</code>的方法，它返回可能被添加的消息列表。这个消息列表存放在闪存域中以至于消息对于当前请求是可用的（应该是<code class="highlighter-rouge">ActionBean</code>转发到一个页面）并且在下一个请求中同样可用（应该<code class="highlighter-rouge">ActionBean</code>重定向到一个页面）。代码看起来如下：</p>
+
+<blockquote>
+  <p>FlashScope的用法示例</p>
+
+  <div class="highlighter-rouge">
+<pre class="highlight"><code>public List&lt;Message&gt; getMessages(String key) { 
+	FlashScope scope = FlashScope.getCurrent(getRequest(), true); 
+	List&lt;Message&gt; messages = (List&lt;Message&gt;) scope.get(key); 
+
+	if (messages == null) { 
+		messages = new ArrayList&lt;Message&gt;(); 
+		scope.put(key, messages); 
+	} 
+
+	return messages; 
+} 
+</code></pre>
+  </div>
+</blockquote>
+
+<p>第一行真实的调用<code class="highlighter-rouge">FlashScope</code>的<code class="highlighter-rouge">getCurrent</code>创建一个<code class="highlighter-rouge">FlashScope</code>对象，假如<code class="highlighter-rouge">FlashScope</code>不存在时。接着像其他域一样，通过关键字／值来使用新建的<code class="highlighter-rouge">FlashScope</code>对象。</p>
+
+<h3 id="actionbeans">闪存中的ActionBeans</h3>
+
+<p>默认情况下不把<code class="highlighter-rouge">ActionBeans</code>存放到闪存域中。这样做一部分是出于向后兼容的原因，一部分是因为没有必要任何时候都这样做！而不是说他做起来很困难。假如使用标准的<a href="http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/action/RedirectResolution.html">RedirectResolution</a>，那么可以通过简单的通过链路方式来调用：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>return new RedirectResolution("/some/page.jsp").flash(this); 
+</code></pre>
+</div>
+
+<p>甚至，假如你要重定向一些其他的方法，依旧非常简单：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// From within the ActionBean 
+FlashScope.getCurrent(getContext().getRequest(), true).put(this);
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>注意:</strong></p>
+
+  <blockquote>
+    <p>如果重定向到JSP，那么这么做。如果重定向到一个转发到JSP的<code class="highlighter-rouge">ActionBean</code>，那么被闪存的<code class="highlighter-rouge">ActionBean</code>将被你重定向的<code class="highlighter-rouge">ActionBean</code>重写。</p>
+  </blockquote>
+</blockquote>
+
+<h3 id="jspflashscope">在JSP中访问FlashScope</h3>
+
+<p>比方说在你的<code class="highlighter-rouge">ActionBeans</code>中调用此方法：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>public void addRecipe(HttpServletRequest request, String message) { 
+	FlashScope fs = FlashScope.getCurrent(request, true); 
+	List&lt;String&gt; messages = (List&lt;String&gt;) fs.get("recipes"); 
+
+	if (messages == null) { 
+		messages = new ArrayList&lt;String&gt;(); 
+		fs.put("recipes", messages); 
+	} 
+
+	messages.add(message); 
+} 
+</code></pre>
+</div>
+
+<p>然后重定向到另一个转发到JSP的<code class="highlighter-rouge">ActionBean</code>。下面是如何在JSP中访问<code class="highlighter-rouge">FlashScope</code>:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;c:forEach var="recipe" items="${recipes}"&gt; 
+	&lt;div class="recipe_name"&gt;${recipe.name}&lt;/div&gt; 
+&lt;/c:forEach&gt; 
+</code></pre>
+</div>
+
+<p>如你所看到的，当你存放一个对象在<code class="highlighter-rouge">FlashScope</code>中，它可以通过关键字在EL表达式中被直接访问到。</p>
+
+<h3 id="flashscope">FlashScope是如何工作的</h3>
+
+<p><code class="highlighter-rouge">FlashScope</code>的是通过临时存储自己的实例在会话中并在随后的请求中移除它们的方式工作的。结果是，当<code class="highlighter-rouge">FlashScope</code>被用时，一个额外的变量会被追加到重定向URL中，用来告诉Stripes使用那个<code class="highlighter-rouge">FlashScope</code>。因为这个参数在相同的会话中有两个或多个浏览器窗口（或者标签页），因此当访问彼此的<code class="highlighter-rouge">FlashScope</code>时会产生混淆。</p>
+
+<p>这种处理方式有一个明显的副作用，那就是在会话中偶尔会得到没有关联的<code class="highlighter-rouge">FlashScope</code>。对于这种情况，Stripes会在每次收到一个请求时，针对会话检查存在的所有<code class="highlighter-rouge">FlashScope</code>；当生成闪存域的请求完成时，每一个闪存域开始“变老”，同时任何超过一定年龄（当前是２分钟）的将被销毁。这个看起来很像一个小范围内的会话过期。</p>
+
+<h2 id="section-3">综述</h2>
+
+<p>希望上述的状态管理和POST请求后重定向是有用的。<code class="highlighter-rouge">FlashScope</code>实际上提供了一个最好的示例去说明迄今为止为什么使用<code class="highlighter-rouge">ActionBeanContext</code>去管理所有状态相关的逻辑是一个好主意。</p>
+
+<p><code class="highlighter-rouge">FlashScope</code>在Stripes1.2中被介绍。在此之前非错误信息列表被存储在请求属性中。现在非错误信息被存储在闪存范围中。因此再要做一些改进是微不足道的，因为<code class="highlighter-rouge">ActionBeans</code>已经被完全从消息存储和检索的细节中分离了出来。所以当<code class="highlighter-rouge">ActionBeans</code>已经被请求直接访问时，是不能通过破坏当前代码做出改变。</p>
+
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                 
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/11/06/stripes-how-to-wizard_forms/">Stripes框架如何做系列-向导表单</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/">Stripes框架如何做系列-更多使用默认配置</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/09/10/stripes-how-to-unit_testing/">Stripes框架如何做系列-单元测试</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/25/stripes-how-to-state_management/">Stripes框架如何做系列-状态管理</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/21/stripes-how-to-localization/">Stripes框架如何做系列-本地化</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/">Stripes框架如何做系列-Spring和Stripes</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2016-08">2016年08月25日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#stripes"> stripes</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> stripes,译文 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

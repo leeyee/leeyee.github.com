@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>awk入门 - Leeyee’s Blog</title>
+<meta property="og:title" content="awk入门">
+<meta name="description" content="本文主要介绍一些awk的入门语法及相关示例。包括awk基本语法及基本参数，内建参数的使用，awk脚本等相关基础入门内容">
+<meta property="og:description" content="本文主要介绍一些awk的入门语法及相关示例。包括awk基本语法及基本参数，内建参数的使用，awk脚本等相关基础入门内容">
+<link rel="canonical" href="http://iyiguo.net/blog/2015/07/28/awk-base-get-start/">
+<meta property="og:url" content="http://iyiguo.net/blog/2015/07/28/awk-base-get-start/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-07-28T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2015/08/02/awk-muli-file/" title="awk多文件处理">
+<link rel="prev" href="http://iyiguo.net/blog/2014/05/19/java-dateformat-instance/" title="使用DateFormat需设置语言环境">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "awk入门",
+    "datePublished": "2015-07-28T00:00:00+08:00",
+    "description": "本文主要介绍一些awk的入门语法及相关示例。包括awk基本语法及基本参数，内建参数的使用，awk脚本等相关基础入门内容",
+    "url": "http://iyiguo.net/blog/2015/07/28/awk-base-get-start/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言</a></li>
+        
+        <li class="active">awk入门</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> awk入门 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2015/07/28/awk-base-get-start/">《awk入门》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2015/07/28/awk-base-get-start/">http://iyiguo.net/blog/2015/07/28/awk-base-get-start/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li>
+<a href="#section" id="markdown-toc-section">常用命令</a>    <ul>
+      <li><a href="#tab" id="markdown-toc-tab">1. 使用默认分割符（空格或者TAB）分割.</a></li>
+      <li><a href="#f-" id="markdown-toc-f-">2. 使用 <strong>-F</strong> 指定分割符</a></li>
+      <li><a href="#v-" id="markdown-toc-v-">3.  使用 <strong>-v</strong> 设置变量</a></li>
+      <li><a href="#f-awk" id="markdown-toc-f-awk">4. 使用 <strong>-f</strong> 读取awk脚本</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#section-1" id="markdown-toc-section-1">基本运算符</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">运算符说明</a></li>
+      <li><a href="#section-3" id="markdown-toc-section-3">举例</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#section-4" id="markdown-toc-section-4">内置变量</a>    <ul>
+      <li><a href="#section-5" id="markdown-toc-section-5">变量说明</a></li>
+      <li><a href="#section-6" id="markdown-toc-section-6">举例</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><a href="https://zh.wikipedia.org/wiki/Awk">awk</a>是一款强大的文本分析工具。<a href="https://zh.wikipedia.org/wiki/Awk">awk</a> 按行解析数据，并对其进行分割处理。下面是一些<a href="https://zh.wikipedia.org/wiki/Awk">awk</a>的入门语法与示例。</p>
+
+<p>首先我们使用以下的文件片段演示。文件片段<sup id="fnref:pome"><a href="#fn:pome" class="footnote">1</a></sup>内容如下：</p>
+
+<blockquote>
+  <p>The Lost Love<br>
+William Wordsworth<br>
+She dwelt among the untrodden ways beside the springs of dove.<br>
+A maid whom there were none to praise, and very few to love.<br>
+A violet by a mossy stone, half hidden from the eye!<br>
+Fair as a star, when only one is shining in the sky.<br>
+She lived unknown, and few could know, when lucy ceased to be.<br>
+But she is in her grave, and oh, the difference to me!</p>
+</blockquote>
+
+<h2 id="section">常用命令</h2>
+
+<h3 id="tab">1. 使用默认分割符（空格或者TAB）分割.</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>awk '{print NR,$1}' test.txt
+</code></pre>
+</div>
+
+<p>输出：</p>
+
+<blockquote>
+  <p>1 The<br>
+2 William<br>
+3 She<br>
+4 A<br>
+5 A<br>
+6 Fair<br>
+7 She<br>
+8 But</p>
+</blockquote>
+
+<dl>
+  <dt>
+<strong>说明</strong>：</dt>
+  <dd>
+<em>print</em>：  输出，没有指定输出连接符时，默认为空格；</dd>
+  <dd>
+<em>NR</em>： <a href="https://zh.wikipedia.org/wiki/Awk">awk</a>内建变量, 表示当前记录数；</dd>
+  <dd>
+<em>$n</em>： 根据空格或者TAB分割后的第n个字符串，从1开始。特殊的  <strong>$0</strong> 表示所有未被分割的行；</dd>
+</dl>
+
+<h3 id="f-">2. 使用 <strong>-F</strong> 指定分割符</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>awk -F, 'BEGIN{OFS="."} {print NR,$1} END{print "-- End --"}' test.txt
+</code></pre>
+</div>
+
+<p>输出：</p>
+
+<blockquote>
+  <p>1.The Lost Love<br>
+2.William Wordsworth<br>
+3.She dwelt among the untrodden ways beside the springs of dove.<br>
+4.A maid whom there were none to praise<br>
+5.A violet by a mossy stone<br>
+6.Fair as a star<br>
+7.She lived unknown<br>
+8.But she is in her grave<br>
+– End –</p>
+</blockquote>
+
+<dl>
+  <dt>
+<strong>说明</strong>：</dt>
+  <dd>
+    <p><em>-F</em>: 指定分割字符。如果有多个分割符可使用 <code class="highlighter-rouge">-F '[ ,]'</code>;</p>
+  </dd>
+  <dd>
+<em>-F</em>: 相当于<a href="https://zh.wikipedia.org/wiki/Awk">awk</a>内置变量 <em>FS</em> .示例语句可与下面的命令进行替换
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>  awk 'BEGIN{FS=","} {print NR,$2}' test.txt
+</code></pre>
+    </div>
+  </dd>
+  <dd>
+    <p><em>BEGIN</em>: 语法片段，表示解析开始时的处理逻辑;</p>
+  </dd>
+  <dd>
+<em>END</em>: 语法片段，表示解析完成后的处理逻辑;</dd>
+  <dd>
+<em>OFS</em>: 内置函数，表示输出使用的分割符。默认为空格</dd>
+</dl>
+
+<h3 id="v-">3.  使用 <strong>-v</strong> 设置变量</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>awk -va=' end' -vb=1 '{print NR+1,$1a}' test.txt
+</code></pre>
+</div>
+
+<p>输出：</p>
+
+<blockquote>
+  <p>2 The end<br>
+3 William end<br>
+4 She end<br>
+5 A end<br>
+6 A end<br>
+7 Fair end<br>
+8 She end<br>
+9 But end</p>
+</blockquote>
+
+<dl>
+  <dt>
+<strong>说明</strong>：</dt>
+  <dd>
+    <p><em>-v</em>： 指定变量名，可以有多个；</p>
+  </dd>
+  <dd>
+<a href="https://zh.wikipedia.org/wiki/Awk">awk</a>字符串连接使用 <strong>.</strong> 、空格或者直接进行连接即可（<code class="highlighter-rouge">$1a </code>等价于<code class="highlighter-rouge">$1.a</code>等价于 <code class="highlighter-rouge">$1  a</code>）；数字类型直接使用 <strong>+</strong> ;</dd>
+</dl>
+
+<h3 id="f-awk">4. 使用 <strong>-f</strong> 读取awk脚本</h3>
+
+<p>当查询条件比较复杂时，可以将查询的复杂语句写入单独的文件进行维护，这样能专注于查询逻辑的处理，也易于维护。 然后使用  <em>-f</em> 参数对语句脚本进行读取。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code> awk -f a.awk test.txt
+</code></pre>
+</div>
+
+<p>a.awk 文件内容如下：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>BEGIN <span class="o">{</span>
+	a <span class="o">=</span> <span class="s2">" end"</span>
+	b <span class="o">=</span> 1
+<span class="o">}</span>
+<span class="o">{</span>
+	print NR+1,<span class="nv">$1a</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>输出：</p>
+
+<blockquote>
+  <p>2 The end<br>
+3 William end<br>
+4 She end<br>
+5 A end<br>
+6 A end<br>
+7 Fair end<br>
+8 She end<br>
+9 But end</p>
+</blockquote>
+
+<h2 id="section-1">基本运算符</h2>
+
+<h3 id="section-2">运算符说明</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>运算符</th>
+      <th style="text-align: right">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>= += -= *= /= %= ^= **=</td>
+      <td style="text-align: right">赋值</td>
+    </tr>
+    <tr>
+      <td>?:</td>
+      <td style="text-align: right">条件表达式</td>
+    </tr>
+    <tr>
+      <td>||</td>
+      <td style="text-align: right">逻辑或</td>
+    </tr>
+    <tr>
+      <td>&amp;&amp;</td>
+      <td style="text-align: right">逻辑与</td>
+    </tr>
+    <tr>
+      <td>~ ~!</td>
+      <td style="text-align: right">匹配正则表达式和不匹配正则表达式</td>
+    </tr>
+    <tr>
+      <td>&lt; &lt;= &gt; &gt;= != ==</td>
+      <td style="text-align: right">关系运算符</td>
+    </tr>
+    <tr>
+      <td>空格</td>
+      <td style="text-align: right">连接</td>
+    </tr>
+    <tr>
+      <td>+ -</td>
+      <td style="text-align: right">加，减</td>
+    </tr>
+    <tr>
+      <td>* / &amp;</td>
+      <td style="text-align: right">乘，除与求余</td>
+    </tr>
+    <tr>
+      <td>+ - !</td>
+      <td style="text-align: right">一元加，减和逻辑非</td>
+    </tr>
+    <tr>
+      <td>^ ***</td>
+      <td style="text-align: right">求幂</td>
+    </tr>
+    <tr>
+      <td>++ –</td>
+      <td style="text-align: right">增加或减少，作为前缀或后缀</td>
+    </tr>
+    <tr>
+      <td>$</td>
+      <td style="text-align: right">字段引用</td>
+    </tr>
+    <tr>
+      <td>in</td>
+      <td style="text-align: right">数组成员</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section-3">举例</h3>
+
+<ol>
+  <li>
+    <p>获取第四行及第五行以后的行</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> awk '(NR&gt;5 || NR==4) {print NR,$0}' test.txt
+</code></pre>
+    </div>
+
+    <p>输出：</p>
+
+    <blockquote>
+      <p>4 A maid whom there were none to praise, and very few to love.<br>
+6 Fair as a star, when only one is shining in the sky.<br>
+7 She lived unknown, and few could know, when lucy ceased to be.<br>
+8 But she is in her grave, and oh, the difference to me!</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>获取按空格分割后第一个分组为‘She’并且第二不分组不等于‘dwelt’的行</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> awk '($1=="She" &amp;&amp; $2 !="dwelt") {print NR,$0}' test.txt
+</code></pre>
+    </div>
+
+    <p>输出：</p>
+
+    <blockquote>
+      <p>7 She lived unknown, and few could know, when lucy ceased to be.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h2 id="section-4">内置变量</h2>
+
+<h3 id="section-5">变量说明</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>变量</th>
+      <th style="text-align: right">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$n</td>
+      <td style="text-align: right">当前记录的第n个字段，字段间由FS分隔</td>
+    </tr>
+    <tr>
+      <td>$0</td>
+      <td style="text-align: right">完整的输入记录</td>
+    </tr>
+    <tr>
+      <td>ARGC</td>
+      <td style="text-align: right">命令行参数的数目</td>
+    </tr>
+    <tr>
+      <td>ARGIND</td>
+      <td style="text-align: right">命令行中当前文件的位置(从0开始算)</td>
+    </tr>
+    <tr>
+      <td>ARGV</td>
+      <td style="text-align: right">包含命令行参数的数组</td>
+    </tr>
+    <tr>
+      <td>CONVFMT</td>
+      <td style="text-align: right">数字转换格式(默认值为%.6g)ENVIRON环境变量关联数组</td>
+    </tr>
+    <tr>
+      <td>ERRNO</td>
+      <td style="text-align: right">最后一个系统错误的描述</td>
+    </tr>
+    <tr>
+      <td>FIELDWIDTHS</td>
+      <td style="text-align: right">字段宽度列表(用空格键分隔)</td>
+    </tr>
+    <tr>
+      <td>FILENAME</td>
+      <td style="text-align: right">当前文件名</td>
+    </tr>
+    <tr>
+      <td>FNR</td>
+      <td style="text-align: right">同NR，但相对于当前文件</td>
+    </tr>
+    <tr>
+      <td>FS</td>
+      <td style="text-align: right">字段分隔符(默认是任何空格)</td>
+    </tr>
+    <tr>
+      <td>IGNORECASE</td>
+      <td style="text-align: right">如果为真，则进行忽略大小写的匹配</td>
+    </tr>
+    <tr>
+      <td>NF</td>
+      <td style="text-align: right">当前记录中的字段数</td>
+    </tr>
+    <tr>
+      <td>NR</td>
+      <td style="text-align: right">当前记录数</td>
+    </tr>
+    <tr>
+      <td>OFMT</td>
+      <td style="text-align: right">数字的输出格式(默认值是%.6g)</td>
+    </tr>
+    <tr>
+      <td>OFS</td>
+      <td style="text-align: right">输出字段分隔符(默认值是一个空格)</td>
+    </tr>
+    <tr>
+      <td>ORS</td>
+      <td style="text-align: right">输出记录分隔符(默认值是一个换行符)</td>
+    </tr>
+    <tr>
+      <td>RLENGTH</td>
+      <td style="text-align: right">由match函数所匹配的字符串的长度</td>
+    </tr>
+    <tr>
+      <td>RS</td>
+      <td style="text-align: right">记录分隔符(默认是一个换行符)</td>
+    </tr>
+    <tr>
+      <td>RSTART</td>
+      <td style="text-align: right">由match函数所匹配的字符串的第一个位置</td>
+    </tr>
+    <tr>
+      <td>SUBSEP</td>
+      <td style="text-align: right">数组下标分隔符(默认值是/034)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section-6">举例</h3>
+
+<ol>
+  <li>
+    <p>显示相关内置参数</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code> awk '{print FILENAME,ARGC,FNR,FS,NF,NR,OFS} BEGIN{OFS=":"}' test.txt
+</code></pre>
+    </div>
+
+    <p>输出：</p>
+
+    <blockquote>
+      <p>test.txt:2:1: :3:1::<br>
+test.txt:2:2: :2:2::<br>
+test.txt:2:3: :11:3::<br>
+test.txt:2:4: :13:4::<br>
+test.txt:2:5: :11:5::<br>
+test.txt:2:6: :12:6::<br>
+test.txt:2:7: :12:7::<br>
+test.txt:2:8: :12:8::</p>
+    </blockquote>
+  </li>
+</ol>
+
+<hr>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:pome">
+      <p>来自【英】威廉·华兹华斯<a href="http://www.douban.com/note/233616298/">《失去的爱》</a> <a href="#fnref:pome" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                                                                                         
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/08/02/awk-muli-file/">awk多文件处理</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/07/28/awk-base-get-start/">awk入门</a></li>
+                                                                                          
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2015-07">2015年07月28日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80"> 脚本语言</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> awk 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

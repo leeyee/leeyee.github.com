@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>javascript 最佳实践 - Leeyee’s Blog</title>
+<meta property="og:title" content="javascript 最佳实践">
+<meta name="description" content="这篇文章介绍一系列javascript代码开发的首选最佳实践，这些最佳实践是基于javascprit领域许多开发者的观点和经验。因此这只是一些建议而不是一个绝对规则，有经验的开发人员可能会对下面提到的最佳实践略有不同的看法。">
+<meta property="og:description" content="这篇文章介绍一系列javascript代码开发的首选最佳实践，这些最佳实践是基于javascprit领域许多开发者的观点和经验。因此这只是一些建议而不是一个绝对规则，有经验的开发人员可能会对下面提到的最佳实践略有不同的看法。">
+<link rel="canonical" href="http://iyiguo.net/blog/2010/04/07/javascript-best-practices/">
+<meta property="og:url" content="http://iyiguo.net/blog/2010/04/07/javascript-best-practices/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2010-04-07T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2011/04/09/javascript-jquery-user-suggests/" title="一些关于javascript、jQuery使用时的建议">
+<link rel="prev" href="http://iyiguo.net/blog/2009/09/03/struts2-iterator-usage/" title="struts2中iterator标签的相关使用">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "javascript 最佳实践",
+    "datePublished": "2010-04-07T00:00:00+08:00",
+    "description": "这篇文章介绍一系列javascript代码开发的首选最佳实践，这些最佳实践是基于javascprit领域许多开发者的观点和经验。因此这只是一些建议而不是一个绝对规则，有经验的开发人员可能会对下面提到的最佳实践略有不同的看法。",
+    "url": "http://iyiguo.net/blog/2010/04/07/javascript-best-practices/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#javascript">javascript</a></li>
+        
+        <li class="active">javascript 最佳实践</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> javascript 最佳实践 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2010/04/07/javascript-best-practices/">《javascript 最佳实践》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2010/04/07/javascript-best-practices/">http://iyiguo.net/blog/2010/04/07/javascript-best-practices/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li><a href="#var" id="markdown-toc-var">1.总是使用关键字_var_声明变量</a></li>
+  <li><a href="#section" id="markdown-toc-section">2.属性检测胜过浏览器检测</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">3.使用方括号</a></li>
+  <li><a href="#eval" id="markdown-toc-eval">4.避免使用eval</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">5.正确引用表单及表单中的元素</a></li>
+  <li><a href="#with" id="markdown-toc-with">6.避免使用<em>with</em>语句</a></li>
+  <li><a href="#onclickjavascript" id="markdown-toc-onclickjavascript">7.在锚上使用<em>onclick</em>事件替代javascript伪协议</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">8.用一元+操作进行数字类型转换</a></li>
+  <li><a href="#documentall" id="markdown-toc-documentall">9.避免使用<em>document.all</em></a></li>
+  <li><a href="#javascripthtml" id="markdown-toc-javascripthtml">10.不要在javascript代码块中使用HTML注解</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">11.避免杂乱的全局命名空间</a></li>
+  <li><a href="#ajax" id="markdown-toc-ajax">12.避免使用同步ajax调用</a></li>
+  <li><a href="#json" id="markdown-toc-json">13.使用json</a></li>
+  <li><a href="#script" id="markdown-toc-script">14.正确使用<code class="highlighter-rouge">&lt;script&gt;</code>标签</a></li>
+</ul>
+
+<p>原文地址：<a href="http://www.javascripttoolbox.com/bestpractices/">http://www.javascripttoolbox.com/bestpractices/</a></p>
+
+<h3 id="var">1.总是使用关键字_var_声明变量</h3>
+
+<p>javascript中的变量不是全局范围就是函数范围，使用关键字<code class="highlighter-rouge">var</code>声明变量是必不可少的。当声明一个变量时不管是全局变量还是函数级变量，都不应省略变量的前缀关键字<code class="highlighter-rouge">var</code>。下边的例子说明了如果不这样做可能存在的潜在问题。</p>
+
+<p>没有使用关键字<code class="highlighter-rouge">var</code>声明变量产生的问题</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>var i = 0; // This is good - creates a global variable
+function test() {
+    for (i=0; i&lt;10; i++) {
+        alert("Hello World!");
+    }
+}
+test();
+alert(i); // The global variable i is now 10!
+</code></pre>
+</div>
+
+<p>假如函数内部的变量i没有作为一个函数级别的变量通过<code class="highlighter-rouge">var</code>声明，它将在这个例子中引用全局变量。这是一个好的方式通过<code class="highlighter-rouge">var</code>声明一个全局变量，但是对于函数范围的变量通过<code class="highlighter-rouge">var</code>来声明是重要的。下面提供的两种方式在功能上与上面的代码是一样的。</p>
+
+<p>更正过的函数:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>function test() {
+	var i=0;
+    for (var i = 0; i &lt; 10; i++) {
+        alert("Hello World!");
+    }
+}
+</code></pre>
+</div>
+
+<h3 id="section">2.属性检测胜过浏览器检测</h3>
+
+<p>有些代码是被写来检测浏览器版本和检测基于用户使用代理的不同行为的。通常情况下这个是一个非常糟糕的编程实践。任何甚至是一些看起来像全局“导航”的对象都是令人怀疑的。<br>
+最好的方式是使用属性检测。也就是说，当在一个老版本的浏览器上使用任何可能不被支持的高级属性时，应该先去检查下该函数或是方法是否被支持，然后再使用它。这样比起在使用函数或是方法时通过检测具体的浏览器版本和假设客户端支持该功能要好的多。关于这个话题更深层次的讨论可以参看<a href="http://www.jibbering.com/faq/faq_notes/not_browser_detect.html">这里</a>.</p>
+
+<p>比如：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>if (document.getElementById) {
+    var element = document.getElementById('MyId');
+} else {
+    alert('Your browser lacks the capabilities required to run this script!');
+}
+</code></pre>
+</div>
+
+<h3 id="section-1">3.使用方括号</h3>
+
+<p>当访问的对象属性是动态生成的（在运行期间定义的）或是对象的属性无法使用点操作获取时，使用方括号。假如你不是一个有经验的javascript程序员，对于在所有地方均使用方括号获取对象属性的操作不算是一个糟糕的编程实践。<br>
+javascript中主要有两种方式可以访问对象的属性：</p>
+
+<p><strong>点操作</strong></p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>MyObject.property
+</code></pre>
+</div>
+
+<p><strong>方括号操作</strong></p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>MyObject["property"]
+</code></pre>
+</div>
+
+<p>当属性名是硬编码方式并且在运行期间是不能被改变时使用点操作；当属性名是一个被评估用来解析属性名的字符串时使用方括号操作。该字符串可以硬编码，也可以是一个变量，甚至可以是一个调用返回字符串属性名的函数。<br>
+假如属性名是动态（运行期间）生成的，那么方括号是必需的。比如，当你有属性“value1”、“value2”、“value3”并且想通过一个变量<code class="highlighter-rouge">i = 2</code>来访问时：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>MyObject["value"+i]
+</code></pre>
+</div>
+
+<p>是可以工作的，而</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>MyObject.value + i
+</code></pre>
+</div>
+
+<p>是不可以的。同样在其他一些服务端环境中（php、Struts等）被当作服务端的数组表单域是通过附加方括号表示的。然而，使用点符号引用一个包含方括号的域名将是无法工作的，因为引用一个javascript数组时方括号是做为语法参考的。因此方括号是必须的。比如：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>formref.elements["name[]"]
+</code></pre>
+</div>
+
+<p>是可以工作的，而</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>formref.elements.name[]
+</code></pre>
+</div>
+
+<p>是无法工作的。</p>
+
+<p>方括号的使用建议是：当需要使用方括号时始终使用它，这是显而易见的。使用方括号是没有严格要求的，只是个人喜好和习惯问题。一个好的经验法则是用点符号访问标准对象属性而使用方括号访问那些定义在页面中的对象属性。因此，尽管<code class="highlighter-rouge">document["getElementById"]()</code>是一个完美的使用方括号的方式，但<code class="highlighter-rouge">document.getElementById()</code>是一个标准语法，因为<code class="highlighter-rouge">getElementById</code>是一个在<code class="highlighter-rouge">DOM</code>文档中定的标准文档对象属性。混合使用点符合和方括号能清楚的标明那些是标准属性，那些是由内容定义的名称：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>document.forms["myformname"].elements["myinput"].value
+</code></pre>
+</div>
+
+<p>这里，<code class="highlighter-rouge">forms</code>属性是标准的文档属性，表单名<code class="highlighter-rouge">myformname</code>是被页面内容定义的。同样的<code class="highlighter-rouge">elements</code>属性和<code class="highlighter-rouge">value</code>属性均是被特别定义的，而<code class="highlighter-rouge">myinput</code>是在页面定义的。这样的语句非常清晰、易于理解，是一种推荐的约定方式，但不是一个严格的规则。</p>
+
+<h3 id="eval">4.避免使用eval</h3>
+
+<p>javascript中的<code class="highlighter-rouge">eval()</code>函数是一种在运行时期运行任意代码的方式。几乎在所有的情况下，都应避免使用<code class="highlighter-rouge">eval()</code>函数。假如在你的代码中存在该函数的调用，那么一定要确保你使用了正确的方式去实现你想要做的事情。例如，<code class="highlighter-rouge">eval</code>经常会被一些不知道方括号使用规则的程序员调用。</p>
+
+<p>规则是：<strong>“eval是邪恶的”</strong>。不要使用它，除非你是一个经验丰富的开发人员，知道使用<code class="highlighter-rouge">eval</code>对你来说只是一个例外的情况。</p>
+
+<h3 id="section-2">5.正确引用表单及表单中的元素</h3>
+
+<p>在html的表单元素中，所有的表单元素都有一个<code class="highlighter-rouge">name</code>属性。但对于xhtml文档，name属性不是必须的。取而代之的是对于表单标签应该有一个id属性并可以通过<code class="highlighter-rouge">document.getElementById</code>获取该表单对象。虽然可以通过索引获取表单，但几乎在所有的情况下使用<code class="highlighter-rouge">document.forms[0]</code>却是一个不好的实践方式。一些浏览器会把表单可见做为文档自有属性来访问表单的名称。这是不可靠并且不应该被使用的。</p>
+
+<p>下面的例子使用方括号和正确的对象引用来展示如何万无一失的获取表单输入框属性。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>// 正确引用到表单中的input对象
+document.forms["formname"].elements["inputname"]
+// 坏的实践
+document.formname.inputname
+</code></pre>
+</div>
+
+<p>假如你想通过函数调用获取多表单元素，最好先把表单对象作为一个变量存储起来。这样可以避免在获取表单中的元素时重复获取表单对象。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>var formElements = document.forms["mainForm"].elements;
+formElements["input1"].value="a";
+formElements["input2"].value="b";
+</code></pre>
+</div>
+
+<p>当用<code class="highlighter-rouge">onChange</code>事件或是相似事件验证一个输入栏时，将待验证对象本身的引用传递给验证函数将是一个好的方式。表单内部的每一个<code class="highlighter-rouge">input</code>元素都有一个表单对象引用来作为参考。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;input type="text" name="address" onChange="validate(this)"&gt;
+function validate(input_obj) {
+// Get a reference to the form which contains this element
+var theform = input_obj.form;
+// Now you can check other inputs in the same form without
+// hard-coding a reference to the form itself
+    if (theform.elements["city"].value=="") {
+        alert("Error");
+    }
+} 通过引用到一个表单对象并通过该引用表单对象访问其属性，你可以写一个不需要在页面上指定包含任何引用表单参数的函数。这种方式经常被作为一种避免多次引用表单对象的习惯性用法使用。
+</code></pre>
+</div>
+
+<h3 id="with">6.避免使用<em>with</em>语句</h3>
+
+<p>javascript中<code class="highlighter-rouge">with</code>语句将在作用域链之前插入一个对象，因此任何对属性/变量的引用将会忽略对象本身的属性/变量而首先检测本地的属性/变量作用域。这种方法经常被看作是一种避免较长引用的捷径。</p>
+
+<p>使用with的举例</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>with (document.forms["mainForm"].elements) {
+    input1.value = "junk";
+    input2.value = "junk";
+}
+</code></pre>
+</div>
+
+<p>可以看出上面这段代码的问题是程序员无法验证 input1/input2 是作为表单元素数组的属性被使用的。解释程序会先把用这些名称当作属性来检测，假如不能被找到，那么解释程序将继续查找顶层的作用域链。最终解释程序将试图把input1/input2当作全局变量去寻找其value属性，如果没有则返回一个错误。相反，创建一个引用指向重新使用的对象并且用引用去解决其他引用。</p>
+
+<p>使用一个引用替代</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>var elements = document.forms["mainForm"].elements;
+elements.input1.value = "junk";
+elements.input2.value = "junk";
+</code></pre>
+</div>
+
+<h3 id="onclickjavascript">7.在锚上使用<em>onclick</em>事件替代javascript伪协议</h3>
+
+<p>当你想通过<code class="highlighter-rouge">&lt;a&gt;</code>标签触发javascript代码时，使用<code class="highlighter-rouge">onclick</code>处理器优于使用javascript伪协议。通过<code class="highlighter-rouge">onclick</code>处理器运行的javascript代码必须返回true或false （或者返回的表达式等价于true或false）给调用该js代码的标签。假如返回true，那么<code class="highlighter-rouge">&lt;a&gt;</code>标签的HREF属性将被当作一般的超链接使用；假如返回false，那么HREF属性将被忽略。这就是为什么经常在<code class="highlighter-rouge">&lt;a&gt;</code>标签中使用<code class="highlighter-rouge">onclick</code>处理器调用js代码时会在代码最后出现”return false”的原因。</p>
+
+<p>正确的语法</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;a href="javascript_required.html" mce_href="javascript_required.html" onclick="doSomething(); return false;"&gt;go&lt;/a&gt;
+</code></pre>
+</div>
+
+<p>在这段示例代码中，当超链接被点击时<code class="highlighter-rouge">doSomething()</code>函数（用户在页面某处定义）将被调用并返回false。href将不会指向浏览器。然而，假如浏览器没有启用javascirpt ，那么javascript_required.html文件将被加载，你可以通过提示用户启用javascript解决该问题。通常情况下当你确认用户浏览器启用了javascript时，链接只需要使用<code class="highlighter-rouge">href="#"</code>这种简单形式。但这是一种猥琐的方式。一个好的解决方式是链接一个用户浏览器没有开启javascript时的备用页面。</p>
+
+<p>有时，你想有条件的提交一个链接。例如，如果用户浏览远离你的表单页面，你首先要验证这一切都没有改变。在这种情况下，您的点击会调用一个函数，它将返回一个值去说明是否该提交本链接。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;a href="/" onClick="return validate();"&gt;Home&lt;/a&gt;
+function validate() {
+    return prompt("Are you sure you want to exit this page?");
+}
+</code></pre>
+</div>
+
+<p>在这个例子中，<code class="highlighter-rouge">validate()</code>函数总是返回true或是false。true意味着用户被允许返回到首页，而false意味着不被允许链接到首页的。这个例子提示用户确认信息，依赖用户点击ok或是cancel来返回true或false;</p>
+
+<p>下面是一些无法正常工作的例子。假如在你的页面上看到这些代码，那么他们是不正确的应该被更正的。</p>
+
+<p>什么是不该做的</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;a href="javascript:doSomething()"&gt;link&lt;/a&gt;
+&lt;a href="#" onClick="doSomething()"&gt;link&lt;/a&gt;
+&lt;a href="#" onClick="javascript:doSomething();"&gt;link&lt;/a&gt;
+&lt;a href="#" onClick="javascript:doSomething(); return false;"&gt;link&lt;/a&gt;
+</code></pre>
+</div>
+
+<h3 id="section-3">8.用一元+操作进行数字类型转换</h3>
+<p>在javascript中，加号操作符被当作加法或是字符连接符来使用。比如，由于javascript是一种弱类型语言，当将表单域值加起来时这可能会导致一些问题。表单域值将被当作字符串对待，假如你用+将他们放在一起，javascript将视为连接它，而不是加法。</p>
+
+<p>有问题的例子</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;form name="myform" action="[url]"&gt;
+    &lt;input type="text" name="val1" value="1"&gt;
+    &lt;input type="text" name="val2" value="2"&gt;
+&lt;/form&gt;
+
+function total() {
+    var theform = document.forms["myform"];
+    var total = theform.elements["val1"].value + theform.elements["val2"].value;
+    alert(total); // This will alert "12", but what you wanted was 3!
+}
+</code></pre>
+</div>
+
+<p>为了更正这个问题，需要给javascript一个暗示，告诉它将值当作数字而不是字符串。你可以使用一元加号操作符将字符串转换为数字类型。使用加号前缀修饰一个变量或者一个表达式将强转该变量或表达式的返回值为数字类型，使其可以成功的使用在一个数学操作中。</p>
+
+<p>更正后的例子</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>function total() {
+    var theform = document.forms["myform"];
+    var total = (+theform.elements["val1"].value) + (+theform.elements["val2"].value);
+    alert(total); // This will alert 3
+}
+</code></pre>
+</div>
+
+<h3 id="documentall">9.避免使用<em>document.all</em>
+</h3>
+<p><code class="highlighter-rouge">document.all</code>是微软在IE中介绍的，它不是一个标准的javascript DOM属性。虽然许多最新的浏览器通过支持它去兼容依赖于它的蹩脚脚本，但仍有许多浏览器不支持它。</p>
+
+<p>在javascript中除过将<code class="highlighter-rouge">document.all</code>作为另外一些方法不被支持时的备份及IE5.0以前的浏览器使用外，是没有任何理由使用<code class="highlighter-rouge">document.all</code>的。你不应该通过判断是否支持<code class="highlighter-rouge">doucment.all</code>来确定你的浏览器是否为IE，因为现在其他的浏览器也支持这个方法。</p>
+
+<p>仅仅把document.all作为最后的补救方法</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>if (document.getElementById) {
+    var obj = document.getElementById("myId");
+} else if (document.all) {
+    var obj = document.all("myId");
+}
+</code></pre>
+</div>
+
+<p>一些使用<code class="highlighter-rouge">document.all</code>的规则是：</p>
+
+<ul>
+  <li>总是首先尝试使用其他标准方法</li>
+  <li>仅把<code class="highlighter-rouge">doucment.all</code>作为最后的补救方法使用</li>
+  <li>仅使用他在你需要支持IE5.0以前的版本中</li>
+  <li>当你在使用<code class="highlighter-rouge">document.all</code>时，总是用<code class="highlighter-rouge">if(document.all)</code>来检查它是否被支持</li>
+</ul>
+
+<h3 id="javascripthtml">10.不要在javascript代码块中使用HTML注解</h3>
+
+<p>在早期的javascript中（1995），一些像Netscape1.0的浏览器是不支持<code class="highlighter-rouge">&lt;script&gt;</code>标签的。因此当javascript第一次被发布的时候，面临的问题是需要隐藏老版本浏览器对其不支持而把它们作为文本显示在页面上的问题。”hack”使用HTML的注释包裹script块来隐藏代码。<br>
+在script中使用HTML注释是不好的</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;script language="javascript"&gt;
+    &lt;!--
+        // code here
+    //--&gt;
+&lt;/script&gt;
+</code></pre>
+</div>
+
+<p>在今天是没有那个浏览器会忽略<code class="highlighter-rouge">&lt;scrpit&gt;</code>标签的，因此隐藏javascript代码已经不再需要。事实上，在script中使用HTML注释是无益的，原因如下：</p>
+
+<ul>
+  <li>在XHTML文档中，js源代码实际将在所有的浏览器中被隐藏。</li>
+  <li>在HTML注释中<code class="highlighter-rouge">--</code>是不被解析的，因此这将会导致任何在脚本中的递减操作是无效的。</li>
+</ul>
+
+<h3 id="section-4">11.避免杂乱的全局命名空间</h3>
+
+<p>全局变量和函数是很少用到的。使用全局变量可能会导致命名冲突（ Using globals may cause naming conflicts between javascript source files and cause code to break. ）出于这种结果，一个好的实践方式是通过单一全局命名空间将这些全局变量封装起来。</p>
+
+<p>有几个不同的方式可以完成这个任务，其中一些比起另外一些结构是相对比较复杂的。简单的方式是创建一个单一的全局对象，并且分配属性和方法给这个对象。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>var MyLib = {}; // global Object cointainer
+MyLib.value = 1;
+MyLib.increment = function() { 
+    MyLib.value++; 
+}
+MyLib.show = function() { 
+    alert(MyLib.value); 
+}
+MyLib.value=6;
+MyLib.increment();
+MyLib.show(); // alerts 7
+</code></pre>
+</div>
+
+<p>命名空间也可以通过<a href="http://www.jibbering.com/faq/faq_notes/closures.html" title="Closures">闭包</a>创建，并且在javascript中私有成员变量 也能被模拟。</p>
+
+<h3 id="ajax">12.避免使用同步ajax调用</h3>
+
+<p>当使用Ajax请求时，你可以选择使用同步模式或者异步模式。异步模式在后台处理请求的同时其他浏览器的请求可以继续被处理，而同步模式将等待请求结果返回后才继续执行下一次请求。</p>
+
+<p>同步请求模式应避免使用。同步请求将造成浏览器被锁住直到请求结果返回。这种情况下，服务器将处于忙碌状态，响应也需要一段时间，用户的浏览器（也许是操作系统）将不允许其他任何事情被做。同时也可能是，响应没有正确的被接收到，浏览器将一直保持锁住状态直到请求超时。</p>
+
+<p>假如你需要使用同步模式，那么你可能需要花大部分时间去重新考虑你的设计。实际需要同步模式的<a href="http://www.ajaxtoolbox.com/" title="Ajax">Ajax</a>请求如果有也是很少的。</p>
+
+<h3 id="json">13.使用json</h3>
+
+<p>当通过<a href="http://www.ajaxtoolbox.com/" title="Ajax">Ajax</a>存储文本格式数据或发送/接收数据时，在能使用<a href="http://www.json.org/" title="JavaScript Object Notation">JSON</a>的情况下尽量使用json替代xml。json是一个更紧凑更高效的数据格式并且是语言中性的。</p>
+
+<h3 id="script">14.正确使用<code class="highlighter-rouge">&lt;script&gt;</code>标签</h3>
+
+<p><code class="highlighter-rouge">&lt;script&gt;</code>标签是没有 LANGUAGE 属性的。正确的方式是创建如下的javascript代码块：</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>&lt;script type="text/javascript"&gt; // code here &lt;/script&gt;
+</code></pre>
+</div>
+
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                                                                                                        
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2013/07/31/javascript-idcard-validate/">javascript身份证号码验证</a></li>
+                               
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2013/05/07/javascript-null-undefined/">javascript中的null和undefined</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/12/02/jquery-plugins-authoring/">jQuery插件编写</a></li>
+                      
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/05/05/jquery-etable-plugin/">jQuery eTable Plugin</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2012/05/04/jquery-msgbox-plugin/">jQuery MsgBox Plugin</a></li>
+                                     
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/04/09/javascript-jquery-user-suggests/">一些关于javascript、jQuery使用时的建议</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2010-04">2010年04月07日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#javascript"> javascript</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> javascript 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>

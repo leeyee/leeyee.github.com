@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Begin Jekyll SEO tag v1.3.3 -->
+<title>PL/SQL常用函数 - Leeyee’s Blog</title>
+<meta property="og:title" content="PL/SQL常用函数">
+<meta name="description" content="本文主要介绍PL/SQL中常用的函数，比如数字、字符、日期函数等。">
+<meta property="og:description" content="本文主要介绍PL/SQL中常用的函数，比如数字、字符、日期函数等。">
+<link rel="canonical" href="http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/">
+<meta property="og:url" content="http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/">
+<meta property="og:site_name" content="Leeyee’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-11-18T00:00:00+08:00">
+<link rel="next" href="http://iyiguo.net/blog/2012/05/04/jquery-msgbox-plugin/" title="jQuery MsgBox Plugin">
+<link rel="prev" href="http://iyiguo.net/blog/2011/11/17/plsql-sql-select/" title="SQL查询语句要点">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "PL/SQL常用函数",
+    "datePublished": "2011-11-18T00:00:00+08:00",
+    "description": "本文主要介绍PL/SQL中常用的函数，比如数字、字符、日期函数等。",
+    "url": "http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+    <link type="application/atom+xml" rel="alternate" href="http://iyiguo.net/feed.xml" title="Leeyee's Blog">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    <link rel="stylesheet" href="/stylesheets/self.css">
+    
+	
+ 		<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40641589-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+ 	
+ 	
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?58361582bf16c265b9a27cec274eb971";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+	
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <a class="navbar-brand" href="/">Leeyee's Blog</a>
+            <ul class="nav navbar-nav ">
+                <li>
+<a href="/categorys">分类</a>
+                </li>
+<li>
+<a href="/tags">标签</a>
+                </li>
+<li>
+<a href="/archives">归档</a>
+                </li>
+<li><a href="/essay">essay</a></li>
+                <li><a href="/about">关于我</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method="get">
+                <input type="hidden" name="q" value="site:iyiguo.net">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <div>
+    <ol class="breadcrumb" style="background-color: #F3F8F1; ">
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/categorys/#SQL">SQL</a></li>
+        
+        <li class="active">PL/SQL常用函数</li>
+    </ol>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title self-panel-title"> PL/SQL常用函数 </h1>
+    </div>
+    <div class="panel-body">
+        <address class="text-info">
+        </address>
+        <div id="j_article">
+            <div class="alert alert-warning" role="alert">
+                <strong>版权声明：</strong>
+                <ul>
+                    <li>关于<a href="http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/">《PL/SQL常用函数》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com">@Leeyee</a>所有；</li>
+                    <li>非商用、非衍生;</li>
+                    <li>如需转载需要注明来源于<a href="http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/">http://iyiguo.net/blog/2011/11/18/plsql-sql-comm-func/</a>
+</li>
+                </ul>
+            </div>
+            <ul id="markdown-toc">
+  <li>
+<a href="#section" id="markdown-toc-section">常用数字函数</a>    <ul>
+      <li><a href="#demo" id="markdown-toc-demo">demo:</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#section-1" id="markdown-toc-section-1">常用字符函数</a>    <ul>
+      <li><a href="#demo-1" id="markdown-toc-demo-1">demo:</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#section-2" id="markdown-toc-section-2">常用日期时间函数(一)</a>    <ul>
+      <li><a href="#demo-2" id="markdown-toc-demo-2">demo:</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-3" id="markdown-toc-section-3">常用日期时间函数(二)</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">转换函数</a></li>
+  <li><a href="#section-5" id="markdown-toc-section-5">其他单行当行函数</a></li>
+  <li><a href="#section-6" id="markdown-toc-section-6">分组函数</a></li>
+</ul>
+
+<h3 id="section">常用数字函数</h3>
+
+<p><code class="highlighter-rouge">abs(n)</code> : 返回n的绝对值</p>
+
+<p><code class="highlighter-rouge">ceil(n)</code> : 返回大于等于数字n的最小整数</p>
+
+<p><code class="highlighter-rouge">floor(n)</code> : 返回小于等于数字n的最大整数</p>
+
+<p><code class="highlighter-rouge">mod(m,n)</code> : 取m/n的余数</p>
+
+<p><code class="highlighter-rouge">power(m,n)</code> : 返回m的n次幂</p>
+
+<p><code class="highlighter-rouge">round(n[,m])</code> : 执行四舍五入运算。省略m，则四舍五入到整数位；m为负，四舍五入到小数点前m位；m为正，四舍五入到小数点后m位</p>
+
+<p><code class="highlighter-rouge">trunc(n[,m])</code> : 截取数字。省略m，数字n去掉小数部分；m为负,数字n截取小数点前m位；m为正，数字n截取小数点后m位</p>
+
+<h4 id="demo">demo:</h4>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select
+    abs(-12),
+    ceil(12.4),
+    floor(12.9),
+    mod(100,3),
+    power(2,3),
+    round(12.4),
+    round(12.5),
+    round(12.09,-1),
+    round(12.09,1),
+    trunc(30.3),
+    trunc(20.358899,3),
+    trunc(28.3565,-1)
+from dual;
+</code></pre>
+</div>
+
+<h3 id="section-1">常用字符函数</h3>
+
+<p><code class="highlighter-rouge">ascii(char)</code> : char字符的ascii码</p>
+
+<p><code class="highlighter-rouge">chr(n)</code> : 将ascii码值n转换成字符</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+<code class="highlighter-rouge">concat(str1,str2)</code> : 连接str1\str2为一个字符串。相当于连接符（</td>
+      <td> </td>
+      <td>）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="highlighter-rouge">initcap(char)</code> : 将字符串中的每个单词首字母大写，其他字符小写</p>
+
+<p><code class="highlighter-rouge">instr(char1,char2[,n[,m]])</code> : 获取子串char2在字符串char1中的位置。n为其实搜索位置，m为子串出现的次数；n为负，则从尾部开始搜索；n\m默认为1</p>
+
+<p><code class="highlighter-rouge">length(char)</code> : 返回字符串的长度。如果char = null则返回null</p>
+
+<p><code class="highlighter-rouge">lower(char)</code> : 返回char的小写格式</p>
+
+<p><code class="highlighter-rouge">upper(char)</code> : 返回char的大写格式</p>
+
+<p><code class="highlighter-rouge">lpad(char1,n,char2)</code> :  在字符串char1的左端填充字符串char2直到长度达到n;char2默认为空格，如果char1.length&gt;n，则返回char1左端的n个字符</p>
+
+<p><code class="highlighter-rouge">rpad(char1,n,char2)</code> :  在字符串char1的右端填充字符串char2直到长度达到n;char2默认为空格，如果char1.length&gt;n，则返回char1左端的n个字符</p>
+
+<p><code class="highlighter-rouge">ltrim(char1[,set])</code> : 去掉字符串char1左端包含的set中的任意字符。</p>
+
+<p><code class="highlighter-rouge">rtrim(char1[,set])</code> : 去掉字符串char1右端包含的set中的任意字符。</p>
+
+<p><code class="highlighter-rouge">nls_initcap(char,'nls_param')</code> : 同<code class="highlighter-rouge">initcap</code>.但这里的char用于指定<code class="highlighter-rouge">NCHAR</code>或者<code class="highlighter-rouge">NVARCHAR2</code>类型字符串；<code class="highlighter-rouge">nls_param</code>的格式为nls_sort=sort,用于指定特定语言特征</p>
+
+<p><code class="highlighter-rouge">nls_lower(char,'nls_param')</code> : 同<code class="highlighter-rouge">lower</code>,参数同<code class="highlighter-rouge">nls_initcap</code></p>
+
+<p><code class="highlighter-rouge">nls_upper(char,'nls_param')</code> : 同<code class="highlighter-rouge">upper</code>,参数同<code class="highlighter-rouge">nls_initcap</code></p>
+
+<p><code class="highlighter-rouge">replace(char,search_str[,replacement_str])</code> :  将字符串char中的子串search_str替换成replacement_str；如果search_str=null，返回char；如果replacement_str=null，则会去掉char中的search_str</p>
+
+<p><code class="highlighter-rouge">soundex(char)</code> : 返回字符串char的语音表示，使用该函数可比较发印相同的字符串</p>
+
+<p><code class="highlighter-rouge">substr(char,m[,n])</code> : 获取char的子字符串。m为字符起始位置，n为子串长度。m为0，从首字符开始;m为负从尾部开始</p>
+
+<p><code class="highlighter-rouge">trim(char|char From string)</code> : 从字符串的头尾或者两端截断特定字符。</p>
+
+<p><code class="highlighter-rouge">translate(string,from_str,to_str)</code> : 将string按照from_str与to_str的对应关系进行转换</p>
+
+<h4 id="demo-1">demo:</h4>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    ascii('a'), -- 字符的assii码
+    chr(68), -- 数字对应的字符
+    concat('a','cd'), -- 字符串连接
+    ('a'||'cd'), -- 字符串连接
+    initcap('ok abc'),-- 单词首字母大写
+    instr('abccdcdc','c',1,2),
+    length(null), -- 字符串的长度
+    length('abc'),
+    lower('ABCD'),-- 小写字符串
+    upper('abcd'),-- 大写字符串
+    LPAD('ac',6,'$'), -- 在字符串前面填补$字段直到字符串长度达到6
+    LPAD('accc',2,'$'), 
+    RPAD('ac',4,'*'), -- 在字符串后面填补*字段直到字符串长度达到4
+    RPAD('acccc',4,'*'),
+    ltrim('1234','1'), -- 去掉字符串最左边为'1'的字符
+    ltrim('1234','23'),
+    rtrim('1234','234'), -- 去掉字符串最右边为'234'的字符
+    rtrim('1234','23'),
+    nls_initcap(n'ok abc'), -- 单词首字母大写
+    nls_lower(n'SQL'), -- 单词小写
+    replace('abc','b','123'), -- 字符串替换
+    replace('abc','b'),
+    replace('','b'),
+    soundex('lawer'),-- 返回字符串语音表示
+    soundex('lier'),
+    soundex('ok'),
+    substr('hello',2,2), -- 子字符串 substr(str,offset,len)
+    substr('hello',2),
+    substr('hello',-2),
+    substr('hello',-3,2),
+    translate('234abcd', '12345abcde','ahellojack'),
+    '  adc',
+    trim('  adc '), -- 去除字符串两端空格
+    trim('a' from 'aa123ab') -- 去除字符串两端指定字符
+from dual;
+</code></pre>
+</div>
+
+<h3 id="section-2">常用日期时间函数(一)</h3>
+
+<p><code class="highlighter-rouge">add_months(d,n)</code> : 返回特定日期时间d前后的n个月所对应的日期时间。n为正整数表示之后，负整数表示之后</p>
+
+<p><code class="highlighter-rouge">current_date</code> : 返回当前会话时区所对应日期时间。Oracle9i新增</p>
+
+<p><code class="highlighter-rouge">current_timestamp</code> : 返回当前会话时区所对应详细日期时间。Oracle9i新增</p>
+
+<p><code class="highlighter-rouge">dbtimezone</code> : 返回数据库所在时区。Oracle9i新增</p>
+
+<p><code class="highlighter-rouge">extract</code> : 从日期中获取所需要的特定数据。Oracle9i新增。比如：<br>
+    select<br>
+    	extract(year from sysdate)  –年<br>
+    	extract(month from sysdate) –月<br>
+    	extract(day from sysdate)   –日<br>
+    from dual;</p>
+
+<p><code class="highlighter-rouge">last_day(d)</code> : 返回特定日期所在月份最后一天</p>
+
+<p><code class="highlighter-rouge">months_between(d1,d2)</code> : 返回日期d1和d2之间相差的月数。d1 &lt; d2 返回负数；d1和d2天数相同或都是月底，返回整数；否则Oracle以每月31天为准来计算结果的小数部分。</p>
+
+<p><code class="highlighter-rouge">new_time(date,zone1,zone2)</code> : 返回时区zone1对应的时区zone2的日期时间。</p>
+
+<p><code class="highlighter-rouge">next_day(d,char)</code> : 返回指定日期d后的第一个工作日char所对应的日期。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select next_day(sysdate,'星期一') from dual;
+</code></pre>
+</div>
+
+<h4 id="demo-2">demo:</h4>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select  
+    to_char(sysdate,'yyyy-MM-dd hh24:mi:ss'),
+    add_months(sysdate, 2), -- 当前时间加两个月
+    current_date, -- 当前日期
+    current_timestamp, -- 当前日期时间
+    dbtimezone, -- 当前时区
+    extract(year from sysdate) as year, -- 获取from日期的年份
+    extract(month from sysdate) month, 
+    extract(day from sysdate) day,
+    from_tz(timestamp '2011-10-12 21:49:30','5:00'),
+    last_day(sysdate), -- 当前日期所在月份的最后一天
+    months_between(sysdate+1, sysdate) as 相差月数, 
+    new_time(sysdate,'bst','est'),-- bst的时区对应est时区的时间
+    next_day(sysdate,'星期二') -- 指定日期后的第一个工作日
+from dual;
+</code></pre>
+</div>
+
+<h3 id="section-3">常用日期时间函数(二)</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+<code class="highlighter-rouge">numtodsinterval(n,char_expr)</code> : 将数字n转换为INTERVAL DAY TO SECOND格式，char_expr可取 DAY</td>
+      <td>HOUR</td>
+      <td>MINUTE</td>
+      <td>SECOND</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    numtodsinterval(60,'SECOND'), -- 60秒
+    numtodsinterval(60,'MINUTE'), -- 60分钟
+    numtodsinterval(60,'HOUR'),-- 60小时
+    numtodsinterval(60,'DAY'), -- 60天
+from dual;
+</code></pre>
+</div>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+<code class="highlighter-rouge">numtoyminterval(n,char_expr)</code> : 将数字n转换为INTERVAL YEAR TO MONTH格式，char_expr可取 YEAR</td>
+      <td>MONTH</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    numtoyminterval(60,'MONTH'), -- 60月
+    numtoyminterval（60,'YEAR'), -- 60年
+from dual;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">round(d[,fmt])</code> : 返回日期的四舍五入结果。如果fmt指定年度，则7月1日为分界线；如果fmt指定月，则16日为分界线；如果指定天，则中午12:00为分界线。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    round(sysdate,'DAY'),   -- 四舍五入到天
+    round(sysdate,'MONTH'), -- 四舍五入到月
+    round(sysdate,'YEAR'),  -- 四舍五入到年
+from dual;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">sessiontimezone</code> : 当前会话所在时区。Oracle9i新增</p>
+
+<p><code class="highlighter-rouge">sysdate</code> : 系统日期时间</p>
+
+<p><code class="highlighter-rouge">systimestamp</code> : 系统日期时间及时区。Oracle9i新增</p>
+
+<p><code class="highlighter-rouge">to_timestamp(char[fmt[,'nls_parame']])</code> : 将符合指定日期和时间格式的字符串转变为<code class="highlighter-rouge">timestamp</code>类型</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select to_timestamp('2012-09','yyyy-mm') from dual;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">trunc(d,[fmt])</code> : 日期阶段函数。如果fmt指定年度，则结果为本年度的1月1日；如果为月，则将结果为本月1日</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    trunc(sysdate,'MONTH'), -- 取到月
+    trunc(sysdate,'YEAR'), -- 取到年
+    trunc(sysdate,'mm')
+from dual;
+</code></pre>
+</div>
+
+<h3 id="section-4">转换函数</h3>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>set serveroutput on ;
+declare 
+    v_cast varchar2(20);
+begin
+    v_cast := cast(sysdate as varchar2);
+    dbms_output.put_line(v_cast);
+end;
+
+select 
+    asciistr('中国'), -- 返回参数的数据库字符串的ascii字符串
+    bin_to_num(1,0), -- 返回二进制10表示的十进制数
+    cast('123' as number) , -- 将字符串123转成number类型输出
+    convert('abc','us7ascii','we8iso8859p1') ,-- 将字符串有编码us7ascii转成we8iso8859p1编码
+    to_char(n'中国'),
+    to_nchar('中国'),
+    to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'),
+    to_char(100,'L99G999D99MI'), -- 将数字100转换成人民币式字符串
+    to_clob('abc'), -- 将字符串转化成clob类型
+    to_date('2000-12-23','yyyy-mm-dd') ,-- 将字符日期格式转化成日期格式
+    to_number('￥100','L99999D99')
+from dual;
+</code></pre>
+</div>
+
+<h3 id="section-5">其他单行当行函数</h3>
+
+<p><code class="highlighter-rouge">decode(expr1,serch1,result,[search2,result2,...][,default)</code> : 如果expr1 = serch1 输出 result …</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>-- id = 1, money * 10; id = 2, money * 20
+select id,money, decode(id,1,money*10,2,money*20,money) from customer;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">coalesce(expr1[,expr2][,expr3]..)</code> : 返回表达式中第一个NOT NULL表达式的结果</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select coalesce(null,null,'ab') from dual;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">dump(expr,return_frm)</code> : 返回表达式所对应的数据类型代码、长度及内部表示格式</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select dump('abc','1016') from dual;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">empty_blob()</code> : 初始化<code class="highlighter-rouge">blob</code>变量或字段</p>
+
+<p><code class="highlighter-rouge">empty_clob()</code> : 初始化<code class="highlighter-rouge">clob</code>变量或字段</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>update yt_uniform_information set content = empty_clob() where key_id = 20 ;
+</code></pre>
+</div>
+
+<p><span class="label label-important"><em>NOTES：</em></span><br>
+<code class="highlighter-rouge">content = empty_clob()</code> 与 <code class="highlighter-rouge">content = null</code>是不同的</p>
+
+<p><code class="highlighter-rouge">greatest(expr1[,expr2]...)</code> : 返回表达式中值最大的一个</p>
+
+<p><code class="highlighter-rouge">least(expr1[,expr2]...)</code> : 返回表达式中值最小的一个</p>
+
+<p><code class="highlighter-rouge">nls_charset_id(text)</code> : 返回字符集的id号</p>
+
+<p><code class="highlighter-rouge">nls_charset_name(number)</code> : 返回特定ID号所对应的字符集名</p>
+
+<p><code class="highlighter-rouge">nls_charset_decl_len(byte_count,charset[id])</code> : 返回字节数在特定字符集中占用的字符个数</p>
+
+<p><code class="highlighter-rouge">nullif(expr1,expr2)</code> : expr1 = expr2 返回 null ; 否则返回expr1。可用在字段上;Oracle9i新增</p>
+
+<p><code class="highlighter-rouge">nvl(expr1,expr2)</code> : expr1 = null 返回 expr2 否则返回expr1</p>
+
+<p><code class="highlighter-rouge">nvl2(expr1,expr2,expr3)</code> : expr1 != null 返回 expr2; expr1 = null 返回 expr3;参数expr1为任意数据类型，expr2、expr3为除<code class="highlighter-rouge">LONG</code>之外的任何数据类型。Oracle9i新增</p>
+
+<p><code class="highlighter-rouge">sys_context('context','attribute')</code> : 返回上下文特定属性值。context为应用上下文名 attribute为指定属性名</p>
+
+<p><code class="highlighter-rouge">uid</code> : 当前会话对应的用户ID号</p>
+
+<p><code class="highlighter-rouge">user</code> : 当前会话对应数据库用户名</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+<code class="highlighter-rouge">userenv(parameter)</code> : 返回当前上下文的属性信息。paramer = isdba</td>
+      <td>language</td>
+      <td>terminal</td>
+      <td>client_info</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="highlighter-rouge">vsize(expr)</code> : oracle内部存储expr的实际字节数.只能在SQL语句中使用</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    greatest(1,2,4,4,10), 
+    least(1,2,4,4,10), 
+    nullif('abc','abc'),
+    nvl(100,23),
+    sys_context('userenv','os_user') "OS用户",
+    sys_context('userenv','session_user') "数据库用户" , 
+    uid,
+    user,
+    userenv('isdba'), -- 是否具有DBA权限
+    userenv('language'), -- 当前会话语言地区和字符集
+    userenv('terminal'), -- 当期会话所在终端的OS标识符 
+    userenv('client_info'), -- 返回有包dbms_application_info所存储的用户会话信息（最长64字节）
+    vsize('ad')
+from dual;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">sys_dburigen(colname)</code> ：根据列或者属性生成类型为DBUriType的URL</p>
+
+<p><code class="highlighter-rouge">sys_xmlgen(expr[,fmt])</code> : 根据数据库表的行和列生成一个XMLType实例</p>
+
+<p><code class="highlighter-rouge">sys_xmlagg(expr[,fmt])</code> : 汇总所有xml文档，并生成一个xml文档(用于可分组的数据列中(一对多))</p>
+
+<p><code class="highlighter-rouge">xmlelement(identifier[,xml_attribute_clause][,value_expr]</code> : 返回XMLType实例.identifier必选，指定元素名，xml_attribute_clause可选，指定元素属性子句，value_expr可选，指定元素值</p>
+
+<p><code class="highlighter-rouge">xmlcolattval(value_expr1[,value_expr2]...)</code> : 生成XML块，并增加column做为属性名</p>
+
+<p><code class="highlighter-rouge">xmlconcat(XMLType_instance1[,XMLType_instance2]...)</code> : 连接多个XMLType实例，并生成一个新的XMLType实例</p>
+
+<p><code class="highlighter-rouge">xmlforest(value_expr1[,value_expr2]...)</code> : 返回XML块</p>
+
+<p><code class="highlighter-rouge">xmlsequence(XMLType_instance)</code> : 返回XMLType实例中顶级节点一下的<code class="highlighter-rouge">VARRAY</code>元素</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    name, 
+    sys_dburigen(name),
+    sys_xmlgen(name),
+    xmlelement(id,name,money), -- &lt;id&gt;namemoney&lt;/id&gt;
+    xmlcolattval(name), -- &lt;column name = "NAME"&gt;leeyee&lt;/column&gt;
+    xmlcolattval(name,money), -- &lt;column name = "NAME"&gt;leeyee&lt;/column&gt;&lt;column name = "MONEY"&gt;12.23&lt;/column&gt;
+    xmlelement("customer",xmlcolattval(id,name,money)),
+    xmlconcat(xmlelement(id,name),xmlelement(money,money)),
+    xmlforest(name,money),
+    xmlsequence(xmlelement("customer",xmlcolattval(id,name,money)))
+from customer a ;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">sys_xmlagg(expr[,fmt])</code> : 汇总所有xml文档，并生成一个xml文档</p>
+
+<p><code class="highlighter-rouge">xmlagg(XMLType_instance[ORDER BY sor_list])</code> : 汇总多个XML块，生成XML文档。</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    sys_xmlagg(sys_xmlgen(name)),
+    xmlagg(xmlelement(name,name)),
+from yt_site_function_menu where function = 3
+
+create table xml_tables of xmltype;
+insert into xml_tables values(xmltype('&lt;address&gt;
+    &lt;province name="北京市"&gt;
+	    &lt;city name="北京辖区"&gt;
+		    &lt;country name="东城区" /&gt;
+		    &lt;country name="西城区" /&gt;
+		    &lt;country name="崇文区" /&gt;
+		    &lt;country name="宣武区" /&gt;
+	    &lt;/city&gt;
+	    &lt;city name="北京辖县"&gt;
+		    &lt;country name="密云县" /&gt;
+		    &lt;country name="延庆县" /&gt;
+	    &lt;/city&gt;
+    &lt;/province&gt;
+    &lt;province name="天津市"&gt;
+	    &lt;city name="天津辖区"&gt;
+		    &lt;country name="和平区" /&gt;
+		    &lt;country name="河东区" /&gt;
+	    	&lt;country name="河西区" /&gt;
+		    &lt;country name="南开区" /&gt;
+		    &lt;country name="河北区" /&gt;
+	    &lt;/city&gt;
+	    &lt;city name="天津辖县"&gt;
+		    &lt;country name="宁河县" /&gt;
+		    &lt;country name="静海县" /&gt;
+		    &lt;country name="蓟县" /&gt;
+	    &lt;/city&gt;
+    &lt;/province&gt;
+&lt;/address&gt;'));
+insert into xml_tables values(xmltype('&lt;body&gt;
+    &lt;form onsubmit="javascript:return check(this);"&gt;
+	    &lt;button onclick="test();"&gt;fd&lt;/button&gt;
+	    &lt;div id="ad"&gt;&lt;/div&gt;
+	    &lt;input type="submit" value="check" /&gt;
+    &lt;/form&gt;
+    &lt;div id="test"&gt;作为试验，还是让我们来测试一下效果吧。&lt;/div&gt;
+&lt;/body&gt;'));
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">existsnode(xmltype_instance,Xpath_string)</code> : 确定xml节点路径是否存在。存在返回1否则返回0</p>
+
+<p><code class="highlighter-rouge">extract(xmltype_instance,Xpath_string)</code> : 返回xml节点路径下的内容</p>
+
+<p><code class="highlighter-rouge">extractvalue(xmltype_instance,Xpath_string)</code> : 返回xml节点路径下的内容值</p>
+
+<p><code class="highlighter-rouge">updatexml(xmltype_instance,Xpath_string,value_expr)</code> : 更新特定XMLType实例相应节点路径内容</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>select 
+    -- p.*,
+    existsnode(value(p),'/address/province/city[0]'),
+    extract(value(p),'/address/province[1]/city[1]/country[1]'),  
+    extract(value(p),'/body/div'),
+    extractvalue(value(p),'/body/div'),
+    xmlsequence(extract(value(p),'/address/province/city/*'))
+from xml_tables p ;
+
+update xml_tables p set p=updatexml(value(p),'/body/div/text()','作为试验，还是让我们来测试一下效果吧。');
+</code></pre>
+</div>
+
+<h3 id="section-6">分组函数</h3>
+
+<p>具体请查看<a href="/blog/2011/11/16/plsql-sql-groupby/">SQL分组语句要点</a></p>
+
+
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>相关阅读：</strong>
+            <ul>
+                                                                             
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/08/30/plsql-sql-use-sql-in-block/">PL/SQL块中使用SQL</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/08/30/plsql-control-statement/">PL/SQL流程控制语言</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2015/08/30/plsql-complex-data-type/">PL/SQL复合数据类型</a></li>
+                                                                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/11/18/plsql-sql-comm-func/">PL/SQL常用函数</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/11/17/plsql-sql-select/">SQL查询语句要点</a></li>
+                   
+                 <!--capture的变量均为字符串-->
+                <li><a href="/blog/2011/11/16/plsql-sql-groupby/">SQL分组语句要点</a></li>
+                  
+            </ul>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-calendar"></span>
+        
+        <a href="/archives/#2011-11">2011年11月18日</a>
+        
+        <span class="glyphicon glyphicon-user"></span>
+         leeyee 
+        
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <a href="/categorys/#SQL"> SQL</a>
+        
+         <span class="glyphicon glyphicon-tags"></span> pl/sql 
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-right">
+	
+		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+     <a class="jiathis_button_tsina"></a>
+     <a class="jiathis_button_qzone"></a>
+     <a class="jiathis_button_tqq"></a>
+     <a class="jiathis_button_renren"></a>
+     <a class="jiathis_button_t163"></a>
+     <a class="jiathis_button_tsohu"></a>
+     <a class="jiathis_button_douban"></a>
+     <!--<a href="http://www.jiathis.com/share?uid=1785947" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+     <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1354586152725188" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+	
+</div>
+        <div>
+	
+			<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'oxcow'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script');
+		dsq.type = 'text/javascript';
+		dsq.async = true;
+		dsq.src = 'https://a.disquscdn.com/embed.js';
+		//dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document
+				.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span
+	class="logo-disqus">Disqus</span></a>-->
+		
+
+	</div>
+    </div>
+</div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
+                </div>
+            </div>
+            <!-- 本站公告 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">本站公告</h2>
+    </div>
+    <div class="panel-body">
+        新版页面陆续建设中，敬请期待......
+    </div>
+</div>
+            <!-- Google Adsense -->
+            <!--<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Google Adsense</h2>
+    </div>
+    <div class="panel-body">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3709356780361184"
+            data-ad-slot="2345263955"
+            data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+-->
+            <!-- 最新文章 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">最新文章</h2>
+    </div>
+    <div class="list-group">
+<!--        <a  class="list-group-item active">最新文章</a>-->
+        
+        <a href="/blog/2016/11/06/stripes-how-to-wizard_forms/" class="list-group-item">Stripes框架如何做系列-向导表单</a>
+        
+        <a href="/blog/2016/09/15/stripes-how-to-use_defaults_more/" class="list-group-item">Stripes框架如何做系列-更多使用默认配置</a>
+        
+        <a href="/blog/2016/09/10/stripes-how-to-unit_testing/" class="list-group-item">Stripes框架如何做系列-单元测试</a>
+        
+        <a href="/blog/2016/08/25/stripes-how-to-state_management/" class="list-group-item">Stripes框架如何做系列-状态管理</a>
+        
+        <a href="/blog/2016/08/21/stripes-how-to-localization/" class="list-group-item">Stripes框架如何做系列-本地化</a>
+        
+        <a href="/blog/2016/08/03/stripes-how-to-spring-with-stripes/" class="list-group-item">Stripes框架如何做系列-Spring和Stripes</a>
+        
+        <a href="/blog/2016/07/22/stripes-how-to-indexed-properties/" class="list-group-item">Stripes框架如何做系列-索引属性</a>
+        
+        <a href="/blog/2016/07/17/stripes-how-to-layout-reuse/" class="list-group-item">Stripes框架如何做系列-布局复用</a>
+        
+        <a href="/blog/2016/07/16/stripes-how-to-intercept-execution/" class="list-group-item">Stripes框架如何做系列-拦截器</a>
+        
+        <a href="/blog/2016/07/13/stripes-how-to-file-uploads/" class="list-group-item">Stripes框架如何做系列-文件上传</a>
+        
+    </div>
+</div>
+
+            <!-- 文章标签 -->
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章标签</h2>
+    </div>
+    <div class="list-group">
+       <!-- <a  class="list-group-item active">文章标签</a>-->
+        
+        <a href="/tags#javascript" class="list-group-item">javascript<span class="badge">9</span></a>
+        
+        <a href="/tags#struts2" class="list-group-item">struts2<span class="badge">1</span></a>
+        
+        <a href="/tags#jQuery" class="list-group-item">jQuery<span class="badge">4</span></a>
+        
+        <a href="/tags#spring" class="list-group-item">spring<span class="badge">3</span></a>
+        
+        <a href="/tags#%E8%AF%91%E6%96%87" class="list-group-item">译文<span class="badge">18</span></a>
+        
+        <a href="/tags#pl/sql" class="list-group-item">pl/sql<span class="badge">8</span></a>
+        
+        <a href="/tags#mybatis" class="list-group-item">mybatis<span class="badge">4</span></a>
+        
+        <a href="/tags#database" class="list-group-item">database<span class="badge">1</span></a>
+        
+        <a href="/tags#hibernate" class="list-group-item">hibernate<span class="badge">1</span></a>
+        
+        <a href="/tags#cache" class="list-group-item">cache<span class="badge">1</span></a>
+        
+        <a href="/tags#git" class="list-group-item">git<span class="badge">2</span></a>
+        
+        <a href="/tags#java" class="list-group-item">java<span class="badge">1</span></a>
+        
+        <a href="/tags#awk" class="list-group-item">awk<span class="badge">2</span></a>
+        
+        <a href="/tags#linux" class="list-group-item">linux<span class="badge">3</span></a>
+        
+        <a href="/tags#stripes" class="list-group-item">stripes<span class="badge">15</span></a>
+        
+    </div>
+</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 归档 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">归档</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            
+             
+            <li>
+<a href="/archives#2016-11">2016-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-09">2016-09
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-08">2016-08
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-07">2016-07
+                
+                
+                <span class="badge">9</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2016-04">2016-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-03">2016-03
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-02">2016-02
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2016-01">2016-01
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-08">2015-08
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2015-07">2015-07
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2014-05">2014-05
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-11">2013-11
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-08">2013-08
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2013-07">2013-07
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2013-05">2013-05
+                
+                
+                <span class="badge">3</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2012-12">2012-12
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-09">2012-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2012-05">2012-05
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-11">2011-11
+                
+                
+                <span class="badge">5</span></a>
+            </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            <li>
+<a href="/archives#2011-06">2011-06
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2011-04">2011-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2010-04">2010-04
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-09">2009-09
+                
+                
+                <span class="badge">1</span></a>
+            </li>
+            
+            
+             
+            <li>
+<a href="/archives#2009-08">2009-08
+                
+                
+                <span class="badge">2</span></a>
+            </li>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <!-- 文章分类 -->
+                    <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">文章分类</h2>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-list">
+            
+            <li>
+                <a href="/categorys#javascript">javascript<sup style="padding-left: 4px">6</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#struts2">struts2<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#spring">spring<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#SQL">SQL<sup style="padding-left: 4px">8</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#jQuery">jQuery<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#mybatis">mybatis<sup style="padding-left: 4px">4</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#database">database<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#hibernate">hibernate<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#git">git<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#java">java<sup style="padding-left: 4px">1</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言<sup style="padding-left: 4px">2</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#%E5%85%B6%E4%BB%96">其他<sup style="padding-left: 4px">3</sup></a>
+            </li>
+            
+            <li>
+                <a href="/categorys#stripes">stripes<sup style="padding-left: 4px">15</sup></a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p class="text-center">©2016 by Leeyee, All Rights Reserved</p>
+</footer>
+<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div id="totop" class="toTop" style="display: block; opacity: 1;">
+    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+</div>
+</body>
+</html>
