@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 几种代理技术的简单总结
+title: 几种代理方式的简单总结
 description: 正向代理、反向代理以及透明代理的简单总结
 category: 其他
 tag: [其他]
@@ -9,6 +9,7 @@ tag: [其他]
 * TOC
 {:toc}
 
+常见代理方式有正向代理、反向代理和透明代理。他们具体如下：
 
 ## 正向代理 forward proxy
 
