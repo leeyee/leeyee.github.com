@@ -27,8 +27,7 @@ last_pages: 10
 
 name: Leeyee's Blog
 description: 我的技术类博客
-url: https://iyiguo.net
-enforce_ssl: iyiguo.net
+url: http://iyiguo.net
 author: leeyee
 
 #GitHub项目地址
