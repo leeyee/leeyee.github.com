@@ -9,7 +9,7 @@ tag: [java]
 * any list
 {:toc}
 
-实际开发场景中，经常会需要将`List`对象转成`Map`的情况出现。通常的做法是通过遍历List对象然后进行相应处理。JDK8后开始支持lambda表达式，同时提供针对集合的Stream方法，使得对集合的操作大大简化。下面就备份下如何使用lambda表达式和Guava[^guava verion]实现List到Map的转换。
+实际开发场景中，经常会需要将`List`对象转成`Map`的情况出现。通常的做法是通过遍历List对象然后进行相应处理。JDK8后开始支持lambda表达式，同时提供针对集合的Stream方法，使得对集合的操作大大简化。下面就备份下如何使用lambda表达式和Guava[^guava_verion]实现List到Map的转换。
 
 首先定义测试用的TestBean, 代码如下：
 
@@ -132,9 +132,9 @@ tag: [java]
 			}
 			, new BinaryOperator<List<String>>() {
 				@Override
-				public List<String> apply(List<String> strings, List<String> strings2) {
-					strings.addAll(strings2);
-					return strings;
+				public List<String> apply(List<String> st1, List<String> st2) {
+					st1.addAll(st2);
+					return st1;
 				}
 			}
 			, new Supplier<Map<Integer, List<String>>>() {
@@ -241,4 +241,4 @@ Guava的处理方式就比较直接了，因为Guava包含了这样的数据结�
 	
 `indexAsKeyMap1`和`indexAsKeyMap2`返回的结果相同。
 
-[^guava verion]: guava version 22.0
+[^guava_verion]: guava version 22.0
