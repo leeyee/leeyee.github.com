@@ -99,17 +99,17 @@ tag: [java]
 		.stream()
 		.filter(o -> o != null) // avoid throws NullPointerException
 		.collect(Collectors.toMap(
-				// get key
-				TestBean::getAge
-				// get value
-				, (TestBean o) -> Lists.newArrayList(o.getName())
-				// 当同一个key遇到不同value时的合并策略
-				, (x, y) -> { 
-					x.addAll(y);
-					return x;
-				}
-				// 当不需要明确具体的Map类型时可省略。默认就是HashMap
-				, HashMap::new 
+			// get key
+			TestBean::getAge
+			// get value
+			, (TestBean o) -> Lists.newArrayList(o.getName())
+			// 当同一个key遇到不同value时的合并策略
+			, (x, y) -> { 
+				x.addAll(y);
+				return x;
+			}
+			// 当不需要明确具体的Map类型时可省略。默认就是HashMap
+			, HashMap::new 
 		));
 
 这段代码看起来是比较清爽的，但是不太那么容易理解，下面是完整的形式：
