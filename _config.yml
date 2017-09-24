@@ -53,7 +53,7 @@ shares:
   jiathis:
     uid: 1354586152725188
 
-gems:
+plugins:
 - jekyll-mentions
 - jekyll-sitemap
 - jekyll-feed
