@@ -38,4 +38,5 @@ $(function () {
         $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
     });
 
+    $('.dropdown-toggle').dropdown()
 });

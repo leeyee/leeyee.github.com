@@ -1,0 +1,17 @@
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        {% for category in site.categories %}
+        <li><a href="/categorys#{{category[0]}}">{{category[0]}}<sup style="padding-left: 4px">{{category[1].size}}</sup></a></li>
+        {% endfor %}
+    </ul>
+</li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">标签 <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        {% for tag in site.tags %}
+        <li><a href="/tags#{{ tag[0] }}">{{ tag[0] }}<sup style="padding-left: 4px">{{ tag[1].size }}</sup></li>
+        {% endfor %}
+    </ul>
+</li>

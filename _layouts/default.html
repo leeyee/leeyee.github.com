@@ -16,8 +16,7 @@
         <div class="col-md-offset-1">
             <a class="navbar-brand" href="/">Leeyee's Blog</a>
             <ul class="nav navbar-nav ">
-                <li><a href="/categorys">分类</a>
-                <li><a href="/tags">标签</a>
+                {% include categoryMenu %}
                 <li><a href="/archives">归档</a>
                 <li><a href="/essay">essay</a></li>
                 <li><a href="/about">关于我</a></li>
@@ -68,10 +67,9 @@
     <p class="text-center">&copy;2016 by Leeyee, All Rights Reserved</p>
 </footer>
 <!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
-<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript">
-    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
-</script>
+<script type="text/javascript" async  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+<script type="text/javascript"> !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');</script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
