@@ -3,7 +3,7 @@ layout: post
 title:  java测试框架Mockito简介
 description:  java测试框架Mockito简介。简单介绍关于利用mockito包方法mock或者spy一个对象。
 category: java
-tag: [java，test]
+tag: [java,test]
 ---
 
 * any list
