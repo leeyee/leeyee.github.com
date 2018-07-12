@@ -56,7 +56,7 @@ tag: [t-sql]
     - **RELATIVE n**：当前位置的前或后*n*行数据。*n*为正为向下，否则为向上
     - **ABSULUTE n**：指定行
 - **STATIC**：静态游标
-- **KEYSET**：健集游标。指定当游标打开时，系统在*tempdb*内部建立一个*keyset*,*keyset*的键值可唯一标识游标的数据。用户更改非键值时，能反映出其变动。新增一行符合游标范围的数据时，无法由此游标读到；删除游标中的一行时，用该游标读取该行数据会得到一个 **@@FETCH_status** 为 *-2* 的返回值；
+- **KEYSET**：健集游标。指定当游标打开时，系统在*tempdb*内部建立一个*keyset*,*keyset*的键值可唯一标识游标的数据。用户更改非键值时，能反映出其变动。新增一行符合游标范围的数据时，无法由此游标读到；删除游标中的一行时，用该游标读取该行数据会得到一个 `@@FETCH_status` 为 *-2* 的返回值；
 - **DYNAMIC**：动态有标
 - **FAST_FORWARD**：当设定`FOR READ_ONLY` 或者 `READ_ONLY`时，该选项将启动系统的效能最佳化；
 - **READ_ONLY**：内容不可改
@@ -70,7 +70,7 @@ tag: [t-sql]
     
 - **GLOBAL**: 全局游标
 - **cursor_name**：游标名称
-- **@cursor_variable_name**：有标变量名称，该变量引用一个游标
+- `@cursor_variable_name`：有标变量名称，该变量引用一个游标
 
 可以通过判断全局变量 `@@ERRORS` 是否为0来确认游标是否打开成功。打开成功可通过全局变量 `@@CURSOR_ROWS` 获取游标中的记录行数。
 
@@ -93,13 +93,13 @@ NEXT | 当前行后一行。第一使用次，则返回第一行。**默认**
 PRIOR | 当前行前一行
 FIRST | 返回第一行并将其当作当前行
 LAST | 返回最后一样并将其当作当前行
-ABSOLUTE{n\|@ nvar} | n>0返回从游标头开始的第n行;n<0返回从游标尾之前的第n行;游标移到该行
-RELATIVE{n\|@ nvar} | n>0当前行后第n行;n<0当前行前第n行;游标移到该行
-INTO @variable_name[,...n] | 存入变量
+ABSOLUTE{n\|`@nvar`} | n>0返回从游标头开始的第n行;n<0返回从游标尾之前的第n行;游标移到该行
+RELATIVE{n\|`@nvar`} | n>0当前行后第n行;n<0当前行前第n行;游标移到该行
+`INTO @variable_name[,...n]` | 存入变量
 
-**@@FETCH_STATUS** 返回获取语句执行的最终状态。需要说明的是：
+`@@FETCH_STATUS` 返回获取语句执行的最终状态。需要说明的是：
 
-> **@@FETCH_STATUS**对于一个连接上的所有游标是全局性的。因此为了保证正确性，查看当前 `FETCH` 的 `@@FETCH_STATUS` 时，必须是在一个 `FETCH` 前执行。
+> `@@FETCH_STATUS` 对于一个连接上的所有游标是全局性的。因此为了保证正确性，查看当前 `FETCH` 的 `@@FETCH_STATUS` 时，必须是在一个 `FETCH` 前执行。
 
 返回值 | 说明
 ---|---
