@@ -48,13 +48,13 @@ tag: [java]
     }
     high = h;
 
-因此可通过设置
+因此可通过设置[^comments]
 
-> -Djava.lang.Integer.IntegerCache.high=<size>
+> -Djava.lang.Integer.IntegerCache.high=<size\>
 
 或者
 
-> -XX:AutoBoxCacheMax=<size>
+> -XX:AutoBoxCacheMax=<size\>
 
 来改变`IntegerCache`的缓存上限。
 
@@ -87,3 +87,5 @@ tag: [java]
     Assert.assertTrue(L1.equals(L2));
     
 > 如果能确定定义的值在缓存范围内，那么 `==` 和 `equlas` 返回的结果是相同的。不过还是建议在比较这三种类型时直接使用 `equlas` 方法。
+
+[^comments]: [How large is the Integer cache?](https://stackoverflow.com/questions/15052216/how-large-is-the-integer-cache)
