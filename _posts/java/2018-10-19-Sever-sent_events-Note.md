@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Sever Send Events Note
-description: 利用Sever-send Event（SSE)实现web服务器向浏览器推送消息,主要侧重使用Java代码展示服务器端代码的实现.
+title: Sever-sent events note
+description: 利用Sever-sent events（SSE)实现web服务器向浏览器推送消息,主要侧重使用Java代码展示服务器端代码的实现.
 category: java
 tag: [java, javascript]
-github: 'ServerSendEventsDemo'
+github: 'ServerSentEventsDemo'
 ---
 
 * any list
@@ -12,7 +12,7 @@ github: 'ServerSendEventsDemo'
 
 在W3C上查询相关JS和CSS时，偶尔发现的一个前端技术点，随手demo and backup下。
 
-Sever Send Events 简单来说就是服务器推送消息到浏览器。
+Sever-send events 简单来说就是服务器推送消息到浏览器。
 
 ## Main
 
