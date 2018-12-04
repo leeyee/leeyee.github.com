@@ -2,8 +2,6 @@
 	{% case site.comments.provider %}
 		{% when "disqus" %}
 			{% include comments-providers/disqus %}
-		{% when "uyan" %}
-			{% include comments-providers/uyan %}
 	{% endcase %}
 {% endif %}
 	
