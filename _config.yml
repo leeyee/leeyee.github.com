@@ -42,16 +42,8 @@ analytics:
 #评论
 comments:
   provider: disqus
-  uyan:
-    uid: 1785947
   disqus:
     short_name: oxcow
-
-#分享
-shares:
-  provider: jiathis
-  jiathis:
-    uid: 1354586152725188
 
 plugins:
 - jekyll-mentions

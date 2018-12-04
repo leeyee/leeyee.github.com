@@ -1,5 +1,0 @@
-{% if site.shares.provider %}
-	{% if site.shares.provider == 'jiathis' %}
-		{% include shares-providers/jiathis %}
-	{% endif %}
-{% endif %}
