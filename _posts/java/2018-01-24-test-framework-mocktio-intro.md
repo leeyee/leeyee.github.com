@@ -112,6 +112,14 @@ Mockito **不会** 委托调用传递的实例，而是创建一个实例的副�
 	 });
 	 //the following prints "called with arguments: foo"
 	 System.out.println(mock.someMethod("foo"));
+
+#### 返回第一个参数
+	
+	// mock返回第一个参数
+	when(mock.someMethod(anyString())).thenAnswer(i -> i.getArguments()[0]);
+	
+	// or
+    doAnswer(AdditionalAnswers.returnsFirstArg()).when(mock).someMethod(anyString());
 	
 ## 验证
 
