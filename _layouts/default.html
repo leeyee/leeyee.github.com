@@ -1,84 +1,114 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="zh-cn">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% seo title=false %}
     {% feed_meta %}
+    <!--
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/myprettify/tomorrow-night-eighties-prettity.css">
+    -->
     <link rel="stylesheet" href="/stylesheets/self.css">
     {% include analytics %}
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 </head>
-<body>
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="row">
-        <div class="col-md-offset-1">
-            <a class="navbar-brand" href="/">Leeyee's Blog</a>
-            <ul class="nav navbar-nav ">
-                {% include categoryMenu %}
-                <li><a href="/essay">essay</a></li>
-                <li><a href="/about">关于我</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" action="https://www.google.com.hk/search" method='get'>
-                <input type="hidden" name="q" value="site:iyiguo.net">
-                <div class="form-group">
-                    <input type="text" name='q' class="form-control" placeholder="Search">
-                </div>
-            </form>
-        </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-md-8 col-lg-8">
-            {{ content }}
-        </div>
-        <div class="col-xs-6 col-md-4 col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a href="/feed.xml"><img src="/img/rss.png" class="self-img-40">RSS 本站</a>
-                </div>
-            </div>
-            <!-- 本站公告 -->
-            <!-- {% include notices.htm %} -->
-            <!-- Google Adsense -->
-            <!-- { % include adsense.htm %} -->
-            <!-- 最新文章 -->
-            {% include last_posts.htm %}
-            <!-- 文章标签 -->
-            {% include tags.htm %}
 
-            <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-6">
-                    <!-- 归档 -->
-                    <!-- {% include archives.htm %} -->
+<body>
+    <div class="container bg-secondary">
+        <div class="column">
+            <header class="navbar">
+                <section class="navbar-section">
+                    <a href="/" class="navbar-brand mr-2">Leeyee's Blog</a>
+                    {% include categoryMenu %}
+                    <a class="btn btn-link" href="/essay">essay</a>
+                    <a class="btn btn-link" href="/about">关于我</a>
+                    <a class="btn btn-link" href="/feed.xml">RSS</a>
+                    <!-- </section>
+                    <section class="navbar-section"> -->
+                    <form action="https://www.google.com.hk/search" method="get">
+                        <div class="input-group input-inline">
+                            <input type="hidden" name="q" value="site:iyiguo.net">
+                            <input class="form-input" type="text" name="q" placeholder="Search">
+                            <button class="btn btn-primary input-group-btn">Search</button>
+                        </div>
+                    </form>
+                </section>
+            </header>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns bg-gray">
+            <div class="column col-11 col-mx-auto col-sm-11">
+            </div>
+            <div class="column col-11 col-mx-auto col-sm-11">
+                <div class="columns">
+                    <div class="column col-8 col-mx-auto col-sm-8">
+                        {{ content }}
+                    </div>
+                    <div class="column col-3 col-mr-auto col-sm-3">
+                        <div class="panel">
+                            <div class="panel-header text-center">
+                                <figure class="avatar avatar-lg"><img src="/favicon.ico" alt="Avatar"></figure>
+                                <div class="panel-title h5 mt-10">Lee Yee</div>
+                                <!-- <div class="panel-subtitle">THE HULK</div> -->
+                            </div>
+                            <nav class="panel-nav">
+                                <ul class="tab tab-block">
+                                    <li class="tab-item active"><a href="#panels">Profile</a></li>
+                                    <li class="tab-item"><a href="#panels">Files</a></li>
+                                    <li class="tab-item"><a href="#panels">Tasks</a></li>
+                                </ul>
+                            </nav>
+                            <div class="panel-body">
+                                some message
+                            </div>
+                            <div class="panel-footer">
+                                <!-- buttons or inputs -->
+                            </div>
+                        </div>
+                        <div class="toast">
+                            <strong>相关阅读：</strong>
+                            <ul class='nav'>{% assign my_num = 0 %}
+                                {% for post in site.posts %} {% if post.tag contains page.tag[0] and post.id != page.url%}
+                                {% capture my_num %}{{ my_num | plus : 1 }}{% endcapture %}
+                                <!--capture的变量均为字符串-->
+                                <li class="nav-item"><a href="{{post.url}}">{{post.title}}</a></li>
+                                {% endif %} {% if my_num == '6' %} {% break %} {% endif %} {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- 最新文章 -->
+                        {% include last_posts.htm %}
+                        <!-- 文章标签 -->
+                        {% include tags.htm %}
+                    </div>
                 </div>
-                <div class="col-xs-12 col-md-6 col-lg-6">
-                    <!-- 文章分类 -->
-                    <!-- {% include categories.htm %} -->
-                </div>
+            </div>
+            <div class="column col-11 col-mx-auto">
+                <footer>
+                    <p class="text-center">&copy;2018 by Leeyee, All Rights Reserved</p>
+                </footer>
             </div>
         </div>
     </div>
-</div>
-<hr/>
-<footer>
-    <p class="text-center">&copy;2018 by Leeyee, All Rights Reserved</p>
-</footer>
-<!--<script type="text/javascript" src="/js/MathJax.js"></script>-->
-<script type="text/javascript" async  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
-<script type="text/javascript"> !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');</script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+    <script type="text/javascript">
+    !window.jQuery && document.write('<script src="/js/jquery-1.11.1.min.js"><\/script>');
+    </script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
 <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
 <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<div id="totop" class="toTop" style="display: block; opacity: 1;">
-    <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
-</div>
+    <div id="totop" class="toTop" style="display: block; opacity: 1;">
+        <button type="button" class="btn btn-info btn-lg">Top<span class="glyphicon glyphicon-plane"></span></button>
+    </div>
 </body>
+
 </html>

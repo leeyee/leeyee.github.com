@@ -1,9 +1,16 @@
 $(function () {
     // 代码高亮
+    /*
     $("pre").addClass("prettyprint linenums");
     $.getScript('http://apps.bdimg.com/libs/prettify/r298/prettify.min.js', function () {
         prettyPrint();
     });
+    */
+    $("pre").addClass('code');
+    $('#markdown-toc').addClass('nav');
+    $('#markdown-toc').hide();
+    $('#markdown-toc ul').addClass('nav');
+    $("#markdown-toc li").addClass('nav-item');
     // 表格
     $("table").addClass("table table-bordered");
     // 文章的链接做弹出式访问

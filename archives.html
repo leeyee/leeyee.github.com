@@ -3,33 +3,47 @@ layout: default
 title: 归档
 ---
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h2 class="panel-title self-panel-title">归档</h2>
+<div class="card" style="border: 0">
+  <!-- <div class="card-image">
+    <img src="img/osx-el-capitan.jpg" class="img-responsive">
+</div> -->
+  <div class="card-header">
+    <div class="card-title h5">归档</div>
+    <div class="card-subtitle text-gray">...</div>
+  </div>
+  <div class="card-body">
+    <div class="timeline">
+    {% for post in site.posts %}
+    {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
+    {% if year_month != ym %}
+    {% assign year_month = ym %}
+    <div class="timeline-item" id="{{ ym | strip_html }}">
+        <div class="timeline-left">
+            <a class="timeline-icon icon-lg" href="#{{ ym | strip_html }}">
+                <i class="icon icon-check"></i>
+            </a>
+        </div>
+        <div class="timeline-content">
+            {{ym}}
+            <ol>
+                {% for pt in site.posts %}
+                {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
+                {% if year_month == cym %}
+                <li>
+                    <a href="{{pt.url}}">{{pt.title}}{% if post.github %}
+                        <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;" />
+                        {% endif %}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
     </div>
-    <div class="panel-body">
-        {% for post in site.posts %}
-        {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
-        {% if year_month != ym %}
-        {% assign year_month = ym %}
-        <ul class="list-unstyled">
-            <li><h3 id="{{ ym | strip_html }}"><em>{{ym}}</em></h3></li>
-            <li>
-                <ol>
-                    {% for pt in site.posts %}
-                    {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
-                    {% if year_month == cym %}
-                    <li>
-                        <a href="{{pt.url}}">{{pt.title}}{% if post.github %}
-                            <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>
-                            {% endif %}</a>
-                    </li>
-                    {% endif %}
-                    {% endfor %}
-                </ol>
-            </li>
-        </ul>
-        {% endif %}
-        {% endfor %}
-    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+  </div>
+ <!-- <div class="card-footer">
+    <button class="btn btn-primary">...</button>
+</div> -->
 </div>

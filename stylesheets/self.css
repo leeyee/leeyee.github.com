@@ -97,3 +97,10 @@ blockquote {
     display: block;
     opacity: 1;
 }
+
+ul li p {
+    display: inline;
+}
+ol li p {
+    display: inline;
+}

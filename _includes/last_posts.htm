@@ -1,11 +1,18 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h2 class="panel-title">最新文章</h2>
+<div class="panel">
+    <div class="panel-header">
+        <div class="panel-title">最新文章</div>
     </div>
-    <div class="list-group">
-<!--        <a  class="list-group-item active">最新文章</a>-->
-        {% for post in site.posts limit:site.last_pages %}
-        <a href="{{ post.url }}" class="list-group-item">{{ post.title }}</a>
-        {% endfor %}
+    <div class="panel-nav">
+        <!-- navigation components: tabs, breadcrumbs or pagination -->
+    </div>
+    <div class="panel-body">
+        <ul class="nav">
+            {% for post in site.posts limit:site.last_pages %}
+            <li class="nav-item"><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <!-- buttons or inputs -->
     </div>
 </div>

@@ -6,14 +6,14 @@ layout: default
 {% assign posts = site.posts | where:"category","javascript"%}-->
 {% for post in paginator.posts %}
 <div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title self-panel-title">
+    <div class="panel-header">
+        <div class="panel-title">
             <a href="{{post.url}}">{{post.title}}</a>
-        </h3>
+        </div>
     </div>
     <div class="panel-body">
         {% assign ct = post.content | split: '<p>' %}
-        {% for p in ct offset:1 limit:3 %} {{ p | prepend : '</p>' }} {% endfor %}
+        {% for p in ct offset:1 limit:1 %} {{ p | prepend : '</p>' }} {% endfor %}
         <p class="pull-right">
           <a href="{{post.url}}">阅读全文......</a>
         </p>
@@ -31,31 +31,30 @@ layout: default
     </div>
 </div>
 {% endfor %}
+
 {% if paginator.total_pages > 1 %}
-<div>
-    <ul class="pagination pagination-md">
+    <ul class="pagination">
         <li><span>第 {{ paginator.page }} / {{ paginator.total_pages }} 页</span></li>
-        <li>
+        <li class="page-item">
             {% if paginator.previous_page %}
             <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a>
             {% else %} <span>&laquo;</span> {% endif %}
         </li>
         {% for count in (1..paginator.total_pages) %}
         {% if count == paginator.page %}
-        <li class="active"><span>{{ count}} <span class="sr-only">(current)</span></span></li>
+        <li class="page-item active"><a href='#'>{{ count }}</a></li>
         {% elsif count == 1 %}
-        <li><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ count }}</a></li>
+        <li class="page-item"><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ count }}</a></li>
         {% else %}
-        <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', count }}">
-            {{ count }} </a></li>
+        <li class="page-item"><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', count }}">{{ count }}</a></li>
         {% endif %}
         {% endfor %}
         {% if paginator.next_page %}
-        <li><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
+        <li class="page-ite"』><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
         {% else %}
-        <li><span>&raquo;</span></li>
+        <li class="page-item"><span>&raquo;</span></li>
         {% endif %}
     </ul>
-</div>
+
 {% endif %}
 <script id="dsq-count-scr" src="//{{site.comments.disqus.short_name}}.disqus.com/count.js" async></script>
