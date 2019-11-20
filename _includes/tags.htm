@@ -1,19 +1,20 @@
-<div class="panel">
-    <div class="panel-header">
-        <div class="panel-title">文章标签</div>
-    </div>
-    <div class="panel-body">
-    	<br/>
-        <div class="columns">
-            {% for tag in site.tags %}
-            
+<div class="column col-12">
+    <div class="panel" style="border: 0">
+        <div class="panel-header">
+            <div class="panel-title">文章标签</div>
+        </div>
+        <div class="panel-body">
+            <br />
+            <div class="columns">
+                {% for tag in site.tags %}
                 <span class='badge' data-badge='{{ tag[1].size }}'>
                     <a href="/tags#{{ tag[0] }}">{{ tag[0] }}</a>
                 </span>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="panel-footer">
-        <!-- buttons or inputs -->
+        <div class="panel-footer">
+            <!-- buttons or inputs -->
+        </div>
     </div>
 </div>

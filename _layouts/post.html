@@ -1,60 +1,82 @@
 ---
 layout: default
 ---
-<!-- <ul class="breadcrumb">
+<div class="columns">
+    <div class="column col-12">
+        <!-- <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">首页</a></li>
     {% if page.category %}
     <li class="breadcrumb-item"><a href="/categorys/#{{ page.category }}">{{ page.category }}</a></li>
     {% endif %}
     <li class="breadcrumb-item">{{ page.title }}</li>
 </ul> -->
-<!-- <div class="panel">
-    <div class="panel-header">
-        <div class="panel-title">
-            <h1> {{page.title}} </h1>
-        </div>
-    </div>
-    <div class="panel-body">
-        <address class="text-info">{% if page.github %}
-            <a href="{{site.github}}{{page.github}}" target="_blank">
-                <img src="/img/Octocat-90px.gif" class="self-img-20" />
-                <em>{{site.github}}{{page.github}}</em>
-            </a>
-            {% endif %}
-        </address>
-        <div id="j_article">
-            <div class="toast">
-                <strong>版权声明：</strong>
-                <ul class='nav'>
-                    <li class="nav-item">关于<a href="{{site.url}}{{page.url}}">《{{page.title}}》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com" 　class="alert-link">@Leeyee</a>所有；</li>
-                    <li class="nav-item">非商用、非衍生;</li>
-                    <li class="nav-item">如需转载需要注明来源于<a href="{{site.url}}{{page.url}}">{{site.url}}{{page.url}}</a></li>
-                </ul>
+        <div class="card" style="border: 0">
+            <!--             <div class="card-image">
+                <img src="img/osx-el-capitan.jpg" class="img-responsive">
             </div> -->
-<div class="card" style='border:0'>
-    <!-- <div class="card-image">
-    <img src="img/osx-el-capitan.jpg" class="img-responsive">
-  </div> -->
-    <div class="card-header">
-        <div class="card-title h1">{{ page.title }}</div>
-        <div class="card-subtitle text-gray">
-            <span class="icon icon-time" />
-            {% if page.date %}
-            <a href="/archives/#{{page.date | date:'%Y-%m'}}">{{ page.date | date:"%Y年%m月%d日" }}</a>
-            {% elsif site.author %} {{ site.time | date:"%Y年%m月%d日" }} {% endif %}
-            <span class="icon icon-bookmark" />
-            {% if page.author %} {{ page.author }} {% elsif site.author %} {{ site.author }} {% endif %}
-            {% if page.category %}
-            <span class="icon icon-flag" />
-            <a href="/categorys/#{{page.category}}"> {{ page.category }}</a>
-            {% endif %}
-            {% if page.tag %} <span class='icon icon-flag' /> <span class="chip active"> {{ page.tag | join: ',' }} </span>{% endif %}
+            <div class="card-header">
+                <div class="card-title h1">{{ page.title }}</div>
+                <div class="card-subtitle float-left">
+                    <span class="text-gray">Posted by</span>
+                    <span class="text-gray">{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}</span>
+                    <span class="text-gray">on
+                        {% if page.date %}{{ page.date | date:"%B %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</span>
+                    <span id="coyprightModal_btn">&copy;</span>
+                    <div id="coyprightModal" class="modal">
+                        <a href="#close" class="modal-overlay" aria-label="Close"></a>
+                        <div class="modal-container">
+                            <div class="modal-header">
+                                <div class="modal-title h5">版权声明</div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="content">
+                                    <ul class='nav'>
+                                        <li class="nav-item">关于<a href="{{site.url}}{{page.url}}">《{{page.title}}》</a>的一切权利归作者<a href="mailto:seadlead@gmail.com" 　class="alert-link">@Leeyee</a>所有；</li>
+                                        <li class="nav-item">非商用、非衍生;</li>
+                                        <li class="nav-item">如需转载需要注明来源于<a href="{{site.url}}{{page.url}}">{{site.url}}{{page.url}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-link" href="#modals-sizes">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-subtitle text-gray float-right">
+                    {% if page.category %}
+                    <span class="chip">
+                        <figure class="avatar avatar-sm bg-warning" data-initial="C"></figure>
+                        <a href="/categorys/#{{page.category}}"> {{ page.category }}</a>
+                    </span>
+                    {% endif %}
+                    {% if page.tag %}
+                    {% for tg in page.tag %}
+                    <span class='chip'>
+                        <figure class="avatar avatar-sm bg-success" data-initial="T"></figure><a href="/tags/#{{tg}}">{{tg}}</a>
+                    </span>
+                    {% endfor %}
+                    {% endif %}
+                    {% if page.github %}
+                    <div class="chip">
+                        <a href="{{site.github}}{{page.github}}" target="_blank">
+                            <img class="avatar avatar-sm" src="/img/Octocat.jpg" alt="Git Hub">GitHub
+                        </a>
+                    </div>
+                    {% endif %}
+                    <div class='chip'>
+                        <i class="icon icon-message bg-gray"></i>
+                        <a href="{{site.url}}{{post.url}}#disqus_thread" class="disqus-comment-count" data-disqus-url="{{site.url}}{{post.url}}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="divider" />
+            <div class="card-body">
+                {{ content }}
+            </div>
+            <div class="card-footer">
+                {% include comments %}
+            </div>
         </div>
-    </div>
-    <div class="card-body">
-        {{ content }}
-    </div>
-    <div class="card-footer">
-        {% include comments %}
     </div>
 </div>

@@ -1,18 +1,11 @@
 $(function () {
-    // 代码高亮
-    /*
-    $("pre").addClass("prettyprint linenums");
-    $.getScript('http://apps.bdimg.com/libs/prettify/r298/prettify.min.js', function () {
-        prettyPrint();
-    });
-    */
     $("pre").addClass('code');
     $('#markdown-toc').addClass('nav');
     $('#markdown-toc').hide();
     $('#markdown-toc ul').addClass('nav');
     $("#markdown-toc li").addClass('nav-item');
     // 表格
-    $("table").addClass("table table-bordered");
+    $("table").addClass("table table-hover table-scroll");
     // 文章的链接做弹出式访问
     $.each($("#j_article a"), function (idx, ele) {
         var href = $(ele).attr("href");
@@ -45,5 +38,14 @@ $(function () {
         $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
     });
 
-    $('.dropdown-toggle').dropdown()
+    //$('.dropdown-toggle').dropdown()
+
+    $('#coyprightModal_btn').click(function(){
+        $('#coyprightModal').addClass("active");
+    });
+
+    $("#coyprightModal .btn-link").click(function(){
+        $('#coyprightModal').removeClass("active");
+    });
+
 });

@@ -1,18 +1,30 @@
-<div class="panel">
-    <div class="panel-header">
-        <div class="panel-title">最新文章</div>
-    </div>
-    <div class="panel-nav">
-        <!-- navigation components: tabs, breadcrumbs or pagination -->
-    </div>
-    <div class="panel-body">
-        <ul class="nav">
-            {% for post in site.posts limit:site.last_pages %}
-            <li class="nav-item"><a href="{{ post.url }}">{{ post.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="panel-footer">
-        <!-- buttons or inputs -->
-    </div>
+{% if page.layout == 'post' %}
+<div class="column col-12">
+    <ul class="nav">
+        <li class="nav-item">
+            <strong>推荐阅读</strong>
+            <ul class="nav">
+                {% assign my_num = 0 %}
+                {% for post in site.posts %}
+                {% if post.tag contains page.tag[0] and post.url != page.url%}
+                {% capture my_num %}{{ my_num | plus : 1 }}{% endcapture %}
+                <!--capture的变量均为字符串-->
+                <li class="nav-item text-ellipsis" title="{{post.title}}">
+                    <a href="{{post.url}}">{{post.title}}</a>
+                </li>
+                {% endif %}
+                {% if my_num == '6' %} {% break %} {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="nav-item">
+            <strong>最新文章</strong>
+            <ul class="nav">
+                {% for post in site.related_posts %}
+                <li class="nav-item text-ellipsis"><a href="{{post.url}}">{{post.title}}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
 </div>
+{% endif %}

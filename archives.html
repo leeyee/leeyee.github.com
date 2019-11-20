@@ -2,48 +2,49 @@
 layout: default
 title: 归档
 ---
-
 <div class="card" style="border: 0">
-  <!-- <div class="card-image">
+    <!-- <div class="card-image">
     <img src="img/osx-el-capitan.jpg" class="img-responsive">
 </div> -->
-  <div class="card-header">
-    <div class="card-title h5">归档</div>
-    <div class="card-subtitle text-gray">...</div>
-  </div>
-  <div class="card-body">
-    <div class="timeline">
-    {% for post in site.posts %}
-    {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
-    {% if year_month != ym %}
-    {% assign year_month = ym %}
-    <div class="timeline-item" id="{{ ym | strip_html }}">
-        <div class="timeline-left">
-            <a class="timeline-icon icon-lg" href="#{{ ym | strip_html }}">
-                <i class="icon icon-check"></i>
-            </a>
-        </div>
-        <div class="timeline-content">
-            {{ym}}
-            <ol>
-                {% for pt in site.posts %}
-                {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
-                {% if year_month == cym %}
-                <li>
-                    <a href="{{pt.url}}">{{pt.title}}{% if post.github %}
-                        <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;" />
-                        {% endif %}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-            </ol>
+    <div class="card-header">
+        <div class="card-title h5">归档</div>
+        <div class="card-subtitle text-gray">...</div>
+    </div>
+    <div class="card-body">
+        <div class="timeline">
+            {% for post in site.posts %}
+            {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
+            {% if year_month != ym %}
+            {% assign year_month = ym %}
+            <div class="timeline-item" style="margin:0" id="{{ ym | strip_html }}">
+                <div class="timeline-left">
+                    <a class="timeline-icon tooltip" href="#{{ ym | strip_html }}">
+                    </a>
+                </div>
+                <div class="timeline-content">
+                    {{ym}}
+                    <ul class='nav'>
+                        {% for pt in site.posts %}
+                        {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
+                        {% if year_month == cym %}
+                        <li>
+                            <div class="chip">
+                                <a href="{{pt.url}}">
+                                    {% if post.github %}
+                                    <img class="avatar avatar-sm" src="/img/Octocat.jpg" alt="Git Hub">
+                                    {% endif %}
+                                    {{pt.title}}</a></div>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
-    {% endif %}
-    {% endfor %}
-</div>
-  </div>
- <!-- <div class="card-footer">
+    <!-- <div class="card-footer">
     <button class="btn btn-primary">...</button>
 </div> -->
 </div>
