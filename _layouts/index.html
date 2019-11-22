@@ -12,9 +12,9 @@ layout: default
             <div class="card-footer">
                 <div class="float-right">
                     <span class="text-gray">Posted by</span>
-                    <span class="text-italic text-gray">&nbsp;{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}&nbsp;</span>
+                    <span class="text-gray">{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}</span>
                     <span class="text-gray">on
-                        {% if page.date %}{{ page.date | date:"%B %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</span>
+                        {% if post.date %}{{ post.date | date:"%B %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</span>
                 </div>
             </div>
             <div class="divider"></div>
@@ -40,7 +40,7 @@ layout: default
             {% endif %}
             {% endfor %}
             {% if paginator.next_page %}
-            <li class="page-ite" 』><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
+            <li class="page-item"><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
             {% else %}
             <li class="page-item"><span>&raquo;</span></li>
             {% endif %}

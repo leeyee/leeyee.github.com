@@ -3,25 +3,16 @@ layout: default
 ---
 <div class="columns">
     <div class="column col-12">
-        <!-- <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">首页</a></li>
-    {% if page.category %}
-    <li class="breadcrumb-item"><a href="/categorys/#{{ page.category }}">{{ page.category }}</a></li>
-    {% endif %}
-    <li class="breadcrumb-item">{{ page.title }}</li>
-</ul> -->
         <div class="card" style="border: 0">
-            <!--             <div class="card-image">
-                <img src="img/osx-el-capitan.jpg" class="img-responsive">
-            </div> -->
             <div class="card-header">
                 <div class="card-title h1">{{ page.title }}</div>
                 <div class="card-subtitle float-left">
                     <span class="text-gray">Posted by</span>
                     <span class="text-gray">{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}</span>
                     <span class="text-gray">on
-                        {% if page.date %}{{ page.date | date:"%B %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</span>
-                    <span id="coyprightModal_btn">&copy;</span>
+                        {% if page.date %}{{ page.date | date:"%b %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%b %d, %Y" }}{% endif %}</span>
+                    <span class="text-gray">and Licensed under</span>
+                    <span id="coyprightModal_btn" class='c-hand'>&#x261e;&#xa9;</span>
                     <div id="coyprightModal" class="modal">
                         <a href="#close" class="modal-overlay" aria-label="Close"></a>
                         <div class="modal-container">
@@ -60,7 +51,7 @@ layout: default
                     {% if page.github %}
                     <div class="chip">
                         <a href="{{site.github}}{{page.github}}" target="_blank">
-                            <img class="avatar avatar-sm" src="/img/Octocat.jpg" alt="Git Hub">GitHub
+                            <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg" alt="Git Hub">GitHub
                         </a>
                     </div>
                     {% endif %}
@@ -71,7 +62,7 @@ layout: default
                 </div>
             </div>
             <div class="divider" />
-            <div class="card-body">
+            <div class="card-body" id='article_content'>
                 {{ content }}
             </div>
             <div class="card-footer">
