@@ -8,11 +8,9 @@ layout: default
                 <div class="card-title h1">{{ page.title }}</div>
                 <div class="card-subtitle float-left">
                     <span class="text-gray">Posted by</span>
-                    <span class="text-gray">{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}</span>
+                    <span id="coyprightModal_btn" class="c-hand text-gray">&#xa9;{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}</span>
                     <span class="text-gray">on
                         {% if page.date %}{{ page.date | date:"%b %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%b %d, %Y" }}{% endif %}</span>
-                    <span class="text-gray">and Licensed under</span>
-                    <span id="coyprightModal_btn" class='c-hand'>&#x261e;&#xa9;</span>
                     <div id="coyprightModal" class="modal">
                         <a href="#close" class="modal-overlay" aria-label="Close"></a>
                         <div class="modal-container">

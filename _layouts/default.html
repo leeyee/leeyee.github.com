@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="lang-zh-hans">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +11,8 @@
     <link rel="stylesheet" href="/assets/css/spectre-exp.min.css">
     <link rel="stylesheet" href="/assets/css/spectre-icons.min.css">
 </head>
-
 <body>
-    <div class="container bg-secondary p-sticky" style="top:0;z-index: 10000">
+    <div class="container bg-secondary {% if page.layout == 'index' %}p-sticky{%endif%}" style="top:0;z-index: 10000">
         <div class="column col-12 p-2">
             <header class="navbar">
                 <section class="navbar-section">
@@ -41,9 +39,7 @@
         <div class="docs-content columns">
             <div class="column col-11 col-mx-auto col-xs-12 col-md-11">
                 <div class="columns">
-                    <div class="column col-8 col-mx-auto col-xs-12 col-md-11 pt-4">
-                        {{ content }}
-                    </div>
+                    <div class="column col-8 col-mx-auto col-xs-12 col-md-11">{{ content }}</div>
                     <div class="column col-3 col-mx-auto col-xs-12 col-md-11">
                         <div class="docs-content columns pt-4">
                             <div class="column col-12">
@@ -86,9 +82,13 @@
                                 </div>
                             </div>
                             <!-- 最新文章 -->
+                            {% if page.layout == 'post' %}
+                            <!-- 目录 -->
+                            <div class="column col-12" id="default_toc"></div>
                             {% include last_posts.htm %}
+                            {% endif %}
                             <!-- 文章标签 -->
-                            {% include tags.htm %}
+                            {% if page.layout == 'index' %}{% include tags.htm %}{% endif %}
                         </div>
                     </div>
                 </div>
@@ -103,15 +103,14 @@
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
-<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+        <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
         <div id="totop" class="toTop" style="display: block; opacity: 1;">
             <label class="chip">&#x261d;</label>
         </div>
     </div>
 </body>
-
 </html>
 
 

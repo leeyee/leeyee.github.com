@@ -1,10 +1,13 @@
 $(function () {
     $("pre").addClass('code');
-    $('#markdown-toc').addClass('nav');
+
     $('#markdown-toc').hide();
+    $('#markdown-toc').addClass('nav');
     $('#markdown-toc ul').addClass('nav');
     $("#markdown-toc li").addClass('nav-item');
-    
+    $('#markdown-toc').prepend('<li>目录</li>');
+   // $('#default_toc').append($('#markdown-toc'));
+
     // 表格
     $("table").addClass("table table-hover table-scroll");
     
