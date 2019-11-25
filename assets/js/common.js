@@ -1,16 +1,21 @@
 $(function () {
     $("pre").addClass('code');
 
-    $('#markdown-toc').hide();
     $('#markdown-toc').addClass('nav');
     $('#markdown-toc ul').addClass('nav');
-    $("#markdown-toc li").addClass('nav-item');
-    $('#markdown-toc').prepend('<li>目录</li>');
-   // $('#default_toc').append($('#markdown-toc'));
+    $("#markdown-toc li").addClass('nav-item text-ellipsis');
+    $("#markdown-toc").wrap('<div id="default-toc" class="toast"></div>')
+    $('#default-toc').prepend(' <label>目录</label><button id="close-toc" class="btn btn-clear float-right"></button></div>');
+    $("#tableOfContent-btn").click(function(){
+        $("#default-toc").toggle('slow');
+    })
+    $('#default-toc #close-toc').click(function(){
+        $("#default-toc").hide('slow');
+    });
 
     // 表格
     $("table").addClass("table table-hover table-scroll");
-    
+
     // 文章的链接做弹出式访问
     $.each($("#article_content a"), function (idx, ele) {
         var href = $(ele).attr("href");

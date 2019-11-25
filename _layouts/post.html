@@ -34,38 +34,37 @@ layout: default
                 </div>
                 <div class="card-subtitle text-gray float-right">
                     {% if page.category %}
-                    <span class="chip">
+                    <span class="chip" title="Category">
                         <figure class="avatar avatar-sm bg-warning" data-initial="C"></figure>
                         <a href="/categorys/#{{page.category}}"> {{ page.category }}</a>
                     </span>
                     {% endif %}
                     {% if page.tag %}
                     {% for tg in page.tag %}
-                    <span class='chip'>
+                    <span class='chip' title="Tag">
                         <figure class="avatar avatar-sm bg-success" data-initial="T"></figure><a href="/tags/#{{tg}}">{{tg}}</a>
                     </span>
                     {% endfor %}
                     {% endif %}
                     {% if page.github %}
-                    <div class="chip">
+                    <span class="chip" title="GitHub">
                         <a href="{{site.github}}{{page.github}}" target="_blank">
-                            <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg" alt="Git Hub">GitHub
+                            <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg">GitHub
                         </a>
-                    </div>
+                    </span>
                     {% endif %}
-                    <div class='chip'>
+                    <span class='chip' title="Comments">
                         <i class="icon icon-message bg-gray"></i>
                         <a href="{{site.url}}{{post.url}}#disqus_thread" class="disqus-comment-count" data-disqus-url="{{site.url}}{{post.url}}"></a>
-                    </div>
+                    </span>
+                    <span id='tableOfContent-btn' class="chip c-hand" title="Table of Contents">
+                        <i class="icon icon-menu"></i>
+                    </span>
                 </div>
             </div>
             <div class="divider" />
-            <div class="card-body" id='article_content'>
-                {{ content }}
-            </div>
-            <div class="card-footer">
-                {% include comments %}
-            </div>
+            <div class="card-body" id='article_content'>{{ content }}</div>
+            <div class="card-footer">{% include comments %}</div>
         </div>
     </div>
 </div>

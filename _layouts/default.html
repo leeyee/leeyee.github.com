@@ -82,11 +82,7 @@
                                 </div>
                             </div>
                             <!-- 最新文章 -->
-                            {% if page.layout == 'post' %}
-                            <!-- 目录 -->
-                            <div class="column col-12" id="default_toc"></div>
-                            {% include last_posts.htm %}
-                            {% endif %}
+                            {% if page.layout == 'post' %}{% include last_posts.htm %}{% endif %}
                             <!-- 文章标签 -->
                             {% if page.layout == 'index' %}{% include tags.htm %}{% endif %}
                         </div>
