@@ -2,7 +2,7 @@
 layout: post
 title: jQuery MsgBox Plugin
 description: 基于jQuery的消息提示框插件。该插件主要包含四个主要方法，jmask遮罩、junmask关闭遮罩、jalert消息提示框及jconfirm消息确认框等。
-category: jQuery
+category: javascript
 tag: [javascript, jQuery]
 github: 'MsgBox-jQuery-Plugin'
 ---

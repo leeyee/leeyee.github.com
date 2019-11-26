@@ -35,6 +35,6 @@ tag: [javascript]
 
      window.close(); 
      
-<div class="alert alert-error">
-<h4>Notes: </h4> 针对FireFox浏览器时，除了使用<code>window.close()</code>，为了达到直接关节而无需提示的效果都需要在FireFox的地址栏中输入<code>about:config</code>，然后将<code>dom.allow_script_to_close_windows</code>改为true才能达到想要的效果。
-</div>
+
+> **Notes:** 针对FireFox浏览器时，除了使用`window.close()`，为了达到直接关节而无需提示的效果都需要在FireFox的地址栏中输入`about:config`，然后将`dom.allow_script_to_close_windows`改为`true`才能达到想要的效果。
+

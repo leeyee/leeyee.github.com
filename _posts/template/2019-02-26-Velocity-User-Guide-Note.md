@@ -2,7 +2,7 @@
 layout: post
 title: Velocity模版语言 (VTL)用户指南笔记
 description: velocity 模版使用指南笔记。
-category: Velocity
+category: java
 tag: [velocity]
 ---
 

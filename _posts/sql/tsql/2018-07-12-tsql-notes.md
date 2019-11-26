@@ -80,8 +80,6 @@ tag: [t-sql]
     ALTER TABLE user
         DROP CONSTRAINT uniq_idcard;
 
----
-
 ## 索引
 
 ### 索引基本原则
