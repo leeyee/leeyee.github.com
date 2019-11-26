@@ -1,0 +1,39 @@
+---
+layout: default
+title: About Me
+---
+<blockquote>人生就是一场旅途，除了远处的目的地外，还有沿途的风景……</blockquote>
+{% assign infos = "
+2000.09.01@开始高中,
+2003.06.09@高中毕业,
+2003.10.04@开始大学,
+2006.11.11@加入广典,
+2007.03.23@初到上海,
+2007.06.29@大学毕业,
+2007.07.06@工作上海,
+2010.10.29@告别广典,
+2010.11.06@开始北漂,
+2010.12.13@加入清华,
+2013.09.20@告别清华,
+2013.09.25@加入去哪,
+2017.02.28@告别去哪,
+2017.03.12@工作西安,
+2017.05.02@加入活跃
+" | split: "," | reverse %}
+<div class="timeline">
+    {% for info in infos %}{% assign inf = info | split: "@" %}
+    <div class="timeline-item" style="margin:0" id="timeline-example-1">
+        <div class="timeline-left">
+            <a class="timeline-icon icon-lg"><i class="icon icon-check"></i></a>
+        </div>
+        <div class="timeline-content">
+            <div class="tile">
+                <div class="tile-content">
+                    <p class="tile-subtitle">{{inf[0]}}</p>
+                    <p class="tile-title">{{inf[1]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
