@@ -36,13 +36,13 @@ layout: default
                     {% if page.category %}
                     <span class="chip" title="Category">
                         <figure class="avatar avatar-sm bg-warning" data-initial="C"></figure>
-                        <a href="/categorys/#{{page.category}}"> {{ page.category }}</a>
+                        <a href="/categorys/#{{page.category}}"> {{ page.category | capitalize}}</a>
                     </span>
                     {% endif %}
                     {% if page.tag %}
                     {% for tg in page.tag %}
                     <span class='chip' title="Tag">
-                        <figure class="avatar avatar-sm bg-success" data-initial="T"></figure><a href="/tags/#{{tg}}">{{tg}}</a>
+                        <figure class="avatar avatar-sm bg-success" data-initial="T"></figure><a href="/tags/#{{tg}}">{{tg | capitalize}}</a>
                     </span>
                     {% endfor %}
                     {% endif %}
