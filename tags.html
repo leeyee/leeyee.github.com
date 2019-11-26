@@ -2,42 +2,26 @@
 layout: default
 title: 标签
 ---
-<div class="card" style="border: 0">
-    <div class="card-header">
-        <div class="card-title h5">文章标签</div>
-        <div class="card-subtitle">
-            {% for tag in site.tags %}
-            <a class="chip c-hand text-success" href='#{{tag[0]}}'>{{tag[0]}}</a>
-            {% endfor %}
-        </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title self-panel-title">文章标签</h2>
     </div>
-    <div class="card-body">
-        <div class="timeline">
-            {% for tag in site.tags %}
-            <div class="timeline-item" style="margin:0" id="{{tag[0]}}">
-                <div class="timeline-left">
-                    <a class="timeline-icon tooltip" name="{{tag[0]}}"></a>
-                </div>
-                <div class="timeline-content columns">
-                    <div class="column col-12">
-                        <label class="chip bg-success">{{tag[0]}}</label>
-                    </div>
+    <div class="panel-body">
+       {% for tag in site.tags %}
+        <ul class="list-unstyled">
+            <li><h3 id="{{tag[0]}}"><em>{{tag[0]}}</em></h3></li>
+            <li>
+                <ol>
                     {% for post in site.posts %}
                     {% if post.tag contains tag[0] %}
-                    <div class="column col-6 col-lg-12">
-                        <div class="chip">
-                            <a href="{{post.url}}">
-                                {% if post.github %}
-                                <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg" alt="Git Hub">
-                                {% endif %}
-                                {{post.title}}</a>
-                        </div>
-                    </div>
+                    <li><a href="{{post.url}}">{{post.title}}{% if post.github %}<img
+                            src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>
+                        {% endif %}</a></li>
                     {% endif %}
                     {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+                </ol>
+            </li>
+        </ul>
+        {% endfor %}
     </div>
 </div>

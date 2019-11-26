@@ -2,44 +2,25 @@
 layout: default
 title: 文章分类
 ---
-<div class="card" style="border: 0">
-    <div class="card-header">
-        <div class="card-title h5">文章分类</div>
-        <div class="card-subtitle text-gray">
-            <div class="card-subtitle">
-                {% for category in site.categories %}
-                <a class="chip c-hand text-warning" href='#{{category[0]}}'>{{category[0]}}</a>
-                {% endfor %}
-            </div>
-        </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title self-panel-title">文章分类</h2>
     </div>
-    <div class="card-body">
-        <div class="timeline">
-            {% for category in site.categories %}
-            <div class="timeline-item" style="margin:0" id="{{category[0]}}">
-                <div class="timeline-left">
-                    <a class="timeline-icon tooltip" name="{{category[0]}}"></a>
-                </div>
-                <div class="timeline-content columns">
-                    <div class="column col-12">
-                        <label class="chip bg-warning">{{category[0]}}</label>
-                    </div>
+    <div class="panel-body">
+        {% for category in site.categories %}
+        <ul class="list-unstyled">
+            <li><h3 id="{{category[0]}}"><em>{{category[0]}}</em></h3></li>
+            <li>
+                <ol>
                     {% for post in site.posts %}
-                    {% if post.category == category[1][0].category %}
-                    <div class="column col-6 col-lg-12">
-                        <div class="chip">
-                            <a href="{{post.url}}">
-                                {% if post.github %}
-                                <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg" alt="Git Hub">
-                                {% endif %}
-                                {{post.title}}</a>
-                        </div>
-                    </div>
+                    {% if  post.category == category[1][0].category %}
+                    <li><a href="{{ post.url }}">{{post.title}}{% if post.github %}
+                        <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>{% endif %}</a></li>
                     {% endif %}
                     {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+                </ol>
+            </li>
+        </ul>
+        {% endfor %}
     </div>
 </div>
