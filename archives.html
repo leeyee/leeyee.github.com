@@ -2,40 +2,34 @@
 layout: default
 title: 归档
 ---
-<div class="card" style="border: 0">
-    <div class="card-header">
-        <div class="card-title h5">归档</div>
-        <div class="card-subtitle text-gray">...</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title self-panel-title">归档</h2>
     </div>
-    <div class="card-body">
-        <div class="timeline">
-            {% for post in site.posts %}
-            {% capture ym %}{{post.date | date:"%Y"}}{% endcapture %}
-            {% if year_month != ym %}
-            {% assign year_month = ym %}
-            <div class="timeline-item" style="margin:0" id="{{ ym | strip_html }}">
-                <div class="timeline-left">
-                    <a class="timeline-icon tooltip" name="{{ ym | strip_html }}"></a>
-                </div>
-                <div class="timeline-content columns">
-                    <div class="column col-12">{{ym}}</div>
+    <div class="panel-body">
+        {% for post in site.posts %}
+        {% capture ym %}{{post.date | date:"%Y-%m"}}{% endcapture %}
+        {% if year_month != ym %}
+        {% assign year_month = ym %}
+        <ul class="list-unstyled">
+            <li><h3 id="{{ ym | strip_html }}"><em>{{ym}}</em></h3></li>
+            <li>
+                <ol>
                     {% for pt in site.posts %}
-                    {% capture cym %}{{pt.date | date:"%Y"}}{% endcapture %}
+                    {% capture cym %}{{pt.date | date:"%Y-%m"}}{% endcapture %}
                     {% if year_month == cym %}
-                    <div class="column col-6 col-lg-12">
-                        <div class="chip">
-                            <a href="{{pt.url}}">
-                                {% if post.github %}
-                                <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg" alt="Git Hub">
-                                {% endif %}{{pt.title}}</a>
-                        </div>
-                    </div>
+                    <li>
+                        <a href="{{pt.url}}">{{pt.title}}{% if post.github %}
+                            <img src="/img/GitHub-Mark-32px.png" style="width: 20px;height: 20px; margin-left: 6px;"/>
+                            {% endif %}</a>
+                    </li>
                     {% endif %}
                     {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
+                </ol>
+            </li>
+        </ul>
+        {% endif %}
+        {% endfor %}
     </div>
 </div>
