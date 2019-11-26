@@ -1,61 +1,51 @@
 ---
 layout: default
 ---
-<!--site.members | where:"graduation_year","2014"
-{{ url }} -- {{post.post_url}} -- {{ page.url }} {{include.param}}
-{% assign posts = site.posts | where:"category","javascript"%}-->
-{% for post in paginator.posts %}
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title self-panel-title">
-            <a href="{{post.url}}">{{post.title}}</a>
-        </h3>
+<div class="docs-content columns">
+    {% for post in paginator.posts %}
+    <div class='column col-12'>
+        <div class="card" style="border: 0">
+            <div class="card-header">
+                <div class="card-title h5"><a href="{{post.url}}" class='text-dark'>{{post.title}}</a></div>
+                <div class="card-subtitle text-gray">{{post.description}}</div>
+            </div>
+            <div class="card-footer">
+                <div class="float-right">
+                    <span class="text-gray">Posted by</span>
+                    <span class="text-gray">{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}</span>
+                    <span class="text-gray">on
+                        {% if post.date %}{{ post.date | date:"%B %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</span>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
     </div>
-    <div class="panel-body">
-        {% assign ct = post.content | split: '<p>' %}
-        {% for p in ct offset:1 limit:3 %} {{ p | prepend : '</p>' }} {% endfor %}
-        <p class="pull-right">
-          <a href="{{post.url}}">阅读全文......</a>
-        </p>
-    </div>
-    <div class="panel-footer">
-        <span class="glyphicon glyphicon-calendar"/>
-        <a href="/archives/#{{post.date | date:'%Y-%m'}}">{{ post.date | date:"%Y年%m月%d日" }}</a>
-        <span class="glyphicon glyphicon-user" />
-        {% if page.author %} {{ page.author }} {% elsif site.author %} {{ site.author }} {% endif %}
-        <span class="glyphicon glyphicon-folder-close"/>
-        <a href="/categorys/#{{post.category}}"> {{ post.category }}</a>
-        <span class="glyphicon glyphicon-tags"/> {{ post.tag | join: ',' }}
-        <span class="glyphicon glyphicon-comment"/>
-        <a class="disqus-comment-count" data-disqus-url="{{site.url}}{{post.url}}" href="{{site.url}}{{post.url}}#disqus_thread"></a>
+    {% endfor %}
+    {% if paginator.total_pages > 1 %}
+    <div class="column col-12">
+        <ul class="pagination">
+            <li><span>第 {{ paginator.page }} / {{ paginator.total_pages }} 页</span></li>
+            <li class="page-item">
+                {% if paginator.previous_page %}
+                <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a>
+                {% else %} <span>&laquo;</span> {% endif %}
+            </li>
+            {% for count in (1..paginator.total_pages) %}
+            {% if count == paginator.page %}
+            <li class="page-item active"><a href='#'>{{ count }}</a></li>
+            {% elsif count == 1 %}
+            <li class="page-item"><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ count }}</a></li>
+            {% else %}
+            <li class="page-item"><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', count }}">{{ count }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if paginator.next_page %}
+            <li class="page-item"><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
+            {% else %}
+            <li class="page-item"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+        <script id="dsq-count-scr" src="//{{site.comments.disqus.short_name}}.disqus.com/count.js" async></script>
     </div>
 </div>
-{% endfor %}
-{% if paginator.total_pages > 1 %}
-<div>
-    <ul class="pagination pagination-md">
-        <li><span>第 {{ paginator.page }} / {{ paginator.total_pages }} 页</span></li>
-        <li>
-            {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a>
-            {% else %} <span>&laquo;</span> {% endif %}
-        </li>
-        {% for count in (1..paginator.total_pages) %}
-        {% if count == paginator.page %}
-        <li class="active"><span>{{ count}} <span class="sr-only">(current)</span></span></li>
-        {% elsif count == 1 %}
-        <li><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ count }}</a></li>
-        {% else %}
-        <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', count }}">
-            {{ count }} </a></li>
-        {% endif %}
-        {% endfor %}
-        {% if paginator.next_page %}
-        <li><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
-        {% else %}
-        <li><span>&raquo;</span></li>
-        {% endif %}
-    </ul>
-</div>
-{% endif %}
-<script id="dsq-count-scr" src="//{{site.comments.disqus.short_name}}.disqus.com/count.js" async></script>
