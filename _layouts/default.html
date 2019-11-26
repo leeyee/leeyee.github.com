@@ -12,100 +12,65 @@
     <link rel="stylesheet" href="/assets/css/spectre-icons.min.css">
 </head>
 <body>
-    <div class="container bg-secondary {% if page.layout == 'index' %}p-sticky{%endif%}" style="top:0;z-index: 10000">
-        <div class="column col-12 p-2">
-            <header class="navbar">
-                <section class="navbar-section">
-                    <a href="/" class="navbar-brand text-bold mx-2">Leeyee's Blog</a>
-                    <a class="btn btn-link" href="/categorys">分类</a>
-                    <a class="btn btn-link" href="/tags">标签</a>
-                    <a class="btn btn-link" href="/archives">归档</a>
-                    <a class="btn btn-link" href="/essay">essay</a>
-                    <a class="btn btn-link" href="/about">关于我</a>
-                    <a class="btn btn-link" href="/feed.xml">RSS</a>
-                </section>
-                <section class="navbar-section">
-                    <form action="https://www.google.com.hk/search" method="get">
-                        <div class="input-group input-inline">
-                            <input type="hidden" name="q" value="site:iyiguo.net">
-                            <input class="form-input" type="text" name="q" placeholder="Google Search">
-                        </div>
-                    </form>
-                </section>
-            </header>
-        </div>
-    </div>
-    <div class="container">
-        <div class="docs-content columns">
-            <div class="column col-11 col-mx-auto col-xs-12 col-md-11">
-                <div class="columns">
-                    <div class="column col-8 col-mx-auto col-xs-12 col-md-11">{{ content }}</div>
-                    <div class="column col-3 col-mx-auto col-xs-12 col-md-11">
-                        <div class="docs-content columns pt-4">
-                            <div class="column col-12">
-                                <div class="panel" style="border: 0">
-                                    <div class="panel-header text-center">
-                                        <figure class="avatar avata1-lg"><img src="/favicon.ico" alt="Avatar"></figure>
-                                        <div class="panel-title h5 mt-10">Lee Yee</div>
-                                        <!-- <div class="panel-subtitle">THE HULK</div> -->
-                                    </div>
-                                    <nav class="panel-nav">
-                                        <ul class="tab tab-block">
-                                            <li class="tab-item active"><a href="#panels">Profile</a></li>
-                                            <li class="tab-item"><a href="#panels">Files</a></li>
-                                            <li class="tab-item"><a href="#panels">Tasks</a></li>
-                                        </ul>
-                                    </nav>
-                                    <div class="panel-body text-gray">
-                                        <dl>
-                                            <dd>
-                                                <i class="icon icon-mail"></i>
-                                                <a href="mailto:seadlead@google.com" class='text-gray'>seadlead@google.com</a>
-                                            </dd>
-                                            <dd>
-                                                <i class="icon icon-link"></i>
-                                                <a href="http://www.iyiguo.net" target="_blank" class='text-gray'>Leeyee's Blog</a>
-                                            </dd>
-                                            <dd>
-                                                <i class="icon icon-link"></i>
-                                                <a href="https://github.com/oxcow" target="_blank" class='text-gray'>Leeyee's GitHub</a>
-                                            </dd>
-                                            <dd>
-                                                <i class="icon icon-link"></i>
-                                                <a href="https://legacy.gitbook.com/@oxcow/dashboard" target="_blank" class='text-gray'>Leeyee's eBook</a>
-                                            </dd>
-                                        </dl>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <!-- buttons or inputs -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 最新文章 -->
-                            {% if page.layout == 'post' %}{% include last_posts.htm %}{% endif %}
-                            <!-- 文章标签 -->
-                            {% if page.layout == 'index' %}{% include tags.htm %}{% endif %}
-                        </div>
+<div class="container bg-secondary {% if page.layout == 'index' %}p-sticky{%endif%}" style="top:0;z-index: 10000">
+    <div class="column col-12 p-2">
+        <header class="navbar">
+            <section class="navbar-section">
+                <a href="/" class="navbar-brand text-bold mx-2">Leeyee's Blog</a>
+                <a class="btn btn-link" href="/categorys">分类</a>
+                <a class="btn btn-link" href="/tags">标签</a>
+                <a class="btn btn-link" href="/archives">归档</a>
+                <a class="btn btn-link" href="/essay">essay</a>
+                <a class="btn btn-link" href="/about">关于我</a>
+                <a class="btn btn-link" href="/feed.xml">RSS</a>
+            </section>
+            <section class="navbar-section">
+                <form action="https://www.google.com.hk/search" method="get">
+                    <div class="input-group input-inline">
+                        <input type="hidden" name="q" value="site:iyiguo.net">
+                        <input class="form-input" type="text" name="q" placeholder="Google Search">
                     </div>
+                </form>
+            </section>
+        </header>
+    </div>
+</div>
+<div class="container">
+    <div class="docs-content columns">
+        <div class="column col-11 col-mx-auto col-xs-12 col-md-11">
+            <div class="columns">
+                <div class="column col-8 col-mx-auto col-xs-12 col-md-11">{{ content }}</div>
+                <div class="column col-3 col-mx-auto col-xs-12 col-md-11">
+                    <div class="docs-content columns pt-4">
+                        <div class="column col-12">{% include profile.htm%}</div>
+                        <!-- 最新文章 -->
+                        {% if page.layout == 'post' %}{% include last_posts.htm %}{% endif %}
+                        <!-- 文章标签 -->
+                        {% if page.layout == 'index' %}{% include tags.htm %}{% endif %}
+                    </div>
+                </div>
+                <div class="column col-9 col-xs-12 col-md-12 p-sticky c-hand" id='toTop'>
+                    <div class="chip float-right">&#x261d;</div>
                 </div>
             </div>
         </div>
-        <footer class="m-2">
-            <div class="divider text-center" data-content="&#xa9;{{ site.time | date: '%Y' }} by Leeyee, All Rights Reserved" />
-        </footer>
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" async></script>
-        <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="/assets/js/common.js"></script>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
-        <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <div id="totop" class="toTop" style="display: block; opacity: 1;">
-            <label class="chip">&#x261d;</label>
-        </div>
     </div>
+    <footer class="m-2">
+        <div class="divider text-center" data-content="&#xa9;{{ site.time | date: '%Y' }} by Leeyee, All Rights Reserved"></div>
+    </footer>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" async></script>-->
+    <script type="text/javascript" src="/assets/js/MathJax_2.7.6.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/common.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>-->
+    <!--<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5-r29.min.js"></script>
+    <script src="/assets/js/respond_1.4.2.min.js"></script>
+    <![endif]-->
+</div>
 </body>
 </html>
 

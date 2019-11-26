@@ -2,8 +2,5 @@
 <div class="column col-12">
     {% for tag in site.tags %}
     <a class="chip c-hand bg-success" href='/tags#{{tag[0]}}'>{{tag[0]}}</a>
-    <!-- <span class='badge' data-badge='{{ tag[1].size }}'>
-                    <a href="/tags#{{ tag[0] }}">{{ tag[0] }}</a>
-                </span> -->
     {% endfor %}
 </div>

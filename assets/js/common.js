@@ -1,15 +1,19 @@
 $(function () {
+
+    MathJax.Extension.MathZoom = true;
+    MathJax.Extension.MathMenu = true;
+
     $("pre").addClass('code');
 
     $('#markdown-toc').addClass('nav');
     $('#markdown-toc ul').addClass('nav');
     $("#markdown-toc li").addClass('nav-item text-ellipsis');
-    $("#markdown-toc").wrap('<div id="default-toc" class="toast"></div>')
+    $("#markdown-toc").wrap('<div id="default-toc" class="toast"></div>');
     $('#default-toc').prepend(' <label>目录</label><button id="close-toc" class="btn btn-clear float-right"></button></div>');
-    $("#tableOfContent-btn").click(function(){
+    $("#tableOfContent-btn").click(function () {
         $("#default-toc").toggle('slow');
-    })
-    $('#default-toc #close-toc').click(function(){
+    });
+    $('#default-toc #close-toc').click(function () {
         $("#default-toc").hide('slow');
     });
 
@@ -18,8 +22,8 @@ $(function () {
 
     // 文章的链接做弹出式访问
     $.each($("#article_content a"), function (idx, ele) {
-        var href = $(ele).attr("href");
-        var _target = $(ele).attr("target");
+        const href = $(ele).attr("href");
+        const _target = $(ele).attr("target");
         if (href && href.indexOf("#") != 0 && !_target) {
             $(ele).attr("target", "_blank");
         }
@@ -27,33 +31,48 @@ $(function () {
 
     // When to show the scroll link
     // higher number = scroll link appears further down the page
-    var upperLimit = 1000;
+    const upperLimit = 200;
+
     // Our scroll link element
-    var scrollElem = $('#totop');
+    const scrollElem = $('#toTop');
+
     // Scroll to top speed
-    var scrollSpeed = 500;
+    const scrollSpeed = 500;
+
     // Show and hide the scroll to top link based on scroll position
     scrollElem.hide();
+
     $(window).scroll(function () {
-        var scrollTop = $(document).scrollTop();
-        if ( scrollTop > upperLimit ) {
+        const scrollTop = $(document).scrollTop();
+        if (scrollTop > upperLimit) {
             $(scrollElem).stop().fadeTo(300, 1); // fade back in
-        }else{
+        } else {
             $(scrollElem).stop().fadeTo(300, 0); // fade out
         }
     });
+
     // Scroll to top animation on click
-    $(scrollElem).click(function(){
-        $('html, body').animate({scrollTop:0}, scrollSpeed);
+    $(scrollElem).click(function () {
+        $('html, body').animate({scrollTop: 0}, scrollSpeed);
         return false;
     });
 
-    $('#coyprightModal_btn').click(function(){
-        $('#coyprightModal').addClass("active");
+    $('#copyrightModal_btn').click(function () {
+        $('#copyrightModal').addClass("active");
     });
 
-    $("#coyprightModal .btn-link").click(function(){
-        $('#coyprightModal').removeClass("active");
+    $("#copyrightModal .btn-link").click(function () {
+        $('#copyrightModal').removeClass("active");
     });
+
+    $("#profile_tabs .panel-nav li").click(function(){
+
+        $('#profile_tabs .panel-nav li').removeClass('active');
+        $('#profile_tabs .panel-body').addClass('d-hide');
+
+        const tab_id = $(this).data('tab-id');
+        $(this).addClass('active');
+        $("#"+tab_id).removeClass('d-hide');
+    })
 
 });
