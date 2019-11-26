@@ -2,7 +2,7 @@
 layout: post
 title: Hibernate缓存
 description: 本文介绍了相关hibernate缓存的知识以及缓存配置时关于并发事务级别的相关知识。同时结合hibernate annotation的@Cache注解标签，实际演示了如何使用注解配置hibernate缓存。
-category: hibernate
+category: java
 tag: [hibernate, cache]
 ---
 
@@ -207,7 +207,7 @@ Hibernate查询缓存依赖于二级缓存。当启用查询缓存后，第一�
 
 ## 与缓存有关的注解
 
-### @Entity
+### Entity
 
 这里的`@Entity`是指来自  persistence.jar 包的`@javax.persistence.Entity`。 当使用该注解持久化一个实体时，Hibernate会将该实体存放在一级缓存（Session）中。
 
@@ -221,7 +221,7 @@ Hibernate查询缓存依赖于二级缓存。当启用查询缓存后，第一�
 
 另，**还有一个来自 hibernate-annotations.jar 包的 [org.hibernate.annotations.Entity](http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-hibspec-entity) 注解，该注解是作为 @javax.persistence.Entity 注解的补充来使用的，其自身不具有持久化类的功能。**
 
-### @Cache
+### Cache
 
 来自 hibernate-annotations.jar 包，全称`@org.hibernate.annotations.Cache`。该注解可用于类和集合上。
 

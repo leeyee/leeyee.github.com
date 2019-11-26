@@ -2,8 +2,8 @@
 layout: post
 title: Spring Retry 简介
 description: Spring-Retry 简介
-category: spring
-tag: [spring,译文]
+category: java
+tag: [spring,translation]
 ---
 
 * TOC
@@ -336,8 +336,6 @@ Here is an example of declarative iteration using the Spring AOP namespace to re
 The example above uses a default RetryTemplate inside the interceptor. To change the policies or listeners, you only need to inject an instance of RetryTemplate into the interceptor.
 
 上面的例子使用拦截器内部默认的RetryTemplate。可以通过注入新的重试策略和监听到拦截器中，改变上述默认机制。
-
--------
 
 [^correct1]: Spring-Retry 1.2.2版本中，`RetryExhaustedException`已被替换成`ExhaustedRetryException`
 

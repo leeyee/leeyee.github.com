@@ -2,8 +2,8 @@
 layout: post
 title: Stripes框架如何做系列-索引属性
 description: stripes框架如何做系列中文翻译
-category: stripes
-tag: [stripes,译文]
+category: java
+tag: [stripes,translation]
 ---
 
 * [TOC]

@@ -2,7 +2,7 @@
 layout: post
 title: Spring ContentNegotiatingViewResolver 简单分析
 description: Spring ContentNegotiatingViewResolver 简单分析
-category: spring
+category: java
 tag: [spring]
 ---
 

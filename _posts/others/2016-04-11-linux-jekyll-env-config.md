@@ -2,7 +2,7 @@
 layout: post
 title:  Linux下的Jekyll开发环境配置
 description: 在linux Ubuntu14下配置github静态网站开发环境Jekyll
-category: 其他
+category: other
 tag: [linux]
 ---
 

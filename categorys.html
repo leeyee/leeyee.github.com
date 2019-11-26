@@ -8,7 +8,7 @@ title: 文章分类
         <div class="card-subtitle text-gray">
             <div class="card-subtitle">
                 {% for category in site.categories %}
-                <a class="chip c-hand text-warning" href='#{{category[0]}}'>{{category[0]}}</a>
+                <a class="chip c-hand text-warning" href='#{{category[0]}}'>{{category[0] | capitalize}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -22,7 +22,7 @@ title: 文章分类
                 </div>
                 <div class="timeline-content columns">
                     <div class="column col-12">
-                        <label class="chip bg-warning">{{category[0]}}</label>
+                        <label class="chip bg-warning">{{category[0] | capitalize}}</label>
                     </div>
                     {% for post in site.posts %}
                     {% if post.category == category[1][0].category %}

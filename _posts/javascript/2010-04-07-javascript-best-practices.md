@@ -11,7 +11,9 @@ tag: [javascript]
 
 原文地址：[http://www.javascripttoolbox.com/bestpractices/](http://www.javascripttoolbox.com/bestpractices/)
 
-### 1.总是使用关键字_var_声明变量
+### 1.总是使用关键字*var*声明变量
+
+> ECMAScript 6 已经不建议使用 `var` 来声明变量了，而是推荐使用 `let` 和 `const`. 具体可参看[这里](http://es6.ruanyifeng.com/#docs/let)
 
 javascript中的变量不是全局范围就是函数范围，使用关键字`var`声明变量是必不可少的。当声明一个变量时不管是全局变量还是函数级变量，都不应省略变量的前缀关键字`var`。下边的例子说明了如果不这样做可能存在的潜在问题。
 

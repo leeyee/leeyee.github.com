@@ -283,7 +283,7 @@ github: 'id-number-validator'
 <div class="row-fluid">
 	<div class="input-append">
   		<input id='cardNo' type="text" placeholder="请输入身份证号码...">
-  		<button class="btn" type="button" onclick="validateNo();">验证</button>
+  		<button class="btn" onclick="validateNo();">验证</button>
 	</div>
 	<div id="cardInfo" style="margin-left:20px;display:inline"></div>
 </div>

@@ -2,7 +2,7 @@
 layout: post
 title:  Spring Retry 常用示例
 description: Spring Retry 常用示例
-category: spring
+category: java
 tag: [spring]
 ---
 
@@ -233,9 +233,7 @@ tag: [spring]
 			System.out.println(result);
 		}
 	}
-		
--------
+
 
 [^comment1]:  英文原文是BackOffPolicy也就是回退策略，看具体的作用的话，感觉还是重试间隔比较好理解
-
 [^codefrom1]: org.springframework.retry.annotation.AnnotationAwareRetryOperationsInterceptor

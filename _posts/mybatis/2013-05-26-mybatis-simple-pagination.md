@@ -2,7 +2,7 @@
 layout: post
 title: mybatis分页的简单实现
 description: 本文主要介绍通过mybatis拦截器依据正则表达式拦截相应的查询语句，同时依赖mybatis的RowBounds对象传递分页参数，依次来简单的实现mybatis的物理分页效果。
-category: mybatis
+category: java
 tag: [mybatis]
 ---
 

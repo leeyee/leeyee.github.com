@@ -2,8 +2,8 @@
 layout: post
 title: 几种代理方式的简单总结
 description: 正向代理、反向代理以及透明代理的简单总结
-category: 其他
-tag: [其他]
+category: other
+tag: [proxy]
 ---
 
 * TOC

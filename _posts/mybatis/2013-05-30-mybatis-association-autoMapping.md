@@ -2,7 +2,7 @@
 layout: post
 title: 使用autoMapping配置关联关系时应注意的问题
 description: 利用`association`解决多对一、一对一问题时，在配置`resultMap`时使用`autoMapping`属性映射表字段时，生成的多端对象数据中是拿不到声明的外键的。如果业务有需要在多的一端对象中直接获取外键属性，而不是通过对应的一端来获取，那么就需要在使用`autoMapping`时，重新为多端表指明主外键映射关系或者撇弃`autoMapping`而改用手工声明。
-category: mybatis
+category: java
 tag: [mybatis]
 ---
 

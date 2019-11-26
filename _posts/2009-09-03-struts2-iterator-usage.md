@@ -2,7 +2,7 @@
 layout: post
 title: struts2中iterator标签的相关使用
 description: struts2的iterator标签使用说明
-category: struts2
+category: java
 tag: [struts2]
 ---
 

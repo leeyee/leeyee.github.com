@@ -2,8 +2,8 @@
 layout: post
 title: Linux Shell Crontab 的坑
 description: 本文介绍Linux crontab下使用atnodes及mail遇到的一些问题
-category: 其他
-tag: [linux]
+category: script
+tag: [shell]
 ---
 
 写了个简单的日志统计并发送邮件的脚本，使用到了`atnodes` 和 `mail` 命令。同时托管给 *crontab* 定时调用执行。手动测试的时候运行的很是完美，只可惜，自动化后就各种坑：

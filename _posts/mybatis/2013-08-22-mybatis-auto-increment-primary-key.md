@@ -2,7 +2,7 @@
 layout: post
 title: mybatis自增主键配置
 description: mybatis进行插入操作时，如果表的主键是自增的，针对不同的数据库相应的操作也不同。基本上经常会遇到的就是 oracle sequece 和 mysql 自增主键，至于其他的手动生成唯一主键的问题在这里就不讨论了，这里主要说明下在mybatis中对于自增主键的配置
-category: mybatis
+category: java
 tag: [mybatis]
 ---
 

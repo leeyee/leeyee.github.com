@@ -2,7 +2,7 @@
 layout: post
 title: mybatis参数映射
 description: 本文主要说明mybatis框架对于方法参数的映射规则并分类进行了讨论
-category: mybatis
+category: java
 tag: [mybatis]
 ---
 
