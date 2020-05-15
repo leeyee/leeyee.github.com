@@ -79,6 +79,7 @@ tag: [java]
             })
             .limit(2)
             .collect(toList());
+            
 OUTPUT:
     
     filtering 1
