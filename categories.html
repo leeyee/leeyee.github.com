@@ -1,0 +1,41 @@
+---
+layout: default
+title: 分类
+---
+<section class="section pt-4 pb-0">
+  <h1 class="title">{{page.title}}</h1>
+  <div class="subtitle tags mt-1">
+    {% for category in site.categories %}
+    <a class="tag is-info" href='#{{category[0]}}'>{{category[0] | capitalize}}</a>
+    {% endfor %}
+  </div>
+  <div class="content">
+    {% for category in site.categories %}
+    <a class="title is-size-5" id="{{category[0]}}">{{category[0] | capitalize}}</a>
+    <ul>
+      {% for post in category[1] %}
+      <li><a href="{{post.url}}">{{post.title}}</a></li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
+</section>
+
+<!--<aside class="menu">-->
+<!--  {% for category in site.categories %}-->
+<!--  <p class="menu-label">-->
+<!--    {{category[0] | capitalize}}-->
+<!--  </p>-->
+<!--  <ul class="menu-list">-->
+<!--    {% for post in category[1] %}-->
+<!--    <li><a href="{{post.url}}">-->
+<!--      {% if post.github %}-->
+<!--      <figure>-->
+<!--        <img class="image is-32x32" src="/assets/images/Octocat.jpg" alt="Git Hub">-->
+<!--      </figure>-->
+<!--      {% endif %}{{post.title}}-->
+<!--    </a></li>-->
+<!--    {% endfor %}-->
+<!--  </ul>-->
+<!--  {% endfor %}-->
+<!--</aside>-->

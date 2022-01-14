@@ -1,7 +1,56 @@
 ---
 ---
-@import "self";
+
+@import 'bulma/utilities/_all';
+@import 'bulma/base/_all';
+@import 'bulma/helpers/_all';
+
+@import 'bulma/grid/_all';
+@import 'bulma/layout/_all';
+
+@import 'bulma/elements/container';
+@import 'bulma/elements/button';
+@import 'bulma/elements/content';
+@import 'bulma/elements/title';
+@import 'bulma/elements/image';
+@import 'bulma/elements/tag';
+@import 'bulma/elements/icon';
+@import "bulma/elements/table";
+
+@import 'bulma/components/navbar';
+@import 'bulma/components/panel';
+@import 'bulma/components/pagination';
+@import 'bulma/components/card';
+@import 'bulma/components/media';
+@import 'bulma/components/level';
+@import 'bulma/components/menu';
+
+
 @import "rouge.github";
-@import "spectre.min";
-@import "spectre-exp.min";
-@import "spectre-icons.min";
+@import "all.min";
+//@import "bulma/bulma-dark";
+
+//html {
+//  filter: invert(100%) hue-rotate(180deg);
+//}
+//img,
+//video {
+//  filter: invert(100%) hue-rotate(180deg);
+//}
+
+
+@media screen and (max-width: 768px) {
+  #article_toc {
+    display: none;
+  }
+}
+
+a {
+  word-wrap: break-word;
+}
+
+#markdown-toc {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: calc(100vh - 80px);
+}

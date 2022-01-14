@@ -1,50 +1,73 @@
 ---
 layout: default
 ---
-<div class="docs-content columns">
-    {% for post in paginator.posts %}
-    <div class='column col-12'>
-        <div class="card" style="border: 0">
-            <div class="card-header">
-                <div class="card-title h5"><a href="{{post.url}}" class='text-dark'>{{post.title}}</a></div>
-                <div class="card-subtitle text-gray">{{post.description}}</div>
-            </div>
-            <div class="card-footer">
-                <div class="float-right">
-                    <span class="text-gray">Posted by</span>
-                    <span class="text-gray">{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}</span>
-                    <span class="text-gray">on
-                        {% if post.date %}{{ post.date | date:"%B %d, %Y" }} {% elsif site.author %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</span>
-                </div>
-            </div>
-            <div class="divider"></div>
+<div class="columns is-multiline m-2">
+  {% for post in paginator.posts %}
+  <div class="column is-half">
+    <article class="media mt-1">
+<!--      <figure class="media-left">-->
+<!--        <p class="image is-64x64">-->
+<!--          <img src="/favicon.ico">-->
+<!--        </p>-->
+<!--      </figure>-->
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong class="is-size-5"><a class="has-text-dark" href="{{post.url}}" class='text-dark'>{{post.title}}</a></strong>
+            <br/>
+            <small class="has-text-grey-light">{{post.description}}</small>
+            <br/>
+            <small class="is-pulled-right">
+              <a class="has-text-grey-light">{% if page.author %}{{page.author}}{% elsif site.author %}{{ site.author
+                }}{% endif %}</a> ·
+              <a class="has-text-grey-light">{% if post.date %}{{ post.date | date:"%B %d, %Y" }} {% elsif site.author
+                %}{{ site.time | date:"%B %d,
+                %Y" }}{% endif %}</a>
+            </small>
+          </p>
         </div>
-    </div>
-    {% endfor %}
-    {% if paginator.total_pages > 1 %}
-    <div class="column col-12">
-        <ul class="pagination">
-            <li><span>第 {{ paginator.page }} / {{ paginator.total_pages }} 页</span></li>
-            <li class="page-item">
-                {% if paginator.previous_page %}
-                <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a>
-                {% else %} <span>&laquo;</span> {% endif %}
-            </li>
-            {% for count in (1..paginator.total_pages) %}
-            {% if count == paginator.page %}
-            <li class="page-item active"><a href='#'>{{ count }}</a></li>
-            {% elsif count == 1 %}
-            <li class="page-item"><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ count }}</a></li>
-            {% else %}
-            <li class="page-item"><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', count }}">{{ count }}</a></li>
-            {% endif %}
-            {% endfor %}
-            {% if paginator.next_page %}
-            <li class="page-item"><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
-            {% else %}
-            <li class="page-item"><span>&raquo;</span></li>
-            {% endif %}
-        </ul>
-        {% endif %}
-    </div>
+      </div>
+    </article>
+  </div>
+  {% endfor %}
 </div>
+
+{% if paginator.total_pages > 1 %}
+<!-- 分页 start -->
+<nav class="level is-mobile m-2">
+  <div class="level-left">
+    <div class="level-item">
+      {% if paginator.previous_page %}
+      <a class="has-text-weight-bold"
+         href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+        <span class="icon-text">
+          <span class="icon m-0">
+            <i class="fas fa-less-than"></i>
+          </span>
+           <span>上一页</span>
+        </span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    第 {{ paginator.page }} / {{ paginator.total_pages }} 页
+  </div>
+  <div class="level-right">
+    <div class="level-item">
+      {% if paginator.next_page %}
+      <a class="has-text-weight-bold"
+         href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+        <span class="icon-text">
+          <span>下一页</span>
+          <span class="icon m-0">
+            <i class="fas fa-greater-than"></i>
+          </span>
+        </span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+<!-- 分页 end -->
+{% endif %}

@@ -9,12 +9,10 @@ kramdown:
   syntax_highlighter_opts:
     default_lang: java
 
-
-
 permalink: /blog/:year/:month/:day/:title/
 
 # 分页大小
-paginate: 10
+paginate: 16
 # 最新文章显示数
 last_pages: 10
 
@@ -28,15 +26,15 @@ github: https://github.com/oxcow/
 
 #分析
 analytics:
-#provider: google,baidu
-#google:
-#tracking_id: 'UA-40641589-1'
+#  provider: google,baidu
+#  google:
+#    tracking_id: 'UA-40641589-1'
 
 #评论
 comments:
-#provider: disqus
-#disqus:
-#short_name: oxcow
+#  provider: disqus
+#  disqus:
+#    short_name: oxcow
 
 plugins:
   - jekyll-mentions
