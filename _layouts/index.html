@@ -5,26 +5,27 @@ layout: default
   {% for post in paginator.posts %}
   <div class="column is-half">
     <article class="media mt-1">
-<!--      <figure class="media-left">-->
-<!--        <p class="image is-64x64">-->
-<!--          <img src="/favicon.ico">-->
-<!--        </p>-->
-<!--      </figure>-->
+      <!--      <figure class="media-left">-->
+      <!--        <p class="image is-64x64"><img src="/favicon.ico"></p>-->
+      <!--      </figure>-->
       <div class="media-content">
         <div class="content">
-          <p>
-            <strong class="is-size-5"><a class="has-text-dark" href="{{post.url}}" class='text-dark'>{{post.title}}</a></strong>
+          <div>
+            <a class="has-text-grey-dark is-size-5" href="{{post.url}}" class='text-dark'>{{post.title}}</a>
             <br/>
             <small class="has-text-grey-light">{{post.description}}</small>
             <br/>
-            <small class="is-pulled-right">
-              <a class="has-text-grey-light">{% if page.author %}{{page.author}}{% elsif site.author %}{{ site.author
-                }}{% endif %}</a> ·
-              <a class="has-text-grey-light">{% if post.date %}{{ post.date | date:"%B %d, %Y" }} {% elsif site.author
-                %}{{ site.time | date:"%B %d,
-                %Y" }}{% endif %}</a>
-            </small>
-          </p>
+            <div class="is-pulled-right has-text-grey-light is-size-7">
+              <a class="has-text-grey-light">{% if page.author %}{{page.author|capitalize}}{% elsif site.author %}
+                {{ site.author|capitalize}}{% endif %}</a><i> · </i>
+              <a class="has-text-grey-light">{% if post.date %}{{ post.date | date:"%Y-%m-%d" }} {% elsif site.author
+                %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</a>
+              <i> · </i>
+              <a class="has-text-grey-light" href="/categories/#{{post.category}}">
+                {{post.category|capitalize}}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </article>
@@ -34,38 +35,26 @@ layout: default
 
 {% if paginator.total_pages > 1 %}
 <!-- 分页 start -->
-<nav class="level is-mobile m-2">
+<nav class="level is-mobile m-3 px-2">
   <div class="level-left">
     <div class="level-item">
       {% if paginator.previous_page %}
-      <a class="has-text-weight-bold"
+      <a class="has-text-primary" title="previous page"
          href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-        <span class="icon-text">
-          <span class="icon m-0">
-            <i class="fas fa-less-than"></i>
-          </span>
-           <span>上一页</span>
-        </span>
-      </a>
-      {% endif %}
+        <span class="icon"><i class="fas fa-lg fa-chevron-circle-left"></i></span>
+      </a>{% endif %}
     </div>
   </div>
-  <div class="level-item has-text-centered">
+  <div class="level-item has-text-centered is-small">
     第 {{ paginator.page }} / {{ paginator.total_pages }} 页
   </div>
   <div class="level-right">
     <div class="level-item">
       {% if paginator.next_page %}
-      <a class="has-text-weight-bold"
+      <a class="has-text-primary" title="next page"
          href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-        <span class="icon-text">
-          <span>下一页</span>
-          <span class="icon m-0">
-            <i class="fas fa-greater-than"></i>
-          </span>
-        </span>
-      </a>
-      {% endif %}
+        <span class="icon"><i class="fas fa-lg fa-chevron-circle-right"></i></span>
+      </a>{% endif %}
     </div>
   </div>
 </nav>

@@ -12,10 +12,10 @@ title: 标签
 
   <div class="columns is-multiline content">
     {% for tag in site.tags %}
-    <div class="column is-half is-narrow">
-      <a class="title is-size-5" id="{{tag[0]}}">{{tag[0] | capitalize}}</a>
+    <div class="column is-half">
+      <a class="title is-size-5 has-text-grey" id="{{tag[0]}}">{{tag[0] | capitalize}}</a>
       <ul>{% for post in tag[1] %}
-        <li><a href="{{post.url | relative_url}}">{{post.title}}</a></li>{% endfor %}
+        <li><a class="has-text-primary-dark" href="{{post.url | relative_url}}">{{post.title}}</a></li>{% endfor %}
       </ul>
     </div>
     {% endfor %}

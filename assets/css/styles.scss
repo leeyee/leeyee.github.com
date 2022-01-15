@@ -9,7 +9,7 @@
 @import 'bulma/layout/_all';
 
 @import 'bulma/elements/container';
-@import 'bulma/elements/button';
+//@import 'bulma/elements/button';
 @import 'bulma/elements/content';
 @import 'bulma/elements/title';
 @import 'bulma/elements/image';
@@ -18,9 +18,9 @@
 @import "bulma/elements/table";
 
 @import 'bulma/components/navbar';
-@import 'bulma/components/panel';
+//@import 'bulma/components/panel';
 @import 'bulma/components/pagination';
-@import 'bulma/components/card';
+//@import 'bulma/components/card';
 @import 'bulma/components/media';
 @import 'bulma/components/level';
 @import 'bulma/components/menu';
@@ -53,4 +53,11 @@ a {
   overflow-x: hidden;
   overflow-y: scroll;
   max-height: calc(100vh - 80px);
+}
+
+.go-top {
+  position: fixed;
+  z-index: 300;
+  bottom: 30px;
+  right: 30px;
 }
