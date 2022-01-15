@@ -68,7 +68,7 @@ $(function () {
     }
     const targetAnchors = anchors.filter(anchorOffset => Math.abs(anchorOffset - scrollTop) < SHOW_ANCHOR_OFFSET);
     if (targetAnchors.length) {
-      console.info("Reach Anchor", targetAnchors);
+      console.debug("Reach Anchor", targetAnchors);
       currentAnchorOffset = targetAnchors[0];
       const topAnchorName = anchorMap.get(targetAnchors[0]);
       $rightToc.find('a').removeClass("is-active");
