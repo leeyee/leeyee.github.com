@@ -6,16 +6,19 @@
   {% seo title=false %}
   {% feed_meta %}
   <link rel="stylesheet" href={{"/assets/css/styles.css" | relative_url}}>
-  <script type="text/javascript" src={{"/assets/js/jquery-1.11.1.min.js" | relative_url}}></script>
-  <script type="text/javascript" src={{"/assets/js/common.js" | relative_url}}></script>
 </head>
 <body class="bd-navbar">
 <nav class="navbar is-primary" role="navigation">
   <div class="navbar-brand">
-    <!--    <a class="navbar-item" href="/">-->
-    <!--      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
-    <!--    </a>-->
-    <a class="navbar-item" href="/">Lee Yee</a>
+    <!--        <a class="navbar-item" href="/">-->
+    <!--          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
+    <!--        </a>-->
+    <a class="navbar-item is-size-5" href="/"><i>Yee's work blog</i></a>
+    <a class="navbar-item" href="/categories">分类</a>
+    <a class="navbar-item" href="/tags" title="标签">
+      <span class="icon"><i class="fas fa-tags"></i></span>
+      <span>标签</span>
+    </a>
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -24,16 +27,23 @@
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/categories">分类</a>
-      <a class="navbar-item" href="/tags">标签</a>
-      <a class="navbar-item" href="/archives">归档</a>
-      <!--      <a class="navbar-item" href="/about">关于我</a>-->
+      <a class="navbar-item" href="/archives" title="归档">
+        <span class="icon"><i class="fas fa-history"></i></span>
+        <span>归档</span>
+      </a>
+      <!-- <a class="navbar-item" href="/about">关于我</a>-->
       <a class="navbar-item" href="https://essay.iyiguo.net/" target="_blank">杂文</a>
-      <a class="navbar-item" href="/feed.xml" target="_blank">RSS</a>
-      <a class="navbar-item" href="http://games.iyiguo.net" target="_blank">小游戏</a>
+      <a class="navbar-item" href="/feed.xml" target="_blank" title="订阅RSS">
+        <span class="icon"><i class="fas fa-rss"></i></span>
+        <span>RSS</span>
+      </a>
+      <a class="navbar-item" href="http://games.iyiguo.net" target="_blank" title="小游戏">
+        <span class="icon"><i class="fas fa-ghost"></i></span>
+        <span>小游戏</span>
+      </a>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          eBooks
+        <a class="navbar-link is-arrowless">
+          <span class="icon"><i class="fas fa-ellipsis-h"></i></span>
         </a>
         <div class="navbar-dropdown">
           <a class="navbar-item" href="https://oxcow.gitbooks.io/h5-canvas-study-notes/content/" target="_blank">
@@ -42,10 +52,10 @@
           <a class="navbar-item" href="https://oxcow.gitbooks.io/stripes_chinese_doc/content/" target="_blank">
             Stripes 中文文档
           </a>
-<!--          <hr class="navbar-divider">-->
-<!--          <a class="navbar-item">-->
-<!--            Report an issue-->
-<!--          </a>-->
+          <!--          <hr class="navbar-divider">-->
+          <!--          <a class="navbar-item">-->
+          <!--            Report an issue-->
+          <!--          </a>-->
         </div>
       </div>
     </div>
@@ -66,14 +76,20 @@
 <div class="container">
   <div class="columns is-centered">
     <div class="column is-four-fifths">{{content}}</div>
+    <div class="is-flex go-top is-hidden">
+      <a class="has-text-grey-light">
+        <span class="icon"><i class="fas fa-lg fa-arrow-circle-up"></i></span>
+      </a>
+    </div>
   </div>
 </div>
-<hr/>
-<footer class="footer">
+<footer class="footer py-4">
   <div class="content has-text-centered">
-    <p>&#xa9;{{ site.time | date: '%Y' }} by Leeyee, All Rights Reserved</p>
+    <p>Copyright &#xa9; {{site.time|date:'%Y'}}, Lee Yee. All Rights Reserved.</p>
   </div>
 </footer>
+<script type="text/javascript" src={{"/assets/js/jquery-1.11.1.min.js" | relative_url}}></script>
+<script type="text/javascript" src={{"/assets/js/common.js" | relative_url}}></script>
 {% include analytics %}
 </body>
 </html>

@@ -13,8 +13,13 @@ layout: default
           </span>
           <span class="icon-text">
             <span class="icon has-text-info"><i class="fas fa-calendar-alt"></i></span>
-            <span><a class="has-text-grey" href="/archives/#{{page.date | date:'%Y'}}">{{ page.date | date:"%Y-%m-%d" }}</a></span>
+            <span><a class="has-text-grey"
+                     href="/archives/#{{page.date | date:'%Y'}}">{{ page.date | date:"%Y-%m-%d" }}</a></span>
           </span>
+          {%if page.github%}
+          <a href="{{site.github}}{{page.github}}" target="_blank" title="{{page.github}}">
+            <span class="icon has-text-info"><i class="fab fa-github"></i></span>
+          </a>{%endif%}
           <div class="is-pulled-right"><small>{% for tg in page.tags %}
             <a class="has-text-grey" href="/tags/#{{tg}}">#{{tg | capitalize}}</a>{%endfor%}</small>
           </div>
@@ -25,7 +30,7 @@ layout: default
           <p>版权声明: <a class="has-text-grey" href="{{site.url}}{{page.url}}">《{{page.title}}》</a>为作者【{% if page.author
             %}{{page.author}}{%
             elsif site.author %}{{ site.author }}{% endif %}】原创作品。<strong>转载请注明出处</strong>。</p>
-          <p>原文链接:【<a class="has-text-primary-dark" href="{{site.url}}{{page.url}}">{{site.url}}{{page.url}}</a>】</p>
+          <p>原文链接:【<a class="has-text-primary-dark">{{site.url}}{{page.url}}</a>】</p>
         </div>
         <hr/>
         <div class="tags mt-5">
@@ -38,16 +43,6 @@ layout: default
   <div class="column">
     <aside id="article_toc" class="menu mt-5 pt-2" style="position: sticky; top:10px">
       <p class="menu-label has-text-info">目录</p>
-      <p class="menu-label">
-        <a class="has-text-info" href="{{site.url}}{{page.url}}#">
-          <span class="icon-text">
-            <span class="icon">
-              <i class="fas fa-rocket"></i>
-            </span>
-            <span id="to_top">回到顶部</span>
-          </span>
-        </a>
-      </p>
     </aside>
   </div>
 </div>

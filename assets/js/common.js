@@ -1,9 +1,32 @@
+'use strict';
+
 const SHOW_ANCHOR_OFFSET = 40;
+
+const toggleGoTop = (scrollTop) => {
+  if (scrollTop > 50) {
+    $(".go-top").removeClass('is-hidden');
+  } else {
+    $(".go-top").addClass("is-hidden");
+  }
+};
 
 $(function () {
 
   //MathJax.Extension.MathZoom = true;
   //MathJax.Extension.MathMenu = true;
+
+  const $article = $("article.content");
+  // 表格
+  $article.find("table").addClass("table is-bordered is-narrow");
+
+  // 文章的链接做弹出式访问
+  $.each($article.find("a"), function (idx, ele) {
+    const href = $(ele).attr("href");
+    const _target = $(ele).attr("target");
+    if (href && href.indexOf("#") != 0 && !_target) {
+      $(ele).attr("target", "_blank");
+    }
+  });
 
   // 目录
   const $markdownToc = $('#markdown-toc');
@@ -21,18 +44,6 @@ $(function () {
     $rightToc.find("p:first").remove();
   }
 
-  // 表格
-  $("article.content table").addClass("table is-bordered is-narrow");
-
-  // 文章的链接做弹出式访问
-  $.each($("article.content a"), function (idx, ele) {
-    const href = $(ele).attr("href");
-    const _target = $(ele).attr("target");
-    if (href && href.indexOf("#") != 0 && !_target) {
-      $(ele).attr("target", "_blank");
-    }
-  });
-
   // 收集锚点位置信息。只收集一次，不考虑页面变化导致的锚点位置变化的问题。
   const anchorMap = new Map();
   $.each($markdownToc.find('a'), function (idx, ele) {
@@ -41,26 +52,43 @@ $(function () {
     anchorMap.set(anchorOffset, anchorName.substr(1));
   });
 
-  // 添加滚动事件。到达锚点附近时点亮右边对应的目录标题
-  if (anchorMap.size) {
-    // 缓存当前已经点亮的标题
-    let currentAnchorOffset = 0;
-    const anchors = [...anchorMap.keys()];
-    $(document).bind('scroll', function () {
-      const scrollTop = $(this).scrollTop();
-      if (isHideRightToc() || Math.abs(currentAnchorOffset - scrollTop) < SHOW_ANCHOR_OFFSET) {
-        return;
-      }
-      const targetAnchors = anchors.filter(anchorOffset => Math.abs(anchorOffset - scrollTop) < SHOW_ANCHOR_OFFSET);
-      if (targetAnchors.length) {
-        console.info("Reach Anchor", targetAnchors);
-        currentAnchorOffset = targetAnchors[0];
-        const topAnchorName = anchorMap.get(targetAnchors[0]);
-        $rightToc.find('a').removeClass("is-active");
-        $(`#article_toc #markdown-toc-${topAnchorName}`).addClass("is-active");
-      }
-    });
+  // 缓存当前已经点亮的标题
+  let currentAnchorOffset = 0;
+  const anchors = [...anchorMap.keys()];
+
+  const lightAnchor = (scrollTop) => {
+    if (isHideRightToc() || Math.abs(currentAnchorOffset - scrollTop) < SHOW_ANCHOR_OFFSET) {
+      return;
+    }
+    const targetAnchors = anchors.filter(anchorOffset => Math.abs(anchorOffset - scrollTop) < SHOW_ANCHOR_OFFSET);
+    if (targetAnchors.length) {
+      console.info("Reach Anchor", targetAnchors);
+      currentAnchorOffset = targetAnchors[0];
+      const topAnchorName = anchorMap.get(targetAnchors[0]);
+      $rightToc.find('a').removeClass("is-active");
+      $(`#article_toc #markdown-toc-${topAnchorName}`).addClass("is-active");
+    }
   }
+
+  const scrollHandler = () => {
+    const scrollTop = $(this).scrollTop();
+    toggleGoTop(scrollTop);
+    if (anchorMap.size) {
+      lightAnchor(scrollTop);
+    }
+  }
+
+  // 添加滚动事件。到达锚点附近时点亮右边对应的目录标题
+  $(document).bind('scroll', scrollHandler);
+
+  // Go Top
+  $('.go-top').bind('click', function (e) {
+    e.preventDefault();
+    $rightToc.find('a').removeClass("is-active");
+    $(document).unbind('scroll');
+    $('html, body').animate({scrollTop: 0}, 'slow', scrollHandler);
+  });
+
 });
 
 document.addEventListener('DOMContentLoaded', () => {
