@@ -1,4 +1,5 @@
 # Jekyll default config: http://jekyllrb.com/docs/configuration/default/
+timezone: Asia/Shanghai
 
 # Kramdown options: https://kramdown.gettalong.org/options.html
 kramdown:
@@ -9,7 +10,9 @@ kramdown:
   syntax_highlighter_opts:
     default_lang: java
 
-permalink: /blog/:year/:month/:day/:title/
+# 压缩样式表
+sass:
+  style: compressed
 
 # 分页大小
 paginate: 16
@@ -43,16 +46,27 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
 
+# Liquid profiler 启动时输出渲染配置信息（用于识别性能）
 profile: true
 
+collections:
+  strip-docs:
+    output: true
+    # 如果defaults中配置了该值，则会被此处的值覆盖掉
+    permalink: /:collection/:title
+
+# Front Matter Defaults 默认配置
 defaults:
   - scope:
-      type: "pages"
+      type: pages
     values:
-      layout: "default"
+      layout: default
   - scope:
-      type: "posts"
+      type: posts
     values:
-      layout: "post"
-sass:
-  style: compressed
+      layout: post
+      permalink: /blog/:year/:month/:day/:title:output_ext
+  - scope:
+      type: strip-frameworks
+    values:
+      layout: post
