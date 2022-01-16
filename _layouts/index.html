@@ -18,8 +18,8 @@ layout: default
             <div class="is-pulled-right has-text-grey-light is-size-7">
               <a class="has-text-grey-light">{% if page.author %}{{page.author|capitalize}}{% elsif site.author %}
                 {{ site.author|capitalize}}{% endif %}</a><i> · </i>
-              <a class="has-text-grey-light">{% if post.date %}{{ post.date | date:"%Y-%m-%d" }} {% elsif site.author
-                %}{{ site.time | date:"%B %d, %Y" }}{% endif %}</a>
+              <a class="has-text-grey-light">{% if post.date %}{{ post.date|date:"%Y-%m-%d"}}{%elsif site.time%}
+                {{ site.time | date:"%B %d, %Y" }}{% endif %}</a>
               <i> · </i>
               <a class="has-text-grey-light" href="/categories/#{{post.category}}">
                 {{post.category|capitalize}}
@@ -35,28 +35,20 @@ layout: default
 
 {% if paginator.total_pages > 1 %}
 <!-- 分页 start -->
-<nav class="level is-mobile m-3 px-2">
-  <div class="level-left">
-    <div class="level-item">
-      {% if paginator.previous_page %}
-      <a class="has-text-primary" title="previous page"
-         href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-        <span class="icon"><i class="fas fa-lg fa-chevron-circle-left"></i></span>
-      </a>{% endif %}
-    </div>
+<div class="m-3 px-2 is-flex is-justify-content-space-between">
+  <div>{% if paginator.previous_page %}
+    <a class="has-text-primary" title="previous page"
+       href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+      <span class="icon"><i class="fas fa-lg fa-chevron-circle-left"></i></span>
+    </a>{% endif %}
   </div>
-  <div class="level-item has-text-centered is-small">
-    第 {{ paginator.page }} / {{ paginator.total_pages }} 页
+  <div>第 {{ paginator.page }} / {{ paginator.total_pages }} 页</div>
+  <div>{% if paginator.next_page %}
+    <a class="has-text-primary" title="next page"
+       href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+      <span class="icon"><i class="fas fa-lg fa-chevron-circle-right"></i></span>
+    </a>{% endif %}
   </div>
-  <div class="level-right">
-    <div class="level-item">
-      {% if paginator.next_page %}
-      <a class="has-text-primary" title="next page"
-         href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-        <span class="icon"><i class="fas fa-lg fa-chevron-circle-right"></i></span>
-      </a>{% endif %}
-    </div>
-  </div>
-</nav>
+</div>
 <!-- 分页 end -->
 {% endif %}

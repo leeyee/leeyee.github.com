@@ -5,11 +5,11 @@
 @import 'bulma/base/_all';
 @import 'bulma/helpers/_all';
 
-@import 'bulma/grid/_all';
 @import 'bulma/layout/_all';
 
+@import 'bulma/grid/columns';
+
 @import 'bulma/elements/container';
-//@import 'bulma/elements/button';
 @import 'bulma/elements/content';
 @import 'bulma/elements/title';
 @import 'bulma/elements/image';
@@ -20,15 +20,13 @@
 @import 'bulma/components/navbar';
 //@import 'bulma/components/panel';
 @import 'bulma/components/pagination';
-//@import 'bulma/components/card';
 @import 'bulma/components/media';
-@import 'bulma/components/level';
 @import 'bulma/components/menu';
+@import "bulma/components/breadcrumb";
 
 
 @import "rouge.github";
 @import "all.min";
-//@import "bulma/bulma-dark";
 
 //html {
 //  filter: invert(100%) hue-rotate(180deg);
@@ -37,7 +35,6 @@
 //video {
 //  filter: invert(100%) hue-rotate(180deg);
 //}
-
 
 @media screen and (max-width: 768px) {
   #article_toc {
@@ -60,4 +57,7 @@ a {
   z-index: 300;
   bottom: 30px;
   right: 30px;
+}
+.default-height{
+  min-height: calc(100vh - 90px);
 }

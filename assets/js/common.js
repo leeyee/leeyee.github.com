@@ -1,6 +1,7 @@
 'use strict';
 
 const SHOW_ANCHOR_OFFSET = 40;
+const LIGHT_CSS_CLASSES="has-text-primary-dark has-text-weight-bold";
 
 const toggleGoTop = (scrollTop) => {
   if (scrollTop > 50) {
@@ -71,8 +72,8 @@ $(function () {
       console.debug("Reach Anchor", targetAnchors);
       currentAnchorOffset = targetAnchors[0];
       const topAnchorName = anchorMap.get(targetAnchors[0]);
-      $rightToc.find('a').removeClass("is-active");
-      $(`#article_toc #markdown-toc-${topAnchorName}`).addClass("is-active");
+      $rightToc.find('a').removeClass(LIGHT_CSS_CLASSES);
+      $(`#article_toc #markdown-toc-${topAnchorName}`).addClass(LIGHT_CSS_CLASSES);
     }
   };
 
@@ -89,7 +90,7 @@ $(function () {
 
   // 重置右侧导航为初始状态
   const resetRightToc = () => {
-    $rightToc.find('a').removeClass("is-active");
+    $rightToc.find('a').removeClass(LIGHT_CSS_CLASSES);
     removeScrollEventListener();
     currentAnchorOffset = 0;
   };
