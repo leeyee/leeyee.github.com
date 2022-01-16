@@ -1,0 +1,38 @@
+---
+layout: default
+title: N-puzzle
+---
+<section class="section py-4">
+  <h1 class="title">{{page.title}}</h1>
+  <div class="content columns is-centered">
+    <div class="column">
+      <canvas id='canvas1' width='300' height='300'></canvas>
+    </div>
+    <div class="column">
+      <canvas id='canvas2' width='400' height='400'></canvas>
+    </div>
+    <script type="text/javascript" src={{"/assets/js/jcanvas.min.js" | relative_url}}></script>
+    <script type="text/javascript" src={{"/assets/js/puzzle.js" | relative_url}}></script>
+    <script type="text/javascript">
+      $(function () {
+
+        let canvas1 = $("#canvas1");
+
+        let puzzle = new Puzzle({W: 100, MATRIX_N: 3});
+
+        let puzzleGame = new PuzzleGame(canvas1, puzzle);
+
+        puzzleGame.render();
+
+        let canvas2 = $("#canvas2");
+
+        let puzzle2 = new Puzzle({W: 90, MATRIX_N: 4});
+
+        let puzzleGame2 = new PuzzleGame(canvas2, puzzle2);
+
+        puzzleGame2.render();
+      });
+    </script>
+
+  </div>
+</section>
