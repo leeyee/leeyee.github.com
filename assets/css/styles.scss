@@ -46,8 +46,7 @@ a {
 }
 
 #markdown-toc {
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
   max-height: calc(100vh - 80px);
 }
 

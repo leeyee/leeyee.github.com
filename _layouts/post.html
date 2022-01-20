@@ -10,7 +10,7 @@ layout: default
         <div class="subtitle has-text-grey is-7 pt-3">
           <div class="is-pulled-left">
             <span class="icon-text">
-            {% for tg in page.tags %}<a class="has-text-grey pr-1" href="/tags/#{{tg}}">#{{tg | capitalize}}</a>{%endfor%}
+            {% for tg in page.tags %}<a class="has-text-grey pr-1" href="/tags#{{tg}}">#{{tg | capitalize}}</a>{%endfor%}
             </span>
           </div>
           <div class="is-pulled-right">
@@ -21,7 +21,7 @@ layout: default
             <span class="icon-text">
             <span class="icon has-text-info"><i class="fas fa-calendar-alt"></i></span>
             <span>
-              <a class="has-text-grey" href="/archives/#{{page.date | date:'%Y'}}">{{ page.date | date:"%Y-%m-%d" }}</a>
+              <a class="has-text-grey" href="/archives#{{page.date | date:'%Y'}}">{{ page.date | date:"%Y-%m-%d" }}</a>
             </span>
           </span>
             {%if page.github%}
@@ -40,7 +40,7 @@ layout: default
         </div>
         <div class="tags mt-5">
           {% for tg in page.tags %}<span class="tag is-primary">
-          <a class="has-text-white" href="/tags/#{{tg}}">{{tg | capitalize}}</a></span>{%endfor%}
+          <a class="has-text-white" href="/tags#{{tg}}">{{tg | capitalize}}</a></span>{%endfor%}
         </div>
       </div>
     </section>
