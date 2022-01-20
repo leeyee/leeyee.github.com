@@ -2,40 +2,23 @@
 layout: default
 title: 归档
 ---
-<div class="card" style="border: 0">
-    <div class="card-header">
-        <div class="card-title h5">归档</div>
-        <div class="card-subtitle text-gray">...</div>
-    </div>
-    <div class="card-body">
-        <div class="timeline">
-            {% for post in site.posts %}
-            {% capture ym %}{{post.date | date:"%Y"}}{% endcapture %}
-            {% if year_month != ym %}
-            {% assign year_month = ym %}
-            <div class="timeline-item" style="margin:0" id="{{ ym | strip_html }}">
-                <div class="timeline-left">
-                    <a class="timeline-icon tooltip" name="{{ ym | strip_html }}"></a>
-                </div>
-                <div class="timeline-content columns">
-                    <div class="column col-12">{{ym}}</div>
-                    {% for pt in site.posts %}
-                    {% capture cym %}{{pt.date | date:"%Y"}}{% endcapture %}
-                    {% if year_month == cym %}
-                    <div class="column col-6 col-lg-12">
-                        <div class="chip">
-                            <a href="{{pt.url}}">
-                                {% if post.github %}
-                                <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg" alt="Git Hub">
-                                {% endif %}{{pt.title}}</a>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
+<section class="section py-4">
+  <h1 class="title">{{page.title}}</h1>
+  <div class="content">
+    {% for post in site.posts %}
+    {% capture ym %}{{post.date | date:"%Y"}}{% endcapture %}
+    {% if year_month != ym %}
+    {% assign year_month = ym %}
+    <a class="title is-size-5 has-text-grey" id="{{ym}}">{{ym}}</a>
+    <ul>
+      {% for pt in site.posts %}
+      {% capture cym %}{{pt.date | date:"%Y"}}{% endcapture %}
+      {% if year_month == cym %}
+      <li><a class="has-text-primary-dark" href="{{pt.url}}">{{pt.title}}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

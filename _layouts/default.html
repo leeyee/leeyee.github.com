@@ -6,71 +6,28 @@
   {% seo title=false %}
   {% feed_meta %}
   <link rel="stylesheet" href={{"/assets/css/styles.css" | relative_url}}>
-  {% include analytics %}
-  <script type="text/javascript" src="/assets/js/MathJax_2.7.6.min.js"></script>
-  <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="/assets/js/common.js"></script>
+  <title>{{page.title}}</title>
+  <script type="text/javascript" src={{"/assets/js/jquery-1.11.1.min.js" | relative_url}}></script>
+  <script type="text/javascript" src={{"/assets/js/common.js" | relative_url}}></script>
 </head>
 <body>
-<div class="container bg-secondary {% if page.layout == 'index' %}p-sticky{%endif%}" style="top:0;z-index: 10000">
-  <div class="column col-12 p-2">
-    <header class="navbar">
-      <section class="navbar-section">
-        <a href="/" class="navbar-brand text-bold mx-2">Leeyee's Blog</a>
-        <a class="btn btn-link" href="/categorys">分类</a>
-        <a class="btn btn-link" href="/tags">标签</a>
-        <a class="btn btn-link" href="/archives">归档</a>
-        <a class="btn btn-link" href="https://essay.iyiguo.net/">essay</a>
-        <a class="btn btn-link" href="/about">关于我</a>
-        <a class="btn btn-link" href="/feed.xml">RSS</a>
-        <a class="btn btn-link" href="/games">小游戏</a>
-      </section>
-      <section class="navbar-section">
-        <form action="https://www.google.com.hk/search" method="get">
-          <div class="input-group input-inline">
-            <input type="hidden" name="q" value="site:iyiguo.net">
-            <input class="form-input" type="text" name="q" placeholder="Google Search">
-          </div>
-        </form>
-      </section>
-    </header>
-  </div>
-</div>
+{%include navigation.htm%}
 <div class="container">
-  <div class="docs-content columns">
-    <div class="column col-11 col-mx-auto col-xs-12 col-md-11">
-      <div class="columns">
-        <div class="column col-8 col-mx-auto col-xs-12 col-md-11">{{ content }}</div>
-        <div class="column col-3 col-mx-auto col-xs-12 col-md-11">
-          <div class="docs-content columns pt-4">
-            <div class="column col-12">{% include profile.htm%}</div>
-            <!-- 最新文章 -->
-            {% if page.layout == 'post' %}{% include last_posts.htm %}{% endif %}
-            <!-- 文章标签 -->
-            {% if page.layout == 'index' %}{% include tags.htm %}{% endif %}
-          </div>
-        </div>
-        <div class="column col-9 col-xs-12 col-md-12 p-sticky c-hand" id='toTop'>
-          <div class="chip float-right">&#x261d;</div>
-        </div>
-      </div>
+  <div class="columns is-centered">
+    <div class="column is-four-fifths default-height">{{content}}</div>
+    <div class="is-flex go-top is-hidden">
+      <a class="has-text-grey-light">
+        <span class="icon"><i class="fas fa-lg fa-arrow-circle-up"></i></span>
+      </a>
     </div>
   </div>
-  <footer class="m-2">
-    <div class="divider text-center"
-         data-content="&#xa9;{{ site.time | date: '%Y' }} by Leeyee, All Rights Reserved"></div>
-  </footer>
-  <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" async></script>-->
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>-->
-  <!--<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
-  <!--[if lt IE 9]>
-  <script src="/assets/js/html5-r29.min.js"></script>
-  <script src="/assets/js/respond_1.4.2.min.js"></script>
-  <![endif]-->
 </div>
+<footer class="footer py-4">
+  <div class="content has-text-centered">
+    <p>Copyright &#xa9; {{site.time|date:'%Y'}}, Lee Yee. All Rights Reserved.</p>
+  </div>
+</footer>
+{% include analytics %}
 </body>
 </html>
 

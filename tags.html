@@ -2,40 +2,24 @@
 layout: default
 title: 标签
 ---
-<div class="card" style="border: 0">
-  <div class="card-header">
-    <div class="card-title h5">文章标签</div>
-    <div class="card-subtitle">
-      {% for tag in site.tags %}
-      <a class="chip c-hand text-success" href='#{{tag[0]}}'>{{tag[0] | capitalize}}</a>
-      {% endfor %}
-    </div>
+<section class="section py-4">
+  <h1 class="title">{{page.title}}</h1>
+  <div class="subtitle tags mt-1">
+    {% for tag in site.tags %}
+    <a class="tag is-info is-size-6" href='#{{tag[0]}}'>{{tag[0] | capitalize}}</a>
+    {% endfor %}
   </div>
-  <div class="card-body">
-    <div class="timeline">
-      {% for tag in site.tags %}
-      <div class="timeline-item" style="margin:0" id="{{tag[0]}}">
-        <div class="timeline-left">
-          <a class="timeline-icon tooltip" name="{{tag[0]}}"></a>
-        </div>
-        <div class="timeline-content columns">
-          <div class="column col-12">
-            <label class="chip bg-success">{{tag[0] | capitalize}}</label>
-          </div>
-          {% for post in tag[1] %}
-          <div class="column col-6 col-lg-12">
-            <div class="chip">
-              <a href="{{post.url}}">
-                {% if post.github %}
-                <img class="avatar avatar-sm" src="/assets/images/Octocat.jpg" alt="Git Hub">
-                {% endif %}
-                {{post.title}}</a>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% endfor %}
+
+  <div class="columns is-multiline content">
+    {% for tag in site.tags %}
+    <div class="column is-half">
+      <a class="title is-size-5 has-text-grey" id="{{tag[0]}}">{{tag[0] | capitalize}}</a>
+      <ul>{% for post in tag[1] %}
+        <li><a class="has-text-primary-dark" href="{{post.url | relative_url}}">{{post.title}}</a></li>{% endfor %}
+      </ul>
     </div>
+    {% endfor %}
   </div>
-</div>
+</section>
+
+
