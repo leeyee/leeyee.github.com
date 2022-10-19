@@ -32,6 +32,7 @@ analytics:
   provider: google,baidu
   google:
     tracking_id: 'UA-40641589-1'
+    ga4_tracking_id: 'G-8WZX68WYLX'
 
 #评论
 comments:
