@@ -17,6 +17,6 @@ ga('send', 'pageview');
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '{{ site.analytics.google.tracking_id }}');
+  // gtag('config', '{{ site.analytics.google.tracking_id }}');
   gtag('config', '{{ site.analytics.google.ga4_tracking_id }}');
 </script>
