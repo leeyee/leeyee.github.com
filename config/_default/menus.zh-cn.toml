@@ -1,0 +1,87 @@
+# -- Main Menu --
+# The main menu is displayed in the header at the top of the page.
+# Acceptable parameters are name, pageRef, page, url, title, weight.
+# 
+# The simplest menu configuration is to provide:
+#   name = The name to be displayed for this menu link
+#   pageRef = The identifier of the page or section to link to
+#
+# By default the menu is ordered alphabetically. This can be
+# overridden by providing a weight value. The menu will then be
+# ordered by weight from lowest to highest.
+
+[[main]]
+  name = "Blog"
+  pageRef = "posts"
+  weight = 10
+
+[[main]]
+  name = "分类"
+  pageRef = "categories"
+  weight = 20
+
+[[main]]
+  name = "标签"
+  pageRef = "tags"
+  weight = 30
+
+[[main]]
+  name = "系列文章"
+  weight = 40
+
+[[main]]
+  name = "Html5 Canvas 学习笔记"
+  #  pre = "github"
+  parent = "系列文章"
+  pageRef = "categories/awesome"
+  weight = 40
+
+[[main]]
+  name = "Stripes 中文文档"
+  parent = "系列文章"
+  url = "https://oxcow.gitbooks.io/stripes_chinese_doc/content/"
+  weight = 40
+
+[[main]]
+  name = "Stripes 中文文档（本地）"
+  parent = "系列文章"
+  pageRef = "strip-docs"
+  weight = 40
+
+[[main]]
+  name = "..."
+  weight = 50
+
+[[main]]
+  name = "关于我"
+  parent = "..."
+  pageRef = "about"
+  weight = 150
+
+[[main]]
+  name = "杂文~随笔"
+  parent = "..."
+  url = "https://essay.iyiguo.net/"
+  weight = 160
+
+[[main]]
+  name = "小游戏"
+  pre = "ghost"
+  parent = "..."
+  pageRef = "games"
+  weight = 170
+
+# -- Footer Menu --
+# The footer menu is displayed at the bottom of the page, just before
+# the copyright notice. Configure as per the main menu above.
+
+
+# [[footer]]
+#   name = "Tags"
+#   pageRef = "tags"
+#   weight = 10
+
+# [[footer]]
+#   name = "Categories"
+#   pageRef = "categories"
+#   weight = 20

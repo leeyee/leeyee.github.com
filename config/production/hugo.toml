@@ -1,0 +1,13 @@
+baseURL = "http://iyiguo.net/"
+
+buildDrafts = false
+buildFuture = false
+
+googleAnalytics = 'G-8WZX68WYLX'
+#[services]
+#  [services.googleAnalytics]
+#    ID = 'G-8WZX68WYLX'
+
+[services]
+  [services.disqus]
+    shortname = 'oxcow'

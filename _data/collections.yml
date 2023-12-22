@@ -1,6 +1,0 @@
-posts:
-  label: Blog
-  index: /index
-strip-docs:
-  label: Strip系列
-  index: /strip-docs/

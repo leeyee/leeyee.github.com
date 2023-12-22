@@ -1,0 +1,8 @@
+[firebase]
+  apiKey = "AIzaSyBz7fH9ZqZq7l5Y88vNdKtamGAZNc63nTo"
+  authDomain = "iyiguo-site.firebaseapp.com"
+  projectId = "iyiguo-site"
+  storageBucket = "iyiguo-site.appspot.com"
+  messagingSenderId = "691655874414"
+  appId = "1:691655874414:web:65045a4a967fb9ac53937f"
+  # measurementId = "XXXXXX"

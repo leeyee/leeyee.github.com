@@ -1,4 +1,8 @@
-/_site
-.idea/
+_site
+.idea
 Gemfile.lock
 .jekyll-cache
+.vscode
+.hugo_build.lock
+public
+resources
