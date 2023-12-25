@@ -4,6 +4,8 @@ date: 2020-05-15
 description: Java8 Stream 数据处理第一部分，介绍Stream的相关知识及应用。
 categories: "java"
 tags: ["java"]
+slug: "java8-stream-part1"
+aliases: ['/blog/2020/05/15/java8-stream-part1.html']
 ---
 
 ## Get Start

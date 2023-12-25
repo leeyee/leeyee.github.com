@@ -1,13 +1,12 @@
 ---
-layout: post
 title: SQL查询语句要点
+date: 2011-11-17
 description: 本文主要介绍一些SQL语法中有查询操作的要点.主要涉及内外链接查询、合并查询等
-category: SQL
-tag: [pl/sql]
+categories: "SQL"
+tags: ["pl/sql"]
+slug: 'plsql-sql-select'
+aliases: ['/blog/2011/11/17/plsql-sql-select.html']
 ---
-
-* TOC
-{:toc}
 
 ## 内连接和外连接
     select table1.column, table2.column

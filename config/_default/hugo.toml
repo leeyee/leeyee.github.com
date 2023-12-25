@@ -66,23 +66,7 @@ buildFuture = false
 
 [permalinks]
   [permalinks.page]
-    posts = '/blog/:year/:month/:day/:filename/'
+    posts = '/blog/:year/:month/:day/:slugorfilename/'
   [permalinks.section]
     posts = "/blog/"
-
-[markup]
-  [markup.highlight]
-    anchorLineNos = false
-    codeFences = true
-    guessSyntax = false
-    hl_Lines = ''
-    hl_inline = false
-    lineAnchors = ''
-    lineNoStart = 1
-    lineNos = true
-    lineNumbersInTable = true
-    noClasses = true
-    noHl = false
-    style = 'monokai'
-    tabWidth = 2
 

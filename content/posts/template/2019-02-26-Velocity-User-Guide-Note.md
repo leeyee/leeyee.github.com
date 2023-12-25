@@ -1,13 +1,12 @@
 ---
-layout: post
 title: Velocity模版语言 (VTL)用户指南笔记
+date: 2019-02-26
 description: velocity 模版使用指南笔记。
-category: java
-tag: [velocity]
+categories: "java"
+tags: ["velocity"]
+slug: "Velocity-User-Guide-Note"
+aliases: ['/blog/2019/02/26/Velocity-User-Guide-Note.html']
 ---
-
-* [TOC]
-{:toc}
 
 http://velocity.apache.org/engine/2.0/user-guide.html
 

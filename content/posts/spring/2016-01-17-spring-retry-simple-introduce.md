@@ -1,13 +1,12 @@
 ---
-layout: post
 title: Spring Retry 简介
+date: 2016-01-17
 description: Spring-Retry 简介
-category: java
-tag: [spring,translation]
+categories: "java"
+tags: ["spring","translation"]
+slug: "spring-retry-simple-introduce"
+aliases: ['/blog/2016/01/17/spring-retry-simple-introduce.html']
 ---
-
-* TOC
-{:toc}
 
 原文地址：[http://docs.spring.io/spring-batch/reference/html/retry.html](http://docs.spring.io/spring-batch/reference/html/retry.html)
 

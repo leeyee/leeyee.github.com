@@ -1,13 +1,12 @@
 ---
-layout: post
 title: 一些关于javascript、jQuery使用时的建议
+date: 2011-04-09
 description: 这篇文章介绍一些关于javascript及jQuery代码开发过程中首选的最佳实践。
-category: javascript
-tag: [javascript, jQuery]
+categories: "javascript"
+tags: ["javascript", "jQuery"]
+slug: 'javascript-jquery-user-suggests'
+aliases: ['/blog/2011/04/09/javascript-jquery-user-suggests.html']
 ---
-
-* any list
-{:toc}
 
 ## 1.在遍历数组时缓存长度
 

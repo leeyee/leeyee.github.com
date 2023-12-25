@@ -1,13 +1,12 @@
 ---
-layout: post
 title: javascript中的null和undefined
+date: 2013-05-07
 description: 本文主要就ECMAScript对null、undefined定义变量的区别以及在使用typeof方法操作这两类变量时返回的结果进行了详细说明。
-category: javascript
-tag: [javascript]
+categories: "javascript"
+tags: ["javascript"]
+slug: 'jquery-plugins-authoring'
+aliases: ['/blog/2013/05/07/jquery-plugins-authoring.html']
 ---
-
-* any list
-{:toc}
 
 1. `null`表示无值或不存在的对象；
 

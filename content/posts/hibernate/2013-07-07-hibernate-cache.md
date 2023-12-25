@@ -4,6 +4,8 @@ date: 2013-07-07
 description: 本文介绍了相关hibernate缓存的知识以及缓存配置时关于并发事务级别的相关知识。同时结合hibernate annotation的@Cache注解标签，实际演示了如何使用注解配置hibernate缓存。
 categories: "java"
 tags: ["hibernate", "cache"]
+slug: 'hibernate-cache'
+aliases: ['/blog/2013/07/07/hibernate-cache.html']
 ---
 
 Hibernate中实现缓存的对象有`Session`和`SessionFactory`。

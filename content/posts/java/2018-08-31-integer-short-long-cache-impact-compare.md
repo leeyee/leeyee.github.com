@@ -4,6 +4,8 @@ date: 2018-08-31
 description: 在进行Integer,Short,Long对象比较时，应使用equals方法进行值判断.
 categories: "java"
 tags: ["java"]
+slug: "integer-short-long-cache-impact-compare"
+aliases: ['/blog/2018/08/31/integer-short-long-cache-impact-compare.html']
 ---
 
 结论：

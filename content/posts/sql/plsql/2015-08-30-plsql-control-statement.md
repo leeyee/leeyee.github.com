@@ -1,13 +1,12 @@
 ---
-layout: post
 title: PL/SQL流程控制语言
+date: 2015-08-30
 description: PL/SQL流程控制语言
-category: SQL
-tag: [pl/sql]
+categories: SQL
+tags: [pl/sql]
+slug: 'plsql-control-statement'
+aliases: ['/blog/2015/08/30/plsql-control-statement.html']
 ---
-
-* TOC
-{:toc}
 
 ## 条件分支语句
 

@@ -1,13 +1,12 @@
 ---
-layout: post
 title: jQuery插件编写
+date: '2012-12-02'
 description: 当你已经熟练掌握`jQuery`并且想学习如何编写属于自己的插件程序时，你可以参看这篇文章。使用插件程序和方法扩展`jQuery`是非常强大的。你可以将一些想法抽象为函数并封装到插件中以便为你和你的同事节省许多开发时间。
-category: javascript
-tag: [javascript, jQuery, translation]
+categories: "javascript"
+tags: ["javascript", "jQuery", "translation"]
+slug: 'jquery-plugins-authoring'
+aliases: ['/blog/2012/12/02/jquery-plugins-authoring.html']
 ---
-
-* any list
-{:toc}
 
 原文地址：[http://docs.jquery.com/Plugins/Authoring](http://docs.jquery.com/Plugins/Authoring)
 

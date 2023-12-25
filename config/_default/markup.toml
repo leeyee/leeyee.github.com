@@ -2,12 +2,28 @@
 # These settings are required for the theme to function.
 
 [goldmark]
-[goldmark.renderer]
-  unsafe = true
+  [goldmark.renderer]
+    unsafe = true
 
 [highlight]
-  noClasses = false
+  noClasses = true
 
 [tableOfContents]
-  startLevel = 2
+  startLevel = 1
   endLevel = 4
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    noHl = false
+    style = 'monokai'
+    tabWidth = 2

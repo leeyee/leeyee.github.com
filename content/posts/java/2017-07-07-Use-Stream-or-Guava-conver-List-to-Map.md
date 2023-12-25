@@ -4,6 +4,8 @@ date: 2017-07-07
 description: 使用JAVA 8 Stream 或 Guava 转换List到Map
 categories: "java"
 tags: ["java"]
+slug: 'Use-Stream-or-Guava-conver-List-to-Map'
+aliases: ['/blog/2017/07/07/Use-Stream-or-Guava-conver-List-to-Map.html']
 ---
 
 实际开发场景中，经常会需要将`List`对象转成`Map`的情况出现。通常的做法是通过遍历List对象然后进行相应处理。JDK8后开始支持lambda表达式，同时提供针对集合的Stream方法，使得对集合的操作大大简化。下面就备份下如何使用lambda表达式和Guava[^guava_verion]实现List到Map的转换。

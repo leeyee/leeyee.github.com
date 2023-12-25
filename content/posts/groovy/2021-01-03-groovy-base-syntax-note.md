@@ -3,7 +3,9 @@ title: Groovy基本语法笔记
 date: 2021-01-03
 description: 记录Groovy的语法、操作符、运算符等基本语言特性
 categories: "groovy"
-tag: ["groovy", "java"]
+tags: ["groovy", "java"]
+slug: 'groovy-base-syntax-note'
+aliases: ['/blog/2021/01/03/groovy-base-syntax-note.html']
 ---
 
 这一部分主要记录Groovy的语法、操作符、运算符等基本语言特性。文中没有提及到语法均可参考对应Java语法。

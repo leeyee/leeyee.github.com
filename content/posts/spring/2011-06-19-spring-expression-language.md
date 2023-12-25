@@ -1,15 +1,14 @@
 ---
-layout: post
 title: Spring3 表达式语言(SpEL)介绍
+date: 2011-06-19
 description: 本文主要介绍Spring3表达式语言(SpEL)的相关功能
-category: java
-tag: [spring,translation]
+categories: "java"
+tags: ["spring","translation"]
+slug: "spring-expression-language"
+aliases: ['/blog/2011/06/19/spring-expression-language.html']
 ---
 
 [Spring Expression Language (SpEL)](http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch07.html)语言支持在运行时操作和查询对象，其语法类似统一的EL语言，但是[SpEL]提供了额外的功能。[SpEL]支持以下功能：
-
-* TOC
-{:toc}
 
 使用SpEl进行表达式操作，基本操作如下：
 

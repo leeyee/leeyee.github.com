@@ -1,9 +1,11 @@
 ---
-layout: post
 title: MapperScannerConfigurer的basePackage匹配逻辑
+date: 2017-01-02
 description: spring-mybatis配置mapper scan时因包名配置不当，导致mapper类无法被载入spring上下文
-category: java
-tag: [mybatis,spring]
+categories: "java"
+tags: ["mybatis","spring"]
+slug: "MapperScannerConfigurer-basePackage-scan-logic"
+aliases: ['/blog/2017/01/02/MapperScannerConfigurer-basePackage-scan-logic.html']
 ---
 
 

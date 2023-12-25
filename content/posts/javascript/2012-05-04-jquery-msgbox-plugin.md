@@ -1,16 +1,16 @@
 ---
-layout: post
 title: jQuery MsgBox Plugin
-description: 基于jQuery的消息提示框插件。该插件主要包含四个主要方法，jmask遮罩、junmask关闭遮罩、jalert消息提示框及jconfirm消息确认框等。
-category: javascript
-tag: [javascript, jQuery]
-github: 'MsgBox-jQuery-Plugin'
+date: 2012-05-04
+description: 基于jQuery的消息提示框插件。该插件主要包含四个主要方法，jMask遮罩、jUnmask关闭遮罩、jAlert消息提示框及jConfirm消息确认框等。
+categories: "javascript"
+tags: ["javascript", "jQuery"]
+slug: 'jquery-msgbox-plugin'
+aliases: ['/blog/2012/05/04/jquery-msgbox-plugin.html']
 ---
 
-* any list
-{:toc}
+{{< github repo="oxcow/MsgBox-jQuery-Plugin" >}}
 
-### jmask(options) 遮罩层
+## jmask(options) 遮罩层
 
 >移动目标元素对象，使其显示在遮罩层正中央。 `jmask` 接受一个参数.
 
@@ -29,7 +29,7 @@ github: 'MsgBox-jQuery-Plugin'
         opacity : 0.6
     });
 
-### junmask() 关闭遮罩层
+## junmask() 关闭遮罩层
 
 >取消使用 `jmask` 方法遮罩的目标元素,并隐藏目标元素。该方法不接受参数.
 
@@ -37,7 +37,7 @@ github: 'MsgBox-jQuery-Plugin'
 
     $("#jmaskDemo").junmask();
     
-### jalert(msg,options) 消息框
+## jalert(msg,options) 消息框
 
 >打开一个消息提示框。 `jalert` 接受两个参数
 
@@ -64,7 +64,7 @@ github: 'MsgBox-jQuery-Plugin'
         mask : false
     });
 
-### jconfirm(msg,url,options) 消息确认框
+## jconfirm(msg,url,options) 消息确认框
 
 >打开一个消息确认框。 `jconfirm` 接受两个参数
 

@@ -1,19 +1,19 @@
 ---
-layout: post
 title: awk入门
+date: 2015-07-28
 description: 本文主要介绍一些awk的入门语法及相关示例。包括awk基本语法及基本参数，内建参数的使用，awk脚本等相关基础入门内容
-category: script
-tag: [awk]
+categories: "script"
+tags: ["awk"]
+slug: "awk-base-get-start"
+aliases: ['/blog/2015/07/28/awk-base-get-start.html']
 ---
-
-* TOC
-{:toc}
 
 [awk]是一款强大的文本分析工具。[awk] 按行解析数据，并对其进行分割处理。下面是一些[awk]的入门语法与示例。
 
-首先我们使用以下的文件片段演示。文件片段[^pome]内容如下：
+首先我们使用以下的文件片段演示。文件片段[^poem]内容如下：
 
->   The Lost Love
+```Text
+The Lost Love
 William Wordsworth
 She dwelt among the untrodden ways beside the springs of dove.
 A maid whom there were none to praise, and very few to love.
@@ -21,6 +21,7 @@ A violet by a mossy stone, half hidden from the eye!
 Fair as a star, when only one is shining in the sky.
 She lived unknown, and few could know, when lucy ceased to be.
 But she is in her grave, and oh, the difference to me!
+```
 
 ## 常用命令
 
@@ -29,8 +30,8 @@ But she is in her grave, and oh, the difference to me!
 	awk '{print NR,$1}' test.txt
 
 输出：
-
->   1 The
+```Text
+1 The
 2 William
 3 She
 4 A
@@ -38,6 +39,7 @@ But she is in her grave, and oh, the difference to me!
 6 Fair
 7 She
 8 But
+```
 
 **说明**：
 : *print*：  输出，没有指定输出连接符时，默认为空格；
@@ -50,7 +52,8 @@ But she is in her grave, and oh, the difference to me!
 
 输出：
 
->   1.The Lost Love
+```Text
+1.The Lost Love
 2.William Wordsworth
 3.She dwelt among the untrodden ways beside the springs of dove.
 4.A maid whom there were none to praise
@@ -59,6 +62,7 @@ But she is in her grave, and oh, the difference to me!
 7.She lived unknown
 8.But she is in her grave
 -- End --
+```
 
 **说明**：
 
@@ -77,7 +81,8 @@ But she is in her grave, and oh, the difference to me!
 
 输出：
 
->   2 The end
+```Text
+2 The end
 3 William end
 4 She end
 5 A end
@@ -85,6 +90,7 @@ But she is in her grave, and oh, the difference to me!
 7 Fair end
 8 She end
 9 But end
+```
 
 **说明**：
 
@@ -99,7 +105,7 @@ But she is in her grave, and oh, the difference to me!
 
 a.awk 文件内容如下：
 
-```shell
+```Shell
 BEGIN {
 	a = " end"
 	b = 1
@@ -108,9 +114,11 @@ BEGIN {
 	print NR+1,$1a
 }
 ```
+
 输出：
 
->   2 The end
+```Text
+2 The end
 3 William end
 4 She end
 5 A end
@@ -118,27 +126,28 @@ BEGIN {
 7 Fair end
 8 She end
 9 But end
+```
 
 ## 基本运算符
 
 ### 运算符说明
 
-|运算符|描述|
-|------|----:|
-|= += -= *= /= %= ^= **=|赋值|
-|?:|条件表达式|
-|\|\||逻辑或|
-|&&|逻辑与|
-|~ ~!|匹配正则表达式和不匹配正则表达式|
-|< <= > >= != ==|关系运算符|
-|空格|连接|
-|\+ -|加，减|
-|\* / &|乘，除与求余|
-|\+ - !|一元加，减和逻辑非|
-|^ \**\*|求幂|
-|++ --|增加或减少，作为前缀或后缀|
-|$|字段引用|
-|in|数组成员
+| 运算符                     |               描述 |
+|-------------------------|-----------------:|
+| = += -= *= /= %= ^= **= |               赋值 |
+| ?:                      |            条件表达式 |
+| \|\|                    |              逻辑或 |
+| &&                      |              逻辑与 |
+| ~ ~!                    | 匹配正则表达式和不匹配正则表达式 |
+| < <= > >= != ==         |            关系运算符 |
+| 空格                      |               连接 |
+| \+ -                    |              加，减 |
+| \* / &                  |           乘，除与求余 |
+| \+ - !                  |        一元加，减和逻辑非 |
+| ^ \**\*                 |               求幂 |
+| ++ --                   |    增加或减少，作为前缀或后缀 |
+| $                       |             字段引用 |
+| in                      |             数组成员 |
 
 ### 举例
 
@@ -147,47 +156,50 @@ BEGIN {
 		awk '(NR>5 || NR==4) {print NR,$0}' test.txt
 
 	输出：
-
-	>4 A maid whom there were none to praise, and very few to love.
+```Plain Text
+4 A maid whom there were none to praise, and very few to love.
 6 Fair as a star, when only one is shining in the sky.
 7 She lived unknown, and few could know, when lucy ceased to be.
 8 But she is in her grave, and oh, the difference to me!
+```
 
-2. 获取按空格分割后第一个分组为‘She'并且第二不分组不等于‘dwelt’的行
+2. 获取按空格分割后第一个分组为 **She** 并且第二不分组不等于 **dwelt** 的行
 
 		awk '($1=="She" && $2 !="dwelt") {print NR,$0}' test.txt
 
 	输出：
 
-	> 7 She lived unknown, and few could know, when lucy ceased to be.
+```Text
+7 She lived unknown, and few could know, when lucy ceased to be.
+```
 
 ## 内置变量
 
 ### 变量说明
 
-|变量|描述|
-|-------|------:|
-|\$n|当前记录的第n个字段，字段间由FS分隔|
-|\$0|完整的输入记录|
-|ARGC|命令行参数的数目|
-|ARGIND|命令行中当前文件的位置(从0开始算)|
-|ARGV|包含命令行参数的数组|
-|CONVFMT|数字转换格式(默认值为%.6g)ENVIRON环境变量关联数组|
-|ERRNO|最后一个系统错误的描述|
-|FIELDWIDTHS|字段宽度列表(用空格键分隔)|
-|FILENAME|当前文件名|
-|FNR|同NR，但相对于当前文件|
-|FS|字段分隔符(默认是任何空格)|
-|IGNORECASE|如果为真，则进行忽略大小写的匹配|
-|NF|当前记录中的字段数|
-|NR|当前记录数|
-|OFMT|数字的输出格式(默认值是%.6g)|
-|OFS|输出字段分隔符(默认值是一个空格)|
-|ORS|输出记录分隔符(默认值是一个换行符)|
-|RLENGTH|由match函数所匹配的字符串的长度|
-|RS|记录分隔符(默认是一个换行符)|
-|RSTART|由match函数所匹配的字符串的第一个位置|
-|SUBSEP|数组下标分隔符(默认值是/034)|
+| 变量          |                              描述 |
+|-------------|--------------------------------:|
+| \$n         |             当前记录的第n个字段，字段间由FS分隔 |
+| \$0         |                         完整的输入记录 |
+| ARGC        |                        命令行参数的数目 |
+| ARGIND      |              命令行中当前文件的位置(从0开始算) |
+| ARGV        |                      包含命令行参数的数组 |
+| CONVFMT     | 数字转换格式(默认值为%.6g)ENVIRON环境变量关联数组 |
+| ERRNO       |                     最后一个系统错误的描述 |
+| FIELDWIDTHS |                  字段宽度列表(用空格键分隔) |
+| FILENAME    |                           当前文件名 |
+| FNR         |                    同NR，但相对于当前文件 |
+| FS          |                  字段分隔符(默认是任何空格) |
+| IGNORECASE  |                如果为真，则进行忽略大小写的匹配 |
+| NF          |                       当前记录中的字段数 |
+| NR          |                           当前记录数 |
+| OFMT        |               数字的输出格式(默认值是%.6g) |
+| OFS         |               输出字段分隔符(默认值是一个空格) |
+| ORS         |              输出记录分隔符(默认值是一个换行符) |
+| RLENGTH     |              由match函数所匹配的字符串的长度 |
+| RS          |                 记录分隔符(默认是一个换行符) |
+| RSTART      |           由match函数所匹配的字符串的第一个位置 |
+| SUBSEP      |               数组下标分隔符(默认值是/034) |
 
 ### 举例
 
@@ -197,7 +209,8 @@ BEGIN {
 
 	输出：
 
-	>   test.txt:2:1: :3:1::
+```Text
+test.txt:2:1: :3:1::
 test.txt:2:2: :2:2::
 test.txt:2:3: :11:3::
 test.txt:2:4: :13:4::
@@ -205,9 +218,8 @@ test.txt:2:5: :11:5::
 test.txt:2:6: :12:6::
 test.txt:2:7: :12:7::
 test.txt:2:8: :12:8::
+```
 
--------
-
-[^pome]: 来自【英】威廉·华兹华斯[《失去的爱》](http://www.douban.com/note/233616298/)
+[^poem]: 来自【英】威廉·华兹华斯[《失去的爱》](http://www.douban.com/note/233616298/)
 
 [awk]:https://zh.wikipedia.org/wiki/Awk

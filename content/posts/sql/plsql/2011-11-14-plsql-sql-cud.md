@@ -1,13 +1,12 @@
 ---
-layout: post
 title: SQL增删改语句要点
+date: 2011-11-14
 description: 本文主要介绍一些SQL语法中有关对数据进行插入、更新及删除操作的要点
-category: SQL
-tag: [pl/sql]
+categories: "SQL"
+tags: ["pl/sql"]
+slug: 'plsql-sql-cud'
+aliases: ['/blog/2011/11/14/plsql-sql-cud.html']
 ---
-
-* TOC
-{:toc}
 
 ## SQL分类
 

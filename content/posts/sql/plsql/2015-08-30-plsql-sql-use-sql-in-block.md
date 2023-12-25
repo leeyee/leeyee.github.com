@@ -1,13 +1,12 @@
 ---
-layout: post
 title: PL/SQL块中使用SQL
+date: 2015-08-30
 description: 本文主要介绍SQL语句在PL/SQL程序块中的应用
-category: SQL
-tag: [pl/sql]
+categories: "SQL"
+tags: ["pl/sql"]
+slug: 'plsql-sql-use-sql-in-block'
+aliases: ['/blog/2015/08/30/plsql-sql-use-sql-in-block.html']
 ---
-
-* TOC
-{:toc}
 
 ## 检索单行数据
 

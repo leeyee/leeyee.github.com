@@ -2,8 +2,9 @@
 title: 数据库事务与并发
 date: 2013-07-04
 description: 数据库事务、并发、锁以及事务隔离级别的说明
-categories: "database"
+categories: "DB"
 tags: ["database"]
+slug: "database-transaction-concurrency"
 aliases: ['/blog/2013/07/04/database-transaction-concurrency.html']
 ---
 
@@ -17,28 +18,11 @@ aliases: ['/blog/2013/07/04/database-transaction-concurrency.html']
 
 ## 数据库锁
 
-<table class="table table-bordered">
-    <tr>
-        <th>资源上已放置的锁</th>
-        <th>第二个事务读操作</th>
-        <th>第二个事务更新操作</th>
-    </tr>
-    <tr>
-        <td>无</td>
-        <td>立即获取共享锁</td>
-        <td>立即获取独占锁</td>
-    </tr>
-    <tr>
-        <td>共享锁</td>
-        <td>立即获取共享锁</td>
-        <td>等待第一个事务解除共享锁</td>
-    </tr>
-    <tr>
-        <td>独占锁</td>
-        <td>等待第一个事务解除独占锁</td>
-        <td>等待第一个事务解除独占锁</td>
-    </tr>
-</table>
+| 资源上已放置的锁 | 第二个事务读操作     | 第二个事务更新操作    |
+|----------|--------------|--------------|
+| 无        | 立即获取共享锁      | 立即获取独占锁      |
+| 共享锁      | 立即获取共享锁      | 等待第一个事务解除共享锁 |
+| 独占锁      | 等待第一个事务解除独占锁 | 等待第一个事务解除独占锁 |
 
 ### 共享锁
 

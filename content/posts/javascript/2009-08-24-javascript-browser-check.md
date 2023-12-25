@@ -1,13 +1,12 @@
 ---
-layout: post
 title: 使用javascript检测浏览器版本
+date: 2009-08-24
 description: 本文介绍如何通过分析浏览器navigator的user-agent属性来检测不同浏览器的版本信息
-category: javascript
-tag: [javascript]
+categories: "javascript"
+tags: ["javascript"]
+slug: 'javascript-browser-check'
+aliases: ['/blog/2009/08/24/javacript-broswer-check.html']
 ---
-
-* any list
-{:toc}
 
 以下浏览器版本的判断方法参考了《JavaScript 高级程序设计》第八章。
 

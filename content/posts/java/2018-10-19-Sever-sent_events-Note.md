@@ -4,6 +4,8 @@ date: 2018-10-19
 description: 利用Sever-sent events（SSE)实现web服务器向浏览器推送消息,主要侧重使用Java代码展示服务器端代码的实现.
 categories: "java"
 tags: ["java", "javascript"]
+slug: "Sever-sent_events-Note)"
+aliases: ['/blog/2018/10/19/Sever-sent_events-Note.html']
 ---
 
 {{< github repo="oxcow/ServerSentEventsDemo" >}}

@@ -4,6 +4,8 @@ date: 2021-01-09
 description: 简单介绍Groovy和Java两者之间的差异
 categories: "groovy"
 tags: ["groovy", "java"]
+slug: 'difference-between-groovy-and-java'
+aliases: ['/blog/2021/01/09/difference-between-groovy-and-java.html']
 ---
 
 简单介绍Groovy和Java两者之间的差异, 完整的信息可参看[官方文档](http://www.groovy-lang.org/differences.html)

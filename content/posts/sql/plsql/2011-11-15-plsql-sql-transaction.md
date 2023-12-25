@@ -1,13 +1,12 @@
 ---
-layout: post
 title: SQL事务语句要点
+date: 2011-11-15
 description: 本文主要介绍一些关于SQL语法中有关事务操作的要点
-category: SQL
-tag: [pl/sql]
+categories: SQL
+tags: [pl/sql]
+slug: 'plsql-sql-transaction'
+aliases: ['/blog/2011/11/15/plsql-sql-transaction.html']
 ---
-
-* TOC
-{:toc}
 
 1. 提交事务
     

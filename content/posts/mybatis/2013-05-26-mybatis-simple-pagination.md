@@ -1,13 +1,12 @@
 ---
-layout: post
 title: mybatis分页的简单实现
+date: 2013-05-26
 description: 本文主要介绍通过mybatis拦截器依据正则表达式拦截相应的查询语句，同时依赖mybatis的RowBounds对象传递分页参数，依次来简单的实现mybatis的物理分页效果。
-category: java
-tag: [mybatis]
+categories: "java"
+tags: ["mybatis"]
+slug: "mybatis-simple-pagination"
+aliases: ['/blog/2013/05/26/mybatis-simple-pagination.html']
 ---
-
-* TOC
-{:toc}
 
 最近的项目中使用到了`mybatis`，发现`mybatis`不支持物理分页，只支持内存分页。因此为了解决这个问题，在网上搜索了一番，不过都比较繁琐。最后使用正则表达过滤查询语句的方式简单解决了该问题.
 

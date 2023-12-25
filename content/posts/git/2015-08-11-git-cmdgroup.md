@@ -1,9 +1,11 @@
 ---
-title: windows下Git命令组的实现
+title: Windows下Git命令组的实现
 date: 2015-08-11
 description: windows环境下配置常用git命令组合
-categories: "git"
-tag: ["git"]
+categories: "Version control"
+tags: ["git"]
+slug: 'git-cmdgroup'
+aliases: ['/blog/2015/08/11/git-cmdgroup.html']
 ---
 
 使用git进行项目版本管理时，在实际的操作中经常会有使用多个命令完成一个操作的情况出现，比如常见的代码远程更新操作可能就包含以下几个步骤：

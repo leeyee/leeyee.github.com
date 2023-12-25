@@ -2,8 +2,10 @@
 title: Git快速入门
 date: 2013-11-27
 description: 本文分场景演示如何快速上手git，使你能快速的掌握git的基本用法，如需更深入的了解，请直接查阅官方文档。
-categories: "git"
+categories: "Version control"
 tags: ["git"]
+slug: 'git-quick-start'
+aliases: ['/blog/2013/11/27/git-quick-start.html']
 ---
 
 ## 约定 ##

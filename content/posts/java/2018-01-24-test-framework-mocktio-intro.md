@@ -4,6 +4,8 @@ date: 2018-01-24
 description:  java测试框架Mockito简介。简单介绍关于利用mockito包方法mock或者spy一个对象。
 categories: "java"
 tags: ["java","test"]
+slug: "test-framework-mocktio-intro"
+aliases: ['/blog/2018/01/24/test-framework-mocktio-intro.html']
 ---
 
 本文基于mockito-core:2.8.9进行介绍。详细内容可在[这里](https://static.javadoc.io/org.mockito/mockito-core/2.13.0/org/mockito/Mockito.html#stubbing)查看具体的文档说明进一步了解。

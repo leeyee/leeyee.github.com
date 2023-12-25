@@ -1,14 +1,12 @@
 ---
-layout: post
 title: T-SQL笔记
+date: 2018-07-12
 description: T-SQL笔记。主要记录一些没有特别注意到的语法特性和使用细节
-category: SQL
-tag: [t-sql]
+categories: "SQL"
+tags: ["t-sql"]
+slug: 'tsql-notes'
+aliases: ['/blog/2018/07/12/tsql-notes.html']
 ---
-
-* TOC
-{:toc}
-
 
 > T-SQL即Transact-SQL,是SQL在 Microsoft SQL Server上的增强版。
 

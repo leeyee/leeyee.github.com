@@ -4,6 +4,8 @@ date: 2014-05-19
 description: DateFormat类在获取其实例时应具体设置语言环境及日期格式。以避免不同语言环境发生解析错误的问题出现。
 categories: "java"
 tags: ["java"]
+slug: 'java-dateformat-instance'
+aliases: ['/blog/2014/05/19/java-dateformat-instance.html']
 ---
 
 先看段代码：

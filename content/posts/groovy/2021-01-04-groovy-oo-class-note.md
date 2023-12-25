@@ -4,6 +4,8 @@ date: 2021-01-04
 description: 记录Groovy的类相关知识。包括类的定义，类的属性，类的方法以及接口等。
 categories: "groovy"
 tags: ["groovy", "java"]
+slug: 'groovy-oo-class-note'
+aliases: ['/blog/2021/01/04/groovy-oo-class-note.html']
 ---
 
 这里只记录一些特别的特性。没有提及的意味着基本可以参考着Java的方式来。详细的内容请参考[官方文档](http://www.groovy-lang.org/objectorientation.html)

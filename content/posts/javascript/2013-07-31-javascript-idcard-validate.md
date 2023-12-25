@@ -1,14 +1,14 @@
 ---
-layout: post
 title: javascript身份证号码验证
+date: 2013-07-31
 description: 根据身份证号码的生成规则，对其使用javascript进行有效性验证。从而可以在web应用中针对用户输入的身份证号码进行客户端验证
-category: javascript
-tag: [javascript]
-github: 'id-number-validator'
+categories: "javascript"
+tags: ["javascript"]
+slug: 'javascript-idcard-validate'
+aliases: ['/blog/2013/07/31/javascript-idcard-validate.html']
 ---
 
-* any list
-{:toc}
+{{< github repo="oxcow/id-number-validator" >}}
 
 ## 15位身份证号码编码规则
 

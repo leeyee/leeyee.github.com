@@ -1,14 +1,12 @@
 ---
-layout: post
 title: T-SQL游标
+date: 2018-07-12
 description: T-SQL游标简介
-category: SQL
-tag: [t-sql]
+categories: "SQL"
+tags: ["t-sql"]
+slug: 'tsql-cursor'
+aliases: ['/blog/2018/07/12/tsql-cursor.html']
 ---
-
-* TOC
-{:toc}
-
 
 ## 游标
 

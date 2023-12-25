@@ -4,6 +4,7 @@ date: 2009-09-03
 description: Struts2的iterator标签使用说明
 categories: "java"
 tags: ["struts2"]
+slug: "struts2-iterator-usage"
 aliases: ['/blog/2009/09/03/struts2-iterator-usage.html']
 ---
 

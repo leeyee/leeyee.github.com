@@ -1,14 +1,15 @@
 ---
-layout: post
 title: jQuery eTable Plugin
+date: 2012-05-05
 description: 基于jQuery的简单table元素操作插件。该插件使用jQuery对针对table元素的行列添加及行列删除等常用操作进行了封装，形成了一些简单的API方法，方便在实际开发过程中的简单调用。
-category: javascript
-tag: [javascript, jQuery]
+categories: "javascript"
+tags: ["javascript", "jQuery"]
 github: 'eTable'
+slug: 'jquery-etable-plugin'
+aliases: ['/blog/2012/05/05/jquery-etable-plugin.html']
 ---
 
-* any list
-{:toc}
+{{< github repo="oxcow/eTable" >}}
 
 很多时候我们需要对页面上的表格进行添加一行，删除一行这样的基本操作。如果我们使用原生的javascrip来写会很不方便。为了解决这个问题我们封装了一些常规的页面表格处理方式，集成到jQuery中，方面我们后续使用。
 

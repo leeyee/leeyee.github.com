@@ -1,13 +1,13 @@
 ---
-layout: post
 title:  Spring Retry 常用示例
+date: 2016-01-19
 description: Spring Retry 常用示例
-category: java
-tag: [spring]
+categories: "java"
+tags: ["spring"]
+slug: "spring-retry-common-case"
+aliases: ['/blog/2016/01/19/spring-retry-common-case.html']
 ---
 
-* TOC
-{:toc}
 
 ## 重试策略
 

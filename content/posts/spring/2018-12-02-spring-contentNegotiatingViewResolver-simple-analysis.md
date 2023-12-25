@@ -1,14 +1,12 @@
 ---
-layout: post
 title: Spring ContentNegotiatingViewResolver 简单分析
+date: 2018-12-02
 description: Spring ContentNegotiatingViewResolver 简单分析
-category: java
-tag: [spring]
+categories: "java"
+tags: ["spring"]
+slug: "spring-contentNegotiatingViewResolver-simple-analysis"
+aliases: ['/blog/2018/12/02/spring-contentNegotiatingViewResolver-simple-analysis.html']
 ---
-
-* TOC
-{:toc}
-
 
 # Conclusion
 

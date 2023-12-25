@@ -1,13 +1,12 @@
 ---
-layout: post
 title: mybatis参数映射
+date: 2012-09-27
 description: 本文主要说明mybatis框架对于方法参数的映射规则并分类进行了讨论
-category: java
-tag: [mybatis]
+categories: "java"
+tags: ["mybatis"]
+slug: "mybatis-param-mapping-rules"
+aliases: ['/blog/2012/09/27/mybatis-param-mapping-rules.html']
 ---
-
-* any list
-{:toc}
 
 ## 规则
 

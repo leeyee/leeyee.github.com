@@ -1,9 +1,11 @@
 ---
-layout: post
 title: PL/SQL复合数据类型
+date: 2015-08-30
 description: 介绍pl/sql复合数据类型。包括记录表、集合、嵌套表、变长数组等数据类型
-category: SQL
-tag: [pl/sql]
+categories: "SQL"
+tags: ["pl/sql"]
+slug: 'plsql-complex-data-type'
+aliases: ['/blog/2015/08/30/plsql-complex-data-type.html']
 ---
 
 * TOC

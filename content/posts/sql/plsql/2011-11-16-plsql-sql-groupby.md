@@ -1,16 +1,14 @@
 ---
-layout: post
 title: SQL分组语句要点
+date: 2011-11-16
 description: 本文主要介绍一些SQL语法中有关分组操作的要点
-category: SQL
-tag: [pl/sql]
+categories: "SQL"
+tags: ["pl/sql"]
+slug: 'plsql-sql-groupby'
+aliases: ['/blog/2011/11/16/plsql-sql-groupby.html']
 ---
-
-* TOC
-{:toc}
-
-
-### 常用分组函数：
+ 
+## 常用分组函数：
 
 1. `max([all|distinct]expr)` : 获取列或表达式的最大值，适合任何数据类型；
 2. `min([all|distinct]expr)` : 获取列或表达式的最小值，适合任何数据类型;
@@ -58,7 +56,7 @@ tag: [pl/sql]
 + 使用分组函数时，分组函数中可以指定`all`和`distinct`其中`all`为默认选项；
 
 
-### 横向小计统计(`rollup`)
+## 横向小计统计(`rollup`)
 	
 `rollup`操作符在生成原有统计结果的基础上，还会生成横向小计结果.
 	SQL> SELECT name,address ,SUM(money) FROM customer GROUP BY ROLLUP(name,address);
@@ -70,7 +68,7 @@ tag: [pl/sql]
 		leeyee						152号大街		1				12.23
 		leeyee										2				44.23
 													4				162.26
-### 纵向小计统计(`cube`)
+## 纵向小计统计(`cube`)
 
 `cube`操作符在生成原有统计结果的基础上，还会生成横向小计、纵向小计结果.
 
@@ -87,7 +85,7 @@ tag: [pl/sql]
 		leeyee					a				1			32
 		leeyee						152号大街	1				12.23
 
-### 分组合并`grouping sets`
+## 分组合并`grouping sets`
 
 <span class="label label-important"><em>NOTES：</em></span>**Oracle9i后可以使用**
 
