@@ -87,7 +87,7 @@ disableTextInHeader = false
   showTableOfContents = false
   showCards = false
   groupByYear = false
-  cardView = false
+  cardView = true
   cardViewScreenWidth = false
   constrainItemsWidth = false
 
